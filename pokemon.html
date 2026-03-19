@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="light only" name="color-scheme"/>
+<meta content="light" name="supported-color-schemes"/>
+<meta content="#fafafa" name="theme-color"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pokémon TCG — Anime2Chile</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Bebas+Neue&amp;family=Pathway+Extreme:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/>
+<link href="pages.css" rel="stylesheet"/>
+<link href="carrito.css" rel="stylesheet"/>
+<style>
+        .poke-hero {
+            margin-top: 72px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+            padding: 3.5rem 2rem 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .poke-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 120%, rgba(255,203,5,0.12) 0%, transparent 70%);
+        }
+        .poke-hero-eyebrow {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 4px;
+            color: #ffcb05;
+            margin-bottom: 0.5rem;
+        }
+        .poke-hero-title {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            letter-spacing: 3px;
+            color: #fff;
+            line-height: 1;
+            margin-bottom: 0.75rem;
+        }
+        .poke-hero-title span { color: #ffcb05; }
+        .poke-hero-sub { color: rgba(255,255,255,0.6); font-size: 1rem; }
+
+        .poke-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+        .poke-section-header { margin-bottom: 1.75rem; }
+        .poke-section-label {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+        .poke-section-title {
+            font-family: 'Anton', sans-serif;
+            font-size: 2rem;
+            letter-spacing: 2px;
+            color: var(--dark);
+        }
+
+        /* ── Categorías ── */
+        .poke-cat-section-full {
+            padding: 3rem 1.25rem;
+        }
+        .poke-cat-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            max-width: 100%;
+        }
+        .poke-cat-card {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            aspect-ratio: 21/9;
+            cursor: pointer;
+            display: flex;
+            align-items: flex-end;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .poke-cat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+        }
+        .poke-cat-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.4s ease;
+        }
+        .poke-cat-card:hover .poke-cat-bg { transform: scale(1.04); }
+        .poke-cat-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.2) 55%, transparent 100%);
+        }
+        .poke-cat-content {
+            position: relative;
+            z-index: 2;
+            padding: 1.25rem 1.5rem;
+            width: 100%;
+        }
+        .poke-cat-eyebrow {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 3px;
+            color: #ffcb05;
+            margin-bottom: 0.2rem;
+        }
+        .poke-cat-name {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            color: #fff;
+            letter-spacing: 1px;
+            line-height: 1.1;
+            margin-bottom: 0.75rem;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+        }
+        .poke-cat-btn {
+            display: inline-block;
+            padding: 0.45rem 1.25rem;
+            background: #fff;
+            color: var(--dark);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            border-radius: 6px;
+            transition: background 0.2s, color 0.2s;
+        }
+        .poke-cat-card:hover .poke-cat-btn { background: #ffcb05; color: #1a1a2e; }
+
+        .poke-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #e5e7eb, transparent);
+            margin: 0 2rem;
+        }
+
+        /* ── Carrusel ── */
+        .carrusel-track-outer { overflow: hidden; }
+        .carrusel-track {
+            display: flex;
+            gap: 1.25rem;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .poke-prod-card {
+            flex: 0 0 calc(25% - 1rem);
+            background: #fff;
+            border-radius: 16px;
+            border: 1px solid rgba(0,0,0,0.07);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .poke-prod-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+        }
+        .poke-prod-img {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .poke-prod-img img { width:100%; height:100%; object-fit:contain; padding:0.75rem; }
+        .poke-prod-badge {
+            position: absolute;
+            top: 10px; left: 10px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 1.5px;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            background: #ffcb05;
+            color: #1a1a2e;
+        }
+        .poke-prod-info {
+            padding: 1rem 1.25rem 1.25rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+        .poke-prod-set {
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--primary);
+        }
+        .poke-prod-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            color: var(--dark);
+            line-height: 1.2;
+        }
+        .poke-prod-tipo { font-size: 0.78rem; color: var(--gray); flex: 1; }
+        .poke-prod-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 0.75rem;
+            gap: 0.5rem;
+        }
+        .poke-prod-price {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.4rem;
+            color: var(--primary);
+        }
+        .poke-prod-btn {
+            padding: 0.5rem 0.875rem;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            background: var(--gradient);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: opacity 0.2s;
+            flex-shrink: 0;
+        }
+        .poke-prod-btn:hover { opacity: 0.85; }
+
+        /* Controles carrusel */
+        .carrusel-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.75rem;
+        }
+        .carrusel-controls { display: flex; align-items: center; gap: 0.75rem; }
+        .carrusel-dots { display: flex; gap: 0.4rem; align-items: center; }
+        .carrusel-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: #d1d5db;
+            transition: background 0.2s, width 0.2s;
+            cursor: pointer;
+        }
+        .carrusel-dot.activo { background: var(--primary); width: 18px; border-radius: 3px; }
+        .carrusel-arrow {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            border: 2px solid rgba(0,0,0,0.12);
+            background: #fff;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: border-color 0.2s, background 0.2s, color 0.2s;
+            color: var(--dark);
+        }
+        .carrusel-arrow:hover { border-color: var(--primary); background: var(--primary); color: #fff; }
+        .carrusel-arrow:disabled { opacity: 0.3; cursor: not-allowed; }
+
+        @media (max-width: 900px) {
+            .poke-prod-card { flex: 0 0 calc(50% - 0.625rem); }
+        }
+        @media (max-width: 600px) {
+            .poke-cat-grid { grid-template-columns: 1fr; gap: 0.5rem; }
+            .poke-cat-card { aspect-ratio: 16/7; }
+            .poke-cat-section-full { padding: 1.5rem 0.75rem; }
+            .poke-prod-card { flex: 0 0 calc(100% - 0px); }
+            .poke-section { padding: 2rem 1rem; }
+        }
+    </style>
+    <link rel="stylesheet" href="buscador.css">
+</head>
+<body>
+<header class="header">
+<div class="header-content">
+<div class="logo-container">
+<a href="index.html" style="text-decoration:none; display:flex; align-items:center; gap:1rem;">
+<div class="logo">A</div>
+<div class="brand-name">
+<span class="brand-anime">ANIME</span>
+<span class="brand-two">2</span>
+<span class="brand-anime">CHILE</span>
+</div>
+</a>
+</div>
+<nav class="nav">
+<a class="nav-link" href="index.html">Inicio</a>
+<a class="nav-link" href="catalogo.html">Catalogo</a>
+<a class="nav-link" href="contacto.html">Contactanos</a>
+<a class="nav-link" href="reservas.html">Reservas</a>
+<a class="nav-link nav-link-pokemon active" href="pokemon.html">Pokémon TCG</a>
+</nav>
+<button class="mobile-menu-btn">☰</button>
+</div>
+</header>
+<div class="poke-hero">
+<p class="poke-hero-eyebrow">ANIME2CHILE</p>
+<h1 class="poke-hero-title">POKÉMON <span>TCG</span></h1>
+<p class="poke-hero-sub">Sellado · Singles · Sleeves</p>
+</div>
+<!-- CATEGORÍAS -->
+<section class="poke-cat-section-full">
+<div class="poke-cat-grid">
+<a class="poke-cat-card" href="catalogo-pokemon.html?categoria=sellado" style="text-decoration:none;">
+<div class="poke-cat-bg" style="background: linear-gradient(135deg, #e84c0c 0%, #ff6b35 100%);"></div>
+<div class="poke-cat-overlay"></div>
+<div class="poke-cat-content">
+<p class="poke-cat-eyebrow">POKÉMON TCG</p>
+<h3 class="poke-cat-name">Sellado</h3>
+<span class="poke-cat-btn">Ver ahora</span>
+</div>
+</a>
+<a class="poke-cat-card" href="catalogo-pokemon.html?categoria=singles" style="text-decoration:none;">
+<div class="poke-cat-bg" style="background: linear-gradient(135deg, #c93d00 0%, #e85d1a 100%);"></div>
+<div class="poke-cat-overlay"></div>
+<div class="poke-cat-content">
+<p class="poke-cat-eyebrow">POKÉMON TCG</p>
+<h3 class="poke-cat-name">Singles</h3>
+<span class="poke-cat-btn">Ver ahora</span>
+</div>
+</a>
+<a class="poke-cat-card" href="catalogo-pokemon.html?categoria=sleeves" style="text-decoration:none;">
+<div class="poke-cat-bg" style="background: linear-gradient(135deg, #ff8c00 0%, #ffb347 100%);"></div>
+<div class="poke-cat-overlay"></div>
+<div class="poke-cat-content">
+<p class="poke-cat-eyebrow">POKÉMON TCG</p>
+<h3 class="poke-cat-name">Sleeves</h3>
+<span class="poke-cat-btn">Ver ahora</span>
+</div>
+</a>
+
+</div>
+</section>
+<div class="poke-divider"></div>
+<!-- MÁS VENDIDOS -->
+<section class="poke-section">
+<div class="carrusel-header">
+<div>
+<p class="poke-section-label">LOS FAVORITOS</p>
+<h2 class="poke-section-title">MÁS VENDIDOS</h2>
+</div>
+<div class="carrusel-controls">
+<div class="carrusel-dots" id="carrusel-dots"></div>
+<button class="carrusel-arrow" disabled="" id="arrow-prev" onclick="moverCarrusel(-1)">‹</button>
+<button class="carrusel-arrow" id="arrow-next" onclick="moverCarrusel(1)">›</button>
+</div>
+</div>
+<div class="carrusel-track-outer">
+<div class="carrusel-track" id="carrusel-track">
+
+<div class="poke-prod-card">
+<div class="poke-prod-img" style="background:linear-gradient(135deg,#f57f17,#ffca28);">
+<div class="poke-prod-badge">POPULAR</div>
+<span>🌟</span>
+</div>
+<div class="poke-prod-info">
+<p class="poke-prod-set">Paldea Evolved</p>
+<h3 class="poke-prod-name">Elite Trainer Box</h3>
+<p class="poke-prod-tipo">9 sobres + accesorios · Inglés · SV2</p>
+<div class="poke-prod-bottom">
+<span class="poke-prod-price">$54.990</span>
+<button class="poke-prod-btn" onclick="agregarAlCarrito('poke-etb-pe','Elite Trainer Box Paldea Evolved',54990,'')">+ CARRITO</button>
+</div>
+</div>
+</div>
+<div class="poke-prod-card">
+<div class="poke-prod-img" style="background:linear-gradient(135deg,#880e4f,#e91e63);">
+<span>🌸</span>
+</div>
+<div class="poke-prod-info">
+<p class="poke-prod-set">Paradox Rift</p>
+<h3 class="poke-prod-name">Booster Box</h3>
+<p class="poke-prod-tipo">36 sobres · Inglés · SV4</p>
+<div class="poke-prod-bottom">
+<span class="poke-prod-price">$134.990</span>
+<button class="poke-prod-btn" onclick="agregarAlCarrito('poke-booster-box-pr','Booster Box Paradox Rift',134990,'')">+ CARRITO</button>
+</div>
+</div>
+</div>
+<div class="poke-prod-card">
+<div class="poke-prod-img" style="background:linear-gradient(135deg,#0277bd,#03a9f4);">
+<div class="poke-prod-badge">STOCK BAJO</div>
+<span>💎</span>
+</div>
+<div class="poke-prod-info">
+<p class="poke-prod-set">Obsidian Flames</p>
+<h3 class="poke-prod-name">Elite Trainer Box — Charizard</h3>
+<p class="poke-prod-tipo">ETB · Edición Charizard · Inglés</p>
+<div class="poke-prod-bottom">
+<span class="poke-prod-price">$54.990</span>
+<button class="poke-prod-btn" onclick="agregarAlCarrito('poke-etb-of','ETB Obsidian Flames Charizard',54990,'')">+ CARRITO</button>
+</div>
+</div>
+</div>
+<div class="poke-prod-card">
+<div class="poke-prod-img" style="background:linear-gradient(135deg,#1a237e,#3949ab);">
+<span>🌙</span>
+</div>
+<div class="poke-prod-info">
+<p class="poke-prod-set">Temporal Forces</p>
+<h3 class="poke-prod-name">Mazo de Batalla — Iron Leaves</h3>
+<p class="poke-prod-tipo">60 cartas listas para jugar · Inglés</p>
+<div class="poke-prod-bottom">
+<span class="poke-prod-price">$19.990</span>
+<button class="poke-prod-btn" onclick="agregarAlCarrito('poke-mazo-iron','Mazo Iron Leaves',19990,'')">+ CARRITO</button>
+</div>
+</div>
+</div>
+<div class="poke-prod-card">
+<div class="poke-prod-img" style="background:linear-gradient(135deg,#4a148c,#9c27b0);">
+<span>✨</span>
+</div>
+<div class="poke-prod-info">
+<p class="poke-prod-set">151 — Japonés</p>
+<h3 class="poke-prod-name">Booster Box SV2a</h3>
+<p class="poke-prod-tipo">20 sobres · Japonés · Edición limitada</p>
+<div class="poke-prod-bottom">
+<span class="poke-prod-price">$89.990</span>
+<button class="poke-prod-btn" onclick="agregarAlCarrito('poke-booster-151-jp','Booster Box 151 Japonés',89990,'')">+ CARRITO</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<footer class="footer">
+<div class="footer-top">
+<div class="footer-brand">
+<div class="footer-logo-wrap">
+<div class="logo" style="width:44px;height:44px;font-size:1.3rem;">A</div>
+<div class="brand-name" style="font-size:1.3rem;">
+<span class="brand-anime">ANIME</span><span class="brand-two">2</span><span class="brand-anime">CHILE</span>
+</div>
+</div>
+<p class="footer-tagline">El catálogo más amplio de coleccionables anime en Chile.</p>
+<div class="footer-social">
+<a aria-label="Instagram" class="social-btn" href="#"><svg fill="currentColor" height="20" viewbox="0 0 24 24" width="20"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg></a>
+<a aria-label="TikTok" class="social-btn" href="#"><svg fill="currentColor" height="20" viewbox="0 0 24 24" width="20"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"></path></svg></a>
+<a aria-label="Facebook" class="social-btn" href="#"><svg fill="currentColor" height="20" viewbox="0 0 24 24" width="20"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a>
+<a aria-label="YouTube" class="social-btn" href="#"><svg fill="currentColor" height="20" viewbox="0 0 24 24" width="20"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"></path></svg></a>
+</div>
+</div>
+<div class="footer-links-group">
+<h4 class="footer-heading">Catálogo</h4>
+<ul class="footer-links">
+<li><a href="catalogo.html">Figuras de Acción</a></li>
+<li><a href="pokemon.html">Trading Cards</a></li>
+<li><a href="reservas.html">Pre-Ventas</a></li>
+</ul>
+</div>
+<div class="footer-links-group">
+<h4 class="footer-heading">Ayuda</h4>
+<ul class="footer-links">
+<li><a href="#">¿Cómo comprar?</a></li>
+<li><a href="#">Envíos y tiempos</a></li>
+<li><a href="#">Cambios y devoluciones</a></li>
+<li><a href="contacto.html">Contacto</a></li>
+</ul>
+</div>
+<div class="footer-newsletter">
+<h4 class="footer-heading">Newsletter</h4>
+<p class="footer-newsletter-desc">Recibe primero las alertas de stock, preventas y descuentos exclusivos.</p>
+<div class="newsletter-form">
+<input class="newsletter-input" placeholder="tu@correo.com" type="email"/>
+<button class="newsletter-btn">SUSCRIBIR</button>
+</div>
+<p class="newsletter-disclaimer">Sin spam. Puedes darte de baja cuando quieras.</p>
+</div>
+</div>
+<div class="footer-bottom">
+<p class="footer-copy">© 2025 Anime2Chile. Todos los derechos reservados.</p>
+<div class="footer-bottom-links">
+<a href="#">Términos y Condiciones</a><span>·</span>
+<a href="#">Política de Privacidad</a><span>·</span>
+<a href="#">Cookies</a>
+</div>
+</div>
+</footer>
+<script>
+// ── Carrusel ──
+const track    = document.getElementById('carrusel-track');
+const dotsWrap = document.getElementById('carrusel-dots');
+const btnPrev  = document.getElementById('arrow-prev');
+const btnNext  = document.getElementById('arrow-next');
+let posActual  = 0;
+
+function cardsVisibles() {
+    if (window.innerWidth <= 600) return 1;
+    if (window.innerWidth <= 900) return 2;
+    return 4;
+}
+
+const totalCards = track.children.length;
+function totalPasos() { return Math.ceil(totalCards / cardsVisibles()); }
+
+function buildDots() {
+    dotsWrap.innerHTML = '';
+    for (let i = 0; i < totalPasos(); i++) {
+        const d = document.createElement('div');
+        d.className = 'carrusel-dot' + (i === 0 ? ' activo' : '');
+        d.onclick = () => irA(i);
+        dotsWrap.appendChild(d);
+    }
+}
+
+function irA(pos) {
+    const pasos = totalPasos();
+    posActual = Math.max(0, Math.min(pos, pasos - 1));
+    const cardW = track.children[0].offsetWidth + 20;
+    track.style.transform = `translateX(-${posActual * cardsVisibles() * cardW}px)`;
+    document.querySelectorAll('.carrusel-dot').forEach((d, i) => d.classList.toggle('activo', i === posActual));
+    btnPrev.disabled = posActual === 0;
+    btnNext.disabled = posActual >= pasos - 1;
+}
+
+window.moverCarrusel = function(dir) { irA(posActual + dir); };
+window.addEventListener('resize', () => { buildDots(); irA(0); });
+buildDots();
+irA(0);
+
+// ── Menú móvil ──
+document.addEventListener('DOMContentLoaded', function() {
+    const btn = document.querySelector('.mobile-menu-btn');
+    const nav = document.querySelector('.nav');
+    if (btn && nav) {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            nav.classList.toggle('nav-abierto');
+            btn.classList.toggle('activo');
+            btn.textContent = nav.classList.contains('nav-abierto') ? '✕' : '☰';
+        });
+        document.addEventListener('click', function(e) {
+            if (!nav.contains(e.target) && e.target !== btn) {
+                nav.classList.remove('nav-abierto');
+                btn.classList.remove('activo');
+                btn.textContent = '☰';
+            }
+        });
+    }
+});
+</script>
+<script src="buscador.js"></script>
+<script src="carrito.js"></script>
+</body>
+</html>

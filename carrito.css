@@ -1,0 +1,370 @@
+/* ============================================================
+   carrito.css — Sidebar carrito de compras
+   ============================================================ */
+
+/* ── Botón carrito en el header ── */
+#carrito-btn-header {
+    position: relative;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--dark);
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+#carrito-btn-header:hover {
+    background: var(--gradient-subtle);
+    color: var(--primary);
+}
+
+/* Contador rojo encima del ícono */
+#carrito-contador {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background: var(--gradient);
+    color: #fff;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+/* ── Overlay oscuro detrás del sidebar ── */
+#carrito-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0);
+    z-index: 1100;
+    pointer-events: none;
+    transition: background 0.35s ease;
+}
+
+#carrito-overlay.visible {
+    background: rgba(0, 0, 0, 0.5);
+    pointer-events: auto;
+}
+
+/* ── Sidebar ── */
+#carrito-sidebar {
+    position: fixed;
+    top: 0;
+    right: -420px;
+    width: 420px;
+    max-width: 100vw;
+    height: 100dvh;
+    background: #ffffff;
+    box-shadow: -4px 0 40px rgba(0, 0, 0, 0.15);
+    z-index: 1200;
+    display: flex;
+    flex-direction: column;
+    transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+#carrito-sidebar.abierto {
+    right: 0;
+}
+
+/* ── Header del sidebar ── */
+.carrito-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 2px solid var(--gradient-subtle);
+    background: #ffffff;
+    flex-shrink: 0;
+}
+
+.carrito-header h2 {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
+}
+
+.carrito-cerrar {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: var(--gray);
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s;
+}
+
+.carrito-cerrar:hover {
+    background: #f5f5f5;
+    color: var(--dark);
+}
+
+/* ── Contenido (lista de items) ── */
+.carrito-contenido {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* ── Estado vacío ── */
+.carrito-vacio {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 3rem 1rem;
+    text-align: center;
+    color: var(--gray);
+}
+
+.carrito-vacio-icono {
+    font-size: 3.5rem;
+    opacity: 0.4;
+}
+
+.carrito-vacio p {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    color: var(--dark);
+}
+
+.carrito-vacio span {
+    font-size: 0.85rem;
+    color: var(--gray);
+}
+
+/* ── Item individual ── */
+.carrito-item {
+    display: flex;
+    gap: 0.875rem;
+    padding: 0.875rem;
+    background: #fafafa;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.05);
+    align-items: center;
+}
+
+.carrito-item-img {
+    width: 72px;
+    height: 72px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--gradient-subtle);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carrito-item-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carrito-item-placeholder {
+    font-size: 2rem;
+    opacity: 0.5;
+}
+
+.carrito-item-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    min-width: 0;
+}
+
+.carrito-item-nombre {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    color: var(--dark);
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+}
+
+.carrito-item-precio {
+    font-size: 0.82rem;
+    color: var(--gray);
+    margin: 0;
+}
+
+.carrito-item-qty {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+}
+
+.carrito-item-qty span {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    min-width: 20px;
+    text-align: center;
+    color: var(--dark);
+}
+
+.carrito-qty-btn {
+    width: 26px;
+    height: 26px;
+    border: 1.5px solid var(--light-gray);
+    background: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--dark);
+    transition: border-color 0.2s, background 0.2s;
+    line-height: 1;
+}
+
+.carrito-qty-btn:hover {
+    border-color: var(--primary);
+    background: var(--gradient-subtle);
+    color: var(--primary);
+}
+
+.carrito-item-subtotal {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.carrito-item-subtotal p {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    color: var(--primary);
+    margin: 0;
+    white-space: nowrap;
+}
+
+.carrito-eliminar {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #ccc;
+    font-size: 0.85rem;
+    padding: 2px 4px;
+    border-radius: 4px;
+    transition: color 0.2s, background 0.2s;
+    line-height: 1;
+}
+
+.carrito-eliminar:hover {
+    color: #e53e3e;
+    background: #fff0f0;
+}
+
+/* ── Footer con total y botones ── */
+.carrito-footer {
+    padding: 1.25rem 1.5rem;
+    border-top: 1px solid var(--light-gray);
+    background: #ffffff;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.carrito-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+}
+
+.carrito-total span:first-child {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    color: var(--gray);
+}
+
+.carrito-total span:last-child {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.6rem;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.carrito-checkout-btn {
+    width: 100%;
+    padding: 1rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+    background: var(--gradient);
+    border: none;
+    border-radius: 12px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(255, 107, 53, 0.35);
+}
+
+.carrito-checkout-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(255, 107, 53, 0.5);
+}
+
+.carrito-vaciar-btn {
+    width: 100%;
+    padding: 0.6rem;
+    font-family: 'Pathway Extreme', sans-serif;
+    font-size: 0.82rem;
+    background: none;
+    border: 1px solid var(--light-gray);
+    border-radius: 8px;
+    color: var(--gray);
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.carrito-vaciar-btn:hover {
+    border-color: #e53e3e;
+    color: #e53e3e;
+}
+
+/* ── Responsive móvil ── */
+@media (max-width: 480px) {
+    #carrito-sidebar {
+        width: 100vw;
+        right: -100vw;
+    }
+}

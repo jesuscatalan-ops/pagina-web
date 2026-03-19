@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="color-scheme" content="light only">
+    <meta name="supported-color-schemes" content="light">
+    <meta name="theme-color" content="#fafafa">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Pedido recibido! — Anime2Chile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Pathway+Extreme:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="carrito.css">
+    <style>
+        .gracias-wrap {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 110px 2rem 4rem;
+        }
+
+        .gracias-card {
+            background: #fff;
+            border-radius: 28px;
+            border: 1px solid rgba(0,0,0,0.07);
+            box-shadow: 0 8px 48px rgba(0,0,0,0.08);
+            padding: 3.5rem 3rem;
+            max-width: 560px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .gracias-icono {
+            font-size: 5rem;
+            margin-bottom: 1.25rem;
+            animation: pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        }
+
+        @keyframes pop {
+            from { transform: scale(0.5); opacity: 0; }
+            to   { transform: scale(1);   opacity: 1; }
+        }
+
+        .gracias-titulo {
+            font-family: 'Anton', sans-serif;
+            font-size: 2.8rem;
+            letter-spacing: 2px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .gracias-texto {
+            color: var(--gray);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .gracias-pasos {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 2.5rem;
+            text-align: left;
+        }
+
+        .gracias-paso {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.875rem;
+            padding: 0.875rem 1rem;
+            background: var(--gradient-subtle);
+            border-radius: 12px;
+        }
+
+        .paso-num {
+            width: 28px;
+            height: 28px;
+            background: var(--gradient);
+            color: #fff;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .paso-texto {
+            font-size: 0.9rem;
+            color: var(--dark);
+            line-height: 1.4;
+            padding-top: 3px;
+        }
+
+        .gracias-btns {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .gracias-btn-secundario {
+            padding: 0.85rem 1.75rem;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            background: none;
+            border: 2px solid var(--light-gray);
+            border-radius: 12px;
+            color: var(--dark);
+            cursor: pointer;
+            text-decoration: none;
+            transition: border-color 0.2s, color 0.2s;
+            display: inline-block;
+        }
+
+        .gracias-btn-secundario:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        @media (max-width: 480px) {
+            .gracias-card { padding: 2.5rem 1.5rem; }
+            .gracias-titulo { font-size: 2rem; }
+            .gracias-btns { flex-direction: column; }
+            .gracias-btns a, .gracias-btns button { width: 100%; text-align: center; }
+        }
+    </style>
+    <link rel="stylesheet" href="buscador.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-container">
+                <a href="index.html" style="text-decoration:none; display:flex; align-items:center; gap:1rem;">
+                    <div class="logo">A</div>
+                    <div class="brand-name">
+                        <span class="brand-anime">ANIME</span>
+                        <span class="brand-two">2</span>
+                        <span class="brand-anime">CHILE</span>
+                    </div>
+                </a>
+            </div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="catalogo.html" class="nav-link">Catalogo</a>
+                <a href="contacto.html" class="nav-link">Contactanos</a>
+                <a href="reservas.html" class="nav-link">Reservas</a>
+                <a href="pokemon.html" class="nav-link nav-link-pokemon">Pokémon TCG</a>
+            </nav>
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+    </header>
+
+    <div class="gracias-wrap">
+        <div class="gracias-card">
+            <div class="gracias-icono">🎉</div>
+            <h1 class="gracias-titulo">¡PEDIDO RECIBIDO!</h1>
+            <p class="gracias-texto">
+                Gracias por tu compra en <strong>Anime2Chile</strong>.<br>
+                Tu pedido ha sido registrado exitosamente y nos pondremos en contacto contigo a la brevedad para coordinar el pago y el despacho.
+            </p>
+
+            <div class="gracias-pasos">
+                <div class="gracias-paso">
+                    <div class="paso-num">1</div>
+                    <div class="paso-texto"><strong>Revisamos tu pedido</strong> — Confirmaremos disponibilidad de stock en las próximas horas.</div>
+                </div>
+                <div class="gracias-paso">
+                    <div class="paso-num">2</div>
+                    <div class="paso-texto"><strong>Te contactamos</strong> — Nos comunicaremos por WhatsApp o email para coordinar el pago.</div>
+                </div>
+                <div class="gracias-paso">
+                    <div class="paso-num">3</div>
+                    <div class="paso-texto"><strong>Despacho</strong> — Una vez confirmado el pago, enviamos tu pedido con el courier elegido.</div>
+                </div>
+            </div>
+
+            <div class="gracias-btns">
+                <a href="catalogo.html" class="banner-btn" style="text-decoration:none;">SEGUIR COMPRANDO</a>
+                <a href="index.html" class="gracias-btn-secundario">IR AL INICIO</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="footer-logo-wrap">
+                    <div class="logo" style="width:44px;height:44px;font-size:1.3rem;">A</div>
+                    <div class="brand-name" style="font-size:1.3rem;">
+                        <span class="brand-anime">ANIME</span><span class="brand-two">2</span><span class="brand-anime">CHILE</span>
+                    </div>
+                </div>
+                <p class="footer-tagline">El catálogo más amplio de coleccionables anime en Chile.</p>
+            </div>
+            <div class="footer-links-group">
+                <h4 class="footer-heading">Catálogo</h4>
+                <ul class="footer-links">
+                    <li><a href="catalogo.html">Figuras de Acción</a></li>
+                    <li><a href="pokemon.html">Trading Cards</a></li>
+                    <li><a href="reservas.html">Pre-Ventas</a></li>
+                </ul>
+            </div>
+            <div class="footer-links-group">
+                <h4 class="footer-heading">Ayuda</h4>
+                <ul class="footer-links">
+                    <li><a href="#">¿Cómo comprar?</a></li>
+                    <li><a href="#">Envíos y tiempos</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copy">© 2025 Anime2Chile. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var btn = document.querySelector('.mobile-menu-btn');
+    var nav = document.querySelector('.nav');
+    if (btn && nav) {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            nav.classList.toggle('nav-abierto');
+            btn.classList.toggle('activo');
+            btn.textContent = nav.classList.contains('nav-abierto') ? '✕' : '☰';
+        });
+        document.addEventListener('click', function(e) {
+            if (!nav.contains(e.target) && e.target !== btn) {
+                nav.classList.remove('nav-abierto');
+                btn.classList.remove('activo');
+                btn.textContent = '☰';
+            }
+        });
+    }
+});
+</script>
+
+<script src="buscador.js"></script>
+    <script src="carrito.js"></script>
+</body>
+</html>

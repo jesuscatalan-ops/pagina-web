@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="color-scheme" content="light only">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Admin — Anime2Chile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Pathway+Extreme:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff6b35;
+            --gradient: linear-gradient(135deg, #ff6b35 0%, #ff8c42 50%, #ffa45c 100%);
+            --dark: #1a1a2e;
+            --gray: #6b7280;
+            --light: #f8f9fa;
+            --border: #e5e7eb;
+            --green: #10b981;
+            --yellow: #f59e0b;
+            --red: #ef4444;
+            --green-bg: #d1fae5;
+            --yellow-bg: #fef3c7;
+            --red-bg: #fee2e2;
+        }
+tiqueta
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Pathway Extreme', sans-serif;
+            background: #f1f5f9;
+            color: var(--dark);
+            min-height: 100vh;
+        }
+
+        /* ── Topbar ── */
+        .topbar {
+            background: var(--dark);
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+        }
+
+        .topbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .topbar-logo {
+            width: 38px;
+            height: 38px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Anton', sans-serif;
+            font-size: 1.1rem;
+            color: #fff;
+        }
+
+        .topbar-title {
+            font-family: 'Anton', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            color: #fff;
+        }
+
+        .topbar-title span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .topbar-link {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .topbar-link:hover { color: #fff; }
+
+        /* ── Layout ── */
+        .admin-wrap {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* ── Header stats ── */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 1.25rem 1.5rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-bottom: 0.4rem;
+        }
+
+        .stat-value {
+            font-family: 'Anton', sans-serif;
+            font-size: 2rem;
+            letter-spacing: 1px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ── Filtros ── */
+        .filtros-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filtros-row h2 {
+            font-family: 'Anton', sans-serif;
+            font-size: 1.4rem;
+            letter-spacing: 2px;
+            color: var(--dark);
+            flex: 1;
+        }
+
+        .filtro-btn {
+            padding: 0.5rem 1.1rem;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 1.5px;
+            border-radius: 20px;
+            border: 2px solid var(--border);
+            background: #fff;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--gray);
+        }
+
+        .filtro-btn.activo, .filtro-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: #fff5f0;
+        }
+
+        .filtro-btn.f-pendiente.activo { border-color: var(--red);    color: var(--red);    background: var(--red-bg); }
+        .filtro-btn.f-enviado.activo   { border-color: var(--yellow);  color: #92400e;       background: var(--yellow-bg); }
+        .filtro-btn.f-entregado.activo { border-color: var(--green);   color: var(--green);  background: var(--green-bg); }
+
+        .btn-refresh {
+            padding: 0.5rem 1.1rem;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 1.5px;
+            border-radius: 20px;
+            border: none;
+            background: var(--gradient);
+            color: #fff;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .btn-refresh:hover { opacity: 0.85; }
+
+        /* ── Tabla ── */
+        .tabla-wrap {
+            background: #fff;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .tabla-scroll {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 900px;
+        }
+
+        thead {
+            background: var(--dark);
+        }
+
+        thead th {
+            padding: 1rem 1.25rem;
+            text-align: left;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.7);
+            white-space: nowrap;
+        }
+
+        thead th:first-child { border-radius: 0; }
+
+        tbody tr {
+            border-bottom: 1px solid var(--border);
+            transition: background 0.15s;
+        }
+
+        tbody tr:last-child { border-bottom: none; }
+        tbody tr:hover { background: #fafafa; }
+
+        td {
+            padding: 1rem 1.25rem;
+            font-size: 0.88rem;
+            color: var(--dark);
+            vertical-align: top;
+        }
+
+        .td-fecha {
+            white-space: nowrap;
+            color: var(--gray);
+            font-size: 0.8rem;
+        }
+
+        .td-cliente strong {
+            display: block;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .td-cliente span {
+            font-size: 0.78rem;
+            color: var(--gray);
+        }
+
+        .td-rut {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        .td-contacto a {
+            display: block;
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.82rem;
+        }
+
+        .td-contacto a:hover { text-decoration: underline; }
+
+        .td-direccion {
+            font-size: 0.82rem;
+            color: var(--gray);
+            max-width: 180px;
+            line-height: 1.4;
+        }
+
+        .productos-lista {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .producto-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: #f3f4f6;
+            border-radius: 6px;
+            padding: 0.25rem 0.6rem;
+            font-size: 0.78rem;
+            white-space: nowrap;
+        }
+
+        .producto-pill .qty {
+            background: var(--gradient);
+            color: #fff;
+            border-radius: 4px;
+            padding: 0 5px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.8rem;
+        }
+
+        .td-total {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            white-space: nowrap;
+        }
+
+        /* ── Select de estado ── */
+        .estado-select {
+            -webkit-appearance: none;
+            appearance: none;
+            padding: 0.45rem 0.85rem;
+            border-radius: 20px;
+            border: 2px solid;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.82rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.2s;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236b7280' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.6rem center;
+            padding-right: 1.8rem;
+        }
+
+        .estado-select.pendiente {
+            border-color: var(--red);
+            color: var(--red);
+            background-color: var(--red-bg);
+        }
+
+        .estado-select.enviado {
+            border-color: var(--yellow);
+            color: #92400e;
+            background-color: var(--yellow-bg);
+        }
+
+        .estado-select.entregado {
+            border-color: var(--green);
+            color: var(--green);
+            background-color: var(--green-bg);
+        }
+
+        /* ── Botón etiqueta ── */
+        .btn-etiqueta {
+            display: block;
+            margin-top: 0.5rem;
+            padding: 0.35rem 0.75rem;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.78rem;
+            letter-spacing: 1.5px;
+            background: #fff;
+            border: 1.5px solid var(--border);
+            border-radius: 8px;
+            color: var(--gray);
+            cursor: pointer;
+            transition: border-color 0.2s, color 0.2s, background 0.2s;
+            white-space: nowrap;
+        }
+
+        .btn-etiqueta:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: #fff5f0;
+        }
+
+        /* ── Empty / loading state ── */
+        .tabla-estado {
+            padding: 4rem 2rem;
+            text-align: center;
+            color: var(--gray);
+        }
+
+        .tabla-estado .icono {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.4;
+        }
+
+        .tabla-estado p {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            border: 3px solid var(--border);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ── Responsive ── */
+        @media (max-width: 900px) {
+            .stats-row { grid-template-columns: repeat(2, 1fr); }
+            .admin-wrap { padding: 1rem; }
+        }
+
+        @media (max-width: 480px) {
+            .stats-row { grid-template-columns: 1fr 1fr; }
+            .topbar { padding: 0.75rem 1rem; }
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+        <div class="topbar-brand">
+            <div class="topbar-logo">A</div>
+            <div class="topbar-title">ANIME2CHILE &nbsp;·&nbsp; <span>ADMIN</span></div>
+        </div>
+        <div class="topbar-right">
+            <a href="index.html" class="topbar-link">← Volver al sitio</a>
+        </div>
+    </div>
+
+    <div class="admin-wrap">
+
+        <!-- Stats -->
+        <div class="stats-row">
+            <div class="stat-card">
+                <div class="stat-label">Total pedidos</div>
+                <div class="stat-value" id="stat-total">—</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label" style="color:var(--red);">● Pendientes</div>
+                <div class="stat-value" id="stat-pendientes">—</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label" style="color:#92400e;">● Enviados</div>
+                <div class="stat-value" id="stat-enviados">—</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label" style="color:var(--green);">● Entregados</div>
+                <div class="stat-value" id="stat-entregados">—</div>
+            </div>
+        </div>
+
+        <!-- Filtros -->
+        <div class="filtros-row">
+            <h2>PEDIDOS</h2>
+            <button class="filtro-btn activo" data-filtro="todos" onclick="setFiltro('todos', this)">Todos</button>
+            <button class="filtro-btn f-pendiente" data-filtro="pendiente" onclick="setFiltro('pendiente', this)">Pendientes</button>
+            <button class="filtro-btn f-enviado" data-filtro="enviado" onclick="setFiltro('enviado', this)">Enviados</button>
+            <button class="filtro-btn f-entregado" data-filtro="entregado" onclick="setFiltro('entregado', this)">Entregados</button>
+            <button class="btn-refresh" onclick="cargarPedidos()">↻ Actualizar</button>
+        </div>
+
+        <!-- Tabla -->
+        <div class="tabla-wrap">
+            <div class="tabla-scroll">
+                <table id="tabla-pedidos">
+                    <thead>
+                        <tr>
+                            <th>Estado</th>
+                            <th>Fecha</th>
+                            <th>Cliente</th>
+                            <th>RUT</th>
+                            <th>Contacto</th>
+                            <th>Dirección</th>
+                            <th>Productos</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-body">
+                        <tr>
+                            <td colspan="8">
+                                <div class="tabla-estado">
+                                    <div class="spinner"></div>
+                                    <p>CARGANDO PEDIDOS...</p>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+<script type="module">
+import { initializeApp }          from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+import { getFirestore, collection, getDocs, doc, updateDoc, orderBy, query }
+    from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
+
+// ── Firebase ──
+const firebaseConfig = {
+    apiKey: "AIzaSyCdNnfceBGx-YQKZKE29Jcjl95II76gmKs",
+    authDomain: "anime2chile-655d5.firebaseapp.com",
+    projectId: "anime2chile-655d5",
+    storageBucket: "anime2chile-655d5.firebasestorage.app",
+    messagingSenderId: "70712282117",
+    appId: "1:70712282117:web:fe1dbc7558f8fb4d19206c"
+};
+const app = initializeApp(firebaseConfig);
+const db  = getFirestore(app);
+
+// ── Estado ──
+let todosPedidos = [];
+let filtroActivo = 'todos';
+
+function formatPrecio(n) {
+    return '$' + Number(n).toLocaleString('es-CL');
+}
+
+function formatFecha(ts) {
+    if (!ts) return '—';
+    const d = ts.toDate ? ts.toDate() : new Date(ts);
+    return d.toLocaleDateString('es-CL', { day:'2-digit', month:'2-digit', year:'numeric' })
+        + '<br><span style="font-size:0.75rem;color:var(--gray)">'
+        + d.toLocaleTimeString('es-CL', { hour:'2-digit', minute:'2-digit' })
+        + '</span>';
+}
+
+// ── Cargar pedidos ──
+window.cargarPedidos = async function() {
+    const tbody = document.getElementById('tabla-body');
+    tbody.innerHTML = `<tr><td colspan="8"><div class="tabla-estado"><div class="spinner"></div><p>CARGANDO PEDIDOS...</p></div></td></tr>`;
+
+    try {
+        const q = query(collection(db, 'pedidos'), orderBy('fecha', 'desc'));
+        const snap = await getDocs(q);
+
+        todosPedidos = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        actualizarStats();
+        renderTabla();
+
+    } catch (err) {
+        console.error(err);
+        tbody.innerHTML = `<tr><td colspan="8"><div class="tabla-estado"><div class="icono">⚠️</div><p>ERROR AL CARGAR PEDIDOS</p></div></td></tr>`;
+    }
+};
+
+// ── Stats ──
+function actualizarStats() {
+    document.getElementById('stat-total').textContent      = todosPedidos.length;
+    document.getElementById('stat-pendientes').textContent = todosPedidos.filter(p => (p.estado || 'pendiente') === 'pendiente').length;
+    document.getElementById('stat-enviados').textContent   = todosPedidos.filter(p => p.estado === 'enviado').length;
+    document.getElementById('stat-entregados').textContent = todosPedidos.filter(p => p.estado === 'entregado').length;
+}
+
+// ── Filtro ──
+window.setFiltro = function(filtro, btn) {
+    filtroActivo = filtro;
+    document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('activo'));
+    btn.classList.add('activo');
+    renderTabla();
+};
+
+// ── Render tabla ──
+function renderTabla() {
+    const tbody = document.getElementById('tabla-body');
+    const pedidos = filtroActivo === 'todos'
+        ? todosPedidos
+        : todosPedidos.filter(p => (p.estado || 'pendiente') === filtroActivo);
+
+    if (pedidos.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="8"><div class="tabla-estado"><div class="icono">📭</div><p>NO HAY PEDIDOS</p></div></td></tr>`;
+        return;
+    }
+
+    tbody.innerHTML = pedidos.map(pedido => {
+        const c = pedido.cliente || {};
+        const d = pedido.direccion || {};
+        const t = pedido.totales || {};
+        const estado = pedido.estado || 'pendiente';
+
+        // Productos
+        const productos = (pedido.productos || []).map(p =>
+            `<a href="producto.html?id=${p.id}" target="_blank" style="text-decoration:none; color:inherit;"><div class="producto-pill" style="cursor:pointer;"><span class="qty">${p.cantidad}x</span>${p.nombre}</div></a>`
+        ).join('');
+
+        // Dirección
+        const dir = [d.calle, d.depto, d.ciudad, d.region].filter(Boolean).join(', ');
+
+        // Envío
+        const envioInfo = pedido.envio ? `<br><span style="font-size:0.75rem;color:var(--gray);">${pedido.envio.metodo}</span>` : '';
+
+        return `
+        <tr>
+            <td>
+                <select class="estado-select ${estado}"
+                        onchange="cambiarEstado('${pedido.id}', this)">
+                    <option value="pendiente" ${estado === 'pendiente' ? 'selected' : ''}>● PENDIENTE</option>
+                    <option value="enviado"   ${estado === 'enviado'   ? 'selected' : ''}>● ENVIADO</option>
+                    <option value="entregado" ${estado === 'entregado' ? 'selected' : ''}>● ENTREGADO</option>
+                </select>
+            </td>
+            <td class="td-fecha">${formatFecha(pedido.fecha)}</td>
+            <td class="td-cliente">
+                <strong>${c.nombre || ''} ${c.apellido || ''}</strong>
+            </td>
+            <td class="td-rut">${c.rut || '—'}</td>
+            <td class="td-contacto">
+                <a href="tel:${c.telefono || ''}">${c.telefono || '—'}</a>
+                <a href="mailto:${c.email || ''}">${c.email || '—'}</a>
+            </td>
+            <td class="td-direccion">${dir || '—'}${envioInfo}</td>
+            <td><div class="productos-lista">${productos || '—'}</div></td>
+            <td class="td-total" style="-webkit-text-fill-color:unset; background:none;">
+                <span style="font-family:'Bebas Neue',sans-serif; font-size:1.2rem; background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">${formatPrecio(t.total || 0)}</span>
+                <button class="btn-etiqueta" onclick="generarEtiqueta('${pedido.id}')">Generar Etiqueta</button>
+            </td>
+        </tr>`;
+    }).join('');
+}
+
+// ── Cambiar estado en Firestore ──
+window.cambiarEstado = async function(pedidoId, selectEl) {
+    const nuevoEstado = selectEl.value;
+    selectEl.disabled = true;
+
+    try {
+        await updateDoc(doc(db, 'pedidos', pedidoId), { estado: nuevoEstado });
+
+        // Actualizar en memoria
+        const pedido = todosPedidos.find(p => p.id === pedidoId);
+        if (pedido) pedido.estado = nuevoEstado;
+
+        // Actualizar clase del select
+        selectEl.className = `estado-select ${nuevoEstado}`;
+        actualizarStats();
+
+    } catch (err) {
+        console.error('Error actualizando estado:', err);
+        alert('Error al actualizar el estado. Intenta de nuevo.');
+    } finally {
+        selectEl.disabled = false;
+    }
+};
+
+// ── Generar etiqueta PDF ──
+window.generarEtiqueta = function(pedidoId) {
+    const pedido = todosPedidos.find(p => p.id === pedidoId);
+    if (!pedido) return;
+
+    const c = pedido.cliente || {};
+    const d = pedido.direccion || {};
+
+    const nombre   = `${c.nombre || ''} ${c.apellido || ''}`.trim();
+    const rut      = c.rut      || '—';
+    const email    = c.email    || '—';
+    const telefono = c.telefono || '—';
+    const direccion = [d.calle, d.depto, d.ciudad, d.region, d.postal ? `CP: ${d.postal}` : null]
+        .filter(Boolean).join(', ');
+
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ unit: 'mm', format: 'a6' });
+    const W = doc.internal.pageSize.getWidth();
+
+    // Todo en fuente pequeña, sin negrita, espaciado mínimo
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(6.5);
+    const lh = 3.5; // line height en mm
+    let y = 10;
+
+    // Destinatario
+    [nombre, rut, email, telefono].forEach(txt => {
+        const wrapped = doc.splitTextToSize(txt, W - 20);
+        doc.text(wrapped, 10, y);
+        y += wrapped.length * lh;
+    });
+    // Dirección puede ser larga
+    const dirWrapped = doc.splitTextToSize(direccion, W - 20);
+    doc.text(dirWrapped, 10, y);
+    y += dirWrapped.length * lh + 2;
+
+    // Separador
+    doc.setDrawColor(150);
+    doc.setLineWidth(0.3);
+    doc.line(10, y, W - 10, y);
+    y += 4;
+
+    // "Remitente:" en negrita
+    doc.setFont('helvetica', 'bold');
+    doc.text('Remitente:', 10, y);
+    y += lh;
+
+    // Datos remitente sin negrita
+    doc.setFont('helvetica', 'normal');
+    ['Cesar Catalan Acevedo', '12.809.361-3', '+56 9 77521700', 'multishoes@gmail.com'].forEach(txt => {
+        doc.text(txt, 10, y);
+        y += lh;
+    });
+
+    doc.save(`etiqueta_${nombre.replace(/\s+/g, '_')}.pdf`);
+};
+
+// ── Arranque ──
+cargarPedidos();
+</script>
+
+</body>
+</html>

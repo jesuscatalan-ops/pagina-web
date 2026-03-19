@@ -1,0 +1,370 @@
+/* ============================================================
+   buscador.css — Barra de búsqueda global + panel desplegable
+   ============================================================ */
+
+/* ── Contenedor de la barra ── */
+.buscador-wrap {
+    position: relative;
+    flex: 1;
+    max-width: 420px;
+    margin: 0 2rem;
+}
+
+.buscador-form {
+    display: flex;
+    align-items: center;
+    background: #f5f5f5;
+    border: 1.5px solid transparent;
+    border-radius: 12px;
+    padding: 0 0.75rem;
+    gap: 0.5rem;
+    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+}
+
+.buscador-form:focus-within {
+    background: #fff;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.12);
+}
+
+.buscador-icono {
+    color: var(--gray);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    pointer-events: none;
+}
+
+.buscador-input {
+    flex: 1;
+    border: none;
+    background: none;
+    outline: none;
+    font-family: 'Pathway Extreme', sans-serif;
+    font-size: 0.9rem;
+    color: var(--dark);
+    padding: 0.6rem 0;
+    min-width: 0;
+}
+
+.buscador-input::placeholder {
+    color: #aaa;
+}
+
+.buscador-limpiar {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #bbb;
+    font-size: 1rem;
+    padding: 0.2rem;
+    border-radius: 4px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+    flex-shrink: 0;
+}
+
+.buscador-limpiar.visible {
+    display: flex;
+}
+
+.buscador-limpiar:hover {
+    color: var(--primary);
+}
+
+/* ── Panel de resultados ── */
+.buscador-panel {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.14);
+    border: 1px solid rgba(0,0,0,0.07);
+    z-index: 2000;
+    overflow: hidden;
+    display: none;
+    max-height: 480px;
+    flex-direction: column;
+}
+
+.buscador-panel.visible {
+    display: flex;
+}
+
+/* Encabezado del panel */
+.buscador-panel-header {
+    padding: 0.75rem 1rem 0.5rem;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+}
+
+.buscador-panel-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    color: var(--gray);
+}
+
+.buscador-panel-count {
+    font-size: 0.75rem;
+    color: var(--gray);
+}
+
+/* Lista de resultados */
+.buscador-resultados {
+    overflow-y: auto;
+    flex: 1;
+}
+
+/* Resultado individual */
+.buscador-item {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.15s;
+    border-bottom: 1px solid #fafafa;
+}
+
+.buscador-item:last-child {
+    border-bottom: none;
+}
+
+.buscador-item:hover,
+.buscador-item.destacado {
+    background: #fff8f5;
+}
+
+/* Thumbnail del resultado */
+.buscador-item-thumb {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.55rem;
+    font-family: 'Anton', sans-serif;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 1px;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.buscador-item-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 4px;
+    background: #f9f9f9;
+}
+
+/* Info del resultado */
+.buscador-item-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.buscador-item-tag {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: 0.15rem;
+}
+
+.buscador-item-nombre {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    color: var(--dark);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Resaltar coincidencia */
+.buscador-item-nombre mark {
+    background: rgba(255, 107, 53, 0.15);
+    color: var(--primary);
+    border-radius: 2px;
+    padding: 0 1px;
+    font-style: normal;
+}
+
+.buscador-item-precio {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.95rem;
+    color: var(--primary);
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+/* Estado vacío / sin resultados */
+.buscador-vacio {
+    padding: 2rem 1rem;
+    text-align: center;
+    color: var(--gray);
+}
+
+.buscador-vacio-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.buscador-vacio p {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 1.5px;
+    color: var(--dark);
+    margin-bottom: 0.25rem;
+}
+
+.buscador-vacio span {
+    font-size: 0.82rem;
+    color: var(--gray);
+}
+
+/* Footer del panel — "Ver todos los resultados" */
+.buscador-panel-footer {
+    border-top: 1px solid #f0f0f0;
+    padding: 0.625rem 1rem;
+    flex-shrink: 0;
+}
+
+.buscador-ver-todos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 1.5px;
+    color: var(--primary);
+    text-decoration: none;
+    padding: 0.4rem;
+    border-radius: 8px;
+    transition: background 0.2s;
+    cursor: pointer;
+    background: none;
+    border: none;
+    width: 100%;
+}
+
+.buscador-ver-todos:hover {
+    background: rgba(255, 107, 53, 0.07);
+}
+
+/* ── Buscador móvil (icono en header) ── */
+.buscador-toggle-mobile {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--dark);
+    padding: 0.5rem;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    transition: background 0.2s, color 0.2s;
+    align-items: center;
+    justify-content: center;
+}
+
+.buscador-toggle-mobile:hover {
+    background: #f5f5f5;
+    color: var(--primary);
+}
+
+/* Barra expandida en móvil */
+.buscador-mobile-bar {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1500;
+    background: #fff;
+    padding: 0.75rem 1rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.buscador-mobile-bar.visible {
+    display: flex;
+}
+
+.buscador-mobile-bar .buscador-form {
+    flex: 1;
+    max-width: none;
+    margin: 0;
+}
+
+.buscador-mobile-cancelar {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    color: var(--gray);
+    white-space: nowrap;
+    padding: 0.5rem;
+    transition: color 0.2s;
+}
+
+.buscador-mobile-cancelar:hover {
+    color: var(--primary);
+}
+
+/* Panel de resultados en móvil */
+.buscador-mobile-bar .buscador-panel {
+    top: 100%;
+    left: 0;
+    right: 0;
+    border-radius: 0 0 16px 16px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    /* Ocultar solo el buscador del header, NO el de la barra móvil */
+    .header-content > .buscador-wrap,
+    .header .buscador-wrap {
+        display: none;
+    }
+
+    .buscador-toggle-mobile {
+        display: flex;
+    }
+
+    /* El buscador dentro de la barra móvil siempre visible */
+    .buscador-mobile-bar .buscador-wrap {
+        display: block !important;
+        max-width: none;
+        margin: 0;
+        flex: 1;
+    }
+}
+
+@media (min-width: 769px) {
+    .buscador-toggle-mobile {
+        display: none;
+    }
+
+    .buscador-mobile-bar {
+        display: none !important;
+    }
+}

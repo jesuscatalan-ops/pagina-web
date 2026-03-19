@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="color-scheme" content="light only">
+    <meta name="supported-color-schemes" content="light">
+    <meta name="theme-color" content="#fafafa">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout — Anime2Chile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Pathway+Extreme:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="carrito.css">
+    <style>
+        /* ── Checkout page styles ── */
+        .checkout-wrap {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 110px 2rem 4rem;
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 2.5rem;
+            align-items: start;
+        }
+
+        /* ── Títulos de sección ── */
+        .checkout-section {
+            background: #fff;
+            border-radius: 20px;
+            border: 1px solid rgba(0,0,0,0.07);
+            box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .checkout-section-title {
+            font-family: 'Anton', sans-serif;
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .checkout-section-title span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ── Formulario ── */
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-label {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            color: var(--gray);
+        }
+
+        .form-label .required {
+            color: var(--primary);
+            margin-left: 2px;
+        }
+
+        .form-input, .form-select, .form-textarea {
+            padding: 0.75rem 1rem;
+            border: 1.5px solid var(--light-gray);
+            border-radius: 10px;
+            font-family: 'Pathway Extreme', sans-serif;
+            font-size: 0.95rem;
+            color: var(--dark);
+            background: #fafafa;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            width: 100%;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255,107,53,0.12);
+            background: #fff;
+        }
+
+        .form-input.error {
+            border-color: #e53e3e;
+        }
+
+        .form-error-msg {
+            font-size: 0.78rem;
+            color: #e53e3e;
+            display: none;
+        }
+
+        .form-error-msg.visible {
+            display: block;
+        }
+
+        .form-select {
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b6b6b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            padding-right: 2.5rem;
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        /* ── Teléfono con prefijo ── */
+        .phone-wrap {
+            display: flex;
+            gap: 0;
+        }
+
+        .phone-prefix {
+            padding: 0.75rem 0.85rem;
+            background: var(--gradient-subtle);
+            border: 1.5px solid var(--light-gray);
+            border-right: none;
+            border-radius: 10px 0 0 10px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            color: var(--primary);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+        }
+
+        .phone-wrap .form-input {
+            border-radius: 0 10px 10px 0;
+        }
+
+        /* ── Opciones de envío ── */
+        .envio-opciones {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .envio-opcion {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 1.25rem;
+            border: 1.5px solid var(--light-gray);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: border-color 0.2s, background 0.2s;
+            position: relative;
+        }
+
+        .envio-opcion:hover {
+            border-color: var(--primary);
+            background: var(--gradient-subtle);
+        }
+
+        .envio-opcion.seleccionado {
+            border-color: var(--primary);
+            background: var(--gradient-subtle);
+        }
+
+        .envio-opcion input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+        }
+
+        .envio-opcion-left {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .envio-radio-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: border-color 0.2s;
+        }
+
+        .envio-opcion.seleccionado .envio-radio-dot {
+            border-color: var(--primary);
+        }
+
+        .envio-radio-dot::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--gradient);
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .envio-opcion.seleccionado .envio-radio-dot::after {
+            opacity: 1;
+        }
+
+        .envio-nombre {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            color: var(--dark);
+        }
+
+        .envio-desc {
+            font-size: 0.78rem;
+            color: var(--gray);
+        }
+
+        .envio-precio {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1rem;
+            color: var(--primary);
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        /* ── Cupón ── */
+        .cupon-wrap {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .cupon-wrap .form-input {
+            flex: 1;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .cupon-btn {
+            padding: 0.75rem 1.25rem;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.95rem;
+            letter-spacing: 1.5px;
+            background: var(--gradient);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: opacity 0.2s;
+        }
+
+        .cupon-btn:hover { opacity: 0.85; }
+
+        .cupon-msg {
+            font-size: 0.82rem;
+            margin-top: 0.4rem;
+            display: none;
+        }
+
+        .cupon-msg.ok { color: #00a87e; display: block; }
+        .cupon-msg.error { color: #e53e3e; display: block; }
+
+        /* ── Panel derecho: resumen ── */
+        .resumen-panel {
+            position: sticky;
+            top: 100px;
+        }
+
+        .resumen-items {
+            display: flex;
+            flex-direction: column;
+            gap: 0.875rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .resumen-item {
+            display: flex;
+            gap: 0.875rem;
+            align-items: center;
+        }
+
+        .resumen-item-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            background: var(--gradient-subtle);
+            overflow: hidden;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .resumen-item-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 4px;
+        }
+
+        .resumen-item-qty-badge {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            background: var(--gradient);
+            color: #fff;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.7rem;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .resumen-item-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .resumen-item-nombre {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            color: var(--dark);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .resumen-item-detalle {
+            font-size: 0.78rem;
+            color: var(--gray);
+        }
+
+        .resumen-item-precio {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1rem;
+            color: var(--primary);
+            white-space: nowrap;
+        }
+
+        .resumen-divider {
+            height: 1px;
+            background: var(--light-gray);
+            margin: 1rem 0;
+        }
+
+        .resumen-linea {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.3rem 0;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .resumen-linea.total {
+            padding-top: 0.75rem;
+            border-top: 2px solid var(--light-gray);
+            margin-top: 0.5rem;
+        }
+
+        .resumen-linea.total span:first-child {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            color: var(--dark);
+        }
+
+        .resumen-linea.total span:last-child {
+            font-family: 'Anton', sans-serif;
+            font-size: 1.8rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .resumen-descuento {
+            color: #00a87e;
+            font-weight: 600;
+        }
+
+        /* ── Botón confirmar ── */
+        .confirmar-btn {
+            width: 100%;
+            padding: 1.1rem;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.3rem;
+            letter-spacing: 3px;
+            background: var(--gradient);
+            color: #fff;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            box-shadow: 0 6px 24px rgba(255,107,53,0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 1.25rem;
+        }
+
+        .confirmar-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 32px rgba(255,107,53,0.55);
+        }
+
+        .confirmar-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .checkout-nota-seguridad {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            font-size: 0.75rem;
+            color: var(--gray);
+            margin-top: 0.75rem;
+        }
+
+        /* ── Carrito vacío ── */
+        .checkout-vacio {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+
+        .checkout-vacio h2 {
+            font-family: 'Anton', sans-serif;
+            font-size: 2rem;
+            letter-spacing: 2px;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        /* ── Pantalla de éxito ── */
+        #pantalla-exito {
+            display: none;
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 4rem 2rem;
+            background: #fff;
+            border-radius: 24px;
+            border: 1px solid rgba(0,0,0,0.07);
+            box-shadow: 0 2px 24px rgba(0,0,0,0.07);
+        }
+
+        .exito-icono {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .exito-titulo {
+            font-family: 'Anton', sans-serif;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.75rem;
+        }
+
+        .exito-texto {
+            color: var(--gray);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 860px) {
+            .checkout-wrap {
+                grid-template-columns: 1fr;
+                padding: 100px 1rem 3rem;
+            }
+
+            .resumen-panel {
+                position: static;
+                order: 2;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="buscador.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-container">
+                <a href="index.html" style="text-decoration:none; display:flex; align-items:center; gap:1rem;">
+                    <div class="logo">A</div>
+                    <div class="brand-name">
+                        <span class="brand-anime">ANIME</span>
+                        <span class="brand-two">2</span>
+                        <span class="brand-anime">CHILE</span>
+                    </div>
+                </a>
+            </div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="catalogo.html" class="nav-link">Catalogo</a>
+                <a href="contacto.html" class="nav-link">Contactanos</a>
+                <a href="reservas.html" class="nav-link">Reservas</a>
+                <a href="pokemon.html" class="nav-link nav-link-pokemon">Pokémon TCG</a>
+            </nav>
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+    </header>
+
+    <div class="checkout-wrap" id="checkout-wrap">
+
+        <!-- PANTALLA ÉXITO -->
+        <div id="pantalla-exito">
+            <div class="exito-icono">🎉</div>
+            <h2 class="exito-titulo">¡PEDIDO RECIBIDO!</h2>
+            <p class="exito-texto">Gracias por tu compra. Nos pondremos en contacto contigo pronto para coordinar el pago y el envío.</p>
+            <a href="catalogo.html" class="banner-btn" style="text-decoration:none;">SEGUIR COMPRANDO</a>
+        </div>
+
+        <!-- COLUMNA IZQUIERDA: formulario -->
+        <div id="columna-formulario">
+
+            <!-- Datos personales -->
+            <div class="checkout-section">
+                <h2 class="checkout-section-title">👤 DATOS PERSONALES</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Nombre <span class="required">*</span></label>
+                        <input type="text" class="form-input" id="campo-nombre" placeholder="Ej: Jotaro">
+                        <span class="form-error-msg" id="err-nombre">Por favor ingresa tu nombre</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Apellido <span class="required">*</span></label>
+                        <input type="text" class="form-input" id="campo-apellido" placeholder="Ej: Kujo">
+                        <span class="form-error-msg" id="err-apellido">Por favor ingresa tu apellido</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Teléfono <span class="required">*</span></label>
+                        <div class="phone-wrap">
+                            <span class="phone-prefix">🇨🇱 +56</span>
+                            <input type="tel" class="form-input" id="campo-telefono" placeholder="9 1234 5678" maxlength="9">
+                        </div>
+                        <span class="form-error-msg" id="err-telefono">Ingresa un número válido (9 dígitos)</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email <span class="required">*</span></label>
+                        <input type="email" class="form-input" id="campo-email" placeholder="tu@correo.com">
+                        <span class="form-error-msg" id="err-email">Ingresa un email válido</span>
+                    </div>
+                    <div class="form-group full">
+                        <label class="form-label">RUT <span class="required">*</span></label>
+                        <input type="text" class="form-input" id="campo-rut" placeholder="Ej: 12.345.678-9" maxlength="12">
+                        <span class="form-error-msg" id="err-rut">Ingresa un RUT válido (ej: 12.345.678-9)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dirección de envío -->
+            <div class="checkout-section">
+                <h2 class="checkout-section-title">📦 DIRECCIÓN DE ENVÍO</h2>
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label class="form-label">Región <span class="required">*</span></label>
+                        <select class="form-select" id="campo-region">
+                            <option value="">Selecciona tu región</option>
+                            <option>Arica y Parinacota</option>
+                            <option>Tarapacá</option>
+                            <option>Antofagasta</option>
+                            <option>Atacama</option>
+                            <option>Coquimbo</option>
+                            <option>Valparaíso</option>
+                            <option>Metropolitana de Santiago</option>
+                            <option>O'Higgins</option>
+                            <option>Maule</option>
+                            <option>Ñuble</option>
+                            <option>Biobío</option>
+                            <option>La Araucanía</option>
+                            <option>Los Ríos</option>
+                            <option>Los Lagos</option>
+                            <option>Aysén</option>
+                            <option>Magallanes</option>
+                        </select>
+                        <span class="form-error-msg" id="err-region">Selecciona tu región</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Ciudad / Comuna <span class="required">*</span></label>
+                        <input type="text" class="form-input" id="campo-ciudad" placeholder="Ej: Santiago">
+                        <span class="form-error-msg" id="err-ciudad">Ingresa tu ciudad o comuna</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Código Postal</label>
+                        <input type="text" class="form-input" id="campo-postal" placeholder="Ej: 8320000" maxlength="7">
+                    </div>
+                    <div class="form-group full">
+                        <label class="form-label">Dirección <span class="required">*</span></label>
+                        <input type="text" class="form-input" id="campo-direccion" placeholder="Calle, número">
+                        <span class="form-error-msg" id="err-direccion">Ingresa tu dirección</span>
+                    </div>
+                    <div class="form-group full">
+                        <label class="form-label">Depto / Casa / Referencia</label>
+                        <input type="text" class="form-input" id="campo-depto" placeholder="Ej: Depto 302, casa azul...">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Envío -->
+            <div class="checkout-section">
+                <h2 class="checkout-section-title">🚚 MÉTODO DE ENVÍO</h2>
+                <div class="envio-opciones" id="envio-opciones">
+                    <label class="envio-opcion seleccionado" onclick="seleccionarEnvio(this, 4990, 'Starken')">
+                        <input type="radio" name="envio" value="4990" checked>
+                        <div class="envio-opcion-left">
+                            <div class="envio-radio-dot"></div>
+                            <div>
+                                <div class="envio-nombre">Starken</div>
+                                <div class="envio-desc">3–5 días hábiles</div>
+                            </div>
+                        </div>
+                        <div class="envio-precio">$4.990</div>
+                    </label>
+                    <label class="envio-opcion" onclick="seleccionarEnvio(this, 4490, 'Chilexpress')">
+                        <input type="radio" name="envio" value="4490">
+                        <div class="envio-opcion-left">
+                            <div class="envio-radio-dot"></div>
+                            <div>
+                                <div class="envio-nombre">Chilexpress</div>
+                                <div class="envio-desc">2–4 días hábiles</div>
+                            </div>
+                        </div>
+                        <div class="envio-precio">$4.490</div>
+                    </label>
+                    <label class="envio-opcion" onclick="seleccionarEnvio(this, 3990, 'Correos de Chile')">
+                        <input type="radio" name="envio" value="3990">
+                        <div class="envio-opcion-left">
+                            <div class="envio-radio-dot"></div>
+                            <div>
+                                <div class="envio-nombre">Correos de Chile</div>
+                                <div class="envio-desc">5–7 días hábiles</div>
+                            </div>
+                        </div>
+                        <div class="envio-precio">$3.990</div>
+                    </label>
+                    <label class="envio-opcion" onclick="seleccionarEnvio(this, 0, 'Retiro en Santiago')">
+                        <input type="radio" name="envio" value="0">
+                        <div class="envio-opcion-left">
+                            <div class="envio-radio-dot"></div>
+                            <div>
+                                <div class="envio-nombre">Retiro en Santiago</div>
+                                <div class="envio-desc">Coordinar por WhatsApp</div>
+                            </div>
+                        </div>
+                        <div class="envio-precio" style="-webkit-text-fill-color:#00a87e; color:#00a87e;">GRATIS</div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Cupón y notas -->
+            <div class="checkout-section">
+                <h2 class="checkout-section-title">🏷️ CUPÓN DE DESCUENTO</h2>
+                <div class="cupon-wrap">
+                    <input type="text" class="form-input" id="campo-cupon" placeholder="INGRESA TU CÓDIGO">
+                    <button class="cupon-btn" onclick="aplicarCupon()">APLICAR</button>
+                </div>
+                <p class="cupon-msg" id="cupon-msg"></p>
+            </div>
+
+            <div class="checkout-section">
+                <h2 class="checkout-section-title">📝 NOTAS DEL PEDIDO</h2>
+                <div class="form-group" style="margin:0;">
+                    <label class="form-label">Instrucciones especiales <span style="color:var(--gray); font-size:0.75rem;">(opcional)</span></label>
+                    <textarea class="form-textarea" id="campo-notas" placeholder="Ej: Entregar en portería, regalo para empaquetar, etc."></textarea>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- COLUMNA DERECHA: resumen -->
+        <div class="resumen-panel" id="columna-resumen">
+            <div class="checkout-section">
+                <h2 class="checkout-section-title">🛒 RESUMEN DEL PEDIDO</h2>
+
+                <div class="resumen-items" id="resumen-items">
+                    <!-- Se llena con JS -->
+                </div>
+
+                <div class="resumen-divider"></div>
+
+                <div class="resumen-linea">
+                    <span>Subtotal</span>
+                    <span id="resumen-subtotal">—</span>
+                </div>
+                <div class="resumen-linea" id="linea-descuento" style="display:none;">
+                    <span class="resumen-descuento">Descuento aplicado</span>
+                    <span class="resumen-descuento" id="resumen-descuento-valor">—</span>
+                </div>
+                <div class="resumen-linea">
+                    <span>Envío</span>
+                    <span id="resumen-envio">$4.990</span>
+                </div>
+                <div class="resumen-linea total">
+                    <span>TOTAL</span>
+                    <span id="resumen-total">—</span>
+                </div>
+
+                <button class="confirmar-btn" id="btn-confirmar" onclick="confirmarPedido(event)">
+                    CONFIRMAR COMPRA
+                </button>
+
+                <p class="checkout-nota-seguridad">
+                    🔒 Tus datos están seguros · Te contactaremos para coordinar el pago
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="footer-logo-wrap">
+                    <div class="logo" style="width:44px;height:44px;font-size:1.3rem;">A</div>
+                    <div class="brand-name" style="font-size:1.3rem;">
+                        <span class="brand-anime">ANIME</span><span class="brand-two">2</span><span class="brand-anime">CHILE</span>
+                    </div>
+                </div>
+                <p class="footer-tagline">El catálogo más amplio de coleccionables anime en Chile.</p>
+            </div>
+            <div class="footer-links-group">
+                <h4 class="footer-heading">Catálogo</h4>
+                <ul class="footer-links">
+                    <li><a href="catalogo.html">Figuras de Acción</a></li>
+                    <li><a href="pokemon.html">Trading Cards</a></li>
+                    <li><a href="reservas.html">Pre-Ventas</a></li>
+                </ul>
+            </div>
+            <div class="footer-links-group">
+                <h4 class="footer-heading">Ayuda</h4>
+                <ul class="footer-links">
+                    <li><a href="#">¿Cómo comprar?</a></li>
+                    <li><a href="#">Envíos y tiempos</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copy">© 2025 Anime2Chile. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
+import { init as ejsInit, send as ejsSend } from "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/+esm";
+ejsInit('tBurOFgbJvfwvPlor');
+
+// ── Firebase ──
+const firebaseConfig = {
+    apiKey: "AIzaSyCdNnfceBGx-YQKZKE29Jcjl95II76gmKs",
+    authDomain: "anime2chile-655d5.firebaseapp.com",
+    projectId: "anime2chile-655d5",
+    storageBucket: "anime2chile-655d5.firebasestorage.app",
+    messagingSenderId: "70712282117",
+    appId: "1:70712282117:web:fe1dbc7558f8fb4d19206c"
+};
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// ── Estado global ──
+let costoEnvio = 4990;
+let nombreEnvio = 'Starken';
+let descuento = 0;
+let cuponAplicado = false;
+
+const CUPONES = {
+    'JOJO10':     0.10,
+    'ANIME15':    0.15,
+    'BIENVENIDO': 0.05,
+};
+
+// ── Utilidades ──
+function obtenerCarrito() {
+    try { return JSON.parse(localStorage.getItem('anime2chile_carrito')) || []; }
+    catch { return []; }
+}
+
+function formatPrecio(n) {
+    return '$' + n.toLocaleString('es-CL');
+}
+
+function calcularTotales() {
+    const carrito = obtenerCarrito();
+    const subtotal = carrito.reduce((s, i) => s + i.precio * i.cantidad, 0);
+    const envioFinal = subtotal >= 80000 ? 0 : costoEnvio;
+    const descuentoMonto = Math.round(subtotal * descuento);
+    const total = subtotal - descuentoMonto + envioFinal;
+    return { subtotal, envioFinal, descuentoMonto, total };
+}
+
+// ── Render resumen ──
+function renderResumen() {
+    const carrito = obtenerCarrito();
+    const itemsEl = document.getElementById('resumen-items');
+
+    if (carrito.length === 0) {
+        document.getElementById('columna-formulario').style.display = 'none';
+        document.getElementById('columna-resumen').style.display = 'none';
+        const wrap = document.getElementById('checkout-wrap');
+        const vacio = document.createElement('div');
+        vacio.className = 'checkout-vacio';
+        vacio.innerHTML = '<h2>Tu carrito está vacío</h2><p style="color:var(--gray);margin-bottom:2rem;">Agrega productos antes de continuar.</p><a href="catalogo.html" class="banner-btn" style="text-decoration:none;">IR AL CATÁLOGO</a>';
+        wrap.appendChild(vacio);
+        return;
+    }
+
+    itemsEl.innerHTML = carrito.map(item => `
+        <div class="resumen-item">
+            <div class="resumen-item-img">
+                ${item.imagen ? `<img src="${item.imagen}" alt="${item.nombre}" onerror="this.style.display='none'">` : ''}
+                <span class="resumen-item-qty-badge">${item.cantidad}</span>
+            </div>
+            <div class="resumen-item-info">
+                <div class="resumen-item-nombre">${item.nombre}</div>
+                <div class="resumen-item-detalle">Cantidad: ${item.cantidad}</div>
+            </div>
+            <div class="resumen-item-precio">${formatPrecio(item.precio * item.cantidad)}</div>
+        </div>`
+    ).join('');
+
+    actualizarTotales();
+}
+
+function actualizarTotales() {
+    const { subtotal, envioFinal, descuentoMonto, total } = calcularTotales();
+
+    document.getElementById('resumen-subtotal').textContent = formatPrecio(subtotal);
+    document.getElementById('resumen-envio').textContent = envioFinal === 0 ? '✓ Gratis' : formatPrecio(envioFinal);
+
+    if (descuentoMonto > 0) {
+        document.getElementById('linea-descuento').style.display = 'flex';
+        document.getElementById('resumen-descuento-valor').textContent = '−' + formatPrecio(descuentoMonto);
+    }
+
+    document.getElementById('resumen-total').textContent = formatPrecio(total);
+}
+
+// ── Envío ──
+window.seleccionarEnvio = function(el, precio, nombre) {
+    document.querySelectorAll('.envio-opcion').forEach(o => o.classList.remove('seleccionado'));
+    el.classList.add('seleccionado');
+    el.querySelector('input').checked = true;
+    costoEnvio = precio;
+    nombreEnvio = nombre;
+    actualizarTotales();
+};
+
+// ── Cupón ──
+window.aplicarCupon = function() {
+    if (cuponAplicado) return;
+    const codigo = document.getElementById('campo-cupon').value.trim().toUpperCase();
+    const msg = document.getElementById('cupon-msg');
+
+    if (CUPONES[codigo]) {
+        descuento = CUPONES[codigo];
+        cuponAplicado = true;
+        msg.className = 'cupon-msg ok';
+        msg.textContent = '✓ Cupón aplicado: ' + (descuento * 100) + '% de descuento';
+        actualizarTotales();
+    } else {
+        msg.className = 'cupon-msg error';
+        msg.textContent = '✕ Código inválido o ya usado';
+    }
+};
+
+document.getElementById('campo-cupon').addEventListener('keydown', e => {
+    if (e.key === 'Enter') window.aplicarCupon();
+});
+
+// ── Validación ──
+function validar() {
+    let valido = true;
+    const esRetiro = nombreEnvio === 'Retiro en Santiago';
+
+    const campos = [
+        { id: 'campo-nombre',    err: 'err-nombre',    check: v => v.length >= 2 },
+        { id: 'campo-apellido',  err: 'err-apellido',  check: v => v.length >= 2 },
+        { id: 'campo-telefono',  err: 'err-telefono',  check: v => /^[0-9]{9}$/.test(v.replace(/\s/g,'')) },
+        { id: 'campo-email',     err: 'err-email',     check: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) },
+        { id: 'campo-rut',      err: 'err-rut',      check: v => /^[0-9]{1,2}\.[0-9]{3}\.[0-9]{3}-[0-9kK]$/.test(v) },
+        { id: 'campo-region',    err: 'err-region',    check: v => v !== '' },
+        { id: 'campo-ciudad',    err: 'err-ciudad',    check: v => v.length >= 2 },
+        { id: 'campo-direccion', err: 'err-direccion', check: v => v.length >= 5 },
+    ];
+
+    campos.forEach(c => {
+        if (esRetiro && ['campo-region','campo-ciudad','campo-direccion'].includes(c.id)) return;
+        const input = document.getElementById(c.id);
+        const errEl = document.getElementById(c.err);
+        const ok = c.check(input.value.trim());
+        input.classList.toggle('error', !ok);
+        errEl.classList.toggle('visible', !ok);
+        if (!ok) valido = false;
+    });
+
+    return valido;
+}
+
+// ── Confirmar pedido → Firestore ──
+window.confirmarPedido = async function(e) {
+    if (e) e.preventDefault();
+
+    if (!validar()) {
+        document.querySelector('.form-input.error')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+    }
+
+    const btn = document.getElementById('btn-confirmar');
+    btn.disabled = true;
+    btn.textContent = 'GUARDANDO PEDIDO...';
+
+    const carrito = obtenerCarrito();
+    const { subtotal, envioFinal, descuentoMonto, total } = calcularTotales();
+
+    const pedido = {
+        // Fecha
+        fecha: serverTimestamp(),
+        estado: 'pendiente',
+
+        // Cliente
+        cliente: {
+            nombre:    document.getElementById('campo-nombre').value.trim(),
+            apellido:  document.getElementById('campo-apellido').value.trim(),
+            telefono:  '+56' + document.getElementById('campo-telefono').value.trim().replace(/\s/g,''),
+            email:     document.getElementById('campo-email').value.trim(),
+            rut:       document.getElementById('campo-rut').value.trim(),
+        },
+
+        // Dirección
+        direccion: {
+            region:    document.getElementById('campo-region').value,
+            ciudad:    document.getElementById('campo-ciudad').value.trim(),
+            postal:    document.getElementById('campo-postal').value.trim(),
+            calle:     document.getElementById('campo-direccion').value.trim(),
+            depto:     document.getElementById('campo-depto').value.trim(),
+        },
+
+        // Envío
+        envio: {
+            metodo:  nombreEnvio,
+            costo:   envioFinal,
+        },
+
+        // Productos
+        productos: carrito.map(item => ({
+            id:       item.id,
+            nombre:   item.nombre,
+            precio:   item.precio,
+            cantidad: item.cantidad,
+            subtotal: item.precio * item.cantidad,
+            imagen:   item.imagen || '',
+        })),
+
+        // Totales
+        totales: {
+            subtotal:         subtotal,
+            descuentoPct:     descuento,
+            descuentoMonto:   descuentoMonto,
+            cupon:            cuponAplicado ? document.getElementById('campo-cupon').value.trim().toUpperCase() : null,
+            envio:            envioFinal,
+            total:            total,
+        },
+
+        // Notas
+        notas: document.getElementById('campo-notas').value.trim() || null,
+    };
+
+    try {
+        const docRef = await addDoc(collection(db, 'pedidos'), pedido);
+
+        // ── Enviar correo con EmailJS ──
+        const direccionCompleta = [
+            pedido.direccion.calle,
+            pedido.direccion.depto,
+            pedido.direccion.ciudad,
+            pedido.direccion.region,
+            pedido.direccion.postal ? `CP: ${pedido.direccion.postal}` : null
+        ].filter(Boolean).join(', ');
+
+        const templateParams = {
+            // Datos del cliente
+            nombre:        `${pedido.cliente.nombre} ${pedido.cliente.apellido}`,
+            rut:           pedido.cliente.rut,
+            email:         pedido.cliente.email,
+            telefono:      pedido.cliente.telefono,
+            direccion:     direccionCompleta,
+            metodo_envio:  `${pedido.envio.metodo} ($${pedido.envio.costo.toLocaleString('es-CL')})`,
+
+            // Orden
+            orden_id:      docRef.id,
+            costo_envio:   pedido.totales.envio.toLocaleString('es-CL'),
+            total:         pedido.totales.total.toLocaleString('es-CL'),
+
+            // Lista de productos para el bloque {{#orders}}
+            orders: carrito.map(item => ({
+                nombre:   item.nombre,
+                cantidad: item.cantidad,
+                precio:   (item.precio * item.cantidad).toLocaleString('es-CL'),
+                imagen:   item.imagen || '',
+            })),
+
+            // Destinatario del correo (al admin)
+            to_email: 'multishoes@gmail.com',
+        };
+
+        // Enviar al admin
+        console.log('📧 Intentando enviar email con EmailJS...');
+        console.log('templateParams:', JSON.stringify(templateParams, null, 2));
+        try {
+            const emailResult = await ejsSend('service_pvwl9t4', 'template_sresht3', templateParams);
+            console.log('✅ EmailJS éxito:', emailResult.status, emailResult.text);
+        } catch (emailErr) {
+            console.error('❌ EmailJS error:', emailErr);
+            console.error('Status:', emailErr.status);
+            console.error('Text:', emailErr.text);
+        }
+
+        // Éxito: vaciar carrito y redirigir
+        localStorage.removeItem('anime2chile_carrito');
+        window.location.href = 'gracias.html';
+
+    } catch (error) {
+        console.error('Error guardando pedido:', error);
+        btn.disabled = false;
+        btn.textContent = 'CONFIRMAR COMPRA';
+        alert('Hubo un error al procesar tu pedido. Por favor intenta nuevamente.');
+    }
+};
+
+// ── Menú móvil ──
+document.addEventListener('DOMContentLoaded', () => {
+    renderResumen();
+
+
+        // ── Formateo automático del RUT ──
+        const rutInput = document.getElementById('campo-rut');
+        if (rutInput) {
+            rutInput.addEventListener('input', function() {
+                let v = this.value.replace(/[^0-9kK]/g, '').toUpperCase();
+                if (v.length > 9) v = v.slice(0, 9);
+                if (v.length <= 1) { this.value = v; return; }
+                const dv = v.slice(-1);
+                let num = v.slice(0, -1);
+                let formatted = '';
+                while (num.length > 3) {
+                    formatted = '.' + num.slice(-3) + formatted;
+                    num = num.slice(0, -3);
+                }
+                this.value = num + formatted + '-' + dv;
+            });
+        }
+
+    const btn = document.querySelector('.mobile-menu-btn');
+    const nav = document.querySelector('.nav');
+    if (btn && nav) {
+        btn.addEventListener('click', e => {
+            e.stopPropagation();
+            nav.classList.toggle('nav-abierto');
+            btn.classList.toggle('activo');
+            btn.textContent = nav.classList.contains('nav-abierto') ? '✕' : '☰';
+        });
+        document.addEventListener('click', e => {
+            if (!nav.contains(e.target) && e.target !== btn) {
+                nav.classList.remove('nav-abierto');
+                btn.classList.remove('activo');
+                btn.textContent = '☰';
+            }
+        });
+    }
+});
+</script>
+
+<script src="buscador.js"></script>
+    <script src="carrito.js"></script>
+</body>
+</html>

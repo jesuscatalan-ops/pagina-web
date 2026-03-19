@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime2Chile - Landing Page</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Pathway+Extreme:wght@400;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="carrito.css">
+    <link rel="stylesheet" href="buscador.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-container">
+                <a href="index.html" style="text-decoration:none; display:flex; align-items:center; gap:0.75rem;">
+                    <img src="anime2chile_logo.png" alt="Anime2Chile" class="header-logo-img">
+                    <div class="brand-name">
+                        <span class="brand-anime">ANIME</span>
+                        <span class="brand-two">2</span>
+                        <span class="brand-anime">CHILE</span>
+                    </div>
+                </a>
+            </div>
+            
+            <nav class="nav">
+                <a href="index.html" class="nav-link active">Inicio</a>
+                <a href="catalogo.html" class="nav-link">Catalogo</a>
+                <a href="contacto.html" class="nav-link">Contactanos</a>
+                <a href="reservas.html" class="nav-link">Reservas</a>
+                <a href="pokemon.html" class="nav-link nav-link-pokemon">Pokémon TCG</a>
+            </nav>
+
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+    </header>
+
+    <div class="slider" style="height: 600px;">
+        <div class="slides-container">
+            <div class="slide active">
+                <div class="slide-bg">GOGOGO</div>
+                <div class="slide-content">
+                    <h2 class="slide-title" style="font-size: 5rem;">ANIME2CHILE</h2>
+                    <p class="slide-subtitle" style="margin-bottom: 2rem;">El catalogo mas amplio de Jojo's en Chile</p>
+                    <button class="banner-btn">UNIRSE AHORA</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slider-dots">
+            <div class="dot active"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+
+    <!-- NUEVOS LANZAMIENTOS -->
+    <section class="products-section" style="padding-top: 2rem;">
+        <div class="lanzamientos-inner">
+        <div class="lanzamientos-header">
+            <h2 class="lanzamientos-titulo">ARTICULOS DESTACADOS</h2>
+            <a href="catalogo.html" class="banner-btn lanzamientos-ver-todo" style="text-decoration:none;">VER TODO</a>
+        </div>
+
+        <!-- Carrusel móvil -->
+        <div class="destacados-carrusel-wrap">
+            <div class="destacados-carrusel-outer" id="dest-outer">
+        <div class="products-grid" id="dest-grid">
+             <!-- TARJETA 1: reemplaza el src y el href cuando tengas el producto -->
+            <a href="producto.html?id=jodio-joestar" style="text-decoration:none; display:block;">
+            <article class="product-card">
+                <div class="product-image">
+                    <img src="imagenes/softwet_ad.jpg" alt="Jodio Joestar"
+                         onerror="this.style.display='none'; this.parentElement.style.background='var(--gradient-subtle)'">
+                </div>
+            </article>
+            </a>
+             <!-- TARJETA 2: reemplaza el src y el href cuando tengas el producto -->
+            <a href="producto.html?id=jotaro-kujo" style="text-decoration:none; display:block;">
+            <article class="product-card">
+                <div class="product-image">
+                    <img src="imagenes/josuke8_ad.jpg" alt="Jotaro Kujo"
+                         onerror="this.style.display='none'; this.parentElement.style.background='var(--gradient-subtle)'">
+                </div>
+            </article>
+            </a>
+             <!-- TARJETA 3: reemplaza el src y el href cuando tengas el producto -->
+            <a href="producto.html?id=funny-valentine" style="text-decoration:none; display:block;">
+            <article class="product-card">
+                <div class="product-image">
+                    <img src="imagenes/starplatinum_ad.jpg" alt="Funny Valentine"
+                         onerror="this.style.display='none'; this.parentElement.style.background='var(--gradient-subtle)'">
+                </div>
+            </article>
+            </a>
+
+
+            <div class="banner-card" style="display:none;"></div>
+        </div>
+            </div><!-- /dest-outer -->
+            <div class="destacados-arrows-row">
+                <button class="destacados-arrow destacados-arrow-prev" id="dest-prev" aria-label="Anterior">&#8249;</button>
+                <button class="destacados-arrow destacados-arrow-next" id="dest-next" aria-label="Siguiente">&#8250;</button>
+            </div>
+        </div><!-- /destacados-carrusel-wrap -->
+        </div><!-- /lanzamientos-inner -->
+
+        <!-- Botón VER TODO solo visible en móvil, debajo del grid -->
+        <div class="lanzamientos-ver-todo-mobile">
+            <a href="catalogo.html" class="banner-btn" style="text-decoration:none; padding:0.5rem 1.5rem; font-size:1rem;">VER TODO</a>
+        </div>
+
+        <div class="instagram-banner-row">
+            <div class="instagram-card">
+                <div class="instagram-glow"></div>
+
+                <div class="instagram-left">
+                    <div class="instagram-icon-wrap">
+                        <svg class="instagram-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <defs>
+                                <linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#f9ce34"/>
+                                    <stop offset="30%" stop-color="#ee2a7b"/>
+                                    <stop offset="70%" stop-color="#6228d7"/>
+                                </linearGradient>
+                            </defs>
+                            <path fill="url(#ig-grad)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </div>
+                    <div class="instagram-text">
+                        <p class="instagram-handle">@anime2chile</p>
+                        <h3 class="instagram-title">SÍGUENOS EN INSTAGRAM</h3>
+                        <p class="instagram-desc">Sé el primero en enterarte de los nuevos lanzamientos y accede a ofertas exclusivas.</p>
+                    </div>
+                </div>
+
+                <div class="instagram-right">
+                    <div class="instagram-stats">
+                        <div class="ig-stat">
+                            <span class="ig-stat-num">2.5K</span>
+                            <span class="ig-stat-label">Seguidores</span>
+                        </div>
+                        <div class="ig-stat-divider"></div>
+                        <div class="ig-stat">
+                            <span class="ig-stat-num">50+</span>
+                            <span class="ig-stat-label">Publicaciones</span>
+                        </div>
+                    </div>
+                    <a href="https://instagram.com/anime2chile" target="_blank" class="instagram-btn">
+                        SEGUIR AHORA
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ===== CATÁLOGO PRINCIPAL ===== -->
+    <section class="catalog-section" id="catalogo">
+        <div class="catalog-header">
+            <div class="catalog-header-left">
+                <span class="catalog-label">SUPER ACTION STATUE</span>
+                <h2 class="catalog-title">Medicos JoJo's<br><span>Bizarre Adventure</span></h2>
+            </div>
+            <div class="catalog-header-right" style="align-self: flex-end;">
+                <p class="catalog-desc">Las figuras de acción más detalladas y fieles al manga directamente en Chile. Cada pieza es una obra de arte.</p>
+            </div>
+        </div>
+
+        <div class="catalog-grid" id="index-catalog-grid">
+            <!-- Los 8 productos fijos se renderizan desde index-catalogo.js -->
+        </div>
+
+        <div class="catalog-cta">
+            <p>¿No encontraste lo que buscabas?</p>
+            <a href="catalogo.html" class="banner-btn">VER CATALOGO COMPLETO</a>
+        </div>
+    </section>
+
+    <!-- ===== POKÉMON TCG ===== -->
+    <section class="pokemon-section">
+        <div class="pokemon-inner">
+            <div class="pokemon-text">
+                <span class="catalog-label">TRADING CARD GAME</span>
+                <h2 class="pokemon-title">Pokémon<br><span>TCG</span></h2>
+                <p class="pokemon-desc">Sobres, mazos de batalla, Elite Trainer Boxes y colecciones completas. Todo el universo Pokémon TCG en un solo lugar, con los sets más recientes directo desde Japón y LATAM.</p>
+                <a href="pokemon.html" class="pokemon-btn">VER POKÉMON TCG →</a>
+            </div>
+            <div class="pokemon-visual">
+                <div class="pokemon-card-stack">
+                    <div class="poke-card poke-card-3">
+                        <img src="imagenes/Pokemon-carta4.png" alt="Carta Pokémon">
+                    </div>
+                    <div class="poke-card poke-card-2">
+                        <img src="imagenes/Pokemon-carta3.png" alt="Carta Pokémon">
+                    </div>
+                    <div class="poke-card poke-card-1">
+                        <img src="imagenes/Pokemon-carta2.png" alt="Carta Pokémon">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== BANNER INFORMATIVO ===== -->
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer" id="contacto">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="footer-logo-wrap">
+                    <img src="anime2chile_logo.png" alt="Anime2Chile" class="footer-logo-img">
+                    <div class="brand-name" style="font-size:1.3rem;">
+                        <span class="brand-anime">ANIME</span><span class="brand-two">2</span><span class="brand-anime">CHILE</span>
+                    </div>
+                </div>
+                <p class="footer-tagline">El catálogo más amplio de coleccionables anime en Chile. Figuras originales, preventas exclusivas y envíos a todo el país.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-btn" aria-label="Instagram">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </a>
+                    <a href="#" class="social-btn" aria-label="TikTok">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+                    </a>
+                    <a href="#" class="social-btn" aria-label="Facebook">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </a>
+                    <a href="#" class="social-btn" aria-label="YouTube">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-links-group">
+                <h4 class="footer-heading">Catálogo</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Figuras de Acción</a></li>
+                    <li><a href="#">Trading Cards</a></li>
+                    <li><a href="#">Estatuas Premium</a></li>
+                    <li><a href="#">Artículos Exclusivos</a></li>
+                    <li><a href="#">Pre-Ventas</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links-group">
+                <h4 class="footer-heading">Ayuda</h4>
+                <ul class="footer-links">
+                    <li><a href="#">¿Cómo comprar?</a></li>
+                    <li><a href="#">Envíos y tiempos</a></li>
+                    <li><a href="#">Cambios y devoluciones</a></li>
+                    <li><a href="#">Garantía de autenticidad</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-newsletter">
+                <h4 class="footer-heading">Newsletter</h4>
+                <p class="footer-newsletter-desc">Recibe primero las alertas de stock, preventas y descuentos exclusivos.</p>
+                <div class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="tu@correo.com">
+                    <button class="newsletter-btn">SUSCRIBIR</button>
+                </div>
+                <p class="newsletter-disclaimer">Sin spam. Puedes darte de baja cuando quieras.</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="footer-copy">© 2025 Anime2Chile. Todos los derechos reservados.</p>
+            <div class="footer-bottom-links">
+                <a href="#">Términos y Condiciones</a>
+                <span>·</span>
+                <a href="#">Política de Privacidad</a>
+                <span>·</span>
+                <a href="#">Cookies</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="index-catalogo.js"></script>
+
+<script>
+// ── Toggle menú móvil ──
+(function() {
+    document.addEventListener('DOMContentLoaded', function() {
+        var btn = document.querySelector('.mobile-menu-btn');
+        var nav = document.querySelector('.nav');
+        if (!btn || !nav) return;
+
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            nav.classList.toggle('nav-abierto');
+            btn.classList.toggle('activo');
+            btn.textContent = nav.classList.contains('nav-abierto') ? '✕' : '☰';
+        });
+
+        // Cerrar al hacer clic fuera
+        document.addEventListener('click', function(e) {
+            if (!nav.contains(e.target) && e.target !== btn) {
+                nav.classList.remove('nav-abierto');
+                btn.classList.remove('activo');
+                btn.textContent = '☰';
+            }
+        });
+
+        // Cerrar al elegir una opción
+        nav.querySelectorAll('.nav-link').forEach(function(link) {
+            link.addEventListener('click', function() {
+                nav.classList.remove('nav-abierto');
+                btn.classList.remove('activo');
+                btn.textContent = '☰';
+            });
+        });
+    });
+})();
+</script>
+
+    <script src="buscador.js"></script>
+    <script src="carrito.js"></script>
+    <script src="mobile-menu.js"></script>
+
+<script>
+(function() {
+    function initDestacadosCarrusel() {
+        var outer = document.getElementById('dest-outer');
+        var grid  = document.getElementById('dest-grid');
+        var btnP  = document.getElementById('dest-prev');
+        var btnN  = document.getElementById('dest-next');
+        if (!outer || !grid) return;
+
+        var cards = Array.from(grid.querySelectorAll(':scope > a')).filter(function(c) {
+            return !c.querySelector('.banner-card');
+        });
+        var total = cards.length;
+        var idx   = 0;
+
+        function isMobile() { return window.innerWidth < 768; }
+
+        function updateArrows() {
+            if (btnP) btnP.style.opacity = idx === 0 ? '0.35' : '1';
+            if (btnN) btnN.style.opacity = idx >= total - 1 ? '0.35' : '1';
+        }
+
+        function goTo(i) {
+            if (!isMobile()) return;
+            idx = Math.max(0, Math.min(i, total - 1));
+            // Scroll al offsetLeft de la tarjeta dentro del outer
+            var cardLeft = cards[idx].offsetLeft;
+            outer.scrollTo({ left: cardLeft, behavior: 'smooth' });
+            updateArrows();
+        }
+
+        if (btnP) btnP.addEventListener('click', function() { goTo(idx - 1); });
+        if (btnN) btnN.addEventListener('click', function() { goTo(idx + 1); });
+
+        // Actualizar índice al scrollear manualmente
+        var scrollTimer;
+        outer.addEventListener('scroll', function() {
+            clearTimeout(scrollTimer);
+            scrollTimer = setTimeout(function() {
+                if (!isMobile()) return;
+                var best = 0, minDist = Infinity;
+                cards.forEach(function(c, i) {
+                    var dist = Math.abs(c.offsetLeft - outer.scrollLeft);
+                    if (dist < minDist) { minDist = dist; best = i; }
+                });
+                idx = best;
+                updateArrows();
+            }, 50);
+        }, { passive: true });
+
+        window.addEventListener('resize', function() {
+            if (!isMobile()) { outer.scrollLeft = 0; idx = 0; }
+            updateArrows();
+        });
+
+        updateArrows();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initDestacadosCarrusel);
+    } else {
+        initDestacadosCarrusel();
+    }
+})();
+</script>
+</body>
+</html>
