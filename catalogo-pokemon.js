@@ -111,7 +111,7 @@ function crearTarjeta(producto) {
                     <span class="catalog-stock ${stockClase}">${producto.stockLabel}</span>
                 </div>
                 <h3 class="catalog-name">${producto.nombre}</h3>
-                <p class="catalog-detail">${producto.descripcionCorta}</p>
+                
                 <div class="catalog-bottom">
                     <div class="catalog-price">${formatearPrecio(producto.precio)}</div>
                     <button class="add-to-cart-btn catalog-cart-btn"

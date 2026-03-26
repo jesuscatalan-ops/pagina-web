@@ -151,10 +151,15 @@
         .carrusel-track {
             display: flex;
             gap: 1.25rem;
+            align-items: stretch;
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .carrusel-track > a {
+            flex: 0 0 calc(25% - 1rem);
         }
         .poke-prod-card {
             flex: 0 0 calc(25% - 1rem);
+            height: 360px;
             background: #fff;
             border-radius: 16px;
             border: 1px solid rgba(0,0,0,0.07);
@@ -209,6 +214,10 @@
             letter-spacing: 0.5px;
             color: var(--dark);
             line-height: 1.2;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
         .poke-prod-tipo { font-size: 0.78rem; color: var(--gray); flex: 1; }
         .poke-prod-bottom {
@@ -273,13 +282,15 @@
         .carrusel-arrow:disabled { opacity: 0.3; cursor: not-allowed; }
 
         @media (max-width: 900px) {
+            .carrusel-track > a,
             .poke-prod-card { flex: 0 0 calc(50% - 0.625rem); }
         }
         @media (max-width: 600px) {
             .poke-cat-grid { grid-template-columns: 1fr; gap: 0.5rem; }
             .poke-cat-card { aspect-ratio: 16/7; }
             .poke-cat-section-full { padding: 1.5rem 0.75rem; }
-            .poke-prod-card { flex: 0 0 calc(100% - 0px); }
+            .carrusel-track > a,
+            .poke-prod-card { flex: 0 0 100%; }
             .poke-section { padding: 2rem 1rem; }
         }
     </style>
@@ -289,12 +300,12 @@
 <header class="header">
 <div class="header-content">
 <div class="logo-container">
-<a href="index.html" style="text-decoration:none; display:flex; align-items:center; gap:1rem;">
-<div class="logo">A</div>
+<a href="index.html" style="text-decoration:none; display:flex; align-items:center; gap:0.75rem;">
+<img src="anime2chile_logo.png" alt="Anime2Chile" class="header-logo-img">
 <div class="brand-name">
-<span class="brand-anime">ANIME</span>
-<span class="brand-two">2</span>
-<span class="brand-anime">CHILE</span>
+    <span class="brand-anime">ANIME</span>
+    <span class="brand-two">2</span>
+    <span class="brand-anime">CHILE</span>
 </div>
 </a>
 </div>
@@ -322,7 +333,7 @@
 <div class="poke-cat-content">
 <p class="poke-cat-eyebrow">POKÉMON TCG</p>
 <h3 class="poke-cat-name">Sellado</h3>
-<span class="poke-cat-btn">Ver ahora</span>
+<!--<span class="poke-cat-btn">Ver ahora</span>-->
 </div>
 </a>
 <a class="poke-cat-card" href="catalogo-pokemon.html?categoria=singles" style="text-decoration:none;">
@@ -331,7 +342,7 @@
 <div class="poke-cat-content">
 <p class="poke-cat-eyebrow">POKÉMON TCG</p>
 <h3 class="poke-cat-name">Singles</h3>
-<span class="poke-cat-btn">Ver ahora</span>
+<!--<span class="poke-cat-btn">Ver ahora</span>-->
 </div>
 </a>
 <a class="poke-cat-card" href="catalogo-pokemon.html?categoria=sleeves" style="text-decoration:none;">
@@ -340,7 +351,7 @@
 <div class="poke-cat-content">
 <p class="poke-cat-eyebrow">POKÉMON TCG</p>
 <h3 class="poke-cat-name">Sleeves</h3>
-<span class="poke-cat-btn">Ver ahora</span>
+<!--<span class="poke-cat-btn">Ver ahora</span>-->
 </div>
 </a>
 
@@ -352,7 +363,7 @@
 <div class="carrusel-header">
 <div>
 <p class="poke-section-label">LOS FAVORITOS</p>
-<h2 class="poke-section-title">MÁS VENDIDOS</h2>
+<h2 class="poke-section-title">DESTACADOS</h2>
 </div>
 <div class="carrusel-controls">
 <div class="carrusel-dots" id="carrusel-dots"></div>
@@ -362,79 +373,7 @@
 </div>
 <div class="carrusel-track-outer">
 <div class="carrusel-track" id="carrusel-track">
-
-<div class="poke-prod-card">
-<div class="poke-prod-img" style="background:linear-gradient(135deg,#f57f17,#ffca28);">
-<div class="poke-prod-badge">POPULAR</div>
-<span>🌟</span>
-</div>
-<div class="poke-prod-info">
-<p class="poke-prod-set">Paldea Evolved</p>
-<h3 class="poke-prod-name">Elite Trainer Box</h3>
-<p class="poke-prod-tipo">9 sobres + accesorios · Inglés · SV2</p>
-<div class="poke-prod-bottom">
-<span class="poke-prod-price">$54.990</span>
-<button class="poke-prod-btn" onclick="agregarAlCarrito('poke-etb-pe','Elite Trainer Box Paldea Evolved',54990,'')">+ CARRITO</button>
-</div>
-</div>
-</div>
-<div class="poke-prod-card">
-<div class="poke-prod-img" style="background:linear-gradient(135deg,#880e4f,#e91e63);">
-<span>🌸</span>
-</div>
-<div class="poke-prod-info">
-<p class="poke-prod-set">Paradox Rift</p>
-<h3 class="poke-prod-name">Booster Box</h3>
-<p class="poke-prod-tipo">36 sobres · Inglés · SV4</p>
-<div class="poke-prod-bottom">
-<span class="poke-prod-price">$134.990</span>
-<button class="poke-prod-btn" onclick="agregarAlCarrito('poke-booster-box-pr','Booster Box Paradox Rift',134990,'')">+ CARRITO</button>
-</div>
-</div>
-</div>
-<div class="poke-prod-card">
-<div class="poke-prod-img" style="background:linear-gradient(135deg,#0277bd,#03a9f4);">
-<div class="poke-prod-badge">STOCK BAJO</div>
-<span>💎</span>
-</div>
-<div class="poke-prod-info">
-<p class="poke-prod-set">Obsidian Flames</p>
-<h3 class="poke-prod-name">Elite Trainer Box — Charizard</h3>
-<p class="poke-prod-tipo">ETB · Edición Charizard · Inglés</p>
-<div class="poke-prod-bottom">
-<span class="poke-prod-price">$54.990</span>
-<button class="poke-prod-btn" onclick="agregarAlCarrito('poke-etb-of','ETB Obsidian Flames Charizard',54990,'')">+ CARRITO</button>
-</div>
-</div>
-</div>
-<div class="poke-prod-card">
-<div class="poke-prod-img" style="background:linear-gradient(135deg,#1a237e,#3949ab);">
-<span>🌙</span>
-</div>
-<div class="poke-prod-info">
-<p class="poke-prod-set">Temporal Forces</p>
-<h3 class="poke-prod-name">Mazo de Batalla — Iron Leaves</h3>
-<p class="poke-prod-tipo">60 cartas listas para jugar · Inglés</p>
-<div class="poke-prod-bottom">
-<span class="poke-prod-price">$19.990</span>
-<button class="poke-prod-btn" onclick="agregarAlCarrito('poke-mazo-iron','Mazo Iron Leaves',19990,'')">+ CARRITO</button>
-</div>
-</div>
-</div>
-<div class="poke-prod-card">
-<div class="poke-prod-img" style="background:linear-gradient(135deg,#4a148c,#9c27b0);">
-<span>✨</span>
-</div>
-<div class="poke-prod-info">
-<p class="poke-prod-set">151 — Japonés</p>
-<h3 class="poke-prod-name">Booster Box SV2a</h3>
-<p class="poke-prod-tipo">20 sobres · Japonés · Edición limitada</p>
-<div class="poke-prod-bottom">
-<span class="poke-prod-price">$89.990</span>
-<button class="poke-prod-btn" onclick="agregarAlCarrito('poke-booster-151-jp','Booster Box 151 Japonés',89990,'')">+ CARRITO</button>
-</div>
-</div>
-</div>
+    <!-- Generado por pokemon-destacados.js -->
 </div>
 </div>
 </section>
@@ -442,10 +381,8 @@
 <div class="footer-top">
 <div class="footer-brand">
 <div class="footer-logo-wrap">
-<div class="logo" style="width:44px;height:44px;font-size:1.3rem;">A</div>
-<div class="brand-name" style="font-size:1.3rem;">
-<span class="brand-anime">ANIME</span><span class="brand-two">2</span><span class="brand-anime">CHILE</span>
-</div>
+<img src="anime2chile_logo.png" alt="Anime2Chile" class="footer-logo-img">
+<div class="brand-name" style="font-size:1.3rem;"><span class="brand-anime">ANIME</span><span class="brand-two">2</span><span class="brand-anime">CHILE</span></div>
 </div>
 <p class="footer-tagline">El catálogo más amplio de coleccionables anime en Chile.</p>
 <div class="footer-social">
@@ -493,7 +430,6 @@
 </footer>
 <script>
 // ── Carrusel ──
-const track    = document.getElementById('carrusel-track');
 const dotsWrap = document.getElementById('carrusel-dots');
 const btnPrev  = document.getElementById('arrow-prev');
 const btnNext  = document.getElementById('arrow-next');
@@ -505,10 +441,14 @@ function cardsVisibles() {
     return 4;
 }
 
-const totalCards = track.children.length;
-function totalPasos() { return Math.ceil(totalCards / cardsVisibles()); }
+function totalCards() {
+    const track = document.getElementById('carrusel-track');
+    return track ? track.children.length : 0;
+}
+function totalPasos() { return Math.ceil(totalCards() / cardsVisibles()); }
 
-function buildDots() {
+window.buildDots = function() {
+    if (!dotsWrap) return;
     dotsWrap.innerHTML = '';
     for (let i = 0; i < totalPasos(); i++) {
         const d = document.createElement('div');
@@ -516,22 +456,23 @@ function buildDots() {
         d.onclick = () => irA(i);
         dotsWrap.appendChild(d);
     }
-}
+};
 
-function irA(pos) {
+window.irA = function(pos) {
+    const track = document.getElementById('carrusel-track');
+    if (!track || totalCards() === 0) return;
     const pasos = totalPasos();
     posActual = Math.max(0, Math.min(pos, pasos - 1));
     const cardW = track.children[0].offsetWidth + 20;
     track.style.transform = `translateX(-${posActual * cardsVisibles() * cardW}px)`;
     document.querySelectorAll('.carrusel-dot').forEach((d, i) => d.classList.toggle('activo', i === posActual));
-    btnPrev.disabled = posActual === 0;
-    btnNext.disabled = posActual >= pasos - 1;
-}
+    if (btnPrev) btnPrev.disabled = posActual === 0;
+    if (btnNext) btnNext.disabled = posActual >= pasos - 1;
+};
 
 window.moverCarrusel = function(dir) { irA(posActual + dir); };
 window.addEventListener('resize', () => { buildDots(); irA(0); });
-buildDots();
-irA(0);
+// NO llamar buildDots()/irA(0) aquí — lo llama pokemon-destacados.js tras cargar los productos
 
 // ── Menú móvil ──
 document.addEventListener('DOMContentLoaded', function() {
@@ -554,6 +495,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
+<script src="pokemon-destacados.js"></script>
 <script src="buscador.js"></script>
 <script src="carrito.js"></script>
 </body>

@@ -21,8 +21,8 @@
     <header class="header">
         <div class="header-content">
             <div class="logo-container">
-                <a href="index.html" style="text-decoration:none; display:flex; align-items:center; gap:1rem;">
-                    <div class="logo">A</div>
+                <a href="index.html" style="text-decoration:none; display:flex; align-items:center; gap:0.75rem;">
+                    <img src="anime2chile_logo.png" alt="Anime2Chile" class="header-logo-img">
                     <div class="brand-name">
                         <span class="brand-anime">ANIME</span>
                         <span class="brand-two">2</span>
@@ -101,13 +101,8 @@
                 <!-- Specs -->
                 <div class="product-specs" id="producto-specs"></div>
 
-                <!-- Cantidad + botones -->
+                <!-- Botones de acción -->
                 <div class="product-qty-row">
-                    <div class="qty-control">
-                        <button class="qty-btn" onclick="cambiarCantidad(-1)">−</button>
-                        <input class="qty-num" id="qty-input" type="number" value="1" min="1" max="99" readonly>
-                        <button class="qty-btn" onclick="cambiarCantidad(1)">+</button>
-                    </div>
                     <button class="product-add-btn" id="btn-carrito">AGREGAR AL CARRITO</button>
                     <button class="product-reserve-btn" onclick="window.location='reservas.html'">RESERVAR</button>
                 </div>
@@ -125,7 +120,6 @@
             <div class="product-tabs-nav">
                 <button class="tab-btn active" onclick="switchTab(this,'tab-desc')">DESCRIPCIÓN</button>
                 <button class="tab-btn" onclick="switchTab(this,'tab-specs')">ESPECIFICACIONES</button>
-                <button class="tab-btn" onclick="switchTab(this,'tab-envio')">ENVÍO Y PAGOS</button>
             </div>
 
             <div id="tab-desc" class="tab-panel active">
@@ -136,17 +130,6 @@
 
             <div id="tab-specs" class="tab-panel">
                 <ul id="tab-specs-lista"></ul>
-            </div>
-
-            <div id="tab-envio" class="tab-panel">
-                <ul>
-                    <li>Envío a todo Chile vía Starken, Chilexpress o Correos de Chile.</li>
-                    <li>Despacho en 2–5 días hábiles desde la confirmación del pago.</li>
-                    <li>Envío gratis en compras sobre $80.000.</li>
-                    <li>Embalaje reforzado especial para figuras de colección.</li>
-                    <li>Métodos de pago: Webpay, transferencia bancaria, MercadoPago.</li>
-                    <li>Retiro en Santiago disponible coordinando con nosotros.</li>
-                </ul>
             </div>
         </div>
 
@@ -162,7 +145,7 @@
         <div class="footer-top">
             <div class="footer-brand">
                 <div class="footer-logo-wrap">
-                    <div class="logo" style="width:44px;height:44px;font-size:1.3rem;">A</div>
+                    <img src="anime2chile_logo.png" alt="Anime2Chile" class="footer-logo-img">
                     <div class="brand-name" style="font-size:1.3rem;">
                         <span class="brand-anime">ANIME</span><span class="brand-two">2</span><span class="brand-anime">CHILE</span>
                     </div>

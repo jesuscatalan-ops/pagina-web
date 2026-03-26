@@ -65,8 +65,17 @@ function formatearPrecio(numero) {
 
 // ── Render de una tarjeta individual ────────────────────────
 
+const IDS_25TH = new Set(['sticky-fingers-25th', 'caesar-zeppeli-25th', 'joseph-joestar-25th']);
+
 function crearTarjeta(producto) {
     const lineas = producto.placeholder.split('\n');
+
+    // Logo 25th Anniversary (esquina superior izquierda)
+    const logo25thHTML = IDS_25TH.has(producto.id)
+        ? `<img class="catalog-25th-logo"
+                src="imagenes/Emblemas/logos especiales/25th Anniversary (2012) - Logo.png"
+                alt="25th Anniversary 2012">`
+        : '';
 
     // Badge especial (BESTSELLER / VILLANO / NUEVO)
     let badgeHTML = '';
@@ -112,17 +121,18 @@ function crearTarjeta(producto) {
     <a href="producto.html?id=${producto.id}"
        style="text-decoration:none; color:inherit; display:block;">
         <article class="catalog-card">
+            ${logo25thHTML}
             ${badgeHTML}
+            <span class="catalog-stock ${stockClase}">${producto.stockLabel}</span>
             <div class="catalog-image">
                 ${imagenHTML}
             </div>
             <div class="catalog-info">
                 <div class="catalog-meta">
                     <span class="catalog-series">${producto.parte}</span>
-                    <span class="catalog-stock ${stockClase}">${producto.stockLabel}</span>
                 </div>
                 <h3 class="catalog-name">${producto.nombre}</h3>
-                <p class="catalog-detail">${producto.descripcionCorta}</p>
+                
                 <div class="catalog-bottom">
                     <div class="catalog-price">${formatearPrecio(producto.precio)}</div>
                     <button class="add-to-cart-btn catalog-cart-btn"
@@ -166,9 +176,13 @@ function renderGrid(productos) {
 function aplicarFiltro(parte) {
     filtroActivo = parte;
 
-    // Actualizar botones activos
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.textContent.trim() === parte);
+    // Actualizar botón "Todos"
+    const todosBtn = document.querySelector('.filter-todos-btn');
+    if (todosBtn) todosBtn.classList.toggle('active', parte === 'Todos');
+
+    // Actualizar emblemas de parte
+    document.querySelectorAll('.parte-emblem-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.parte === parte);
     });
 
     // Filtrar y renderizar respetando el orden activo
@@ -182,10 +196,13 @@ function aplicarFiltro(parte) {
 // ── Conectar botones de filtro ────────────────────────────────
 
 function conectarFiltros() {
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            aplicarFiltro(btn.textContent.trim());
-        });
+    const todosBtn = document.querySelector('.filter-todos-btn');
+    if (todosBtn) {
+        todosBtn.addEventListener('click', () => aplicarFiltro('Todos'));
+    }
+
+    document.querySelectorAll('.parte-emblem-btn').forEach(btn => {
+        btn.addEventListener('click', () => aplicarFiltro(btn.dataset.parte));
     });
 }
 

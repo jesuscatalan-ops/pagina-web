@@ -32,13 +32,6 @@ function cambiarImagen(src, thumbEl) {
     thumbEl.classList.add('active');
 }
 
-/** Cambia la cantidad en el input de unidades */
-function cambiarCantidad(delta) {
-    const input = document.getElementById('qty-input');
-    const nuevo = Math.min(99, Math.max(1, parseInt(input.value) + delta));
-    input.value = nuevo;
-}
-
 /** Cambia de tab en la sección de descripción */
 function switchTab(btn, panelId) {
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -147,6 +140,7 @@ function renderProducto(producto, todosLosProductos, esPokemon = false) {
     }
 
     /* ---------- Badges de serie / tipo / stock ---------- */
+    /*
     if (esPokemon) {
         document.getElementById('producto-badges').innerHTML = `
             <span class="product-badge-tag serie">${producto.categoria || ''}</span>
@@ -160,6 +154,7 @@ function renderProducto(producto, todosLosProductos, esPokemon = false) {
             <span class="product-badge-tag ${stockClass(producto.stock)}">${producto.stockLabel}</span>
         `;
     }
+        */
 
     /* ---------- Badge especial (BESTSELLER / VILLANO / NUEVO) ---------- */
     const badgeEl = document.getElementById('producto-badge-especial');

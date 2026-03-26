@@ -83,28 +83,113 @@
 ================================================ */
 .catalog-page-filters {
     display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    align-items: center;
+    flex-direction: column;
+    gap: 1.25rem;
     margin-bottom: 2.5rem;
     padding-bottom: 2rem;
     border-bottom: 1px solid rgba(0,0,0,0.07);
 }
 
-.catalog-page-filters .filter-group {
+/* ── Barra superior: botón Todos + sort ── */
+.filters-top-bar {
     display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
 }
 
-.catalog-page-filters label {
+.filter-todos-btn {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 0.9rem;
-    letter-spacing: 1.5px;
+    letter-spacing: 2px;
+    padding: 0.45rem 1.35rem;
+    background: #fff;
+    border: 2px solid rgba(0,0,0,0.12);
+    border-radius: 10px;
+    cursor: pointer;
     color: var(--gray);
-    align-self: center;
-    margin-right: 0.25rem;
+    transition: all 0.2s ease;
     white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.filter-todos-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.filter-todos-btn.active {
+    background: var(--gradient);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: var(--shadow-orange);
+}
+
+/* ── Carrusel de emblemas ── */
+.parte-emblemas-wrap {
+    width: 100%;
+    overflow: hidden;
+}
+
+.parte-emblemas-track {
+    display: flex;
+    gap: 0.4rem;
+}
+
+.parte-emblem-btn {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.25s ease;
+}
+
+.parte-emblem-btn img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.25s ease, filter 0.25s ease;
+    filter: brightness(0.97);
+}
+
+.parte-emblem-btn span {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.8px;
+    color: var(--gray);
+    text-align: center;
+    line-height: 1.25;
+    transition: color 0.25s ease;
+}
+
+.parte-emblem-btn:hover {
+    transform: translateY(-3px);
+}
+
+.parte-emblem-btn:hover img {
+    transform: scale(1.1);
+    filter: grayscale(0) brightness(1);
+}
+
+.parte-emblem-btn:hover span {
+    color: var(--primary);
+}
+
+.parte-emblem-btn.active img {
+    transform: scale(1.08);
+    filter: grayscale(0) brightness(1) drop-shadow(0 0 8px rgba(255,107,53,0.45));
+}
+
+.parte-emblem-btn.active span {
+    color: var(--primary);
+    font-weight: 700;
 }
 
 .catalog-count {
@@ -112,6 +197,40 @@
     font-size: 0.85rem;
     color: var(--gray);
     font-weight: 600;
+}
+
+/* ── Mobile: carousel de 2 en pantalla (imágenes grandes) ── */
+@media (max-width: 768px) {
+    .parte-emblemas-wrap {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        /* extiende el carrusel hasta los bordes del viewport */
+        margin: 0 -1.25rem;
+        padding: 0 1.25rem;
+    }
+
+    .parte-emblemas-wrap::-webkit-scrollbar {
+        display: none;
+    }
+
+    .parte-emblemas-track {
+        justify-content: flex-start;
+        gap: 0.4rem;
+        padding-right: 1.25rem;
+    }
+
+    /* 2 emblemas completamente visibles + borde del 3º como hint de scroll */
+    .parte-emblem-btn {
+        flex: 0 0 calc(50% - 0.6rem);
+        scroll-snap-align: start;
+    }
+
+    .parte-emblem-btn span {
+        font-size: 0.75rem;
+        letter-spacing: 0.5px;
+    }
 }
 
 /* ── Menú de ordenamiento ── */
@@ -242,7 +361,7 @@
 }
 
 @media (max-width: 480px) {
-    .catalog-page-grid { grid-template-columns: 1fr; }
+    .catalog-page-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
     .catalog-count { margin-left: 0; }
 }
 
@@ -386,6 +505,9 @@
     outline: none;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
     resize: vertical;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .form-group input:focus,
@@ -557,6 +679,35 @@
     }
 
     .reservas-form-wrap { position: static; }
+}
+
+@media (max-width: 600px) {
+    .page-main {
+        padding: 2rem 1.25rem 3rem;
+    }
+
+    .reservas-form-wrap {
+        padding: 1.5rem;
+    }
+
+    .reservas-info .catalog-card {
+        flex-direction: column !important;
+    }
+
+    .reservas-info .catalog-card > div:first-child {
+        width: 100% !important;
+        height: 80px;
+    }
+}
+
+@media (max-width: 400px) {
+    .page-main {
+        padding: 1.5rem 1rem 2.5rem;
+    }
+
+    .reservas-form-wrap {
+        padding: 1.25rem;
+    }
 }
 
 

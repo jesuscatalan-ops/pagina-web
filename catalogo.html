@@ -21,8 +21,8 @@
     <header class="header">
         <div class="header-content">
             <div class="logo-container">
-                <a href="index.html" style="text-decoration:none; display:flex; align-items:center; gap:1rem;">
-                    <div class="logo">A</div>
+                <a href="index.html" style="text-decoration:none; display:flex; align-items:center; gap:0.75rem;">
+                    <img src="anime2chile_logo.png" alt="Anime2Chile" class="header-logo-img">
                     <div class="brand-name">
                         <span class="brand-anime">ANIME</span>
                         <span class="brand-two">2</span>
@@ -57,48 +57,84 @@
 
         <!-- Filtros -->
         <div class="catalog-page-filters">
-            <label>PARTE:</label>
-            <div class="filter-group">
-                <button class="filter-btn active">Todos</button>
-                <button class="filter-btn">Phantom Blood</button>
-                <button class="filter-btn">Battle Tendency</button>
-                <button class="filter-btn">Stardust Crusaders</button>
-                <button class="filter-btn">Diamond is Unbreakable</button>
-                <button class="filter-btn">Golden Wind</button>
-                <button class="filter-btn">Stone Ocean</button>
-                <button class="filter-btn">Steel Ball Run</button>
-                <button class="filter-btn">Jojolion</button>
-            </div>
-            <div class="sort-wrap">
-                <span class="catalog-count" id="catalogo-contador">24 productos</span>
-                <button class="sort-btn" id="sort-btn-jojo" onclick="toggleSortMenu('jojo')">
-                    ORDENAR
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="2,4 6,8 10,4"/></svg>
-                </button>
-                <div class="sort-dropdown" id="sort-dropdown-jojo">
-                    <div class="sort-option activa" data-sort="default" onclick="aplicarOrden('jojo','default',this)">
-                        Por defecto <span class="sort-check">✓</span>
-                    </div>
-                    <div class="sort-option" data-sort="az" onclick="aplicarOrden('jojo','az',this)">
-                        Nombres de A a Z <span class="sort-check">✓</span>
-                    </div>
-                    <div class="sort-option" data-sort="za" onclick="aplicarOrden('jojo','za',this)">
-                        Nombres de Z a A <span class="sort-check">✓</span>
-                    </div>
-                    <div class="sort-option" data-sort="precio-asc" onclick="aplicarOrden('jojo','precio-asc',this)">
-                        Precios de menor a mayor <span class="sort-check">✓</span>
-                    </div>
-                    <div class="sort-option" data-sort="precio-desc" onclick="aplicarOrden('jojo','precio-desc',this)">
-                        Precios de mayor a menor <span class="sort-check">✓</span>
-                    </div>
-                    <div class="sort-option" data-sort="antiguos" onclick="aplicarOrden('jojo','antiguos',this)">
-                        Antiguos productos <span class="sort-check">✓</span>
-                    </div>
-                    <div class="sort-option" data-sort="nuevos" onclick="aplicarOrden('jojo','nuevos',this)">
-                        Nuevos productos <span class="sort-check">✓</span>
+
+            <!-- Barra superior: Todos + ordenamiento -->
+            <div class="filters-top-bar">
+                <button class="filter-todos-btn active" data-parte="Todos">TODOS</button>
+                <div class="sort-wrap">
+                    <span class="catalog-count" id="catalogo-contador">24 productos</span>
+                    <button class="sort-btn" id="sort-btn-jojo" onclick="toggleSortMenu('jojo')">
+                        ORDENAR
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="2,4 6,8 10,4"/></svg>
+                    </button>
+                    <div class="sort-dropdown" id="sort-dropdown-jojo">
+                        <div class="sort-option activa" data-sort="default" onclick="aplicarOrden('jojo','default',this)">
+                            Por defecto <span class="sort-check">✓</span>
+                        </div>
+                        <div class="sort-option" data-sort="az" onclick="aplicarOrden('jojo','az',this)">
+                            Nombres de A a Z <span class="sort-check">✓</span>
+                        </div>
+                        <div class="sort-option" data-sort="za" onclick="aplicarOrden('jojo','za',this)">
+                            Nombres de Z a A <span class="sort-check">✓</span>
+                        </div>
+                        <div class="sort-option" data-sort="precio-asc" onclick="aplicarOrden('jojo','precio-asc',this)">
+                            Precios de menor a mayor <span class="sort-check">✓</span>
+                        </div>
+                        <div class="sort-option" data-sort="precio-desc" onclick="aplicarOrden('jojo','precio-desc',this)">
+                            Precios de mayor a menor <span class="sort-check">✓</span>
+                        </div>
+                        <div class="sort-option" data-sort="antiguos" onclick="aplicarOrden('jojo','antiguos',this)">
+                            Antiguos productos <span class="sort-check">✓</span>
+                        </div>
+                        <div class="sort-option" data-sort="nuevos" onclick="aplicarOrden('jojo','nuevos',this)">
+                            Nuevos productos <span class="sort-check">✓</span>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Carrusel de emblemas por parte -->
+            <div class="parte-emblemas-wrap">
+                <div class="parte-emblemas-track">
+                    <button class="parte-emblem-btn" data-parte="Phantom Blood">
+                        <img src="imagenes/Emblemas/phantomblood-badge.png" alt="Phantom Blood" loading="lazy">
+                        <span>Phantom Blood</span>
+                    </button>
+                    <button class="parte-emblem-btn" data-parte="Battle Tendency">
+                        <img src="imagenes/Emblemas/battle-tendency-badge.png" alt="Battle Tendency" loading="lazy">
+                        <span>Battle Tendency</span>
+                    </button>
+                    <button class="parte-emblem-btn" data-parte="Stardust Crusaders">
+                        <img src="imagenes/Emblemas/stardust-crusaders-badge.png" alt="Stardust Crusaders" loading="lazy">
+                        <span>Stardust Crusaders</span>
+                    </button>
+                    <button class="parte-emblem-btn" data-parte="Diamond is Unbreakable">
+                        <img src="imagenes/Emblemas/diamond-is-unbreakable-badge.png" alt="Diamond is Unbreakable" loading="lazy">
+                        <span>Diamond is Unbreakable</span>
+                    </button>
+                    <button class="parte-emblem-btn" data-parte="Golden Wind">
+                        <img src="imagenes/Emblemas/golden-wind-badge.png" alt="Golden Wind" loading="lazy">
+                        <span>Golden Wind</span>
+                    </button>
+                    <button class="parte-emblem-btn" data-parte="Stone Ocean">
+                        <img src="imagenes/Emblemas/stone-ocean-badge.png" alt="Stone Ocean" loading="lazy">
+                        <span>Stone Ocean</span>
+                    </button>
+                    <button class="parte-emblem-btn" data-parte="Steel Ball Run">
+                        <img src="imagenes/Emblemas/steel-ball-run-badge.png" alt="Steel Ball Run" loading="lazy">
+                        <span>Steel Ball Run</span>
+                    </button>
+                    <button class="parte-emblem-btn" data-parte="Jojolion">
+                        <img src="imagenes/Emblemas/jojolion-badge.png" alt="Jojolion" loading="lazy">
+                        <span>Jojolion</span>
+                    </button>
+                    <button class="parte-emblem-btn" data-parte="The JoJoLands">
+                        <img src="imagenes/Emblemas/jojolands-badge.png" alt="The JoJoLands" loading="lazy">
+                        <span>The JoJoLands</span>
+                    </button>
+                </div>
+            </div>
+
         </div>
 
         <!-- Grid productos -->
@@ -118,7 +154,7 @@
         <div class="footer-top">
             <div class="footer-brand">
                 <div class="footer-logo-wrap">
-                    <div class="logo" style="width:44px;height:44px;font-size:1.3rem;">A</div>
+                    <img src="anime2chile_logo.png" alt="Anime2Chile" class="footer-logo-img">
                     <div class="brand-name" style="font-size:1.3rem;">
                         <span class="brand-anime">ANIME</span><span class="brand-two">2</span><span class="brand-anime">CHILE</span>
                     </div>
