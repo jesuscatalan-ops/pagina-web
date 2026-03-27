@@ -21,16 +21,6 @@ function stockClass(stock) {
     return mapa[stock] || 'stock-ok';
 }
 
-/** Cambia la imagen principal al hacer clic en un thumbnail */
-function cambiarImagen(src, thumbEl) {
-    // Actualizar imagen principal
-    const imgPrincipal = document.querySelector('.product-img-real');
-    if (imgPrincipal) imgPrincipal.src = src;
-
-    // Actualizar estado activo del thumbnail
-    document.querySelectorAll('.product-thumb').forEach(t => t.classList.remove('active'));
-    thumbEl.classList.add('active');
-}
 
 /** Cambia de tab en la sección de descripción */
 function switchTab(btn, panelId) {
@@ -90,7 +80,7 @@ function renderProducto(producto, todosLosProductos, esPokemon = false) {
         imgEl.innerHTML = lineas.join('<br>');
     }
 
-    /* ---------- Thumbnails ---------- */
+    /* ---------- Thumbnails / Carrusel ---------- */
     const thumbsEl = document.getElementById('producto-thumbnails');
 
     // Soporte para múltiples imágenes: campo "imagenes" (array) o "imagen" (string)
@@ -99,25 +89,72 @@ function renderProducto(producto, todosLosProductos, esPokemon = false) {
         : (producto.imagen ? [producto.imagen] : []); // convierte imagen única a array
 
     if (listaImagenes.length > 0) {
-        // Genera un thumb por cada imagen real
-        const thumbsReales = listaImagenes.map((src, i) => `
-            <div class="product-thumb ${i === 0 ? 'active' : ''}"
-                 onclick="cambiarImagen('${src}', this)">
-                <img src="${src}" alt="${producto.nombre} — foto ${i + 1}">
+
+        // ── Carrusel unificado (todos los productos con imágenes) ──
+        document.querySelector('.product-gallery').classList.add('has-carousel');
+
+        // Tira de thumbnails desplazable
+        thumbsEl.classList.add('carousel-thumbs');
+        thumbsEl.innerHTML = listaImagenes.map((src, i) => `
+            <div class="product-thumb ${i === 0 ? 'active' : ''}" data-idx="${i}">
+                <img src="${src}" alt="${producto.nombre} — foto ${i + 1}" loading="lazy">
             </div>`).join('');
 
-        // Completa con slots vacíos si hay menos de 3
-        const slotsVacios = listaImagenes.length < 3
-            ? Array(3 - listaImagenes.length).fill(0).map(() => `
-                <div class="product-thumb"
-                     style="background:#f0f0f0; color:#ccc;
-                            font-size:0.7rem; font-family:'Bebas Neue',sans-serif;
-                            letter-spacing:1px; cursor:default;">
-                    PRÓX.
-                </div>`).join('')
-            : '';
+        // Envolvemos la imagen principal para anclar las flechas
+        const mainImgEl = document.getElementById('producto-imagen-principal');
+        const carouselWrap = document.createElement('div');
+        carouselWrap.className = 'carousel-img-wrap';
+        mainImgEl.parentNode.insertBefore(carouselWrap, mainImgEl);
+        carouselWrap.appendChild(mainImgEl);
 
-        thumbsEl.innerHTML = thumbsReales + slotsVacios;
+        // Flechas solo si hay más de 1 imagen
+        if (listaImagenes.length > 1) {
+            carouselWrap.insertAdjacentHTML('beforeend', `
+                <button class="carousel-arrow carousel-arrow-prev" aria-label="Anterior">&#8249;</button>
+                <button class="carousel-arrow carousel-arrow-next" aria-label="Siguiente">&#8250;</button>
+            `);
+        }
+
+        // ── Estado y navegación ──────────────────────────────────
+        let currentIdx = 0;
+
+        function irASlide(idx) {
+            currentIdx = ((idx % listaImagenes.length) + listaImagenes.length) % listaImagenes.length;
+
+            // Actualizar imagen principal
+            const imgReal = mainImgEl.querySelector('.product-img-real');
+            if (imgReal) imgReal.src = listaImagenes[currentIdx];
+
+            // Marcar thumbnail activo
+            thumbsEl.querySelectorAll('.product-thumb').forEach((t, i) =>
+                t.classList.toggle('active', i === currentIdx));
+
+            // Desplazar thumb activo a la vista
+            const activeThumb = thumbsEl.querySelectorAll('.product-thumb')[currentIdx];
+            if (activeThumb) activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+
+        // Clic en thumbnail
+        thumbsEl.addEventListener('click', e => {
+            const thumb = e.target.closest('.product-thumb');
+            if (thumb) irASlide(parseInt(thumb.dataset.idx));
+        });
+
+        // Flechas prev / next
+        const btnPrev = carouselWrap.querySelector('.carousel-arrow-prev');
+        const btnNext = carouselWrap.querySelector('.carousel-arrow-next');
+        if (btnPrev) btnPrev.addEventListener('click', () => irASlide(currentIdx - 1));
+        if (btnNext) btnNext.addEventListener('click', () => irASlide(currentIdx + 1));
+
+        // Swipe táctil en la imagen principal
+        let touchStartX = 0;
+        mainImgEl.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].clientX;
+        }, { passive: true });
+        mainImgEl.addEventListener('touchend', e => {
+            const dx = e.changedTouches[0].clientX - touchStartX;
+            if (Math.abs(dx) > 40) irASlide(currentIdx + (dx < 0 ? 1 : -1));
+        }, { passive: true });
 
     } else {
         // Sin imagen: thumb del placeholder + slots vacíos
