@@ -1,7 +1,7 @@
 [
   {
     "id": "star-platinum",
-    "nombre": "S.A.S. Star Platinum",
+    "nombre": "Star Platinum (Second) - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Stardust Crusaders",
     "tipo": "Figura articulada",
@@ -29,11 +29,12 @@
       "dio-brando",
       "jotaro-kujo",
       "josuke-higashikata"
-    ]
+    ],
+    "continuacionTitulo": ""
   },
-    {
+  {
     "id": "jotaro-kujo",
-    "nombre": "S.A.S. Jotaro Kujo",
+    "nombre": "Jotaro Kujo (Ver. 1.5) - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Stardust Crusaders",
     "tipo": "Figura articulada",
@@ -57,11 +58,12 @@
       "star-platinum",
       "dio-brando",
       "jodio-joestar"
-    ]
+    ],
+    "continuacionTitulo": ""
   },
   {
     "id": "jotaro-kujo-third",
-    "nombre": "S.A.S. Jotaro Kujo (Third)",
+    "nombre": "Jotaro Kujo (Third) - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Stardust Crusaders",
     "tipo": "Figura articulada",
@@ -85,11 +87,12 @@
       "star-platinum",
       "dio-brando",
       "noriaki-kakyoin"
-    ]
+    ],
+    "continuacionTitulo": ""
   },
-    {
+  {
     "id": "foo-fighters",
-    "nombre": "S.A.S. Foo Fighters",
+    "nombre": "Foo Fighters - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Stone Ocean",
     "tipo": "Figura articulada",
@@ -113,39 +116,12 @@
       "jolyne-cujoh",
       "ermes-costello",
       "weather-report"
-    ]
-  },
-  {
-    "id": "king-crimson-blue",
-    "nombre": "S.A.S. King Crimson (Ver. Blue)",
-    "serie": "JoJo's Bizarre Adventure",
-    "parte": "Golden Wind",
-    "tipo": "Figura articulada",
-    "fabricante": "Medicos Entertainment",
-    "altura": "16 cm",
-    "material": "PVC y ABS",
-    "origen": "Japón",
-    "baseExhibicion": "Sí, incluida",
-    "articulaciones": "Sí, múltiples puntos",
-    "precio": 82990,
-    "stock": "in-stock",
-    "stockLabel": "En stock",
-    "badge": null,
-    "badgeTipo": "info",
-    "gradiente": "linear-gradient(135deg, #256bb8 0%, #d854a2 100%)",
-    "placeholder": "KING\nCRIMSON",
-    "imagen": "imagenes/king_crimson_blue.jpeg",
-    "descripcion": "El aterrador Stand del jefe de Passione, King Crimson, llega a la línea Super Action Statue en su deslumbrante versión 'Blue'. Esta variante de la Parte 5: Golden Wind presenta un esquema de colores alternativo en vibrantes tonos celestes y rosados. La figura de 16 cm destaca por su intrincado patrón de red y su nivel de detalle, incluyendo el pequeño rostro precognitivo de Epitaph en su frente. Cuenta con amplia articulación para recrear sus icónicas poses de 'borrado de tiempo', e incluye manos intercambiables y rostros alternativos con diferentes expresiones de ira.",
-    "descripcionCorta": "Figura articulada 16cm (Color Alternativo) — Medicos Entertainment",
-    "relacionados": [
-      "diavolo",
-      "giorno-giovanna",
-      "bruno-bucciarati"
-    ]
+    ],
+    "continuacionTitulo": ""
   },
   {
     "id": "guido-mista",
-    "nombre": "S.A.S. Guido Mista & Sex Pistols",
+    "nombre": "Guido Mista & Sex Pistols - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Golden Wind",
     "tipo": "Figura articulada",
@@ -169,11 +145,12 @@
       "giorno-giovanna",
       "bruno-bucciarati",
       "narancia-ghirga"
-    ]
+    ],
+    "continuacionTitulo": ""
   },
   {
     "id": "gold-experience",
-    "nombre": "S.A.S. Gold Experience",
+    "nombre": "Gold Experience - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Golden Wind",
     "tipo": "Figura articulada",
@@ -197,11 +174,12 @@
       "giorno-giovanna",
       "gold-experience-requiem",
       "bruno-bucciarati"
-    ]
+    ],
+    "continuacionTitulo": ""
   },
   {
     "id": "gold-experience-requiem",
-    "nombre": "S.A.S. Gold Experience Requiem",
+    "nombre": "Gold Experience Requiem - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Golden Wind",
     "tipo": "Figura articulada",
@@ -225,11 +203,12 @@
       "giorno-giovanna",
       "gold-experience",
       "diavolo"
-    ]
+    ],
+    "continuacionTitulo": ""
   },
   {
     "id": "bruno-bucciarati",
-    "nombre": "S.A.S. Bruno Bucciarati",
+    "nombre": "Bruno Bucciarati - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Golden Wind",
     "tipo": "Figura articulada",
@@ -253,11 +232,12 @@
       "sticky-fingers",
       "giorno-giovanna",
       "leone-abbacchio"
-    ]
+    ],
+    "continuacionTitulo": ""
   },
   {
     "id": "moody-blues",
-    "nombre": "S.A.S. Moody Blues",
+    "nombre": "Moody Blues - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Golden Wind",
     "tipo": "Figura articulada",
@@ -285,11 +265,12 @@
       "leone-abbacchio",
       "bruno-bucciarati",
       "giorno-giovanna"
-    ]
+    ],
+    "continuacionTitulo": ""
   },
   {
     "id": "whitesnake",
-    "nombre": "S.A.S. Whitesnake",
+    "nombre": "Whitesnake - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Stone Ocean",
     "tipo": "Figura articulada",
@@ -313,11 +294,12 @@
       "enrico-pucci",
       "jolyne-cujoh",
       "stone-free"
-    ]
+    ],
+    "continuacionTitulo": ""
   },
   {
     "id": "lisa-lisa",
-    "nombre": "S.A.S. Lisa Lisa",
+    "nombre": "Lisa Lisa - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Battle Tendency",
     "tipo": "Figura articulada",
@@ -341,11 +323,12 @@
       "joseph-joestar",
       "caesar-zeppeli",
       "kars"
-    ]
+    ],
+    "continuacionTitulo": ""
   },
   {
     "id": "enrico-pucci",
-    "nombre": "S.A.S. Enrico Pucci",
+    "nombre": "Enrico Pucci - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Stone Ocean",
     "tipo": "Figura articulada",
@@ -369,11 +352,12 @@
       "whitesnake",
       "jolyne-cujoh",
       "weather-report"
-    ]
+    ],
+    "continuacionTitulo": ""
   },
-{
+  {
     "id": "diver-down",
-    "nombre": "S.A.S. Diver Down",
+    "nombre": "Diver Down - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Stone Ocean",
     "tipo": "Figura articulada",
@@ -397,11 +381,12 @@
       "narciso-anasui",
       "jolyne-cujoh",
       "enrico-pucci"
-    ]
+    ],
+    "continuacionTitulo": ""
   },
   {
     "id": "kiss",
-    "nombre": "S.A.S. Kiss",
+    "nombre": "Kiss - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Stone Ocean",
     "tipo": "Figura articulada",
@@ -426,11 +411,12 @@
       "ermes-costello",
       "jolyne-cujoh",
       "foo-fighters"
-    ]
+    ],
+    "continuacionTitulo": ""
   },
   {
     "id": "johnny-joestar-second",
-    "nombre": "S.A.S. Johnny Joestar (Second)",
+    "nombre": "Johnny Joestar (Second) - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Steel Ball Run",
     "tipo": "Figura articulada",
@@ -455,11 +441,12 @@
       "gyro-zeppeli",
       "funny-valentine",
       "diego-brando"
-    ]
+    ],
+    "continuacionTitulo": ""
   },
   {
     "id": "gyro-zeppeli-third",
-    "nombre": "S.A.S. Gyro Zeppeli (Third)",
+    "nombre": "Gyro Zeppeli (Third) - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Steel Ball Run",
     "tipo": "Figura articulada",
@@ -484,11 +471,12 @@
       "johnny-joestar",
       "funny-valentine",
       "diego-brando"
-    ]
+    ],
+    "continuacionTitulo": ""
   },
   {
     "id": "d4c-second",
-    "nombre": "S.A.S. D4C (Second)",
+    "nombre": "D4C (Second) - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Steel Ball Run",
     "tipo": "Figura articulada",
@@ -513,11 +501,12 @@
       "funny-valentine-second",
       "johnny-joestar-second",
       "gyro-zeppeli-third"
-    ]
+    ],
+    "continuacionTitulo": ""
   },
   {
     "id": "funny-valentine-second",
-    "nombre": "S.A.S. Funny Valentine (Second)",
+    "nombre": "Funny Valentine (Second) - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Steel Ball Run",
     "tipo": "Figura articulada",
@@ -542,11 +531,12 @@
       "d4c-second",
       "johnny-joestar-second",
       "diego-brando-second"
-    ]
+    ],
+    "continuacionTitulo": ""
   },
   {
     "id": "diego-brando-second",
-    "nombre": "S.A.S. Diego Brando (Second)",
+    "nombre": "Diego Brando (Second) - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Steel Ball Run",
     "tipo": "Figura articulada",
@@ -571,11 +561,12 @@
       "johnny-joestar-second",
       "funny-valentine-second",
       "gyro-zeppeli-third"
-    ]
+    ],
+    "continuacionTitulo": ""
   },
   {
     "id": "josuke-higashikata-diu",
-    "nombre": "S.A.S. Josuke Higashikata",
+    "nombre": "Josuke Higashikata - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Diamond is Unbreakable",
     "tipo": "Figura articulada",
@@ -605,11 +596,12 @@
       "kira-yoshikage",
       "killer-queen-second",
       "jotaro-kujo-diu"
-    ]
+    ],
+    "continuacionTitulo": ""
   },
   {
     "id": "star-platinum-diu-first",
-    "nombre": "S.A.S. Star Platinum (Part 4) (1st)",
+    "nombre": "Star Platinum (Part 4) (1st) - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Diamond is Unbreakable",
     "tipo": "Figura articulada",
@@ -638,11 +630,12 @@
       "star-platinum",
       "jotaro-kujo-diu",
       "star-platinum-diu-re"
-    ]
+    ],
+    "continuacionTitulo": ""
   },
   {
     "id": "star-platinum-diu-re",
-    "nombre": "S.A.S. Star Platinum (Part 4) (Re)",
+    "nombre": "Star Platinum (Part 4) (Re) - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Diamond is Unbreakable",
     "tipo": "Figura articulada",
@@ -671,11 +664,12 @@
       "star-platinum",
       "star-platinum-diu-first",
       "jotaro-kujo-diu"
-    ]
+    ],
+    "continuacionTitulo": ""
   },
   {
     "id": "dio",
-    "nombre": "S.A.S. DIO",
+    "nombre": "DIO - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Stardust Crusaders",
     "tipo": "Figura articulada",
@@ -705,11 +699,12 @@
       "the-world",
       "dio-brando",
       "jotaro-kujo"
-    ]
+    ],
+    "continuacionTitulo": ""
   },
   {
     "id": "wekapipo",
-    "nombre": "S.A.S. Wekapipo (WONDERFEST)",
+    "nombre": "Wekapipo (WONDERFEST) - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Steel Ball Run",
     "tipo": "Figura articulada",
@@ -739,11 +734,12 @@
       "funny-valentine",
       "gyro-zeppeli-third",
       "johnny-joestar-second"
-    ]
+    ],
+    "continuacionTitulo": ""
   },
   {
     "id": "stone-free",
-    "nombre": "S.A.S. Stone Free",
+    "nombre": "Stone Free - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Stone Ocean",
     "tipo": "Figura articulada",
@@ -773,11 +769,12 @@
       "jolyne-cujoh",
       "enrico-pucci",
       "whitesnake"
-    ]
+    ],
+    "continuacionTitulo": ""
   },
   {
     "id": "the-world",
-    "nombre": "S.A.S. The World",
+    "nombre": "The World - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Stardust Crusaders",
     "tipo": "Figura articulada",
@@ -806,11 +803,12 @@
       "dio",
       "dio-brando",
       "star-platinum"
-    ]
+    ],
+    "continuacionTitulo": ""
   },
   {
     "id": "dio-brando",
-    "nombre": "S.A.S. Dio Brando",
+    "nombre": "Dio Brando - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Phantom Blood",
     "tipo": "Figura articulada",
@@ -840,11 +838,12 @@
       "dio",
       "the-world",
       "jonathan-joestar"
-    ]
+    ],
+    "continuacionTitulo": ""
   },
   {
     "id": "soft-wet",
-    "nombre": "S.A.S. Soft & Wet",
+    "nombre": "Soft & Wet - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Jojolion",
     "tipo": "Figura articulada",
@@ -873,11 +872,12 @@
       "josuke-higashikata-diu",
       "killer-queen-second",
       "stone-free"
-    ]
+    ],
+    "continuacionTitulo": ""
   },
   {
     "id": "king-crimson-blue-second",
-    "nombre": "S.A.S. King Crimson (Ver. Blue)",
+    "nombre": "King Crimson (Ver. Blue) - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Golden Wind",
     "tipo": "Figura articulada",
@@ -906,11 +906,12 @@
       "king-crimson-blue",
       "diavolo",
       "giorno-giovanna"
-    ]
+    ],
+    "continuacionTitulo": ""
   },
   {
     "id": "kira-yoshikage",
-    "nombre": "S.A.S. Yoshikage Kira",
+    "nombre": "Yoshikage Kira - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Diamond is Unbreakable",
     "tipo": "Figura articulada",
@@ -941,11 +942,12 @@
       "killer-queen-second",
       "kira-yoshikage-second",
       "josuke-higashikata-diu"
-    ]
+    ],
+    "continuacionTitulo": ""
   },
   {
     "id": "kira-yoshikage-second",
-    "nombre": "S.A.S. Yoshikage Kira (Second)",
+    "nombre": "Yoshikage Kira (Second) - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Diamond is Unbreakable",
     "tipo": "Figura articulada",
@@ -975,11 +977,12 @@
       "kira-yoshikage",
       "killer-queen-second",
       "josuke-higashikata-diu"
-    ]
+    ],
+    "continuacionTitulo": ""
   },
   {
     "id": "weather-report-user",
-    "nombre": "S.A.S. Weather Report (Usuario)",
+    "nombre": "Weather Report (Usuario) - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Stone Ocean",
     "tipo": "Figura articulada",
@@ -1009,11 +1012,12 @@
       "jolyne-cujoh",
       "enrico-pucci",
       "foo-fighters"
-    ]
+    ],
+    "continuacionTitulo": ""
   },
   {
     "id": "d4c-first",
-    "nombre": "S.A.S. D4C (First)",
+    "nombre": "D4C (First) - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Steel Ball Run",
     "tipo": "Figura articulada",
@@ -1044,11 +1048,12 @@
       "d4c-second",
       "funny-valentine-second",
       "funny-valentine"
-    ]
+    ],
+    "continuacionTitulo": ""
   },
   {
     "id": "funny-valentine",
-    "nombre": "S.A.S. Funny Valentine",
+    "nombre": "Funny Valentine - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Steel Ball Run",
     "tipo": "Figura articulada",
@@ -1078,11 +1083,12 @@
       "funny-valentine-second",
       "d4c-first",
       "d4c-second"
-    ]
+    ],
+    "continuacionTitulo": ""
   },
   {
     "id": "sticky-fingers-25th",
-    "nombre": "S.A.S. Sticky Fingers (25th Anniversary 2012)",
+    "nombre": "Sticky Fingers (25th Anniversary 2012) - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Golden Wind",
     "tipo": "Figura articulada",
@@ -1112,11 +1118,12 @@
       "bruno-bucciarati",
       "giorno-giovanna",
       "gold-experience"
-    ]
+    ],
+    "continuacionTitulo": ""
   },
   {
     "id": "killer-queen-second",
-    "nombre": "S.A.S. Killer Queen (Second)",
+    "nombre": "Killer Queen (Second) - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Diamond is Unbreakable",
     "tipo": "Figura articulada",
@@ -1146,11 +1153,12 @@
       "kira-yoshikage",
       "kira-yoshikage-second",
       "josuke-higashikata-diu"
-    ]
+    ],
+    "continuacionTitulo": ""
   },
   {
     "id": "hierophant-green",
-    "nombre": "S.A.S. Hierophant Green",
+    "nombre": "Hierophant Green - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Stardust Crusaders",
     "tipo": "Figura articulada",
@@ -1180,11 +1188,12 @@
       "star-platinum",
       "the-world",
       "jotaro-kujo"
-    ]
+    ],
+    "continuacionTitulo": ""
   },
   {
     "id": "jotaro-kujo-diu",
-    "nombre": "S.A.S. Jotaro Kujo (Part 4)",
+    "nombre": "Jotaro Kujo (Part 4) - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Diamond is Unbreakable",
     "tipo": "Figura articulada",
@@ -1214,11 +1223,12 @@
       "jotaro-kujo",
       "star-platinum-diu-first",
       "josuke-higashikata-diu"
-    ]
+    ],
+    "continuacionTitulo": ""
   },
   {
     "id": "caesar-zeppeli-25th",
-    "nombre": "S.A.S. Caesar Anthonio Zeppeli (25th Anniversary)",
+    "nombre": "Caesar Anthonio Zeppeli (25th Anniversary) - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Battle Tendency",
     "tipo": "Figura articulada",
@@ -1248,11 +1258,12 @@
       "joseph-joestar-25th",
       "lisa-lisa",
       "jonathan-joestar"
-    ]
+    ],
+    "continuacionTitulo": ""
   },
   {
     "id": "joseph-joestar-25th",
-    "nombre": "S.A.S. Joseph Joestar (25th Anniversary)",
+    "nombre": "Joseph Joestar (25th Anniversary) - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Battle Tendency",
     "tipo": "Figura articulada",
@@ -1282,11 +1293,12 @@
       "caesar-zeppeli-25th",
       "lisa-lisa",
       "jonathan-joestar"
-    ]
+    ],
+    "continuacionTitulo": ""
   },
   {
     "id": "jonathan-joestar",
-    "nombre": "S.A.S. Jonathan Joestar",
+    "nombre": "Jonathan Joestar - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Phantom Blood",
     "tipo": "Figura articulada",
@@ -1316,11 +1328,12 @@
       "dio-brando",
       "joseph-joestar-25th",
       "caesar-zeppeli-25th"
-    ]
+    ],
+    "continuacionTitulo": ""
   },
   {
     "id": "polnareff-vento-aureo",
-    "nombre": "S.A.S. Jean Pierre Polnareff (Vento Aureo)",
+    "nombre": "Jean Pierre Polnareff (Vento Aureo) - Super Action Statue",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Golden Wind",
     "tipo": "Figura articulada",
@@ -1350,6 +1363,7 @@
       "bruno-bucciarati",
       "giorno-giovanna",
       "gold-experience"
-    ]
+    ],
+    "continuacionTitulo": ""
   }
 ]

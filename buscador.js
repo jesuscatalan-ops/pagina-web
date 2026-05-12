@@ -1,9 +1,7 @@
 // ============================================================
 //  buscador.js
-//  Buscador global — lee productos.json + productos-pokemon.json
+//  Buscador global — solo productos.json (Pokémon TCG fuera del índice).
 //  Se inyecta automáticamente en todas las páginas.
-//  Para agregar más productos: solo edita los JSONs, el
-//  buscador los encontrará sin ningún cambio adicional.
 // ============================================================
 
 (function() {
@@ -14,16 +12,12 @@
     async function obtenerProductos() {
         if (_productos) return _productos;
 
-        const [respJojo, respPoke] = await Promise.all([
-            fetch('productos.json').catch(() => null),
-            fetch('productos-pokemon.json').catch(() => null)
-        ]);
-
+        const resp = await fetch('productos.json').catch(() => null);
         const lista = [];
 
-        if (respJojo && respJojo.ok) {
-            const jojos = await respJojo.json();
-            jojos.forEach(p => lista.push({
+        if (resp && resp.ok) {
+            const datos = await resp.json();
+            datos.forEach(p => lista.push({
                 id:      p.id,
                 nombre:  p.nombre,
                 tag:     p.parte || p.serie || 'JoJo',
@@ -32,20 +26,6 @@
                 gradiente: p.gradiente,
                 placeholder: p.placeholder || '',
                 tipo:    'jojo'
-            }));
-        }
-
-        if (respPoke && respPoke.ok) {
-            const pokes = await respPoke.json();
-            pokes.forEach(p => lista.push({
-                id:      p.id,
-                nombre:  p.nombre,
-                tag:     p.categoria || 'Pokémon TCG',
-                precio:  p.precio,
-                imagen:  p.imagen || null,
-                gradiente: p.gradiente,
-                placeholder: p.placeholder || '',
-                tipo:    'pokemon'
             }));
         }
 

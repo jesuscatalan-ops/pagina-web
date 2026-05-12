@@ -57,9 +57,6 @@ function renderProducto(producto, todosLosProductos, esPokemon = false) {
     /* ---------- <title> ---------- */
     document.title = producto.nombre + ' — Anime2Chile';
 
-    /* ---------- Breadcrumb ---------- */
-    document.getElementById('breadcrumb-nombre').textContent = producto.nombre;
-
     /* ---------- Imagen principal ---------- */
     const imgEl = document.getElementById('producto-imagen-principal');
 
@@ -221,9 +218,6 @@ function renderProducto(producto, todosLosProductos, esPokemon = false) {
     precioNota.textContent = producto.precio >= 80000
         ? '✓ Envío gratis sobre $80.000'
         : 'Envío calculado en el checkout';
-    precioNota.style.color = producto.precio >= 80000
-        ? 'var(--success)'
-        : 'var(--gray)';
 
     /* ---------- Botón carrito ---------- */
     const btnCarrito = document.getElementById('btn-carrito');
@@ -240,12 +234,19 @@ function renderProducto(producto, todosLosProductos, esPokemon = false) {
     }
 
     /* ---------- Tabla de especificaciones ---------- */
-    // Si el producto tiene campo "idioma" es Pokémon → solo mostrar idioma
+    // Si el producto tiene campo "idioma" es Pokémon → idioma (+ condición para Singles)
     const esProd = typeof producto.idioma !== 'undefined';
+    const specsPokemon = [
+        { label: 'IDIOMA', value: producto.idioma || 'Por confirmar' },
+    ];
+    if (producto.categoria === 'Singles') {
+        specsPokemon.push({
+            label: 'CONDICIÓN',
+            value: producto.condicionCarta || 'Por confirmar',
+        });
+    }
     const specs = esProd
-        ? [
-            { label: 'IDIOMA', value: producto.idioma || 'Por confirmar' },
-          ]
+        ? specsPokemon
         : [
             { label: 'SERIE',              value: producto.serie },
             { label: 'PARTE',              value: producto.parte },
@@ -282,7 +283,19 @@ function renderProducto(producto, todosLosProductos, esPokemon = false) {
 
     if (relacionados.length > 0) {
         relGrid.innerHTML = relacionados.map(p => {
-            const lineas = p.placeholder.split('\n');
+            const lineas = (p.placeholder || p.nombre || '').split('\n');
+            const etiquetaSerie = esPokemon
+                ? ''
+                : `<span class="catalog-series">${p.parte}</span>`;
+            const stockRelacionado = p.categoria === 'Singles'
+                ? ''
+                : `<span class="catalog-stock ${p.stock === 'in-stock' ? 'in-stock' : 'low-stock'}">
+                            ${p.stockLabel}
+                        </span>`;
+            const metaInner = `${etiquetaSerie}${stockRelacionado}`;
+            const metaHTML = metaInner.trim()
+                ? `<div class="catalog-meta">${metaInner}</div>`
+                : '';
             return `
             <a href="producto.html?id=${p.id}" style="text-decoration:none; color:inherit; display:block;">
                 <article class="catalog-card">
@@ -294,12 +307,7 @@ function renderProducto(producto, todosLosProductos, esPokemon = false) {
                         </div>
                     </div>
                     <div class="catalog-info">
-                        <div class="catalog-meta">
-                            <span class="catalog-series">${p.parte}</span>
-                            <span class="catalog-stock ${p.stock === 'in-stock' ? 'in-stock' : 'low-stock'}">
-                                ${p.stockLabel}
-                            </span>
-                        </div>
+                        ${metaHTML}
                         <h3 class="catalog-name">${p.nombre}</h3>
                         <p class="catalog-detail">${p.descripcionCorta}</p>
                         <div class="catalog-bottom">

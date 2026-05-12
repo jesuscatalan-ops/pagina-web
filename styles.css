@@ -19,6 +19,9 @@
     --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
     --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
     --shadow-orange: 0 8px 32px rgba(255, 107, 53, 0.2);
+    /* Tarjetas de catálogo / carruseles: Bebas en títulos, DM Sans en cuerpo */
+    --font-card-title: 'Bebas Neue', sans-serif;
+    --font-card-body: 'DM Sans', sans-serif;
 }
 
 * {
@@ -363,6 +366,12 @@ body {
     position: relative;
     border: 1px solid rgba(0, 0, 0, 0.06);
     box-shadow: var(--shadow-sm);
+}
+
+/* Base legible para texto futuro en tarjetas del carrusel “Artículos destacados” */
+#dest-grid .product-card,
+.destacados-carrusel-wrap .product-card {
+    font-family: var(--font-card-body);
 }
 
 .product-card {
@@ -718,7 +727,7 @@ body {
 
 .catalog-label {
     display: inline-block;
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: var(--font-card-title);
     font-size: 0.85rem;
     letter-spacing: 3px;
     color: var(--primary);
@@ -730,7 +739,7 @@ body {
 }
 
 .catalog-title {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: var(--font-card-title);
     font-size: clamp(2.5rem, 5vw, 4rem);
     line-height: 1;
     color: var(--dark);
@@ -752,6 +761,7 @@ body {
 }
 
 .catalog-desc {
+    font-family: var(--font-card-body);
     font-size: 1rem;
     color: var(--gray);
     line-height: 1.7;
@@ -791,7 +801,19 @@ body {
     gap: 1.75rem;
 }
 
+.catalog-grid > a {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.catalog-grid > a .catalog-card {
+    flex: 1;
+    min-height: 0;
+}
+
 .catalog-card {
+    font-family: var(--font-card-body);
     background: #ffffff;
     border-radius: 18px;
     overflow: hidden;
@@ -820,13 +842,54 @@ body {
     box-shadow: var(--shadow-orange);
 }
 
+/* Singles (TCG): sin “caja” blanca; la carta se ve libre sobre el fondo */
+.catalog-card.catalog-card--singles {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.catalog-card.catalog-card--singles:hover {
+    transform: translateY(-6px);
+    box-shadow: none;
+}
+
+.catalog-card.catalog-card--singles .catalog-image {
+    background: transparent;
+    height: 240px;
+}
+
+.catalog-card.catalog-card--singles .catalog-img-real {
+    padding: 0;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.14));
+}
+
+.catalog-card.catalog-card--singles:hover .catalog-image {
+    transform: none;
+}
+
+.catalog-card.catalog-card--singles:hover .catalog-img-real {
+    transform: scale(1.03);
+    filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.18));
+}
+
+.catalog-card.catalog-card--singles .catalog-info {
+    padding: 1rem 0 0;
+    background: transparent;
+}
+
+.catalog-card.catalog-card--singles .catalog-img-placeholder {
+    border-radius: 12px;
+}
+
 /* Badge */
 .catalog-badge {
     position: absolute;
     top: 14px;
     left: 14px;
     z-index: 5;
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: var(--font-card-title);
     font-size: 0.75rem;
     letter-spacing: 1.5px;
     padding: 0.25rem 0.75rem;
@@ -889,7 +952,7 @@ body {
 }
 
 .placeholder-text {
-    font-family: 'Anton', sans-serif;
+    font-family: var(--font-card-title);
     font-size: 1.6rem;
     color: rgba(255, 255, 255, 0.35);
     text-align: center;
@@ -916,6 +979,7 @@ body {
 }
 
 .catalog-series {
+    font-family: var(--font-card-body);
     font-size: 0.72rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -924,6 +988,7 @@ body {
 }
 
 .catalog-stock {
+    font-family: var(--font-card-body);
     position: absolute;
     top: 14px;
     right: 14px;
@@ -951,14 +1016,29 @@ body {
 }
 
 .catalog-name {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: var(--font-card-title);
     font-size: 1.5rem;
+    font-weight: 500;
     letter-spacing: 1px;
     color: var(--dark);
     margin-top: 0.25rem;
+    line-height: 1.25;
+    min-height: calc(2 * 1.25em);
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+}
+
+/* Continuación del título en catálogo (misma línea/tipografía; negro como el nombre) */
+.catalog-name .catalog-name-suffix {
+    color: var(--dark);
+    font-weight: inherit;
 }
 
 .catalog-detail {
+    font-family: var(--font-card-body);
     font-size: 0.78rem;
     color: var(--gray);
     letter-spacing: 0.3px;
@@ -974,10 +1054,11 @@ body {
 }
 
 .catalog-price {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.7rem;
+    font-family: var(--font-card-body);
+    font-size: 1.36rem;
+    font-weight: 700;
     color: var(--primary);
-    letter-spacing: 1px;
+    letter-spacing: 0.02em;
     white-space: nowrap;
 }
 
@@ -985,9 +1066,10 @@ body {
     display: inline-flex !important;
     align-items: center;
     justify-content: center;
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: var(--font-card-body);
     font-size: 0.9rem;
-    letter-spacing: 1.5px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
     padding: 0.55rem 1rem;
     background: var(--gradient) !important;
     color: #ffffff !important;
@@ -1023,6 +1105,7 @@ body {
 }
 
 .catalog-cta p {
+    font-family: var(--font-card-body);
     font-size: 1rem;
     color: var(--gray);
     font-weight: 600;
@@ -1170,9 +1253,10 @@ body {
     transform: rotate(10deg) translateX(40px) translateY(-20px);
 }
 
-.pokemon-visual:hover .poke-card-1 { transform: rotate(-8deg) translateX(-15px) translateY(-5px); }
-.pokemon-visual:hover .poke-card-2 { transform: rotate(0deg) translateX(10px) translateY(-15px); }
-.pokemon-visual:hover .poke-card-3 { transform: rotate(8deg) translateX(35px) translateY(-25px); }
+/* Activado al entrar en vista (scroll), ver index.html — IntersectionObserver */
+.pokemon-visual.poke-stack--active .poke-card-1 { transform: rotate(-8deg) translateX(-15px) translateY(-5px); }
+.pokemon-visual.poke-stack--active .poke-card-2 { transform: rotate(0deg) translateX(10px) translateY(-15px); }
+.pokemon-visual.poke-stack--active .poke-card-3 { transform: rotate(8deg) translateX(35px) translateY(-25px); }
 
 @media (max-width: 900px) {
     .pokemon-inner {
@@ -2158,6 +2242,7 @@ body {
 
 /* Ítem individual */
 .populares-item {
+    font-family: var(--font-card-body);
     flex: 0 0 calc((100vw - 4rem - 5 * 1rem) / 6);
     max-width: 180px;
     min-width: 120px;
@@ -2200,7 +2285,7 @@ body {
 
 /* Nombre debajo */
 .populares-nombre {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: var(--font-card-title);
     font-size: 0.88rem;
     letter-spacing: 0.5px;
     color: var(--dark);

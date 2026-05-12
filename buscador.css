@@ -207,7 +207,7 @@
 
 .buscador-item-precio {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.95rem;
+    font-size: 0.76rem;
     color: var(--primary);
     flex-shrink: 0;
     white-space: nowrap;

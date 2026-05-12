@@ -2,6 +2,9 @@
 
 <html lang="es">
 <head>
+<!-- Hub Pokémon deshabilitado: borra este comentario y las dos líneas siguientes para volver a publicar pokemon.html -->
+<meta http-equiv="refresh" content="0;url=index.html"/>
+<script>location.replace("index.html");</script>
 <meta charset="utf-8"/>
 <meta content="light only" name="color-scheme"/>
 <meta content="light" name="supported-color-schemes"/>
@@ -10,7 +13,7 @@
 <title>Pokémon TCG — Anime2Chile</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Bebas+Neue&amp;family=Pathway+Extreme:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Bebas+Neue&amp;family=DM+Sans:wght@400;500;600;700&amp;family=Pathway+Extreme:wght@400;600&amp;display=swap" rel="stylesheet"/>
 <link href="styles.css" rel="stylesheet"/>
 <link href="pages.css" rel="stylesheet"/>
 <link href="carrito.css" rel="stylesheet"/>
@@ -52,6 +55,13 @@
             margin: 0 auto;
             padding: 3rem 2rem;
         }
+        /* Carruseles: menos aire entre bloques y respecto al divisor */
+        .poke-section--carrusel {
+            padding: 1.65rem 2rem 1.35rem;
+        }
+        .poke-divider--carousel-gap {
+            margin: 0.15rem 1.5rem;
+        }
         .poke-section-header { margin-bottom: 1.75rem; }
         .poke-section-label {
             font-family: 'Bebas Neue', sans-serif;
@@ -63,6 +73,7 @@
         .poke-section-title {
             font-family: 'Anton', sans-serif;
             font-size: 2rem;
+            font-weight: 400;
             letter-spacing: 2px;
             color: var(--dark);
         }
@@ -119,7 +130,7 @@
             margin-bottom: 0.2rem;
         }
         .poke-cat-name {
-            font-family: 'Anton', sans-serif;
+            font-family: var(--font-card-title);
             font-size: clamp(1.4rem, 3vw, 2rem);
             color: #fff;
             letter-spacing: 1px;
@@ -147,19 +158,36 @@
         }
 
         /* ── Carrusel ── */
-        .carrusel-track-outer { overflow: hidden; }
+        /* Ancho de cada tarjeta respecto al viewport del carrusel (evita recortes por % sobre el track ancho) */
+        .carrusel-track-outer {
+            overflow: hidden;
+            width: 100%;
+            box-sizing: border-box;
+            --carrusel-gap: 0.9rem;
+            --slide-card-w: calc((100% - (var(--carrusel-gap) * 4)) / 5);
+        }
         .carrusel-track {
             display: flex;
-            gap: 1.25rem;
+            gap: var(--carrusel-gap);
             align-items: stretch;
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-sizing: border-box;
         }
         .carrusel-track > a {
-            flex: 0 0 calc(25% - 1rem);
+            flex: 0 0 var(--slide-card-w);
+            min-width: 0;
+            max-width: var(--slide-card-w);
+            box-sizing: border-box;
+            display: block;
+            text-decoration: none;
+            color: inherit;
         }
         .poke-prod-card {
-            flex: 0 0 calc(25% - 1rem);
-            height: 360px;
+            font-family: var(--font-card-body);
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+            height: 330px;
             background: #fff;
             border-radius: 16px;
             border: 1px solid rgba(0,0,0,0.07);
@@ -169,12 +197,14 @@
             flex-direction: column;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .poke-prod-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+        @media (hover: hover) {
+            .poke-prod-card:hover {
+                transform: translateY(-6px);
+                box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+            }
         }
         .poke-prod-img {
-            height: 200px;
+            height: 180px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -186,7 +216,7 @@
         .poke-prod-badge {
             position: absolute;
             top: 10px; left: 10px;
-            font-family: 'Bebas Neue', sans-serif;
+            font-family: var(--font-card-title);
             font-size: 0.7rem;
             letter-spacing: 1.5px;
             padding: 0.2rem 0.6rem;
@@ -202,6 +232,7 @@
             gap: 0.25rem;
         }
         .poke-prod-set {
+            font-family: var(--font-card-body);
             font-size: 0.72rem;
             font-weight: 600;
             letter-spacing: 1.5px;
@@ -209,17 +240,25 @@
             color: var(--primary);
         }
         .poke-prod-name {
-            font-family: 'Bebas Neue', sans-serif;
+            font-family: var(--font-card-title);
             font-size: 1.1rem;
+            font-weight: 400;
             letter-spacing: 0.5px;
             color: var(--dark);
             line-height: 1.2;
+            min-height: calc(2 * 1.2em);
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
+            overflow-wrap: anywhere;
         }
-        .poke-prod-tipo { font-size: 0.78rem; color: var(--gray); flex: 1; }
+        .poke-prod-tipo {
+            font-family: var(--font-card-body);
+            font-size: 0.78rem;
+            color: var(--gray);
+            flex: 1;
+        }
         .poke-prod-bottom {
             display: flex;
             align-items: center;
@@ -228,15 +267,18 @@
             gap: 0.5rem;
         }
         .poke-prod-price {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.4rem;
+            font-family: var(--font-card-body);
+            font-size: 1.12rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
             color: var(--primary);
         }
         .poke-prod-btn {
             padding: 0.5rem 0.875rem;
-            font-family: 'Bebas Neue', sans-serif;
+            font-family: var(--font-card-body);
             font-size: 0.8rem;
-            letter-spacing: 1px;
+            font-weight: 600;
+            letter-spacing: 0.06em;
             background: var(--gradient);
             color: #fff;
             border: none;
@@ -256,6 +298,9 @@
             flex-wrap: wrap;
             gap: 1rem;
             margin-bottom: 1.75rem;
+        }
+        .poke-section--carrusel .carrusel-header {
+            margin-bottom: 1rem;
         }
         .carrusel-controls { display: flex; align-items: center; gap: 0.75rem; }
         .carrusel-dots { display: flex; gap: 0.4rem; align-items: center; }
@@ -281,17 +326,51 @@
         .carrusel-arrow:hover { border-color: var(--primary); background: var(--primary); color: #fff; }
         .carrusel-arrow:disabled { opacity: 0.3; cursor: not-allowed; }
 
-        @media (max-width: 900px) {
-            .carrusel-track > a,
-            .poke-prod-card { flex: 0 0 calc(50% - 0.625rem); }
-        }
         @media (max-width: 600px) {
             .poke-cat-grid { grid-template-columns: 1fr; gap: 0.5rem; }
             .poke-cat-card { aspect-ratio: 16/7; }
             .poke-cat-section-full { padding: 1.5rem 0.75rem; }
-            .carrusel-track > a,
-            .poke-prod-card { flex: 0 0 100%; }
+            .carrusel-track-outer {
+                --carrusel-gap: 0.42rem;
+                --slide-card-w: calc((100% - var(--carrusel-gap)) / 2);
+            }
+            .poke-prod-info { padding: 0.65rem 0.6rem 0.85rem; }
+            .poke-prod-name { font-size: 0.95rem; }
+            .poke-prod-price { font-size: 0.92rem; }
+            .poke-prod-btn {
+                font-size: 0.68rem;
+                padding: 0.45rem 0.5rem;
+                letter-spacing: 0.5px;
+            }
+            .poke-prod-bottom { flex-wrap: wrap; row-gap: 0.35rem; }
             .poke-section { padding: 2rem 1rem; }
+            /* Carruseles más juntos; flechas y puntos bajo el rail */
+            .poke-section--carrusel {
+                display: flex;
+                flex-direction: column;
+                gap: 0.65rem;
+                padding: 1.15rem 1rem 0.75rem;
+            }
+            .poke-section--carrusel .carrusel-header {
+                display: contents;
+            }
+            .poke-section--carrusel .carrusel-header > div:first-child {
+                order: 1;
+            }
+            .poke-section--carrusel .carrusel-track-outer {
+                order: 2;
+            }
+            .poke-section--carrusel .carrusel-controls {
+                order: 3;
+                justify-content: center;
+                width: 100%;
+                flex-wrap: wrap;
+                gap: 0.6rem;
+                margin-top: 0.15rem;
+            }
+            .poke-divider--carousel-gap {
+                margin: 0.05rem 1rem;
+            }
         }
     </style>
     <link rel="stylesheet" href="buscador.css">
@@ -357,22 +436,44 @@
 
 </div>
 </section>
+
 <div class="poke-divider"></div>
-<!-- MÁS VENDIDOS -->
-<section class="poke-section">
+<!-- Carrusel destacados -->
+<section class="poke-section poke-section--carrusel">
 <div class="carrusel-header">
 <div>
-<p class="poke-section-label">LOS FAVORITOS</p>
-<h2 class="poke-section-title">DESTACADOS</h2>
+<p class="poke-section-label">SELLADOS</p>
+<h2 class="poke-section-title">SELLADOS DESTACADOS</h2>
 </div>
 <div class="carrusel-controls">
 <div class="carrusel-dots" id="carrusel-dots"></div>
-<button class="carrusel-arrow" disabled="" id="arrow-prev" onclick="moverCarrusel(-1)">‹</button>
-<button class="carrusel-arrow" id="arrow-next" onclick="moverCarrusel(1)">›</button>
+<button class="carrusel-arrow" disabled="" id="arrow-prev" type="button">‹</button>
+<button class="carrusel-arrow" id="arrow-next" type="button">›</button>
 </div>
 </div>
 <div class="carrusel-track-outer">
 <div class="carrusel-track" id="carrusel-track">
+    <!-- Generado por pokemon-destacados.js -->
+</div>
+</div>
+</section>
+
+<div class="poke-divider poke-divider--carousel-gap"></div>
+<!-- Segundo carrusel (misma estructura, otros productos) -->
+<section class="poke-section poke-section--carrusel">
+<div class="carrusel-header">
+<div>
+<p class="poke-section-label">SINGLES</p>
+<h2 class="poke-section-title">SINGLES DESTACADOS</h2>
+</div>
+<div class="carrusel-controls">
+<div class="carrusel-dots" id="carrusel-dots-2"></div>
+<button class="carrusel-arrow" disabled="" id="arrow-prev-2" type="button">‹</button>
+<button class="carrusel-arrow" id="arrow-next-2" type="button">›</button>
+</div>
+</div>
+<div class="carrusel-track-outer">
+<div class="carrusel-track" id="carrusel-track-2">
     <!-- Generado por pokemon-destacados.js -->
 </div>
 </div>
@@ -429,50 +530,114 @@
 </div>
 </footer>
 <script>
-// ── Carrusel ──
-const dotsWrap = document.getElementById('carrusel-dots');
-const btnPrev  = document.getElementById('arrow-prev');
-const btnNext  = document.getElementById('arrow-next');
-let posActual  = 0;
-
-function cardsVisibles() {
-    if (window.innerWidth <= 600) return 1;
-    if (window.innerWidth <= 900) return 2;
-    return 4;
-}
-
-function totalCards() {
-    const track = document.getElementById('carrusel-track');
-    return track ? track.children.length : 0;
-}
-function totalPasos() { return Math.ceil(totalCards() / cardsVisibles()); }
-
-window.buildDots = function() {
-    if (!dotsWrap) return;
-    dotsWrap.innerHTML = '';
-    for (let i = 0; i < totalPasos(); i++) {
-        const d = document.createElement('div');
-        d.className = 'carrusel-dot' + (i === 0 ? ' activo' : '');
-        d.onclick = () => irA(i);
-        dotsWrap.appendChild(d);
+// ── Carruseles (dos instancias independientes) ──
+(function initCarouselesPokemon() {
+    function cardsVisibles() {
+        if (window.innerWidth <= 600) return 2;
+        return 5;
     }
-};
 
-window.irA = function(pos) {
-    const track = document.getElementById('carrusel-track');
-    if (!track || totalCards() === 0) return;
-    const pasos = totalPasos();
-    posActual = Math.max(0, Math.min(pos, pasos - 1));
-    const cardW = track.children[0].offsetWidth + 20;
-    track.style.transform = `translateX(-${posActual * cardsVisibles() * cardW}px)`;
-    document.querySelectorAll('.carrusel-dot').forEach((d, i) => d.classList.toggle('activo', i === posActual));
-    if (btnPrev) btnPrev.disabled = posActual === 0;
-    if (btnNext) btnNext.disabled = posActual >= pasos - 1;
-};
+    function crearInstancia(opts) {
+        const track = document.getElementById(opts.trackId);
+        const dotsWrap = document.getElementById(opts.dotsId);
+        const btnPrev = document.getElementById(opts.prevId);
+        const btnNext = document.getElementById(opts.nextId);
+        const trackOuter = track ? track.parentElement : null;
+        if (!track || !dotsWrap) return null;
 
-window.moverCarrusel = function(dir) { irA(posActual + dir); };
-window.addEventListener('resize', () => { buildDots(); irA(0); });
-// NO llamar buildDots()/irA(0) aquí — lo llama pokemon-destacados.js tras cargar los productos
+        let posActual = 0;
+        let touchStartX = null;
+        const swipeMin = 35;
+
+        function totalCards() {
+            return track.children.length;
+        }
+
+        function totalPasos() {
+            const n = totalCards();
+            if (n === 0) return 0;
+            return Math.max(1, n - cardsVisibles() + 1);
+        }
+
+        function buildDots() {
+            dotsWrap.innerHTML = '';
+            const pasos = totalPasos();
+            for (let i = 0; i < pasos; i++) {
+                const d = document.createElement('div');
+                d.className = 'carrusel-dot' + (i === 0 ? ' activo' : '');
+                d.onclick = () => irA(i);
+                dotsWrap.appendChild(d);
+            }
+        }
+
+        function irA(pos) {
+            if (totalCards() === 0) return;
+            const pasos = totalPasos();
+            if (pasos === 0) return;
+            posActual = Math.max(0, Math.min(pos, pasos - 1));
+            const gap = parseFloat(getComputedStyle(track).gap || '0') || 0;
+            const cardW = track.children[0].offsetWidth + gap;
+            track.style.transform = `translateX(-${posActual * cardW}px)`;
+            dotsWrap.querySelectorAll('.carrusel-dot').forEach((d, i) => {
+                d.classList.toggle('activo', i === posActual);
+            });
+            if (btnPrev) btnPrev.disabled = posActual === 0;
+            if (btnNext) btnNext.disabled = posActual >= pasos - 1;
+        }
+
+        function mover(dir) {
+            irA(posActual + dir);
+        }
+
+        if (btnPrev) btnPrev.onclick = () => mover(-1);
+        if (btnNext) btnNext.onclick = () => mover(1);
+
+        if (trackOuter) {
+            trackOuter.addEventListener('touchstart', function (e) {
+                if (!e.touches || e.touches.length === 0) return;
+                touchStartX = e.touches[0].clientX;
+            }, { passive: true });
+
+            trackOuter.addEventListener('touchend', function (e) {
+                if (touchStartX === null || !e.changedTouches || e.changedTouches.length === 0) return;
+                const touchEndX = e.changedTouches[0].clientX;
+                const deltaX = touchEndX - touchStartX;
+                touchStartX = null;
+                if (Math.abs(deltaX) < swipeMin) return;
+                if (deltaX < 0) mover(1);
+                else mover(-1);
+            }, { passive: true });
+        }
+
+        return { buildDots, irA };
+    }
+
+    window.carouselesPokemon = [
+        crearInstancia({
+            trackId: 'carrusel-track',
+            dotsId: 'carrusel-dots',
+            prevId: 'arrow-prev',
+            nextId: 'arrow-next'
+        }),
+        crearInstancia({
+            trackId: 'carrusel-track-2',
+            dotsId: 'carrusel-dots-2',
+            prevId: 'arrow-prev-2',
+            nextId: 'arrow-next-2'
+        })
+    ].filter(Boolean);
+
+    window.refrescarCarouselesPokemon = function () {
+        window.carouselesPokemon.forEach(function (c) {
+            c.buildDots();
+            c.irA(0);
+        });
+    };
+
+    window.addEventListener('resize', function () {
+        window.refrescarCarouselesPokemon();
+    });
+})();
 
 // ── Menú móvil ──
 document.addEventListener('DOMContentLoaded', function() {

@@ -1,8 +1,8 @@
 // ============================================================
 //  pokemon-destacados.js
-//  Renderiza las tarjetas de "Más Vendidos" en pokemon.html
+//  Renderiza los dos carruseles de productos en pokemon.html
 //  leyendo desde productos-pokemon.json.
-//  Para cambiar qué productos aparecen, edita PRODUCTOS_DESTACADOS.
+//  Listas: PRODUCTOS_DESTACADOS (primer carrusel), PRODUCTOS_RECOMENDADOS (segundo).
 // ============================================================
 
 const PRODUCTOS_DESTACADOS = [
@@ -14,6 +14,19 @@ const PRODUCTOS_DESTACADOS = [
     'poke-trick-or-trade-50',
     'poke-team-rocket-mewtwo-deck',
     'poke-calyrex-shadow-deck'
+];
+
+/** Misma cantidad de ítems que PRODUCTOS_DESTACADOS; segundo carrusel en pokemon.html */
+const PRODUCTOS_RECOMENDADOS = [
+    'ambipom-full-art',
+    'flygon',
+    'heliolisk-full-art',
+    'hops-trevenant-full-art',
+    'ludicolo-full-art',
+    'medicham-full-art',
+    'galarian-obstagoon-full-art',
+    'team-rockets-dugtrio-full-art',
+
 ];
 
 function formatearPrecio(numero) {
@@ -47,7 +60,7 @@ function crearTarjetaDestacada(producto) {
                ${lineas.join('<br>')}
            </span>`
         : `<span style="display:flex; align-items:center; justify-content:center;
-                        width:100%; height:100%; font-size:1.1rem; font-family:'Anton',sans-serif;
+                        width:100%; height:100%; font-size:1.1rem; font-family:'Bebas Neue',sans-serif;
                         color:rgba(255,255,255,0.5); letter-spacing:2px; text-align:center;
                         line-height:1.3; padding:0.5rem;">
                ${lineas.join('<br>')}
@@ -69,7 +82,6 @@ function crearTarjetaDestacada(producto) {
                 ${imagenHTML}
             </div>
             <div class="poke-prod-info">
-                <p class="poke-prod-set">${producto.categoria || producto.tipo || ''}</p>
                 <h3 class="poke-prod-name">${producto.nombre}</h3>
                 
                 <div class="poke-prod-bottom">
@@ -83,26 +95,30 @@ function crearTarjetaDestacada(producto) {
     </a>`;
 }
 
+function llenarTrack(track, ids, todos) {
+    if (!track) return;
+    const productos = ids
+        .map(id => todos.find(p => p.id === id))
+        .filter(Boolean);
+    track.innerHTML = productos.map(crearTarjetaDestacada).join('');
+}
+
 async function initPokemonDestacados() {
     const track = document.getElementById('carrusel-track');
-    if (!track) return;
+    const track2 = document.getElementById('carrusel-track-2');
+    if (!track && !track2) return;
 
     try {
         const resp = await fetch('productos-pokemon.json');
         if (!resp.ok) throw new Error('No se pudo cargar productos-pokemon.json');
         const todos = await resp.json();
 
-        const productos = PRODUCTOS_DESTACADOS
-            .map(id => todos.find(p => p.id === id))
-            .filter(Boolean);
+        llenarTrack(track, PRODUCTOS_DESTACADOS, todos);
+        llenarTrack(track2, PRODUCTOS_RECOMENDADOS, todos);
 
-        track.innerHTML = productos.map(crearTarjetaDestacada).join('');
-
-        // Esperar a que el DOM renderice las tarjetas antes de inicializar el carrusel
         setTimeout(() => {
-            if (typeof window.buildDots === 'function') {
-                window.buildDots();
-                window.irA(0);
+            if (typeof window.refrescarCarouselesPokemon === 'function') {
+                window.refrescarCarouselesPokemon();
             }
         }, 50);
 

@@ -63,6 +63,15 @@ function formatearPrecio(numero) {
     return '$' + numero.toLocaleString('es-CL');
 }
 
+function escapeHtml(text) {
+    if (text == null || text === '') return '';
+    return String(text)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+}
+
 // ── Render de una tarjeta individual ────────────────────────
 
 const IDS_25TH = new Set(['sticky-fingers-25th', 'caesar-zeppeli-25th', 'joseph-joestar-25th']);
@@ -104,6 +113,10 @@ function crearTarjeta(producto) {
         : `data-carrito-id="${producto.id}"
            onclick="event.preventDefault(); agregarAlCarrito('${producto.id}', '${producto.nombre.replace(/'/g, "\'")}', ${producto.precio}, '${producto.imagen || ''}')"`;
 
+    const extraTitulo = (producto.continuacionTitulo && String(producto.continuacionTitulo).trim())
+        ? `<span class="catalog-name-suffix"> ${escapeHtml(String(producto.continuacionTitulo).trim())}</span>`
+        : '';
+
     // Imagen: real o placeholder
     const imagenHTML = producto.imagen
         ? `<img
@@ -131,8 +144,8 @@ function crearTarjeta(producto) {
                 <div class="catalog-meta">
                     <span class="catalog-series">${producto.parte}</span>
                 </div>
-                <h3 class="catalog-name">${producto.nombre}</h3>
-                
+                <h3 class="catalog-name">${producto.nombre}${extraTitulo}</h3>
+
                 <div class="catalog-bottom">
                     <div class="catalog-price">${formatearPrecio(producto.precio)}</div>
                     <button class="add-to-cart-btn catalog-cart-btn"
@@ -215,7 +228,7 @@ async function init() {
     // Mostrar estado de carga
     grid.innerHTML = `
         <div style="grid-column:1/-1; text-align:center; padding:4rem 2rem;">
-            <p style="font-family:'Anton',sans-serif; font-size:2rem;
+            <p style="font-family:'Bebas Neue',sans-serif; font-size:2rem;
                        background:var(--gradient); -webkit-background-clip:text;
                        -webkit-text-fill-color:transparent; background-clip:text;
                        letter-spacing:2px;">

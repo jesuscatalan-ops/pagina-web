@@ -31,6 +31,12 @@ window.toggleSortMenu = function(cat) {
     btn.classList.toggle('abierto', !abierto);
 };
 
+function sincronizarGridLayoutSingles() {
+    const grid = document.getElementById('catalogo-grid');
+    if (!grid) return;
+    grid.classList.toggle('catalog-page-grid--pokemon-singles', filtroActivo === 'Singles');
+}
+
 window.aplicarOrden = function(cat, orden, el) {
     ordenActivo = orden;
     document.querySelectorAll(`#sort-dropdown-${cat} .sort-option`).forEach(o => o.classList.remove('activa'));
@@ -45,6 +51,7 @@ window.aplicarOrden = function(cat, orden, el) {
     const filtrados = filtroActivo === 'Todos'
         ? todosLosProductos
         : todosLosProductos.filter(p => p.categoria === filtroActivo);
+    sincronizarGridLayoutSingles();
     renderGrid(ordenar(filtrados, orden));
 };
 
@@ -97,19 +104,25 @@ function crearTarjeta(producto) {
                <span class="placeholder-text">${lineas.join('<br>')}</span>
            </div>`;
 
+    const cardMod =
+        producto.categoria === 'Singles' ? ' catalog-card--singles' : '';
+
+    const metaStockHTML = producto.categoria === 'Singles'
+        ? ''
+        : `<div class="catalog-meta">
+                    <span class="catalog-stock ${stockClase}">${producto.stockLabel}</span>
+                </div>`;
+
     return `
     <a href="producto.html?id=${producto.id}"
        style="text-decoration:none; color:inherit; display:block;">
-        <article class="catalog-card">
+        <article class="catalog-card${cardMod}">
             ${badgeHTML}
             <div class="catalog-image">
                 ${imagenHTML}
             </div>
             <div class="catalog-info">
-                <div class="catalog-meta">
-                    <span class="catalog-series">${producto.categoria}</span>
-                    <span class="catalog-stock ${stockClase}">${producto.stockLabel}</span>
-                </div>
+                ${metaStockHTML}
                 <h3 class="catalog-name">${producto.nombre}</h3>
                 
                 <div class="catalog-bottom">
@@ -171,6 +184,8 @@ function aplicarFiltro(categoria) {
         btn.classList.toggle('active', btn.dataset.filtro === categoria);
     });
 
+    sincronizarGridLayoutSingles();
+
     const filtrados = categoria === 'Todos'
         ? todosLosProductos
         : todosLosProductos.filter(p => p.categoria === categoria);
@@ -202,7 +217,7 @@ async function init() {
 
     grid.innerHTML = `
         <div style="grid-column:1/-1; text-align:center; padding:4rem 2rem;">
-            <p style="font-family:'Anton',sans-serif; font-size:2rem;
+            <p style="font-family:'Bebas Neue',sans-serif; font-size:2rem;
                        background:var(--gradient); -webkit-background-clip:text;
                        -webkit-text-fill-color:transparent; background-clip:text;
                        letter-spacing:2px;">

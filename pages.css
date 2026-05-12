@@ -194,6 +194,7 @@
 
 .catalog-count {
     margin-left: auto;
+    font-family: var(--font-card-body);
     font-size: 0.85rem;
     color: var(--gray);
     font-weight: 600;
@@ -297,6 +298,7 @@
 }
 
 .sort-option {
+    font-family: var(--font-card-body);
     display: flex;
     align-items: center;
     gap: 0.75rem;
@@ -352,6 +354,17 @@
     gap: 1.75rem;
 }
 
+.catalog-page-grid > a {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.catalog-page-grid > a .catalog-card {
+    flex: 1;
+    min-height: 0;
+}
+
 @media (max-width: 1200px) {
     .catalog-page-grid { grid-template-columns: repeat(3, 1fr); }
 }
@@ -363,6 +376,80 @@
 @media (max-width: 480px) {
     .catalog-page-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
     .catalog-count { margin-left: 0; }
+}
+
+/* Pokémon TCG · vista Singles: 5 columnas y tipografía compacta */
+.catalog-page-grid.catalog-page-grid--pokemon-singles {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.catalog-page-grid.catalog-page-grid--pokemon-singles .catalog-name {
+    font-size: 1.18rem;
+    letter-spacing: 0.5px;
+    line-height: 1.18;
+    min-height: calc(2 * 1.18em);
+}
+
+.catalog-page-grid.catalog-page-grid--pokemon-singles .catalog-info {
+    padding: 0.75rem 0.25rem 1rem;
+    gap: 0.3rem;
+}
+
+.catalog-page-grid.catalog-page-grid--pokemon-singles .catalog-price {
+    font-size: 1.08rem;
+    letter-spacing: 0.5px;
+}
+
+.catalog-page-grid.catalog-page-grid--pokemon-singles .catalog-cart-btn {
+    font-size: 0.72rem;
+    padding: 0.42rem 0.55rem;
+    letter-spacing: 0.6px;
+}
+
+.catalog-page-grid.catalog-page-grid--pokemon-singles .catalog-meta {
+    gap: 0.35rem;
+}
+
+.catalog-page-grid.catalog-page-grid--pokemon-singles .catalog-series {
+    font-size: 0.68rem;
+}
+
+.catalog-page-grid.catalog-page-grid--pokemon-singles .catalog-card--singles .catalog-image,
+.catalog-page-grid.catalog-page-grid--pokemon-singles .catalog-image {
+    height: 252px;
+}
+
+.catalog-page-grid.catalog-page-grid--pokemon-singles .catalog-card--singles .catalog-img-real {
+    object-fit: contain;
+    object-position: center;
+}
+
+@media (max-width: 1200px) {
+    .catalog-page-grid.catalog-page-grid--pokemon-singles {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 900px) {
+    .catalog-page-grid.catalog-page-grid--pokemon-singles {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.25rem;
+    }
+
+    .catalog-page-grid.catalog-page-grid--pokemon-singles .catalog-name {
+        font-size: 1.28rem;
+    }
+
+    .catalog-page-grid.catalog-page-grid--pokemon-singles .catalog-info {
+        padding: 1rem 1.25rem 1.5rem;
+    }
+
+    .catalog-page-grid.catalog-page-grid--pokemon-singles .catalog-image,
+    .catalog-page-grid.catalog-page-grid--pokemon-singles .catalog-card--singles .catalog-image {
+        height: 220px;
+    }
 }
 
 
@@ -791,13 +878,14 @@
 }
 
 .poke-cat-name {
-    font-family: 'Anton', sans-serif;
+    font-family: var(--font-card-title);
     font-size: 1.5rem;
     letter-spacing: 1px;
     color: #fff;
 }
 
 .poke-cat-desc {
+    font-family: var(--font-card-body);
     font-size: 0.82rem;
     color: rgba(255,255,255,0.5);
     line-height: 1.5;
@@ -832,6 +920,7 @@
 
 /* Pokémon product card variant */
 .poke-card-product {
+    font-family: var(--font-card-body);
     background: #fff;
     border-radius: 18px;
     overflow: hidden;
@@ -863,7 +952,7 @@
     position: absolute;
     top: 12px;
     left: 12px;
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: var(--font-card-title);
     font-size: 0.72rem;
     letter-spacing: 1.5px;
     padding: 0.2rem 0.65rem;
@@ -887,6 +976,7 @@
 }
 
 .poke-product-set {
+    font-family: var(--font-card-body);
     font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 1.5px;
@@ -895,7 +985,7 @@
 }
 
 .poke-product-name {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: var(--font-card-title);
     font-size: 1.35rem;
     letter-spacing: 0.5px;
     color: var(--dark);
@@ -903,6 +993,7 @@
 }
 
 .poke-product-type {
+    font-family: var(--font-card-body);
     font-size: 0.78rem;
     color: var(--gray);
     flex: 1;
@@ -917,17 +1008,19 @@
 }
 
 .poke-product-price {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.6rem;
+    font-family: var(--font-card-body);
+    font-size: 1.28rem;
+    font-weight: 700;
     color: var(--primary);
-    letter-spacing: 0.5px;
+    letter-spacing: 0.02em;
 }
 
 .poke-add-btn {
     padding: 0.6rem 1rem;
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: var(--font-card-body);
     font-size: 0.9rem;
-    letter-spacing: 1.5px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
     background: linear-gradient(135deg, #ffcb05, #ff9800);
     border: none;
     border-radius: 10px;
@@ -1035,42 +1128,49 @@
 .product-page-wrap {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 3rem 2rem 5rem;
+    padding: 2rem 2rem 5rem;
 }
 
-/* Breadcrumb */
-.product-breadcrumb {
-    font-size: 0.8rem;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    font-weight: 600;
-    color: var(--gray);
-    margin-bottom: 2.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-}
-
-.product-breadcrumb a {
-    color: var(--gray);
-    text-decoration: none;
-    transition: color 0.2s;
-}
-
-.product-breadcrumb a:hover { color: var(--primary); }
-
-.product-breadcrumb span { color: var(--light-gray); }
-
-.product-breadcrumb .current { color: var(--primary); }
-
-/* Main layout: imagen + info */
+/* Main layout: escritorio = grid (título → badges → parte → bloque precio); móvil = flex según DOM */
 .product-main-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    grid-template-rows: repeat(4, auto);
+    column-gap: 4rem;
+    row-gap: 0.5rem;
     align-items: start;
     margin-bottom: 5rem;
+}
+
+.product-main-layout .product-page-name {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.product-main-layout .product-gallery {
+    grid-column: 1;
+    grid-row: 1 / -1;
+}
+
+.product-main-layout .product-info-head {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.product-main-layout #producto-parte {
+    grid-column: 2;
+    grid-row: 3;
+}
+
+.product-main-layout .product-info-col {
+    grid-column: 2;
+    grid-row: 4;
+}
+
+@media (min-width: 901px) {
+    .product-main-layout .product-info-head {
+        margin-top: -6rem;
+    }
 }
 
 /* ---- Columna imagen ---- */
@@ -1257,6 +1357,12 @@
 }
 
 /* ---- Columna info ---- */
+.product-info-head {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
 .product-info-col {
     display: flex;
     flex-direction: column;
@@ -1302,7 +1408,7 @@
 }
 
 .product-page-name {
-    font-family: 'Anton', sans-serif;
+    font-family: 'Questrial', sans-serif;
     font-size: clamp(2.2rem, 4vw, 3.2rem);
     line-height: 1;
     letter-spacing: 1px;
@@ -1310,31 +1416,32 @@
 }
 
 .product-page-subtitle {
+    font-family: 'Questrial', sans-serif;
     font-size: 0.95rem;
     color: var(--gray);
     line-height: 1.6;
-    margin-top: -0.5rem;
 }
 
 .product-page-price-row {
     display: flex;
-    align-items: baseline;
-    gap: 1rem;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
 }
 
 .product-page-price {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 3rem;
+    font-size: 2.4rem;
     color: var(--primary);
     letter-spacing: 1px;
     line-height: 1;
 }
 
 .product-page-price-note {
-    font-size: 0.82rem;
-    color: var(--success);
-    font-weight: 600;
+    font-family: 'Questrial', sans-serif;
+    font-size: 0.95rem;
+    color: #000;
+    font-weight: 700;
 }
 
 .product-divider {
@@ -1441,42 +1548,6 @@
     box-shadow: var(--shadow-orange);
 }
 
-.product-reserve-btn {
-    padding: 0.9rem 1.5rem;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.2rem;
-    letter-spacing: 2px;
-    background: transparent;
-    border: 2px solid var(--primary);
-    border-radius: 12px;
-    color: var(--primary);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-}
-
-.product-reserve-btn:hover {
-    background: var(--gradient);
-    color: #fff;
-    border-color: transparent;
-}
-
-/* Shipping note */
-.product-shipping-note {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 1rem 1.25rem;
-    background: rgba(0,217,163,0.06);
-    border: 1px solid rgba(0,217,163,0.2);
-    border-radius: 12px;
-    font-size: 0.88rem;
-    color: var(--gray);
-}
-
-.product-shipping-note span { font-size: 1.3rem; }
-.product-shipping-note strong { color: #00a87e; }
-
 /* ---- Descripción + tabs ---- */
 .product-tabs {
     margin-bottom: 4rem;
@@ -1565,6 +1636,17 @@
     gap: 1.5rem;
 }
 
+.related-grid > a {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.related-grid > a .catalog-card {
+    flex: 1;
+    min-height: 0;
+}
+
 /* Responsive */
 @media (max-width: 1100px) {
     .related-grid { grid-template-columns: repeat(3, 1fr); }
@@ -1572,22 +1654,39 @@
 
 @media (max-width: 900px) {
     .product-main-layout {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.6rem;
+        grid-template-columns: unset;
+        grid-template-rows: unset;
+    }
+    /* Orden en DOM: parte → nombre → galería → badges → precio/specs */
+    .product-main-layout #producto-parte {
+        margin-bottom: -1rem;
+    }
+    .product-main-layout .product-page-name {
+        margin-bottom: -0.5rem;
+    }
+    .product-main-layout .product-info-head {
+        margin-top: -2.5rem;
+    }
+    .product-main-layout .product-info-col {
+        margin-top: -0.75rem;
     }
     .product-gallery {
         position: static;
         max-width: 100%;
         min-width: 0;
+        gap: 0.75rem;
     }
     .related-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 600px) {
     .product-qty-row { flex-direction: column; align-items: stretch; }
-    .product-add-btn, .product-reserve-btn { width: 100%; text-align: center; }
+    .product-add-btn { width: 100%; text-align: center; }
     .related-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-    .product-page-price { font-size: 2.2rem; }
+    .product-page-price { font-size: 1.76rem; }
 }
 
 @media (max-width: 400px) {
