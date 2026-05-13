@@ -8,7 +8,7 @@
 const PRODUCTOS_INICIO = [
     'star-platinum',
     'jotaro-kujo',
-    'king-crimson-blue',
+    'gyro-zeppeli-third',
     'guido-mista',
     'bruno-bucciarati',
     'whitesnake',

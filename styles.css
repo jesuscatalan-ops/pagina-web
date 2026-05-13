@@ -32,7 +32,7 @@
 }
 
 html {
-    background: #fafafa !important;
+    background: #ffffff !important;
     color: #2a2a2a !important;
     forced-color-adjust: none;
     -webkit-forced-color-adjust: none;
@@ -42,7 +42,7 @@ html {
 
 body {
     font-family: 'Pathway Extreme', sans-serif;
-    background: #fafafa !important;
+    background: #ffffff !important;
     color: #2a2a2a !important;
     overflow-x: hidden;
     -webkit-text-size-adjust: 100%;
@@ -335,7 +335,7 @@ body {
     padding: 4rem 2rem 1.5rem;
     max-width: 1400px;
     margin: 0 auto;
-    background: #fafafa;
+    background: #ffffff;
 }
 
 @media (max-width: 768px) {

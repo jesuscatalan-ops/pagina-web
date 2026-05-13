@@ -1197,7 +1197,7 @@
     line-height: 1.2;
     position: relative;
     overflow: hidden;
-    background: #f7f7f7;        /* fondo neutro cuando hay imagen real */
+    background: #ffffff;        /* fondo blanco para imagen activa */
 }
 
 /* El brillo decorativo solo aparece cuando NO hay imagen real */
