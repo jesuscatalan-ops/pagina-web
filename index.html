@@ -39,17 +39,41 @@
         </div>
     </header>
 
-    <section class="slider home-hero-grid">
-        <a href="#" class="home-hero-tile tile-collection" style="--tile-image: url('imagenes/Inicio/Libros\(Coleccion\).png');" aria-label="Colección"></a>
+    <section class="slider home-hero-layout">
+        <a href="catalogo.html" class="hero-banner-block" aria-label="Banner principal Steel Ball Run">
+            <img src="imagenes/Inicio/Banner Inicio SBR (Definitivo - BLUR 4).png" alt="Steel Ball Run — figuras destacadas">
+        </a>
 
-        <!-- FIGURAS (Bloque central) -->
-        <a href="catalogo.html" class="home-hero-tile tile-figures" style="--tile-image: url('imagenes/Inicio/Josuke\(Figuras\).png');" aria-label="Figures"></a>
-
-        <a href="#" class="home-hero-tile tile-reservas" style="--tile-image: url('imagenes/Inicio/Reservas.png');" aria-label="Reservas"></a>
-
-        <a href="#" class="home-hero-tile tile-earlybird" style="--tile-image: url('imagenes/Inicio/Tiktok2.png');" aria-label="Early bird specials"></a>
-
-        <a href="#" class="home-hero-tile tile-sale" style="--tile-image: url('imagenes/Inicio/Siguenos\ en\ instagram.png');" aria-label="Sale"></a>
+        <div class="home-categories-grid">
+            <a href="catalogo.html" class="home-category-card home-category-figuras">
+                <img class="home-category-image" src="imagenes/Inicio/dio (inicio).jpeg" alt="Figuras">
+                <div class="home-category-content">
+                    <h3>Figuras</h3>
+                    <p>120+ productos</p>
+                </div>
+            </a>
+            <a href="catalogo.html" class="home-category-card home-category-coleccionables">
+                <img class="home-category-image" src="imagenes/Inicio/coleccion(inicio).jpeg" alt="Coleccionables">
+                <div class="home-category-content">
+                    <h3>Accesorios</h3>
+                    <p>Merchandising Oficial</p>
+                </div>
+            </a>
+            <a href="catalogo.html" class="home-category-card home-category-libros">
+                <img class="home-category-image" src="imagenes/Inicio/libros(inicio).jpeg" alt="Libros">
+                <div class="home-category-content">
+                    <h3>Libros</h3>
+                    <p>Manga y artbooks</p>
+                </div>
+            </a>
+            <a href="reservas.html" class="home-category-card home-category-reservas">
+                <img class="home-category-image" src="imagenes/Inicio/josuke (reservas).jpeg" alt="Reservas">
+                <div class="home-category-content">
+                    <h3>Reservas</h3>
+                    <p>Pre-orders abiertos</p>
+                </div>
+            </a>
+        </div>
     </section>
 
     <!-- NUEVOS LANZAMIENTOS -->
@@ -57,7 +81,6 @@
         <div class="lanzamientos-inner">
         <div class="lanzamientos-header">
             <h2 class="lanzamientos-titulo">ARTICULOS DESTACADOS</h2>
-            <a href="catalogo.html" class="banner-btn lanzamientos-ver-todo" style="text-decoration:none;">VER TODO</a>
         </div>
 
         <!-- Carrusel móvil -->
@@ -102,11 +125,6 @@
             </div>
         </div><!-- /destacados-carrusel-wrap -->
         </div><!-- /lanzamientos-inner -->
-
-        <!-- Botón VER TODO solo visible en móvil, debajo del grid -->
-        <div class="lanzamientos-ver-todo-mobile">
-            <a href="catalogo.html" class="banner-btn" style="text-decoration:none; padding:0.7rem 1.5rem; font-size:1rem;">VER TODO</a>
-        </div>
 
 
 
@@ -214,11 +232,6 @@
 
         <div class="catalog-grid" id="index-catalog-grid">
             <!-- Los 8 productos fijos se renderizan desde index-catalogo.js -->
-        </div>
-
-        <div class="catalog-cta">
-            <p>¿No encontraste lo que buscabas?</p>
-            <a href="catalogo.html" class="banner-btn">VER CATALOGO COMPLETO</a>
         </div>
     </section>
 

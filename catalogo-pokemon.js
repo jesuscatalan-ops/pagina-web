@@ -86,12 +86,6 @@ function crearTarjeta(producto) {
         badgeHTML = `<div class="${clase}">${producto.badge}</div>`;
     }
 
-    const stockClase = {
-        'in-stock':  'in-stock',
-        'low-stock': 'low-stock',
-        'out-stock': 'out-stock',
-    }[producto.stock] || 'in-stock';
-
     const btnDisabled  = producto.stock === 'out-stock';
     const btnTexto     = btnDisabled ? 'AGOTADO' : '+ CARRITO';
     const btnAtributos = btnDisabled ? 'disabled style="opacity:0.5; cursor:not-allowed;"' : '';
@@ -107,12 +101,6 @@ function crearTarjeta(producto) {
     const cardMod =
         producto.categoria === 'Singles' ? ' catalog-card--singles' : '';
 
-    const metaStockHTML = producto.categoria === 'Singles'
-        ? ''
-        : `<div class="catalog-meta">
-                    <span class="catalog-stock ${stockClase}">${producto.stockLabel}</span>
-                </div>`;
-
     return `
     <a href="producto.html?id=${producto.id}"
        style="text-decoration:none; color:inherit; display:block;">
@@ -122,7 +110,6 @@ function crearTarjeta(producto) {
                 ${imagenHTML}
             </div>
             <div class="catalog-info">
-                ${metaStockHTML}
                 <h3 class="catalog-name">${producto.nombre}</h3>
                 
                 <div class="catalog-bottom">

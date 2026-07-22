@@ -31,9 +31,6 @@ function crearTarjetaInicio(producto) {
         badgeHTML = `<div class="${clase}">${producto.badge}</div>`;
     }
 
-    // Stock
-    const stockClase = { 'in-stock': 'in-stock', 'low-stock': 'low-stock', 'out-stock': 'out-stock' }[producto.stock] || 'in-stock';
-
     // Botón
     const agotado = producto.stock === 'out-stock';
     const imagenEscape = (producto.imagen || '').replace(/'/g, "\\'");
@@ -63,7 +60,6 @@ function crearTarjetaInicio(producto) {
                 <div class="catalog-info">
                     <div class="catalog-meta">
                         <span class="catalog-series">${producto.parte}</span>
-                        <span class="catalog-stock ${stockClase}">${producto.stockLabel}</span>
                     </div>
                     <h3 class="catalog-name">${producto.nombre}</h3>
                     

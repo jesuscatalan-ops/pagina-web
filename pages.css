@@ -1131,7 +1131,7 @@
     padding: 2rem 2rem 5rem;
 }
 
-/* Main layout: escritorio = grid (título → badges → parte → bloque precio); móvil = flex según DOM */
+/* Main layout: escritorio = grid (título → parte → badges → bloque precio); móvil = flex según DOM */
 .product-main-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1152,25 +1152,23 @@
     grid-row: 1 / -1;
 }
 
-.product-main-layout .product-info-head {
-    grid-column: 2;
-    grid-row: 2;
-}
-
 .product-main-layout #producto-parte {
     grid-column: 2;
+    grid-row: 2;
+    margin-top: -0.15rem;
+}
+
+.product-main-layout .product-info-head {
+    grid-column: 2;
     grid-row: 3;
+    margin-top: -0.15rem;
+    margin-bottom: -0.25rem;
 }
 
 .product-main-layout .product-info-col {
     grid-column: 2;
     grid-row: 4;
-}
-
-@media (min-width: 901px) {
-    .product-main-layout .product-info-head {
-        margin-top: -6rem;
-    }
+    margin-top: -0.35rem;
 }
 
 /* ---- Columna imagen ---- */
@@ -1360,7 +1358,7 @@
 .product-info-head {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 0.5rem;
 }
 
 .product-info-col {
@@ -1409,7 +1407,7 @@
 
 .product-page-name {
     font-family: 'Questrial', sans-serif;
-    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-size: clamp(1.54rem, 2.8vw, 2.24rem);
     line-height: 1;
     letter-spacing: 1px;
     color: var(--dark);
@@ -1419,7 +1417,7 @@
     font-family: 'Questrial', sans-serif;
     font-size: 0.95rem;
     color: var(--gray);
-    line-height: 1.6;
+    line-height: 1.3;
 }
 
 .product-page-price-row {
@@ -1662,16 +1660,18 @@
     }
     /* Orden en DOM: parte → nombre → galería → badges → precio/specs */
     .product-main-layout #producto-parte {
-        margin-bottom: -1rem;
+        margin-bottom: -1.4rem;
+        margin-top: 0;
     }
     .product-main-layout .product-page-name {
         margin-bottom: -0.5rem;
     }
     .product-main-layout .product-info-head {
-        margin-top: -2.5rem;
+        margin-top: -1.5rem;
+        margin-bottom: 0;
     }
     .product-main-layout .product-info-col {
-        margin-top: -0.75rem;
+        margin-top: -0.5rem;
     }
     .product-gallery {
         position: static;

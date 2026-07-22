@@ -296,15 +296,18 @@ function renderProducto(producto, todosLosProductos, esPokemon = false) {
             const metaHTML = metaInner.trim()
                 ? `<div class="catalog-meta">${metaInner}</div>`
                 : '';
+            const imagenHTML = p.imagen
+                ? `<img class="catalog-img-real" src="${p.imagen}" alt="${p.nombre}" loading="lazy">`
+                : `<div class="catalog-img-placeholder"
+                             style="background:${p.gradiente}; width:100%; height:100%;
+                                    display:flex; align-items:center; justify-content:center;">
+                            <span class="placeholder-text">${lineas.join('<br>')}</span>
+                        </div>`;
             return `
             <a href="producto.html?id=${p.id}" style="text-decoration:none; color:inherit; display:block;">
                 <article class="catalog-card">
                     <div class="catalog-image">
-                        <div class="catalog-img-placeholder"
-                             style="background:${p.gradiente}; width:100%; height:100%;
-                                    display:flex; align-items:center; justify-content:center;">
-                            <span class="placeholder-text">${lineas.join('<br>')}</span>
-                        </div>
+                        ${imagenHTML}
                     </div>
                     <div class="catalog-info">
                         ${metaHTML}

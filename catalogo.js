@@ -98,13 +98,6 @@ function crearTarjeta(producto) {
         badgeHTML = `<div class="${clase}">${producto.badge}</div>`;
     }
 
-    // Estado de stock
-    const stockClase = {
-        'in-stock':  'in-stock',
-        'low-stock': 'low-stock',
-        'out-stock': 'out-stock',
-    }[producto.stock] || 'in-stock';
-
     // Botón carrito
     const btnDisabled  = producto.stock === 'out-stock';
     const btnTexto     = btnDisabled ? 'AGOTADO' : '+ CARRITO';
@@ -136,7 +129,6 @@ function crearTarjeta(producto) {
         <article class="catalog-card">
             ${logo25thHTML}
             ${badgeHTML}
-            <span class="catalog-stock ${stockClase}">${producto.stockLabel}</span>
             <div class="catalog-image">
                 ${imagenHTML}
             </div>

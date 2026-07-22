@@ -1,7 +1,7 @@
 [
   {
     "id": "star-platinum",
-    "nombre": "Star Platinum (Second) - Super Action Statue",
+    "nombre": "Star Platinum (Second) - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Stardust Crusaders",
     "tipo": "Figura articulada",
@@ -26,15 +26,16 @@
     "descripcion": "Star Platinum es el Stand de Jotaro Kujo, reconocido por su fuerza sobrehumana y velocidad extrema. Esta figura articulada de 28cm captura cada detalle de su imponente diseño con acabados premium en tonos morado profundo y dorado. Articulaciones en hombros, codos, muñecas, caderas y rodillas permiten múltiples poses de exhibición.",
     "descripcionCorta": "Figura articulada 28cm — Medicos Entertainment",
     "relacionados": [
-      "dio-brando",
       "jotaro-kujo",
-      "josuke-higashikata"
+      "jotaro-kujo-third",
+      "the-world",
+      "dio"
     ],
     "continuacionTitulo": ""
   },
   {
     "id": "jotaro-kujo",
-    "nombre": "Jotaro Kujo (Ver. 1.5) - Super Action Statue",
+    "nombre": "Jotaro Kujo (Ver. 1.5) - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Stardust Crusaders",
     "tipo": "Figura articulada",
@@ -56,14 +57,15 @@
     "descripcionCorta": "Figura articulada 30cm — Medicos Entertainment",
     "relacionados": [
       "star-platinum",
-      "dio-brando",
-      "jodio-joestar"
+      "jotaro-kujo-third",
+      "dio",
+      "the-world"
     ],
     "continuacionTitulo": ""
   },
   {
     "id": "jotaro-kujo-third",
-    "nombre": "Jotaro Kujo (Third) - Super Action Statue",
+    "nombre": "Jotaro Kujo (Third) - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Stardust Crusaders",
     "tipo": "Figura articulada",
@@ -84,15 +86,16 @@
     "descripcion": "¡La espectacular versión 'Third' de Jotaro Kujo llega a la línea Super Action Statue! Esta popular variante de la Parte 3: Stardust Crusaders destaca por su característico abrigo y pantalón en tonos verdes. La figura de 16 cm cuenta con una ingeniería de articulación impecable. Incluye rostros intercambiables, manos extra y un increíble set de piezas de efecto translúcidas de color verde para recrear la icónica ráfaga de golpes 'ORA ORA ORA' junto a su Stand.",
     "descripcionCorta": "Figura articulada 16cm (Color Alternativo) — Medicos Entertainment",
     "relacionados": [
+      "jotaro-kujo",
       "star-platinum",
-      "dio-brando",
-      "noriaki-kakyoin"
+      "hierophant-green",
+      "dio"
     ],
     "continuacionTitulo": ""
   },
   {
     "id": "foo-fighters",
-    "nombre": "Foo Fighters - Super Action Statue",
+    "nombre": "Foo Fighters - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Stone Ocean",
     "tipo": "Figura articulada",
@@ -113,15 +116,16 @@
     "descripcion": "Foo Fighters (F.F.), la entidad creada a partir de plancton, cobra vida en esta increíble figura de la Parte 6: Stone Ocean. Con 14 cm de altura, reproduce fielmente su característico cabello verde brillante y su cuerpo flexible. El set incluye accesorios icónicos como su inseparable vaso con pajita para mantenerse hidratada, rostros intercambiables, piezas de efecto para simular sus disparos y dos miniaturas en su forma original de plancton.",
     "descripcionCorta": "Figura articulada 14cm — Medicos Entertainment",
     "relacionados": [
-      "jolyne-cujoh",
-      "ermes-costello",
-      "weather-report"
+      "stone-free",
+      "kiss",
+      "weather-report-user",
+      "diver-down"
     ],
     "continuacionTitulo": ""
   },
   {
     "id": "guido-mista",
-    "nombre": "Guido Mista & Sex Pistols - Super Action Statue",
+    "nombre": "Guido Mista & Sex Pistols - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Golden Wind",
     "tipo": "Figura articulada",
@@ -142,15 +146,16 @@
     "descripcion": "El carismático y supersticioso pistolero de Passione, Guido Mista, se une a la línea Super Action Statue. Esta figura de la Parte 5: Golden Wind captura a la perfección su icónico suéter azul con diseño de red y sus llamativos pantalones con rayas de tigre. Con 16 cm de altura y gran articulación para poses de combate, el set incluye su fiel revólver (que puede guardar en su pantalón), efectos de disparo, rostros intercambiables, y las miniaturas de sus 6 compañeros de Stand: ¡Sex Pistols!",
     "descripcionCorta": "Figura articulada 16cm (Incluye Sex Pistols) — Medicos Entertainment",
     "relacionados": [
-      "giorno-giovanna",
       "bruno-bucciarati",
-      "narancia-ghirga"
+      "gold-experience",
+      "sticky-fingers-25th",
+      "moody-blues"
     ],
     "continuacionTitulo": ""
   },
   {
     "id": "gold-experience",
-    "nombre": "Gold Experience - Super Action Statue",
+    "nombre": "Gold Experience - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Golden Wind",
     "tipo": "Figura articulada",
@@ -171,15 +176,16 @@
     "descripcion": "El elegante y vital Stand de Giorno Giovanna, Gold Experience, se presenta en la línea Super Action Statue. Originario de la Parte 5: Golden Wind, esta figura de 16 cm captura su esbelto diseño dorado con intrincados detalles de mariquitas moradas y acentos verdes. Famoso por su habilidad de dar vida a objetos inanimados, la figura cuenta con un excelente rango de articulación e incluye múltiples manos intercambiables y una cabeza alternativa para recrear sus dinámicas poses de combate.",
     "descripcionCorta": "Figura articulada 16cm — Medicos Entertainment",
     "relacionados": [
-      "giorno-giovanna",
       "gold-experience-requiem",
-      "bruno-bucciarati"
+      "bruno-bucciarati",
+      "sticky-fingers-25th",
+      "guido-mista"
     ],
     "continuacionTitulo": ""
   },
   {
     "id": "gold-experience-requiem",
-    "nombre": "Gold Experience Requiem - Super Action Statue",
+    "nombre": "Gold Experience Requiem - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Golden Wind",
     "tipo": "Figura articulada",
@@ -200,15 +206,16 @@
     "descripcion": "¡La forma definitiva y omnipotente! Gold Experience Requiem (G.E.R.) despierta en la línea Super Action Statue. Esta evolución del Stand de Giorno en la Parte 5 presenta su característico tono marfil y dorado pálido con llamativos detalles púrpuras. Con 16 cm de altura, la figura captura su aura divina e intimidante. Incluye rostros intercambiables con distintas expresiones, manos adicionales y un increíble nivel de detalle en sus emblemas de flecha para recrear el clímax absoluto de la serie.",
     "descripcionCorta": "Figura articulada 16cm (Forma Requiem) — Medicos Entertainment",
     "relacionados": [
-      "giorno-giovanna",
       "gold-experience",
-      "diavolo"
+      "bruno-bucciarati",
+      "king-crimson-blue-second",
+      "polnareff-vento-aureo"
     ],
     "continuacionTitulo": ""
   },
   {
     "id": "bruno-bucciarati",
-    "nombre": "Bruno Bucciarati - Super Action Statue",
+    "nombre": "Bruno Bucciarati - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Golden Wind",
     "tipo": "Figura articulada",
@@ -229,15 +236,16 @@
     "descripcion": "El noble y determinado líder de escuadrón de Passione, Bruno Bucciarati, hace su aparición en la línea Super Action Statue. Directo de la Parte 5: Golden Wind, esta figura de 16 cm retrata fielmente su inconfundible traje negro adornado con cremalleras doradas. La figura incluye manos intercambiables, rostros con diferentes expresiones (incluyendo su clásico grito de batalla) y partes de accesorios de cremalleras para recrear las sorprendentes habilidades espaciales de su Stand.",
     "descripcionCorta": "Figura articulada 16cm — Medicos Entertainment",
     "relacionados": [
-      "sticky-fingers",
-      "giorno-giovanna",
-      "leone-abbacchio"
+      "sticky-fingers-25th",
+      "gold-experience",
+      "guido-mista",
+      "moody-blues"
     ],
     "continuacionTitulo": ""
   },
   {
     "id": "moody-blues",
-    "nombre": "Moody Blues - Super Action Statue",
+    "nombre": "Moody Blues - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Golden Wind",
     "tipo": "Figura articulada",
@@ -262,15 +270,16 @@
     "descripcion": "El indispensable Stand de reconocimiento de Leone Abbacchio, Moody Blues, se une a la colección de la Parte 5. Esta figura de 16 cm destaca por su elegante diseño retro-futurista, capturando su suave esquema de colores lila y plateado. Los característicos visores digitales y diales en sus articulaciones están esculpidos con precisión. Cuenta con gran flexibilidad para recrear su habilidad de 'rebobinar' y reproducir el pasado, e incluye una cabeza extra y múltiples manos intercambiables.",
     "descripcionCorta": "Figura articulada 16cm — Medicos Entertainment",
     "relacionados": [
-      "leone-abbacchio",
       "bruno-bucciarati",
-      "giorno-giovanna"
+      "guido-mista",
+      "gold-experience",
+      "sticky-fingers-25th"
     ],
     "continuacionTitulo": ""
   },
   {
     "id": "whitesnake",
-    "nombre": "Whitesnake - Super Action Statue",
+    "nombre": "Whitesnake - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Stone Ocean",
     "tipo": "Figura articulada",
@@ -292,14 +301,15 @@
     "descripcionCorta": "Figura articulada 16cm (Incluye Discos) — Medicos Entertainment",
     "relacionados": [
       "enrico-pucci",
-      "jolyne-cujoh",
-      "stone-free"
+      "stone-free",
+      "weather-report-user",
+      "foo-fighters"
     ],
     "continuacionTitulo": ""
   },
   {
     "id": "lisa-lisa",
-    "nombre": "Lisa Lisa - Super Action Statue",
+    "nombre": "Lisa Lisa - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Battle Tendency",
     "tipo": "Figura articulada",
@@ -320,15 +330,15 @@
     "descripcion": "La elegante y estricta maestra del Hamon, Lisa Lisa, deslumbra en la línea Super Action Statue. Proveniente de la Parte 2: Battle Tendency, la figura de 15 cm captura su belleza y presencia imponente, vistiendo su ceñido traje azul violáceo y su inconfundible bufanda roja. La figura está altamente articulada para poses de artes marciales e incluye accesorios imprescindibles como la Piedra Roja de Aja, gafas de sol, manos intercambiables y rostros alternativos.",
     "descripcionCorta": "Figura articulada 15cm — Medicos Entertainment",
     "relacionados": [
-      "joseph-joestar",
-      "caesar-zeppeli",
-      "kars"
+      "joseph-joestar-25th",
+      "caesar-zeppeli-25th",
+      "jonathan-joestar"
     ],
     "continuacionTitulo": ""
   },
   {
     "id": "enrico-pucci",
-    "nombre": "Enrico Pucci - Super Action Statue",
+    "nombre": "Enrico Pucci - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Stone Ocean",
     "tipo": "Figura articulada",
@@ -350,14 +360,15 @@
     "descripcionCorta": "Figura articulada 16cm — Medicos Entertainment",
     "relacionados": [
       "whitesnake",
-      "jolyne-cujoh",
-      "weather-report"
+      "stone-free",
+      "weather-report-user",
+      "foo-fighters"
     ],
     "continuacionTitulo": ""
   },
   {
     "id": "diver-down",
-    "nombre": "Diver Down - Super Action Statue",
+    "nombre": "Diver Down - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Stone Ocean",
     "tipo": "Figura articulada",
@@ -378,15 +389,16 @@
     "descripcion": "El versátil y letal Stand de Narciso Anasui, Diver Down, emerge en la línea Super Action Statue de la Parte 6: Stone Ocean. Su llamativo diseño verde vibrante, adornado con letras 'D' de color fucsia y tubos similares a los de un buzo de aguas profundas, está esculpido con un detalle increíble. Capaz de 'sumergirse' en objetos y personas para reestructurarlos desde adentro, esta figura de 16 cm cuenta con una articulación fluida e incluye varias manos intercambiables para posturas de asalto.",
     "descripcionCorta": "Figura articulada 16cm — Medicos Entertainment",
     "relacionados": [
-      "narciso-anasui",
-      "jolyne-cujoh",
-      "enrico-pucci"
+      "stone-free",
+      "foo-fighters",
+      "kiss",
+      "weather-report-user"
     ],
     "continuacionTitulo": ""
   },
   {
     "id": "kiss",
-    "nombre": "Kiss - Super Action Statue",
+    "nombre": "Kiss - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Stone Ocean",
     "tipo": "Figura articulada",
@@ -408,15 +420,16 @@
     "descripcion": "El poderoso Stand de Ermes Costello, Kiss, llega a la línea Super Action Statue desde la Parte 6: Stone Ocean. La figura de 16 cm retrata a la perfección su distintivo esquema de colores verde vibrante y dorado, con múltiples calcomanías de labios esculpidas en sus hombros y cuello. Capaz de duplicar objetos al adherir sus stickers, el set incluye manos intercambiables, un rostro alternativo, y por supuesto, piezas de sus icónicos stickers para recrear su letal habilidad de duplicación y choque.",
     "descripcionCorta": "Figura articulada 16cm — Medicos Entertainment",
     "relacionados": [
-      "ermes-costello",
-      "jolyne-cujoh",
-      "foo-fighters"
+      "foo-fighters",
+      "stone-free",
+      "diver-down",
+      "weather-report-user"
     ],
     "continuacionTitulo": ""
   },
   {
     "id": "johnny-joestar-second",
-    "nombre": "Johnny Joestar (Second) - Super Action Statue",
+    "nombre": "Johnny Joestar (Second) - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Steel Ball Run",
     "tipo": "Figura articulada",
@@ -438,15 +451,16 @@
     "descripcion": "El protagonista de la revolucionaria Parte 7: Steel Ball Run, Johnny Joestar, cabalga hacia la colección en su deslumbrante versión 'Second'. Esta variante destaca por su hermoso traje azul verdoso adornado con un patrón de estrellas amarillas y acentos púrpuras. Con 15 cm de altura, la figura captura magistralmente su estética del viejo oeste. Incluye manos intercambiables listas para canalizar la energía de la 'Rotación' (Spin) y disparar sus uñas, además de expresiones faciales alternas para intensas batallas a caballo.",
     "descripcionCorta": "Figura articulada 15cm (Color Alternativo) — Medicos Entertainment",
     "relacionados": [
-      "gyro-zeppeli",
-      "funny-valentine",
-      "diego-brando"
+      "gyro-zeppeli-third",
+      "diego-brando-second",
+      "funny-valentine-second",
+      "wekapipo"
     ],
     "continuacionTitulo": ""
   },
   {
     "id": "gyro-zeppeli-third",
-    "nombre": "Gyro Zeppeli (Third) - Super Action Statue",
+    "nombre": "Gyro Zeppeli (Third) - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Steel Ball Run",
     "tipo": "Figura articulada",
@@ -468,15 +482,16 @@
     "descripcion": "El carismático maestro de la 'Rotación', Gyro Zeppeli, entra a la carrera en su espectacular versión 'Third'. Directo de la Parte 7: Steel Ball Run, esta figura presenta una paleta de colores alternativa que recuerda a los áridos paisajes del oeste, con tonos tierra, marrón y detalles metálicos en verde para sus famosas Esferas de Acero. La figura de 16 cm incluye su icónico sombrero, múltiples pares de manos, rostros intercambiables (incluyendo su deslumbrante sonrisa 'Go! Go! Zeppeli') y accesorios para exhibir las esferas en plena rotación.",
     "descripcionCorta": "Figura articulada 16cm (Color Alternativo) — Medicos Entertainment",
     "relacionados": [
-      "johnny-joestar",
-      "funny-valentine",
-      "diego-brando"
+      "johnny-joestar-second",
+      "wekapipo",
+      "diego-brando-second",
+      "funny-valentine"
     ],
     "continuacionTitulo": ""
   },
   {
     "id": "d4c-second",
-    "nombre": "D4C (Second) - Super Action Statue",
+    "nombre": "D4C (Second) - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Steel Ball Run",
     "tipo": "Figura articulada",
@@ -499,6 +514,7 @@
     "descripcionCorta": "Figura articulada 20cm (Color Alternativo) — Medicos Entertainment",
     "relacionados": [
       "funny-valentine-second",
+      "d4c-first",
       "johnny-joestar-second",
       "gyro-zeppeli-third"
     ],
@@ -506,7 +522,7 @@
   },
   {
     "id": "funny-valentine-second",
-    "nombre": "Funny Valentine (Second) - Super Action Statue",
+    "nombre": "Funny Valentine (Second) - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Steel Ball Run",
     "tipo": "Figura articulada",
@@ -529,6 +545,7 @@
     "descripcionCorta": "Figura articulada 16cm (Color Alternativo) — Medicos Entertainment",
     "relacionados": [
       "d4c-second",
+      "funny-valentine",
       "johnny-joestar-second",
       "diego-brando-second"
     ],
@@ -536,7 +553,7 @@
   },
   {
     "id": "diego-brando-second",
-    "nombre": "Diego Brando (Second) - Super Action Statue",
+    "nombre": "Diego Brando (Second) - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Steel Ball Run",
     "tipo": "Figura articulada",
@@ -559,14 +576,15 @@
     "descripcionCorta": "Figura articulada 16cm (Color Alternativo) — Medicos Entertainment",
     "relacionados": [
       "johnny-joestar-second",
+      "gyro-zeppeli-third",
       "funny-valentine-second",
-      "gyro-zeppeli-third"
+      "d4c-second"
     ],
     "continuacionTitulo": ""
   },
   {
     "id": "josuke-higashikata-diu",
-    "nombre": "Josuke Higashikata - Super Action Statue",
+    "nombre": "Josuke Higashikata - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Diamond is Unbreakable",
     "tipo": "Figura articulada",
@@ -595,13 +613,14 @@
     "relacionados": [
       "kira-yoshikage",
       "killer-queen-second",
-      "jotaro-kujo-diu"
+      "jotaro-kujo-diu",
+      "kira-yoshikage-second"
     ],
     "continuacionTitulo": ""
   },
   {
     "id": "star-platinum-diu-first",
-    "nombre": "Star Platinum (Part 4) (1st) - Super Action Statue",
+    "nombre": "Star Platinum (Part 4) (1st) - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Diamond is Unbreakable",
     "tipo": "Figura articulada",
@@ -627,15 +646,16 @@
     "descripcion": "La primera edición de Star Platinum en su versión de Diamond Is Unbreakable irrumpe en la colección Super Action Statue. Este poderoso Stand de Jotaro Kujo en la Parte 4 presenta ligeras diferencias visuales respecto a su versión clásica de Stardust Crusaders, reflejando la evolución del diseño del personaje. La figura de 16 cm ofrece una amplia gama de articulaciones para recrear las explosivas andanadas del icónico 'ORA ORA ORA' e incluye manos intercambiables y piezas de efecto para combates dinámicos.",
     "descripcionCorta": "Figura articulada 16cm (Part 4 — Primera Edición) — Medicos Entertainment",
     "relacionados": [
-      "star-platinum",
       "jotaro-kujo-diu",
-      "star-platinum-diu-re"
+      "star-platinum-diu-re",
+      "star-platinum",
+      "josuke-higashikata-diu"
     ],
     "continuacionTitulo": ""
   },
   {
     "id": "star-platinum-diu-re",
-    "nombre": "Star Platinum (Part 4) (Re) - Super Action Statue",
+    "nombre": "Star Platinum (Part 4) (Re) - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Diamond is Unbreakable",
     "tipo": "Figura articulada",
@@ -661,15 +681,16 @@
     "descripcion": "La reedición oficial de Star Platinum en su versión de Diamond Is Unbreakable, ahora con mayor disponibilidad para los coleccionistas. Esta Super Action Statue de 16 cm conserva todos los detalles del diseño del Stand de Jotaro Kujo en la Parte 4, con sus característicos tonos morados profundos y las marcas doradas que lo distinguen. Incluye el mismo set de accesorios de la primera edición: manos intercambiables y partes de efecto para las icónicas escenas de combate junto a su usuario.",
     "descripcionCorta": "Figura articulada 16cm (Part 4 — Reedición) — Medicos Entertainment",
     "relacionados": [
-      "star-platinum",
+      "jotaro-kujo-diu",
       "star-platinum-diu-first",
-      "jotaro-kujo-diu"
+      "star-platinum",
+      "josuke-higashikata-diu"
     ],
     "continuacionTitulo": ""
   },
   {
     "id": "dio",
-    "nombre": "DIO - Super Action Statue",
+    "nombre": "DIO - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Stardust Crusaders",
     "tipo": "Figura articulada",
@@ -697,14 +718,15 @@
     "descripcionCorta": "Figura articulada 15.5cm (Versión Despertada) — Medicos Entertainment",
     "relacionados": [
       "the-world",
-      "dio-brando",
-      "jotaro-kujo"
+      "jotaro-kujo",
+      "star-platinum",
+      "dio-brando"
     ],
     "continuacionTitulo": ""
   },
   {
     "id": "wekapipo",
-    "nombre": "Wekapipo (WONDERFEST) - Super Action Statue",
+    "nombre": "Wekapipo (WONDERFEST) - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Steel Ball Run",
     "tipo": "Figura articulada",
@@ -731,15 +753,16 @@
     "descripcion": "El formidable y leal soldado napolitano Wekapipo hace su debut en la Super Action Statue desde la Parte 7: Steel Ball Run. Experto en la técnica del Spin y usuario del Stand 'Wrecking Ball', esta exclusiva figura de 16 cm recrea fielmente su característico abrigo militar gris acero con detalles metálicos y su distinguido bigote. El set incluye sus dos demoledoras bolas de acero en su funda, partes de cabeza intercambiables (incluyendo una versión joven sin bigote), múltiples manos, un revólver y piezas de efecto de bala para recrear las escenas más intensas de la carrera.",
     "descripcionCorta": "Figura articulada 16cm (Edición Wonder Festival) — Medicos Entertainment",
     "relacionados": [
-      "funny-valentine",
       "gyro-zeppeli-third",
-      "johnny-joestar-second"
+      "johnny-joestar-second",
+      "diego-brando-second",
+      "funny-valentine"
     ],
     "continuacionTitulo": ""
   },
   {
     "id": "stone-free",
-    "nombre": "Stone Free - Super Action Statue",
+    "nombre": "Stone Free - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Stone Ocean",
     "tipo": "Figura articulada",
@@ -766,15 +789,16 @@
     "descripcion": "El poderoso y versátil Stand de Jolyne Cujoh, Stone Free, emerge desde la Parte 6: Stone Ocean en esta Super Action Statue. Su diseño único, adornado con el patrón de mosaico en tonos verde mar y azul oscuro con contornos morados, está perfectamente reproducido en esta figura de 15.5 cm. Capaz de desintegrar su cuerpo en hilos para moverse, atacar o comunicarse, la figura incluye múltiples manos intercambiables, rostros con diferentes expresiones y piezas especiales para simular sus hilos de Stone Free en plena acción.",
     "descripcionCorta": "Figura articulada 15.5cm — Medicos Entertainment",
     "relacionados": [
-      "jolyne-cujoh",
+      "whitesnake",
       "enrico-pucci",
-      "whitesnake"
+      "foo-fighters",
+      "weather-report-user"
     ],
     "continuacionTitulo": ""
   },
   {
     "id": "the-world",
-    "nombre": "The World - Super Action Statue",
+    "nombre": "The World - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Stardust Crusaders",
     "tipo": "Figura articulada",
@@ -801,14 +825,15 @@
     "descripcionCorta": "Figura articulada 16.5cm — Medicos Entertainment",
     "relacionados": [
       "dio",
-      "dio-brando",
-      "star-platinum"
+      "star-platinum",
+      "jotaro-kujo",
+      "dio-brando"
     ],
     "continuacionTitulo": ""
   },
   {
     "id": "dio-brando",
-    "nombre": "Dio Brando - Super Action Statue",
+    "nombre": "Dio Brando - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Phantom Blood",
     "tipo": "Figura articulada",
@@ -835,15 +860,16 @@
     "descripcion": "El origen de todo el mal, Dio Brando en su forma humana de la Parte 1: Phantom Blood, hace su debut en la Super Action Statue. Esta figura de 17 cm retrata al joven y ambicioso Dio con su inconfundible capa verde oscura y elegante atuendo victoriano previo a convertirse en vampiro. Con su característica expresión de desprecio y arrogancia, el set incluye múltiples rostros intercambiables, la cabeza cercenada con cuello intercambiable, manos alternativas y la icónica rosa como accesorio inseparable del despiadado rival de Jonathan Joestar.",
     "descripcionCorta": "Figura articulada 17cm (Phantom Blood) — Medicos Entertainment",
     "relacionados": [
+      "jonathan-joestar",
       "dio",
       "the-world",
-      "jonathan-joestar"
+      "joseph-joestar-25th"
     ],
     "continuacionTitulo": ""
   },
   {
     "id": "soft-wet",
-    "nombre": "Soft & Wet - Super Action Statue",
+    "nombre": "Soft & Wet - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Jojolion",
     "tipo": "Figura articulada",
@@ -870,14 +896,15 @@
     "descripcionCorta": "Figura articulada 15.5cm — Medicos Entertainment",
     "relacionados": [
       "josuke-higashikata-diu",
+      "stone-free",
       "killer-queen-second",
-      "stone-free"
+      "star-platinum-diu-first"
     ],
     "continuacionTitulo": ""
   },
   {
     "id": "king-crimson-blue-second",
-    "nombre": "King Crimson (Ver. Blue) - Super Action Statue",
+    "nombre": "King Crimson (Ver. Blue) - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Golden Wind",
     "tipo": "Figura articulada",
@@ -903,15 +930,16 @@
     "descripcion": "La segunda edición de King Crimson en su impactante variante azul regresa desde la Parte 5: Golden Wind con articulación aún más refinada. Esta Super Action Statue de 16 cm recrea con exquisito detalle el intrincado patrón de red en vibrantes tonos celeste y rosa del Stand del Diablo. La reedición permite una gama de movimiento más expresiva para recrear sus aterradoras habilidades de 'borrar el tiempo'. Incluye manos intercambiables, el rostro alternativo con el pequeño Epitaph en su frente y distintas expresiones del Stand.",
     "descripcionCorta": "Figura articulada 16cm (Color Alternativo — Segunda Edición) — Medicos Entertainment",
     "relacionados": [
-      "king-crimson-blue",
-      "diavolo",
-      "giorno-giovanna"
+      "gold-experience-requiem",
+      "gold-experience",
+      "bruno-bucciarati",
+      "polnareff-vento-aureo"
     ],
     "continuacionTitulo": ""
   },
   {
     "id": "kira-yoshikage",
-    "nombre": "Yoshikage Kira - Super Action Statue",
+    "nombre": "Yoshikage Kira - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Diamond is Unbreakable",
     "tipo": "Figura articulada",
@@ -941,13 +969,14 @@
     "relacionados": [
       "killer-queen-second",
       "kira-yoshikage-second",
-      "josuke-higashikata-diu"
+      "josuke-higashikata-diu",
+      "jotaro-kujo-diu"
     ],
     "continuacionTitulo": ""
   },
   {
     "id": "kira-yoshikage-second",
-    "nombre": "Yoshikage Kira (Second) - Super Action Statue",
+    "nombre": "Yoshikage Kira (Second) - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Diamond is Unbreakable",
     "tipo": "Figura articulada",
@@ -976,13 +1005,14 @@
     "relacionados": [
       "kira-yoshikage",
       "killer-queen-second",
-      "josuke-higashikata-diu"
+      "josuke-higashikata-diu",
+      "jotaro-kujo-diu"
     ],
     "continuacionTitulo": ""
   },
   {
     "id": "weather-report-user",
-    "nombre": "Weather Report (Usuario) - Super Action Statue",
+    "nombre": "Weather Report (Usuario) - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Stone Ocean",
     "tipo": "Figura articulada",
@@ -1009,15 +1039,16 @@
     "descripcion": "Wes Bluemarine, el enigmático usuario del Stand Weather Report, llega en forma humana a la Super Action Statue de la Parte 6: Stone Ocean. La figura de 16.5 cm reproduce fielmente su ajustado traje de preso con el texto 'G.D.st JAIL' estampado en la espalda y su inconfundible sombrero de búfalo. El set incluye múltiples rostros intercambiables con diversas expresiones, manos alternativas y la pierna de Diver Down intercambiable para recrear el oscuro y determinante momento de su batalla final contra Enrico Pucci.",
     "descripcionCorta": "Figura articulada 16.5cm (Forma Humana) — Medicos Entertainment",
     "relacionados": [
-      "jolyne-cujoh",
+      "stone-free",
       "enrico-pucci",
-      "foo-fighters"
+      "foo-fighters",
+      "whitesnake"
     ],
     "continuacionTitulo": ""
   },
   {
     "id": "d4c-first",
-    "nombre": "D4C (First) - Super Action Statue",
+    "nombre": "D4C (First) - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Steel Ball Run",
     "tipo": "Figura articulada",
@@ -1045,15 +1076,16 @@
     "descripcion": "La primera y poderosa edición del Stand del Presidente Funny Valentine, Dirty Deeds Done Dirt Cheap (D4C), irrumpe desde la Parte 7: Steel Ball Run en esta imponente Super Action Statue de 21 cm. Su diseño original y terrorífico presenta los colores rojo intenso y verde con costuras blancas evocando los colores de la bandera estadounidense, con enormes orejas puntiagudas que lo distinguen de la versión Second. El set incluye partes intercambiables de orejas, múltiples manos, rostros alternativos y piezas de daño para recrear las épicas batallas entre dimensiones paralelas.",
     "descripcionCorta": "Figura articulada 21cm (Primera Edición) — Medicos Entertainment",
     "relacionados": [
+      "funny-valentine",
       "d4c-second",
       "funny-valentine-second",
-      "funny-valentine"
+      "johnny-joestar-second"
     ],
     "continuacionTitulo": ""
   },
   {
     "id": "funny-valentine",
-    "nombre": "Funny Valentine - Super Action Statue",
+    "nombre": "Funny Valentine - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Steel Ball Run",
     "tipo": "Figura articulada",
@@ -1080,15 +1112,16 @@
     "descripcion": "El 23° Presidente de los Estados Unidos hace su primera aparición en la Super Action Statue de la Parte 7: Steel Ball Run. Funny Valentine en su primera versión luce su majestuoso abrigo presidencial en tonos morado oscuro con brillantes acentos dorados y su inconfundible cabello rizado estilo americano. La figura de 16 cm captura su porte presidencial e intimidante, incluyendo manos intercambiables, rostros alternativos con distintas expresiones de autoridad y accesorios clave de la narrativa para reclamar la primera servilleta en tu vitrina de colección.",
     "descripcionCorta": "Figura articulada 16cm (Primera Versión) — Medicos Entertainment",
     "relacionados": [
-      "funny-valentine-second",
       "d4c-first",
-      "d4c-second"
+      "funny-valentine-second",
+      "d4c-second",
+      "johnny-joestar-second"
     ],
     "continuacionTitulo": ""
   },
   {
     "id": "sticky-fingers-25th",
-    "nombre": "Sticky Fingers (25th Anniversary 2012) - Super Action Statue",
+    "nombre": "Sticky Fingers (25th Anniversary 2012) - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Golden Wind",
     "tipo": "Figura articulada",
@@ -1116,14 +1149,15 @@
     "descripcionCorta": "Figura articulada 16cm (Edición 25° Aniversario) — Medicos Entertainment",
     "relacionados": [
       "bruno-bucciarati",
-      "giorno-giovanna",
-      "gold-experience"
+      "gold-experience",
+      "guido-mista",
+      "polnareff-vento-aureo"
     ],
     "continuacionTitulo": ""
   },
   {
     "id": "killer-queen-second",
-    "nombre": "Killer Queen (Second) - Super Action Statue",
+    "nombre": "Killer Queen (Second) - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Diamond is Unbreakable",
     "tipo": "Figura articulada",
@@ -1152,13 +1186,14 @@
     "relacionados": [
       "kira-yoshikage",
       "kira-yoshikage-second",
-      "josuke-higashikata-diu"
+      "josuke-higashikata-diu",
+      "jotaro-kujo-diu"
     ],
     "continuacionTitulo": ""
   },
   {
     "id": "hierophant-green",
-    "nombre": "Hierophant Green - Super Action Statue",
+    "nombre": "Hierophant Green - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Stardust Crusaders",
     "tipo": "Figura articulada",
@@ -1185,15 +1220,16 @@
     "descripcion": "El misterioso y flexible Stand de Noriaki Kakyoin, Hierophant Green, hace su entrada a la Super Action Statue de la Parte 3: Stardust Crusaders. Esta figura de 15 cm captura a la perfección su elegante forma humanoide en vibrante verde esmeralda con los característicos diseños ovoidales en su cuerpo. Famoso por su peligroso 'Emerald Splash', el set incluye manos intercambiables específicas para ejecutar su ataque especial, piezas de efecto para simular sus proyectiles de esmeralda y placa sonora para el legendario grito de batalla.",
     "descripcionCorta": "Figura articulada 15cm — Medicos Entertainment",
     "relacionados": [
+      "jotaro-kujo",
       "star-platinum",
-      "the-world",
-      "jotaro-kujo"
+      "dio",
+      "the-world"
     ],
     "continuacionTitulo": ""
   },
   {
     "id": "jotaro-kujo-diu",
-    "nombre": "Jotaro Kujo (Part 4) - Super Action Statue",
+    "nombre": "Jotaro Kujo (Part 4) - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Diamond is Unbreakable",
     "tipo": "Figura articulada",
@@ -1220,15 +1256,16 @@
     "descripcion": "Jotaro Kujo regresa en su versión adulta de la Parte 4: Diamond Is Unbreakable con su renovado atuendo blanco y azul. Esta Super Action Statue de 15 cm captura al veterano investigador de la Fundación Speedwagon durante su visita a Morioh, destacando su impecable traje blanco de cuello alto y el infaltable gorro marinero. Incluye dos expresiones faciales (serena y de batalla), dos gorros opcionales, cuatro pares de manos adicionales, mochila y soporte de exhibición para recrear las icónicas escenas junto a Star Platinum.",
     "descripcionCorta": "Figura articulada 15cm (Part 4: Diamond Is Unbreakable) — Medicos Entertainment",
     "relacionados": [
-      "jotaro-kujo",
       "star-platinum-diu-first",
-      "josuke-higashikata-diu"
+      "star-platinum-diu-re",
+      "josuke-higashikata-diu",
+      "kira-yoshikage"
     ],
     "continuacionTitulo": ""
   },
   {
     "id": "caesar-zeppeli-25th",
-    "nombre": "Caesar Anthonio Zeppeli (25th Anniversary) - Super Action Statue",
+    "nombre": "Caesar Anthonio Zeppeli (25th Anniversary) - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Battle Tendency",
     "tipo": "Figura articulada",
@@ -1263,7 +1300,7 @@
   },
   {
     "id": "joseph-joestar-25th",
-    "nombre": "Joseph Joestar (25th Anniversary) - Super Action Statue",
+    "nombre": "Joseph Joestar (25th Anniversary) - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Battle Tendency",
     "tipo": "Figura articulada",
@@ -1298,7 +1335,7 @@
   },
   {
     "id": "jonathan-joestar",
-    "nombre": "Jonathan Joestar - Super Action Statue",
+    "nombre": "Jonathan Joestar - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Phantom Blood",
     "tipo": "Figura articulada",
@@ -1327,13 +1364,14 @@
     "relacionados": [
       "dio-brando",
       "joseph-joestar-25th",
-      "caesar-zeppeli-25th"
+      "caesar-zeppeli-25th",
+      "lisa-lisa"
     ],
     "continuacionTitulo": ""
   },
   {
     "id": "polnareff-vento-aureo",
-    "nombre": "Jean Pierre Polnareff (Vento Aureo) - Super Action Statue",
+    "nombre": "Jean Pierre Polnareff (Vento Aureo) - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Golden Wind",
     "tipo": "Figura articulada",
@@ -1361,8 +1399,9 @@
     "descripcionCorta": "Figura articulada 16cm (Golden Wind — Con Silla de Ruedas) — Medicos Entertainment",
     "relacionados": [
       "bruno-bucciarati",
-      "giorno-giovanna",
-      "gold-experience"
+      "gold-experience",
+      "gold-experience-requiem",
+      "sticky-fingers-25th"
     ],
     "continuacionTitulo": ""
   }
