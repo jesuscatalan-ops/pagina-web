@@ -166,7 +166,7 @@ body {
 .nav-link.active { color: var(--primary); }
 
 .nav-link-pokemon {
-    color: #rgba(55, 7, 230, 0.624) !important;
+    color: rgba(55, 7, 230, 0.624) !important;
     background: #ff9800;
     padding: 0.35rem 0.9rem !important;
     border-radius: 8px;
@@ -196,137 +196,90 @@ body {
    SLIDER
 ======================== */
 .slider {
-    margin-top: 90px;
-    height: auto;
+    margin-top: 120px;
+    padding: 0 1.55rem;
+}
+
+.home-hero-grid {
+    max-width: 1300px;
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(3, minmax(80px, 1fr));
+    row-gap: 0.78rem;
+    column-gap: 1rem;
+}
+
+.home-hero-tile {
+    --tile-placeholder-1: #334155;
+    --tile-placeholder-2: #0f172a;
     position: relative;
     overflow: hidden;
-}
-
-.slider-banner-img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-.slides-container {
-    width: 100%;
-    height: 100%;
-    position: relative;
-}
-
-.slide {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
+    border-radius: 2px;
+    text-decoration: none;
+    min-height: 122px;
+    background-image:
+        var(--tile-image),
+        linear-gradient(135deg, var(--tile-placeholder-1), var(--tile-placeholder-2));
+    background-size: cover;
+    background-position: center;
     display: flex;
     align-items: flex-end;
-    justify-content: center;
+    justify-content: flex-start;
+    padding: 0;
 }
 
-.slide.active { opacity: 1; }
-
-.slide-bg {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 15rem;
-    opacity: 0.08;
-    background: linear-gradient(180deg, transparent 0%, rgba(255, 107, 53, 0.05) 100%);
-    font-family: 'Anton', sans-serif;
-    color: var(--primary);
+.home-hero-tile::before {
+    display: none;
 }
 
-.slide-content {
+.home-hero-label,
+.home-hero-sub {
     position: relative;
-    z-index: 2;
-    text-align: center;
-    padding: 3rem;
-    background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.95) 50%, #ffffff 100%);
-    width: 100%;
+    z-index: 1;
 }
 
-.slide-title {
+.home-hero-label {
     font-family: 'Anton', sans-serif;
-    font-size: 4rem;
-    background: var(--gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 1rem;
+    font-size: clamp(1.65rem, 2.85vw, 3.65rem);
+    line-height: 0.9;
+    letter-spacing: 1px;
     text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.slide-subtitle {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.5rem;
-    color: var(--gray);
-    letter-spacing: 3px;
-}
-
-.slider-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: #ffffff;
-    border: 2px solid var(--primary);
-    color: var(--primary);
-    font-size: 2rem;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    z-index: 10;
-    box-shadow: var(--shadow-md);
-}
-
-.slider-btn:hover {
-    background: var(--gradient);
     color: #ffffff;
-    border-color: transparent;
-    transform: translateY(-50%) scale(1.1);
-    box-shadow: var(--shadow-orange);
+    text-shadow: 0 3px 12px rgba(0, 0, 0, 0.55);
 }
 
-.slider-btn.prev { left: 2rem; }
-.slider-btn.next { right: 2rem; }
-
-.slider-dots {
+.home-hero-sub {
     position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 1rem;
-    z-index: 10;
+    left: 0.62rem;
+    bottom: 0.35rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1rem, 1.2vw, 1.5rem);
+    letter-spacing: 1px;
+    color: #ffffff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.55);
 }
 
-.dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: rgba(255, 107, 53, 0.3);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
+.tile-collection { grid-column: 1; grid-row: 1 / span 2; }
+.tile-earlybird { grid-column: 1; grid-row: 3; }
+
+.tile-figures { grid-column: 2; grid-row: 1 / span 3; }
+
+.tile-reservas { grid-column: 3; grid-row: 1 / span 2; }
+.tile-sale { grid-column: 3; grid-row: 3; }
+
+.tile-collection,
+.tile-reservas {
+    aspect-ratio: 1 / 1;
+    min-height: auto;
 }
 
-.dot.active {
-    background: var(--primary);
-    width: 40px;
-    border-radius: 6px;
-    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
-}
-
-.dot:hover {
-    background: var(--primary);
-    border-color: var(--primary);
-}
+.tile-collection { --tile-placeholder-1: #f59e0b; --tile-placeholder-2: #c2410c; }
+.tile-earlybird { --tile-placeholder-1: #fde047; --tile-placeholder-2: #f59e0b; }
+.tile-figures { --tile-placeholder-1: #a855f7; --tile-placeholder-2: #6d28d9; }
+.tile-reservas { --tile-placeholder-1: #ef4444; --tile-placeholder-2: #991b1b; }
+.tile-sale { --tile-placeholder-1: #facc15; --tile-placeholder-2: #f97316; }
 
 /* ========================
    PRODUCTS SECTION (Nuevos Lanzamientos)
@@ -1558,29 +1511,31 @@ body {
     .mobile-menu-btn { display: block; }
 
     .slider {
-        height: 200px;
-        margin-top: 85px;
+        margin-top: 104px;
+        padding: 0 1.1rem;
     }
 
-    .slider-banner-img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center center;
-        display: block;
+    .home-hero-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: repeat(4, minmax(86px, 1fr));
+        row-gap: 0.56rem;
+        column-gap: 0.72rem;
     }
 
-    .slide-title { font-size: 2.5rem; }
-    .slide-subtitle { font-size: 1.2rem; }
-
-    .slider-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 1.5rem;
+    .tile-collection { grid-column: 1; grid-row: 1; }
+    .tile-reservas { grid-column: 2; grid-row: 1; }
+    .tile-figures { grid-column: 1 / span 2; grid-row: 2 / span 2; min-height: 208px; }
+    .tile-earlybird { grid-column: 1; grid-row: 4; }
+    .tile-sale { grid-column: 2; grid-row: 4; min-height: 86px; }
+    .tile-collection,
+    .tile-reservas {
+        aspect-ratio: auto;
+        min-height: 86px;
     }
 
-    .slider-btn.prev { left: 1rem; }
-    .slider-btn.next { right: 1rem; }
+    .home-hero-tile {
+        min-height: 86px;
+    }
 
     /* Móvil: el carrusel maneja el layout — ver bloque .destacados-carrusel-wrap */
 
