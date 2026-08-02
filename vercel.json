@@ -1,0 +1,14 @@
+{
+  "redirects": [
+    {
+      "source": "/contacto.html",
+      "destination": "/quienes-somos.html",
+      "permanent": true
+    },
+    {
+      "source": "/contacto",
+      "destination": "/quienes-somos.html",
+      "permanent": true
+    }
+  ]
+}

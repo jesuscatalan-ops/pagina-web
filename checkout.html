@@ -437,6 +437,18 @@
             transform: none;
         }
 
+        .checkout-error {
+            margin-top: 1rem;
+            padding: 0.85rem 1rem;
+            border-radius: 12px;
+            background: #fff1f0;
+            border: 1px solid #ffccc7;
+            color: #a8071a;
+            font-size: 0.9rem;
+            line-height: 1.45;
+            text-align: center;
+        }
+
         .checkout-nota-seguridad {
             display: flex;
             align-items: center;
@@ -534,7 +546,7 @@
             <nav class="nav">
                 <a href="index.html" class="nav-link">Inicio</a>
                 <a href="catalogo.html" class="nav-link">Catalogo</a>
-                <a href="contacto.html" class="nav-link">Contactanos</a>
+                <a href="quienes-somos.html" class="nav-link">Quiénes Somos</a>
                 <a href="reservas.html" class="nav-link">Reservas</a>
             </nav>
             <button class="mobile-menu-btn">☰</button>
@@ -641,8 +653,8 @@
             <div class="checkout-section">
                 <h2 class="checkout-section-title">🚚 MÉTODO DE ENVÍO</h2>
                 <div class="envio-opciones" id="envio-opciones">
-                    <label class="envio-opcion seleccionado" onclick="seleccionarEnvio(this, 4990, 'Starken')">
-                        <input type="radio" name="envio" value="4990" checked>
+                    <label class="envio-opcion seleccionado" onclick="seleccionarEnvio(this, 'starken')">
+                        <input type="radio" name="envio" value="starken" checked>
                         <div class="envio-opcion-left">
                             <div class="envio-radio-dot"></div>
                             <div>
@@ -650,10 +662,10 @@
                                 <div class="envio-desc">3–5 días hábiles</div>
                             </div>
                         </div>
-                        <div class="envio-precio">$4.990</div>
+                        <div class="envio-precio" data-precio-envio> $4.990</div>
                     </label>
-                    <label class="envio-opcion" onclick="seleccionarEnvio(this, 4490, 'Chilexpress')">
-                        <input type="radio" name="envio" value="4490">
+                    <label class="envio-opcion" onclick="seleccionarEnvio(this, 'chilexpress')">
+                        <input type="radio" name="envio" value="chilexpress">
                         <div class="envio-opcion-left">
                             <div class="envio-radio-dot"></div>
                             <div>
@@ -661,10 +673,10 @@
                                 <div class="envio-desc">2–4 días hábiles</div>
                             </div>
                         </div>
-                        <div class="envio-precio">$4.490</div>
+                        <div class="envio-precio" data-precio-envio>$4.490</div>
                     </label>
-                    <label class="envio-opcion" onclick="seleccionarEnvio(this, 3990, 'Correos de Chile')">
-                        <input type="radio" name="envio" value="3990">
+                    <label class="envio-opcion" onclick="seleccionarEnvio(this, 'correos')">
+                        <input type="radio" name="envio" value="correos">
                         <div class="envio-opcion-left">
                             <div class="envio-radio-dot"></div>
                             <div>
@@ -672,10 +684,10 @@
                                 <div class="envio-desc">5–7 días hábiles</div>
                             </div>
                         </div>
-                        <div class="envio-precio">$3.990</div>
+                        <div class="envio-precio" data-precio-envio>$3.990</div>
                     </label>
-                    <label class="envio-opcion" onclick="seleccionarEnvio(this, 0, 'Retiro en Santiago')">
-                        <input type="radio" name="envio" value="0">
+                    <label class="envio-opcion" onclick="seleccionarEnvio(this, 'retiro')">
+                        <input type="radio" name="envio" value="retiro">
                         <div class="envio-opcion-left">
                             <div class="envio-radio-dot"></div>
                             <div>
@@ -737,11 +749,13 @@
                 </div>
 
                 <button class="confirmar-btn" id="btn-confirmar" onclick="confirmarPedido(event)">
-                    CONFIRMAR COMPRA
+                    PAGAR CON MERCADO PAGO
                 </button>
 
+                <p class="checkout-error" id="checkout-error" role="alert" hidden></p>
+
                 <p class="checkout-nota-seguridad">
-                    🔒 Tus datos están seguros · Te contactaremos para coordinar el pago
+                    🔒 Pago seguro con Mercado Pago · Precios validados en el servidor
                 </p>
             </div>
         </div>
@@ -772,7 +786,7 @@
                 <ul class="footer-links">
                     <li><a href="#">¿Cómo comprar?</a></li>
                     <li><a href="#">Envíos y tiempos</a></li>
-                    <li><a href="contacto.html">Contacto</a></li>
+                    <li><a href="quienes-somos.html#contacto">Contacto</a></li>
                 </ul>
             </div>
         </div>
@@ -781,56 +795,67 @@
         </div>
     </footer>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
-import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
-import { init as ejsInit, send as ejsSend } from "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/+esm";
-ejsInit('tBurOFgbJvfwvPlor');
-
-// ── Firebase ──
-const firebaseConfig = {
-    apiKey: "AIzaSyCdNnfceBGx-YQKZKE29Jcjl95II76gmKs",
-    authDomain: "anime2chile-655d5.firebaseapp.com",
-    projectId: "anime2chile-655d5",
-    storageBucket: "anime2chile-655d5.firebasestorage.app",
-    messagingSenderId: "70712282117",
-    appId: "1:70712282117:web:fe1dbc7558f8fb4d19206c"
+<script src="https://sdk.mercadopago.com/js/v2"></script>
+<script>
+// ── Estado (el total real lo decide el servidor al pagar) ──
+// Reglas espejo solo para preview en UI; deben coincidir con server.js
+const ENVIO_GRATIS_DESDE = 80000;
+const METODOS_ENVIO = {
+    starken:     { id: 'starken',     nombre: 'Starken',            costoBase: 4990 },
+    chilexpress: { id: 'chilexpress', nombre: 'Chilexpress',        costoBase: 4490 },
+    correos:     { id: 'correos',     nombre: 'Correos de Chile',   costoBase: 3990 },
+    retiro:      { id: 'retiro',      nombre: 'Retiro en Santiago', costoBase: 0, esRetiro: true },
 };
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-// ── Estado global ──
-let costoEnvio = 4990;
-let nombreEnvio = 'Starken';
-let descuento = 0;
-let cuponAplicado = false;
-
 const CUPONES = {
-    'JOJO10':     0.10,
-    'ANIME15':    0.15,
-    'BIENVENIDO': 0.05,
+    JOJO10:     { tipo: 'porcentaje', valor: 0.10 },
+    ANIME15:    { tipo: 'porcentaje', valor: 0.15 },
+    BIENVENIDO: { tipo: 'porcentaje', valor: 0.05 },
 };
 
-// ── Utilidades ──
+let tipoEnvio = 'starken';
+let descuentoPct = 0;
+let cuponCodigo = null;
+let mpPublicKey = '';
+let mpInstance = null;
+
 function obtenerCarrito() {
     try { return JSON.parse(localStorage.getItem('anime2chile_carrito')) || []; }
     catch { return []; }
 }
 
 function formatPrecio(n) {
-    return '$' + n.toLocaleString('es-CL');
+    return '$' + Number(n).toLocaleString('es-CL');
+}
+
+function costoEnvioActual(subtotal) {
+    const metodo = METODOS_ENVIO[tipoEnvio];
+    if (!metodo) return 0;
+    if (metodo.esRetiro) return 0;
+    if (subtotal >= ENVIO_GRATIS_DESDE) return 0;
+    return metodo.costoBase;
 }
 
 function calcularTotales() {
     const carrito = obtenerCarrito();
     const subtotal = carrito.reduce((s, i) => s + i.precio * i.cantidad, 0);
-    const envioFinal = subtotal >= 80000 ? 0 : costoEnvio;
-    const descuentoMonto = Math.round(subtotal * descuento);
+    const envioFinal = costoEnvioActual(subtotal);
+    const descuentoMonto = Math.round(subtotal * descuentoPct);
     const total = subtotal - descuentoMonto + envioFinal;
     return { subtotal, envioFinal, descuentoMonto, total };
 }
 
-// ── Render resumen ──
+function mostrarErrorCheckout(msg) {
+    const el = document.getElementById('checkout-error');
+    if (!el) return;
+    if (!msg) {
+        el.hidden = true;
+        el.textContent = '';
+        return;
+    }
+    el.hidden = false;
+    el.textContent = msg;
+}
+
 function renderResumen() {
     const carrito = obtenerCarrito();
     const itemsEl = document.getElementById('resumen-items');
@@ -872,36 +897,56 @@ function actualizarTotales() {
     if (descuentoMonto > 0) {
         document.getElementById('linea-descuento').style.display = 'flex';
         document.getElementById('resumen-descuento-valor').textContent = '−' + formatPrecio(descuentoMonto);
+    } else {
+        document.getElementById('linea-descuento').style.display = 'none';
     }
 
     document.getElementById('resumen-total').textContent = formatPrecio(total);
+
+    // Actualizar etiquetas de precio de envío (gratis si aplica)
+    document.querySelectorAll('#envio-opciones .envio-opcion').forEach(op => {
+        const id = op.querySelector('input')?.value;
+        const metodo = METODOS_ENVIO[id];
+        const precioEl = op.querySelector('[data-precio-envio]');
+        if (!metodo || !precioEl) return;
+        const costo = (!metodo.esRetiro && subtotal >= ENVIO_GRATIS_DESDE) ? 0 : metodo.costoBase;
+        if (costo === 0) {
+            precioEl.textContent = 'GRATIS';
+            precioEl.style.color = '#00a87e';
+            precioEl.style.webkitTextFillColor = '#00a87e';
+        } else {
+            precioEl.textContent = formatPrecio(costo);
+            precioEl.style.color = '';
+            precioEl.style.webkitTextFillColor = '';
+        }
+    });
 }
 
-// ── Envío ──
-window.seleccionarEnvio = function(el, precio, nombre) {
+window.seleccionarEnvio = function(el, id) {
     document.querySelectorAll('.envio-opcion').forEach(o => o.classList.remove('seleccionado'));
     el.classList.add('seleccionado');
     el.querySelector('input').checked = true;
-    costoEnvio = precio;
-    nombreEnvio = nombre;
+    tipoEnvio = id;
     actualizarTotales();
 };
 
-// ── Cupón ──
 window.aplicarCupon = function() {
-    if (cuponAplicado) return;
     const codigo = document.getElementById('campo-cupon').value.trim().toUpperCase();
     const msg = document.getElementById('cupon-msg');
+    const cupon = CUPONES[codigo];
 
-    if (CUPONES[codigo]) {
-        descuento = CUPONES[codigo];
-        cuponAplicado = true;
+    if (cupon) {
+        descuentoPct = cupon.valor;
+        cuponCodigo = codigo;
         msg.className = 'cupon-msg ok';
-        msg.textContent = '✓ Cupón aplicado: ' + (descuento * 100) + '% de descuento';
+        msg.textContent = '✓ Cupón aplicado: ' + (descuentoPct * 100) + '% de descuento (sujeto a validación al pagar)';
         actualizarTotales();
     } else {
+        descuentoPct = 0;
+        cuponCodigo = null;
         msg.className = 'cupon-msg error';
-        msg.textContent = '✕ Código inválido o ya usado';
+        msg.textContent = '✕ Código inválido';
+        actualizarTotales();
     }
 };
 
@@ -909,10 +954,9 @@ document.getElementById('campo-cupon').addEventListener('keydown', e => {
     if (e.key === 'Enter') window.aplicarCupon();
 });
 
-// ── Validación ──
 function validar() {
     let valido = true;
-    const esRetiro = nombreEnvio === 'Retiro en Santiago';
+    const esRetiro = tipoEnvio === 'retiro';
 
     const campos = [
         { id: 'campo-nombre',    err: 'err-nombre',    check: v => v.length >= 2 },
@@ -938,159 +982,124 @@ function validar() {
     return valido;
 }
 
-// ── Confirmar pedido → Firestore ──
+async function cargarConfigMp() {
+    try {
+        const res = await fetch('/api/config');
+        if (!res.ok) throw new Error('config');
+        const data = await res.json();
+        mpPublicKey = data.publicKey || '';
+        if (mpPublicKey && window.MercadoPago) {
+            mpInstance = new MercadoPago(mpPublicKey, { locale: 'es-CL' });
+        }
+    } catch (err) {
+        console.warn('No se pudo cargar /api/config. ¿Está corriendo el servidor Express?', err);
+    }
+}
+
+// ── Pagar → crear preferencia en el servidor y redirigir a Checkout Pro ──
 window.confirmarPedido = async function(e) {
     if (e) e.preventDefault();
+    mostrarErrorCheckout('');
 
     if (!validar()) {
         document.querySelector('.form-input.error')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
         return;
     }
 
+    const carrito = obtenerCarrito();
+    if (!carrito.length) {
+        mostrarErrorCheckout('Tu carrito está vacío.');
+        return;
+    }
+
     const btn = document.getElementById('btn-confirmar');
     btn.disabled = true;
-    btn.textContent = 'GUARDANDO PEDIDO...';
+    btn.textContent = 'PREPARANDO PAGO...';
 
-    const carrito = obtenerCarrito();
-    const { subtotal, envioFinal, descuentoMonto, total } = calcularTotales();
-
-    const pedido = {
-        // Fecha
-        fecha: serverTimestamp(),
-        estado: 'pendiente',
-
-        // Cliente
-        cliente: {
-            nombre:    document.getElementById('campo-nombre').value.trim(),
-            apellido:  document.getElementById('campo-apellido').value.trim(),
-            telefono:  '+56' + document.getElementById('campo-telefono').value.trim().replace(/\s/g,''),
-            email:     document.getElementById('campo-email').value.trim(),
-            rut:       document.getElementById('campo-rut').value.trim(),
-        },
-
-        // Dirección
-        direccion: {
-            region:    document.getElementById('campo-region').value,
-            ciudad:    document.getElementById('campo-ciudad').value.trim(),
-            postal:    document.getElementById('campo-postal').value.trim(),
-            calle:     document.getElementById('campo-direccion').value.trim(),
-            depto:     document.getElementById('campo-depto').value.trim(),
-        },
-
-        // Envío
-        envio: {
-            metodo:  nombreEnvio,
-            costo:   envioFinal,
-        },
-
-        // Productos
-        productos: carrito.map(item => ({
-            id:       item.id,
-            nombre:   item.nombre,
-            precio:   item.precio,
+    const payload = {
+        items: carrito.map(item => ({
+            id: item.id,
             cantidad: item.cantidad,
-            subtotal: item.precio * item.cantidad,
-            imagen:   item.imagen || '',
         })),
-
-        // Totales
-        totales: {
-            subtotal:         subtotal,
-            descuentoPct:     descuento,
-            descuentoMonto:   descuentoMonto,
-            cupon:            cuponAplicado ? document.getElementById('campo-cupon').value.trim().toUpperCase() : null,
-            envio:            envioFinal,
-            total:            total,
+        cupon: cuponCodigo || document.getElementById('campo-cupon').value.trim() || null,
+        tipoEnvio,
+        cliente: {
+            nombre:   document.getElementById('campo-nombre').value.trim(),
+            apellido: document.getElementById('campo-apellido').value.trim(),
+            telefono: document.getElementById('campo-telefono').value.trim().replace(/\s/g, ''),
+            email:    document.getElementById('campo-email').value.trim(),
+            rut:      document.getElementById('campo-rut').value.trim(),
         },
-
-        // Notas
+        direccion: {
+            region: document.getElementById('campo-region').value,
+            ciudad: document.getElementById('campo-ciudad').value.trim(),
+            postal: document.getElementById('campo-postal').value.trim(),
+            calle:  document.getElementById('campo-direccion').value.trim(),
+            depto:  document.getElementById('campo-depto').value.trim(),
+        },
         notas: document.getElementById('campo-notas').value.trim() || null,
     };
 
     try {
-        const docRef = await addDoc(collection(db, 'pedidos'), pedido);
+        const res = await fetch('/api/crear-preferencia', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+        });
 
-        // ── Enviar correo con EmailJS ──
-        const direccionCompleta = [
-            pedido.direccion.calle,
-            pedido.direccion.depto,
-            pedido.direccion.ciudad,
-            pedido.direccion.region,
-            pedido.direccion.postal ? `CP: ${pedido.direccion.postal}` : null
-        ].filter(Boolean).join(', ');
+        const data = await res.json().catch(() => ({}));
 
-        const templateParams = {
-            // Datos del cliente
-            nombre:        `${pedido.cliente.nombre} ${pedido.cliente.apellido}`,
-            rut:           pedido.cliente.rut,
-            email:         pedido.cliente.email,
-            telefono:      pedido.cliente.telefono,
-            direccion:     direccionCompleta,
-            metodo_envio:  `${pedido.envio.metodo} ($${pedido.envio.costo.toLocaleString('es-CL')})`,
-
-            // Orden
-            orden_id:      docRef.id,
-            costo_envio:   pedido.totales.envio.toLocaleString('es-CL'),
-            total:         pedido.totales.total.toLocaleString('es-CL'),
-
-            // Lista de productos para el bloque {{#orders}}
-            orders: carrito.map(item => ({
-                nombre:   item.nombre,
-                cantidad: item.cantidad,
-                precio:   (item.precio * item.cantidad).toLocaleString('es-CL'),
-                imagen:   item.imagen || '',
-            })),
-
-            // Destinatario del correo (al admin)
-            to_email: 'multishoes@gmail.com',
-        };
-
-        // Enviar al admin
-        console.log('📧 Intentando enviar email con EmailJS...');
-        console.log('templateParams:', JSON.stringify(templateParams, null, 2));
-        try {
-            const emailResult = await ejsSend('service_pvwl9t4', 'template_sresht3', templateParams);
-            console.log('✅ EmailJS éxito:', emailResult.status, emailResult.text);
-        } catch (emailErr) {
-            console.error('❌ EmailJS error:', emailErr);
-            console.error('Status:', emailErr.status);
-            console.error('Text:', emailErr.text);
+        if (!res.ok) {
+            throw new Error(data.error || 'No se pudo iniciar el pago');
         }
 
-        // Éxito: vaciar carrito y redirigir
-        localStorage.removeItem('anime2chile_carrito');
-        window.location.href = 'gracias.html';
+        if (data.avisoCupon) {
+            const msg = document.getElementById('cupon-msg');
+            msg.className = 'cupon-msg error';
+            msg.textContent = data.avisoCupon;
+        }
 
+        if (!data.init_point) {
+            throw new Error('El servidor no devolvió el enlace de pago');
+        }
+
+        // SDK de frontend inicializado con la Public Key (Checkout Pro = redirección)
+        if (!mpInstance && mpPublicKey && window.MercadoPago) {
+            mpInstance = new MercadoPago(mpPublicKey, { locale: 'es-CL' });
+        }
+
+        btn.textContent = 'REDIRIGIENDO A MERCADO PAGO...';
+        window.location.href = data.init_point;
     } catch (error) {
-        console.error('Error guardando pedido:', error);
+        console.error('Error al crear preferencia:', error);
         btn.disabled = false;
-        btn.textContent = 'CONFIRMAR COMPRA';
-        alert('Hubo un error al procesar tu pedido. Por favor intenta nuevamente.');
+        btn.textContent = 'PAGAR CON MERCADO PAGO';
+        mostrarErrorCheckout(
+            error.message || 'Hubo un error al conectar con Mercado Pago. Intenta nuevamente.'
+        );
     }
 };
 
-// ── Menú móvil ──
 document.addEventListener('DOMContentLoaded', () => {
     renderResumen();
+    cargarConfigMp();
 
-
-        // ── Formateo automático del RUT ──
-        const rutInput = document.getElementById('campo-rut');
-        if (rutInput) {
-            rutInput.addEventListener('input', function() {
-                let v = this.value.replace(/[^0-9kK]/g, '').toUpperCase();
-                if (v.length > 9) v = v.slice(0, 9);
-                if (v.length <= 1) { this.value = v; return; }
-                const dv = v.slice(-1);
-                let num = v.slice(0, -1);
-                let formatted = '';
-                while (num.length > 3) {
-                    formatted = '.' + num.slice(-3) + formatted;
-                    num = num.slice(0, -3);
-                }
-                this.value = num + formatted + '-' + dv;
-            });
-        }
+    const rutInput = document.getElementById('campo-rut');
+    if (rutInput) {
+        rutInput.addEventListener('input', function() {
+            let v = this.value.replace(/[^0-9kK]/g, '').toUpperCase();
+            if (v.length > 9) v = v.slice(0, 9);
+            if (v.length <= 1) { this.value = v; return; }
+            const dv = v.slice(-1);
+            let num = v.slice(0, -1);
+            let formatted = '';
+            while (num.length > 3) {
+                formatted = '.' + num.slice(-3) + formatted;
+                num = num.slice(0, -3);
+            }
+            this.value = num + formatted + '-' + dv;
+        });
+    }
 
     const btn = document.querySelector('.mobile-menu-btn');
     const nav = document.querySelector('.nav');

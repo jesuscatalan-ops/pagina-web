@@ -1,0 +1,19 @@
+# Dependencias y secretos
+node_modules/
+.env*
+!.env.example
+
+# Credenciales Firebase (nunca subir al repo)
+*-firebase-adminsdk*.json
+serviceAccount*.json
+firebase-service-account.json
+
+# Sistema / IDE
+.DS_Store
+*.log
+.vscode/
+.idea/
+
+# Temporales
+tmp/
+temp/

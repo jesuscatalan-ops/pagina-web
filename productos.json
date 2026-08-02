@@ -1,7 +1,7 @@
 [
   {
     "id": "star-platinum",
-    "nombre": "Star Platinum (Second) - Super Action Statue (Medicos Entertainment)",
+    "nombre": "Star Platinum (Third) - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Stardust Crusaders",
     "tipo": "Figura articulada",
@@ -18,13 +18,16 @@
     "badgeTipo": "default",
     "gradiente": "linear-gradient(135deg, #3a1a6e 0%, #6b35c8 100%)",
     "placeholder": "STAR\nPLATINUM",
-    "imagen": "imagenes/starplatinum.jpg",
+    "imagen": "imagenes/jojos-medicos/star platinum (third)/starplatinum.jpg",
     "imagenes": [
-      "imagenes/starplatinum.jpg",
-      "imagenes/star1.jpg"
+      "imagenes/jojos-medicos/star platinum (third)/starplatinum.jpg",
+      "imagenes/jojos-medicos/star platinum (third)/s.p(third).jpg.webp",
+      "imagenes/jojos-medicos/star platinum (third)/s.p(third)2.jpg.webp",
+      "imagenes/jojos-medicos/star platinum (third)/s.p(third)3.jpg.webp",
+      "imagenes/jojos-medicos/star platinum (third)/star1.jpg"
     ],
     "descripcion": "Star Platinum es el Stand de Jotaro Kujo, reconocido por su fuerza sobrehumana y velocidad extrema. Esta figura articulada de 28cm captura cada detalle de su imponente diseño con acabados premium en tonos morado profundo y dorado. Articulaciones en hombros, codos, muñecas, caderas y rodillas permiten múltiples poses de exhibición.",
-    "descripcionCorta": "Figura articulada 28cm — Medicos Entertainment",
+    "descripcionCorta": "Figura articulada (Color Alternativo) — Medicos Entertainment",
     "relacionados": [
       "jotaro-kujo",
       "jotaro-kujo-third",
@@ -52,7 +55,14 @@
     "badgeTipo": "default",
     "gradiente": "linear-gradient(135deg, #1a2a3a 0%, #2a4a6e 100%)",
     "placeholder": "JOTARO\nKUJO",
-    "imagen": "imagenes/jotaro1,5.jpeg",
+    "imagen": "imagenes/jojos-medicos/jotaro kujo (ver1.5)/jotaro1.5.jpeg",
+    "imagenes": [
+      "imagenes/jojos-medicos/jotaro kujo (ver1.5)/jotaro1.5.jpeg",
+      "imagenes/jojos-medicos/jotaro kujo (ver1.5)/jotaro1.5-2.jpg",
+      "imagenes/jojos-medicos/jotaro kujo (ver1.5)/jotaro1.5-3.jpg",
+      "imagenes/jojos-medicos/jotaro kujo (ver1.5)/jotaro1.5-4.jpg",
+      "imagenes/jojos-medicos/jotaro kujo (ver1.5)/jotaro1.5-5.jpg"
+    ],
     "descripcion": "Jotaro Kujo, el icónico protagonista de Stardust Crusaders, con su inconfundible gorra y aura de Star Platinum. Esta figura articulada de 30cm captura la presencia imponente del JoJo más reconocido de la saga.",
     "descripcionCorta": "Figura articulada 30cm — Medicos Entertainment",
     "relacionados": [
@@ -82,7 +92,15 @@
     "badgeTipo": "warning",
     "gradiente": "linear-gradient(135deg, #2e8b57 0%, #0a4f22 100%)",
     "placeholder": "JOTARO\nTHIRD",
-    "imagen": "imagenes/jotaro_green.jpeg",
+    "imagen": "imagenes/jojos-medicos/jotaro kujo (third)/jotaro kujo(third)1.jpeg",
+    "imagenes": [
+      "imagenes/jojos-medicos/jotaro kujo (third)/jotaro kujo(third)1.jpeg",
+      "imagenes/jojos-medicos/jotaro kujo (third)/jotaro kujo(third)2.jpg",
+      "imagenes/jojos-medicos/jotaro kujo (third)/jotaro kujo(third)3.jpg",
+      "imagenes/jojos-medicos/jotaro kujo (third)/jotaro kujo(third)4.jpg",
+      "imagenes/jojos-medicos/jotaro kujo (third)/jotaro kujo(third)5.jpg",
+      "imagenes/jojos-medicos/jotaro kujo (third)/jotaro kujo(third)6.jpg"
+    ],
     "descripcion": "¡La espectacular versión 'Third' de Jotaro Kujo llega a la línea Super Action Statue! Esta popular variante de la Parte 3: Stardust Crusaders destaca por su característico abrigo y pantalón en tonos verdes. La figura de 16 cm cuenta con una ingeniería de articulación impecable. Incluye rostros intercambiables, manos extra y un increíble set de piezas de efecto translúcidas de color verde para recrear la icónica ráfaga de golpes 'ORA ORA ORA' junto a su Stand.",
     "descripcionCorta": "Figura articulada 16cm (Color Alternativo) — Medicos Entertainment",
     "relacionados": [
@@ -112,7 +130,15 @@
     "badgeTipo": "success",
     "gradiente": "linear-gradient(135deg, #1fa25c 0%, #116b3b 100%)",
     "placeholder": "FOO\nFIGHTERS",
-    "imagen": "imagenes/foofighters.jpeg",
+    "imagen": "imagenes/jojos-medicos/foo fighters/foofighters1.jpeg",
+    "imagenes": [
+      "imagenes/jojos-medicos/foo fighters/foofighters1.jpeg",
+      "imagenes/jojos-medicos/foo fighters/foofighters2.jpg",
+      "imagenes/jojos-medicos/foo fighters/foofighters3.jpg",
+      "imagenes/jojos-medicos/foo fighters/foofighters4.jpg",
+      "imagenes/jojos-medicos/foo fighters/foofighters5.jpg",
+      "imagenes/jojos-medicos/foo fighters/foofighters6.jpg"
+    ],
     "descripcion": "Foo Fighters (F.F.), la entidad creada a partir de plancton, cobra vida en esta increíble figura de la Parte 6: Stone Ocean. Con 14 cm de altura, reproduce fielmente su característico cabello verde brillante y su cuerpo flexible. El set incluye accesorios icónicos como su inseparable vaso con pajita para mantenerse hidratada, rostros intercambiables, piezas de efecto para simular sus disparos y dos miniaturas en su forma original de plancton.",
     "descripcionCorta": "Figura articulada 14cm — Medicos Entertainment",
     "relacionados": [
@@ -142,7 +168,15 @@
     "badgeTipo": "primary",
     "gradiente": "linear-gradient(135deg, #185a9d 0%, #ea5c0b 100%)",
     "placeholder": "GUIDO\nMISTA",
-    "imagen": "imagenes/mista.jpeg",
+    "imagen": "imagenes/jojos-medicos/guido mista/mista1.jpeg",
+    "imagenes": [
+      "imagenes/jojos-medicos/guido mista/mista1.jpeg",
+      "imagenes/jojos-medicos/guido mista/mista2.jpg.webp",
+      "imagenes/jojos-medicos/guido mista/mista3.jpg.webp",
+      "imagenes/jojos-medicos/guido mista/mista4.jpg.webp",
+      "imagenes/jojos-medicos/guido mista/mista5.jpg.webp",
+      "imagenes/jojos-medicos/guido mista/mista6.jpg.webp"
+    ],
     "descripcion": "El carismático y supersticioso pistolero de Passione, Guido Mista, se une a la línea Super Action Statue. Esta figura de la Parte 5: Golden Wind captura a la perfección su icónico suéter azul con diseño de red y sus llamativos pantalones con rayas de tigre. Con 16 cm de altura y gran articulación para poses de combate, el set incluye su fiel revólver (que puede guardar en su pantalón), efectos de disparo, rostros intercambiables, y las miniaturas de sus 6 compañeros de Stand: ¡Sex Pistols!",
     "descripcionCorta": "Figura articulada 16cm (Incluye Sex Pistols) — Medicos Entertainment",
     "relacionados": [
@@ -154,8 +188,8 @@
     "continuacionTitulo": ""
   },
   {
-    "id": "gold-experience",
-    "nombre": "Gold Experience - Super Action Statue (Medicos Entertainment)",
+    "id": "gold-experience-requiem",
+    "nombre": "Gold Experience Requiem - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Golden Wind",
     "tipo": "Figura articulada",
@@ -172,8 +206,16 @@
     "badgeTipo": "default",
     "gradiente": "linear-gradient(135deg, #d4af37 0%, #6b3fa0 100%)",
     "placeholder": "GOLD\nEXPERIENCE",
-    "imagen": "imagenes/golden_experience.jpeg",
-    "descripcion": "El elegante y vital Stand de Giorno Giovanna, Gold Experience, se presenta en la línea Super Action Statue. Originario de la Parte 5: Golden Wind, esta figura de 16 cm captura su esbelto diseño dorado con intrincados detalles de mariquitas moradas y acentos verdes. Famoso por su habilidad de dar vida a objetos inanimados, la figura cuenta con un excelente rango de articulación e incluye múltiples manos intercambiables y una cabeza alternativa para recrear sus dinámicas poses de combate.",
+    "imagen": "imagenes/jojos-medicos/ger/ger1.jpeg",
+    "imagenes": [
+      "imagenes/jojos-medicos/ger/ger1.jpeg",
+      "imagenes/jojos-medicos/ger/ger2.jpg",
+      "imagenes/jojos-medicos/ger/ger3.jpg",
+      "imagenes/jojos-medicos/ger/ger4.jpg",
+      "imagenes/jojos-medicos/ger/ger5.jpg",
+      "imagenes/jojos-medicos/ger/ger6.jpg"
+    ],
+    "descripcion": "¡La forma definitiva y omnipotente! Gold Experience Requiem (G.E.R.) despierta en la línea Super Action Statue. Esta evolución del Stand de Giorno en la Parte 5 presenta su característico tono marfil y dorado pálido con llamativos detalles púrpuras. Con 16 cm de altura, la figura captura su aura divina e intimidante. Incluye rostros intercambiables con distintas expresiones, manos adicionales y un increíble nivel de detalle en sus emblemas de flecha para recrear el clímax absoluto de la serie.",
     "descripcionCorta": "Figura articulada 16cm — Medicos Entertainment",
     "relacionados": [
       "gold-experience-requiem",
@@ -184,8 +226,8 @@
     "continuacionTitulo": ""
   },
   {
-    "id": "gold-experience-requiem",
-    "nombre": "Gold Experience Requiem - Super Action Statue (Medicos Entertainment)",
+    "id": "gold-experience",
+    "nombre": "Gold Experience - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Golden Wind",
     "tipo": "Figura articulada",
@@ -202,8 +244,16 @@
     "badgeTipo": "danger",
     "gradiente": "linear-gradient(135deg, #e6d5a1 0%, #8a2be2 100%)",
     "placeholder": "REQUIEM",
-    "imagen": "imagenes/ger.jpeg",
-    "descripcion": "¡La forma definitiva y omnipotente! Gold Experience Requiem (G.E.R.) despierta en la línea Super Action Statue. Esta evolución del Stand de Giorno en la Parte 5 presenta su característico tono marfil y dorado pálido con llamativos detalles púrpuras. Con 16 cm de altura, la figura captura su aura divina e intimidante. Incluye rostros intercambiables con distintas expresiones, manos adicionales y un increíble nivel de detalle en sus emblemas de flecha para recrear el clímax absoluto de la serie.",
+    "imagen": "imagenes/jojos-medicos/gold experience/gold experience1.jpeg",
+    "imagenes": [
+      "imagenes/jojos-medicos/gold experience/gold experience1.jpeg",
+      "imagenes/jojos-medicos/gold experience/gold experience2.jpg",
+      "imagenes/jojos-medicos/gold experience/gold experience3.jpg.webp",
+      "imagenes/jojos-medicos/gold experience/gold experience4.jpg",
+      "imagenes/jojos-medicos/gold experience/gold experience5.jpg.webp",
+      "imagenes/jojos-medicos/gold experience/gold experience6.jpg"
+    ],
+    "descripcion": "El elegante y vital Stand de Giorno Giovanna, Gold Experience, se presenta en la línea Super Action Statue. Originario de la Parte 5: Golden Wind, esta figura de 16 cm captura su esbelto diseño dorado con intrincados detalles de mariquitas moradas y acentos verdes. Famoso por su habilidad de dar vida a objetos inanimados, la figura cuenta con un excelente rango de articulación e incluye múltiples manos intercambiables y una cabeza alternativa para recrear sus dinámicas poses de combate.",
     "descripcionCorta": "Figura articulada 16cm (Forma Requiem) — Medicos Entertainment",
     "relacionados": [
       "gold-experience",
@@ -214,8 +264,8 @@
     "continuacionTitulo": ""
   },
   {
-    "id": "bruno-bucciarati",
-    "nombre": "Bruno Bucciarati - Super Action Statue (Medicos Entertainment)",
+    "id": "bruno-bucciarati-black",
+    "nombre": "Bruno Bucciarati (ver.Black) - Super Action Statue (Medicos Entertainment)",
     "serie": "JoJo's Bizarre Adventure",
     "parte": "Golden Wind",
     "tipo": "Figura articulada",
@@ -232,7 +282,15 @@
     "badgeTipo": "dark",
     "gradiente": "linear-gradient(135deg, #1a1a1a 0%, #6a5acd 100%)",
     "placeholder": "BRUNO\nBUCCIARATI",
-    "imagen": "imagenes/bucciarati.jpeg",
+    "imagen": "imagenes/jojos-medicos/bruno bucciarati (ver.black)/bucciarati (ver.black)1.png",
+    "imagenes": [
+      "imagenes/jojos-medicos/bruno bucciarati (ver.black)/bucciarati (ver.black)1.png",
+      "imagenes/jojos-medicos/bruno bucciarati (ver.black)/bucciarati (ver.black)2.jpg",
+      "imagenes/jojos-medicos/bruno bucciarati (ver.black)/bucciarati (ver.black)3.jpg",
+      "imagenes/jojos-medicos/bruno bucciarati (ver.black)/bucciarati (ver.black)4.jpg",
+      "imagenes/jojos-medicos/bruno bucciarati (ver.black)/bucciarati (ver.black)5.jpg",
+      "imagenes/jojos-medicos/bruno bucciarati (ver.black)/bucciarati (ver.black)6.jpg.webp"
+    ],
     "descripcion": "El noble y determinado líder de escuadrón de Passione, Bruno Bucciarati, hace su aparición en la línea Super Action Statue. Directo de la Parte 5: Golden Wind, esta figura de 16 cm retrata fielmente su inconfundible traje negro adornado con cremalleras doradas. La figura incluye manos intercambiables, rostros con diferentes expresiones (incluyendo su clásico grito de batalla) y partes de accesorios de cremalleras para recrear las sorprendentes habilidades espaciales de su Stand.",
     "descripcionCorta": "Figura articulada 16cm — Medicos Entertainment",
     "relacionados": [
@@ -262,10 +320,14 @@
     "badgeTipo": "info",
     "gradiente": "linear-gradient(135deg, #9370db 0%, #a9a9a9 100%)",
     "placeholder": "MOODY\nBLUES",
-    "imagen": "imagenes/moody_blues.jpeg",
+    "imagen": "imagenes/jojos-medicos/moody blues/moody blues1.jpeg",
     "imagenes": [
-      "imagenes/moody_blues.jpeg",
-      "imagenes/moody_blues_2.jpg"
+      "imagenes/jojos-medicos/moody blues/moody blues1.jpeg",
+      "imagenes/jojos-medicos/moody blues/moody blues2.jpg.webp",
+      "imagenes/jojos-medicos/moody blues/moody blues3.jpg.webp",
+      "imagenes/jojos-medicos/moody blues/moody blues4.jpg.webp",
+      "imagenes/jojos-medicos/moody blues/moody blues5.jpg.webp",
+      "imagenes/jojos-medicos/moody blues/moody blues6.jpg.webp"
     ],
     "descripcion": "El indispensable Stand de reconocimiento de Leone Abbacchio, Moody Blues, se une a la colección de la Parte 5. Esta figura de 16 cm destaca por su elegante diseño retro-futurista, capturando su suave esquema de colores lila y plateado. Los característicos visores digitales y diales en sus articulaciones están esculpidos con precisión. Cuenta con gran flexibilidad para recrear su habilidad de 'rebobinar' y reproducir el pasado, e incluye una cabeza extra y múltiples manos intercambiables.",
     "descripcionCorta": "Figura articulada 16cm — Medicos Entertainment",
@@ -296,7 +358,15 @@
     "badgeTipo": "secondary",
     "gradiente": "linear-gradient(135deg, #dcdcdc 0%, #4b0082 100%)",
     "placeholder": "WHITE\nSNAKE",
-    "imagen": "imagenes/white_snake.jpeg",
+    "imagen": "imagenes/jojos-medicos/whitesnake/whitesnake1.jpeg",
+    "imagenes": [
+      "imagenes/jojos-medicos/whitesnake/whitesnake1.jpeg",
+      "imagenes/jojos-medicos/whitesnake/whitesnake2.jpg.webp",
+      "imagenes/jojos-medicos/whitesnake/whitesnake3.jpg.webp",
+      "imagenes/jojos-medicos/whitesnake/whitesnake4.jpg.webp",
+      "imagenes/jojos-medicos/whitesnake/whitesnake5.jpg.webp",
+      "imagenes/jojos-medicos/whitesnake/whitesnake6.jpg.webp"
+    ],
     "descripcion": "El temible y calculador Stand del Padre Enrico Pucci, Whitesnake, irrumpe desde la Parte 6: Stone Ocean. Esta impresionante figura de 16 cm recrea a la perfección su diseño pálido con acentos en violeta profundo y las características cadenas de texto impresas a lo largo de todo su cuerpo. Conocido por su habilidad de robar recuerdos y habilidades, el set incluye manos intercambiables, un rostro alternativo, y por supuesto, accesorios de 'Discos' extraídos de sus víctimas.",
     "descripcionCorta": "Figura articulada 16cm (Incluye Discos) — Medicos Entertainment",
     "relacionados": [
@@ -326,7 +396,16 @@
     "badgeTipo": "danger",
     "gradiente": "linear-gradient(135deg, #321b4a 0%, #dc143c 100%)",
     "placeholder": "LISA\nLISA",
-    "imagen": "imagenes/lisa_lisa.jpeg",
+    "imagen": "imagenes/jojos-medicos/lisa lisa/lisa lisa1.jpeg",
+    "imagenes": [
+      "imagenes/jojos-medicos/lisa lisa/lisa lisa1.jpeg",
+      "imagenes/jojos-medicos/lisa lisa/lisa lisa2.jpg.webp",
+      "imagenes/jojos-medicos/lisa lisa/lisa lisa3.jpg.webp",
+      "imagenes/jojos-medicos/lisa lisa/lisa lisa4.jpg.webp",
+      "imagenes/jojos-medicos/lisa lisa/lisa lisa5.jpg.webp",
+      "imagenes/jojos-medicos/lisa lisa/lisa lisa6.jpg.webp",
+      "imagenes/jojos-medicos/lisa lisa/lisa lisa7.jpg.webp"
+    ],
     "descripcion": "La elegante y estricta maestra del Hamon, Lisa Lisa, deslumbra en la línea Super Action Statue. Proveniente de la Parte 2: Battle Tendency, la figura de 15 cm captura su belleza y presencia imponente, vistiendo su ceñido traje azul violáceo y su inconfundible bufanda roja. La figura está altamente articulada para poses de artes marciales e incluye accesorios imprescindibles como la Piedra Roja de Aja, gafas de sol, manos intercambiables y rostros alternativos.",
     "descripcionCorta": "Figura articulada 15cm — Medicos Entertainment",
     "relacionados": [
@@ -355,7 +434,15 @@
     "badgeTipo": "dark",
     "gradiente": "linear-gradient(135deg, #301934 0%, #b8860b 100%)",
     "placeholder": "ENRICO\nPUCCI",
-    "imagen": "imagenes/pucci.jpeg",
+    "imagen": "imagenes/jojos-medicos/enrico pucci/pucci1.jpeg",
+    "imagenes": [
+      "imagenes/jojos-medicos/enrico pucci/pucci1.jpeg",
+      "imagenes/jojos-medicos/enrico pucci/pucci2.jpg.webp",
+      "imagenes/jojos-medicos/enrico pucci/pucci3.jpg.webp",
+      "imagenes/jojos-medicos/enrico pucci/pucci4.jpg.webp",
+      "imagenes/jojos-medicos/enrico pucci/pucci5.jpg.webp",
+      "imagenes/jojos-medicos/enrico pucci/pucci6.jpg.webp"
+    ],
     "descripcion": "El devoto y calculador capellán de la prisión Green Dolphin Street, el Padre Enrico Pucci, llega como una impresionante figura de la Parte 6: Stone Ocean. Con 16 cm de altura, la Super Action Statue recrea a la perfección su extravagante sotana púrpura con cruces doradas y su característico peinado. El set cuenta con excelente articulación para replicar sus intensas poses, e incluye múltiples rostros (algunos en pleno recuento de números primos), sombreros alternativos y manos intercambiables para sostener sus preciados discos.",
     "descripcionCorta": "Figura articulada 16cm — Medicos Entertainment",
     "relacionados": [
@@ -385,7 +472,15 @@
     "badgeTipo": "success",
     "gradiente": "linear-gradient(135deg, #1fa25c 0%, #ff69b4 100%)",
     "placeholder": "DIVER\nDOWN",
-    "imagen": "imagenes/divers_down.jpeg",
+    "imagen": "imagenes/jojos-medicos/diver down/diver down1.jpeg",
+    "imagenes": [
+      "imagenes/jojos-medicos/diver down/diver down1.jpeg",
+      "imagenes/jojos-medicos/diver down/diver down2.jpg.webp",
+      "imagenes/jojos-medicos/diver down/diver down3.jpg.webp",
+      "imagenes/jojos-medicos/diver down/diver down4.jpg.webp",
+      "imagenes/jojos-medicos/diver down/diver down5.jpg.webp",
+      "imagenes/jojos-medicos/diver down/diver down6.jpg.webp"
+    ],
     "descripcion": "El versátil y letal Stand de Narciso Anasui, Diver Down, emerge en la línea Super Action Statue de la Parte 6: Stone Ocean. Su llamativo diseño verde vibrante, adornado con letras 'D' de color fucsia y tubos similares a los de un buzo de aguas profundas, está esculpido con un detalle increíble. Capaz de 'sumergirse' en objetos y personas para reestructurarlos desde adentro, esta figura de 16 cm cuenta con una articulación fluida e incluye varias manos intercambiables para posturas de asalto.",
     "descripcionCorta": "Figura articulada 16cm — Medicos Entertainment",
     "relacionados": [
@@ -415,8 +510,15 @@
     "badgeTipo": "success",
     "gradiente": "linear-gradient(135deg, #2e8b57 0%, #ff69b4 100%)",
     "placeholder": "KISS",
-    "imagen": "imagenes/kiss.jpeg",
-    "imagenes": null,
+    "imagen": "imagenes/jojos-medicos/kiss/kiss1.jpeg",
+    "imagenes": [
+      "imagenes/jojos-medicos/kiss/kiss1.jpeg",
+      "imagenes/jojos-medicos/kiss/kiss2.jpg.webp",
+      "imagenes/jojos-medicos/kiss/kiss3.jpg.webp",
+      "imagenes/jojos-medicos/kiss/kiss4.jpg.webp",
+      "imagenes/jojos-medicos/kiss/kiss5.jpg.webp",
+      "imagenes/jojos-medicos/kiss/kiss6.jpg.webp"
+    ],
     "descripcion": "El poderoso Stand de Ermes Costello, Kiss, llega a la línea Super Action Statue desde la Parte 6: Stone Ocean. La figura de 16 cm retrata a la perfección su distintivo esquema de colores verde vibrante y dorado, con múltiples calcomanías de labios esculpidas en sus hombros y cuello. Capaz de duplicar objetos al adherir sus stickers, el set incluye manos intercambiables, un rostro alternativo, y por supuesto, piezas de sus icónicos stickers para recrear su letal habilidad de duplicación y choque.",
     "descripcionCorta": "Figura articulada 16cm — Medicos Entertainment",
     "relacionados": [
@@ -446,8 +548,16 @@
     "badgeTipo": "info",
     "gradiente": "linear-gradient(135deg, #008b8b 0%, #8a2be2 100%)",
     "placeholder": "JOHNNY\nJOESTAR",
-    "imagen": "imagenes/johnny_joestar_second.jpeg",
-    "imagenes": null,
+    "imagen": "imagenes/jojos-medicos/johnny joestar (second)/johnny joestar (second)1.jpeg",
+    "imagenes": [
+      "imagenes/jojos-medicos/johnny joestar (second)/johnny joestar (second)1.jpeg",
+      "imagenes/jojos-medicos/johnny joestar (second)/johnny joestar (second)2.jpg.webp",
+      "imagenes/jojos-medicos/johnny joestar (second)/johnny joestar (second)3.jpg.webp",
+      "imagenes/jojos-medicos/johnny joestar (second)/johnny joestar (second)4.jpg.webp",
+      "imagenes/jojos-medicos/johnny joestar (second)/johnny joestar (second)5.jpg.webp",
+      "imagenes/jojos-medicos/johnny joestar (second)/johnny joestar (second)6.jpg.webp",
+      "imagenes/jojos-medicos/johnny joestar (second)/johnny joestar (second)7.jpg.webp"
+    ],
     "descripcion": "El protagonista de la revolucionaria Parte 7: Steel Ball Run, Johnny Joestar, cabalga hacia la colección en su deslumbrante versión 'Second'. Esta variante destaca por su hermoso traje azul verdoso adornado con un patrón de estrellas amarillas y acentos púrpuras. Con 15 cm de altura, la figura captura magistralmente su estética del viejo oeste. Incluye manos intercambiables listas para canalizar la energía de la 'Rotación' (Spin) y disparar sus uñas, además de expresiones faciales alternas para intensas batallas a caballo.",
     "descripcionCorta": "Figura articulada 15cm (Color Alternativo) — Medicos Entertainment",
     "relacionados": [
@@ -477,8 +587,16 @@
     "badgeTipo": "warning",
     "gradiente": "linear-gradient(135deg, #8b4513 0%, #556b2f 100%)",
     "placeholder": "GYRO\nZEPPELI",
-    "imagen": "imagenes/gyro_third.jpeg",
-    "imagenes": null,
+    "imagen": "imagenes/jojos-medicos/gyro zeppeli (third)/gyro zeppeli (third)1.jpeg",
+    "imagenes": [
+      "imagenes/jojos-medicos/gyro zeppeli (third)/gyro zeppeli (third)1.jpeg",
+      "imagenes/jojos-medicos/gyro zeppeli (third)/gyro zeppeli (third)2.jpg.webp",
+      "imagenes/jojos-medicos/gyro zeppeli (third)/gyro zeppeli (third)3.jpg.webp",
+      "imagenes/jojos-medicos/gyro zeppeli (third)/gyro zeppeli (third)4.jpg.webp",
+      "imagenes/jojos-medicos/gyro zeppeli (third)/gyro zeppeli (third)5.jpg.webp",
+      "imagenes/jojos-medicos/gyro zeppeli (third)/gyro zeppeli (third)6.jpg.webp",
+      "imagenes/jojos-medicos/gyro zeppeli (third)/gyro zeppeli (third)7.jpg.webp"
+    ],
     "descripcion": "El carismático maestro de la 'Rotación', Gyro Zeppeli, entra a la carrera en su espectacular versión 'Third'. Directo de la Parte 7: Steel Ball Run, esta figura presenta una paleta de colores alternativa que recuerda a los áridos paisajes del oeste, con tonos tierra, marrón y detalles metálicos en verde para sus famosas Esferas de Acero. La figura de 16 cm incluye su icónico sombrero, múltiples pares de manos, rostros intercambiables (incluyendo su deslumbrante sonrisa 'Go! Go! Zeppeli') y accesorios para exhibir las esferas en plena rotación.",
     "descripcionCorta": "Figura articulada 16cm (Color Alternativo) — Medicos Entertainment",
     "relacionados": [
@@ -508,8 +626,16 @@
     "badgeTipo": "dark",
     "gradiente": "linear-gradient(135deg, #a8e6cf 0%, #000080 100%)",
     "placeholder": "D4C\nSECOND",
-    "imagen": "imagenes/d4c_second.jpeg",
-    "imagenes": null,
+    "imagen": "imagenes/jojos-medicos/d4c (second)/d4c(second)1.jpeg",
+    "imagenes": [
+      "imagenes/jojos-medicos/d4c (second)/d4c(second)1.jpeg",
+      "imagenes/jojos-medicos/d4c (second)/d4c(second)2.jpg.webp",
+      "imagenes/jojos-medicos/d4c (second)/d4c(second)3.jpg.webp",
+      "imagenes/jojos-medicos/d4c (second)/d4c(second)4.jpg.webp",
+      "imagenes/jojos-medicos/d4c (second)/d4c(second)5.jpg.webp",
+      "imagenes/jojos-medicos/d4c (second)/d4c(second)6.jpg.webp",
+      "imagenes/jojos-medicos/d4c (second)/d4c(second)7.jpg.webp"
+    ],
     "descripcion": "El aterrador y multiversal Stand del Presidente, Dirty Deeds Done Dirt Cheap (D4C), llega en su impresionante versión 'Second'. Directo de la Parte 7: Steel Ball Run, esta variante luce un tono verde menta pálido con intrincadas costuras púrpuras y llamativos acentos azul oscuro en hombros y botas. Su imponente altura (contando sus orejas) y su impecable articulación permiten recrear escenas asombrosas. Incluye manos intercambiables, rostros alternativos y partes dañadas para simular batallas entre dimensiones.",
     "descripcionCorta": "Figura articulada 20cm (Color Alternativo) — Medicos Entertainment",
     "relacionados": [
@@ -539,8 +665,16 @@
     "badgeTipo": "danger",
     "gradiente": "linear-gradient(135deg, #d8bfd8 0%, #ffb6c1 100%)",
     "placeholder": "FUNNY\nVALENTINE",
-    "imagen": "imagenes/valentine_second.jpeg",
-    "imagenes": null,
+    "imagen": "imagenes/jojos-medicos/funny valentine (second)/funny valentine(second)1.jpeg",
+    "imagenes": [
+      "imagenes/jojos-medicos/funny valentine (second)/funny valentine(second)1.jpeg",
+      "imagenes/jojos-medicos/funny valentine (second)/funny valentine(second)2.jpg.webp",
+      "imagenes/jojos-medicos/funny valentine (second)/funny valentine(second)3.jpg.webp",
+      "imagenes/jojos-medicos/funny valentine (second)/funny valentine(second)4.jpg.webp",
+      "imagenes/jojos-medicos/funny valentine (second)/funny valentine(second)5.jpg.webp",
+      "imagenes/jojos-medicos/funny valentine (second)/funny valentine(second)6.jpg.webp",
+      "imagenes/jojos-medicos/funny valentine (second)/funny valentine(second)7.jpg.webp"
+    ],
     "descripcion": "El 23º Presidente de los Estados Unidos y antagonista principal de la Parte 7, Funny Valentine, hace su gran aparición en esta majestuosa versión 'Second'. La figura de 16 cm destaca por su elegante abrigo largo esculpido con vuelo dinámico, en una hermosa paleta lavanda y rosa pastel. Cuenta con articulaciones disimuladas bajo la ropa e incluye manos adicionales, rostros intercambiables y accesorios clave de la historia para exigir 'la primera servilleta' en tu colección.",
     "descripcionCorta": "Figura articulada 16cm (Color Alternativo) — Medicos Entertainment",
     "relacionados": [
@@ -570,8 +704,16 @@
     "badgeTipo": "info",
     "gradiente": "linear-gradient(135deg, #4682b4 0%, #daa520 100%)",
     "placeholder": "DIEGO\nBRANDO",
-    "imagen": "imagenes/diego_brando_second.jpeg",
-    "imagenes": null,
+    "imagen": "imagenes/jojos-medicos/diego brando (second)/diego brando (second)1.jpeg",
+    "imagenes": [
+      "imagenes/jojos-medicos/diego brando (second)/diego brando (second)1.jpeg",
+      "imagenes/jojos-medicos/diego brando (second)/diego brando (second)2.jpg.webp",
+      "imagenes/jojos-medicos/diego brando (second)/diego brando (second)3.jpg.webp",
+      "imagenes/jojos-medicos/diego brando (second)/diego brando (second)4.jpg.webp",
+      "imagenes/jojos-medicos/diego brando (second)/diego brando (second)5.jpg.webp",
+      "imagenes/jojos-medicos/diego brando (second)/diego brando (second)6.jpg.webp",
+      "imagenes/jojos-medicos/diego brando (second)/diego brando (second)7.jpg.webp"
+    ],
     "descripcion": "¡El prodigioso jinete británico entra a la carrera! Diego 'Dio' Brando se presenta en su espectacular versión 'Second' de la Parte 7: Steel Ball Run. Esta variante cambia su clásica ropa ecuestre a un llamativo conjunto en tonos azul acero y celeste, manteniendo las inconfundibles letras doradas de su gorra y espuelas. Con 16 cm de altura, la figura incluye su fusta, múltiples manos intercambiables y una cabeza y cola de dinosaurio alternativas, permitiendo exhibirlo transformado gracias a su letal Stand 'Scary Monsters'.",
     "descripcionCorta": "Figura articulada 16cm (Color Alternativo) — Medicos Entertainment",
     "relacionados": [
@@ -605,8 +747,10 @@
     "imagenes": [
       "imagenes/jojos-medicos/Josuke Higashikata (DIU)/josuke-main.jpg",
       "imagenes/jojos-medicos/Josuke Higashikata (DIU)/josuke2.jpg.webp",
-      "imagenes/jojos-medicos/Josuke Higashikata (DIU)/josuke3.jpg.webp",
-      "imagenes/jojos-medicos/Josuke Higashikata (DIU)/josuke4.jpg.webp"
+      "imagenes/jojos-medicos/Josuke Higashikata (DIU)/josuke5.jpg.webp",
+      "imagenes/jojos-medicos/Josuke Higashikata (DIU)/josuke6.jpg.webp",
+      "imagenes/jojos-medicos/Josuke Higashikata (DIU)/josuke4.jpg.webp",
+      "imagenes/jojos-medicos/Josuke Higashikata (DIU)/josuke3.jpg.webp"
     ],
     "descripcion": "El protagonista de la Parte 4: Diamond Is Unbreakable llega con toda su actitud yankee a la línea Super Action Statue. Josuke Higashikata destaca por su inmaculado uniforme escolar azul marino y, sobre todo, su icónico pompadour que no admite críticas. La figura de 16 cm captura a la perfección su estilo inconfundible e incluye múltiples manos intercambiables, rostros alternativos con distintas expresiones (incluyendo su furia al escuchar insultos sobre su cabello) y accesorios de efecto para recrear las reparaciones de su Stand Crazy Diamond.",
     "descripcionCorta": "Figura articulada 16cm — Medicos Entertainment",
@@ -641,6 +785,8 @@
     "imagenes": [
       "imagenes/jojos-medicos/Star Platinum (DIU) 1st/starplatinum(diu).jpg",
       "imagenes/jojos-medicos/Star Platinum (DIU) 1st/starplatinum(diu)2.jpg.webp",
+      "imagenes/jojos-medicos/Star Platinum (DIU) 1st/starplatinum(diu)4.jpg.webp",
+      "imagenes/jojos-medicos/Star Platinum (DIU) 1st/starplatinum(diu)5.jpg.webp",
       "imagenes/jojos-medicos/Star Platinum (DIU) 1st/starplatinum(diu)3.jpg.webp"
     ],
     "descripcion": "La primera edición de Star Platinum en su versión de Diamond Is Unbreakable irrumpe en la colección Super Action Statue. Este poderoso Stand de Jotaro Kujo en la Parte 4 presenta ligeras diferencias visuales respecto a su versión clásica de Stardust Crusaders, reflejando la evolución del diseño del personaje. La figura de 16 cm ofrece una amplia gama de articulaciones para recrear las explosivas andanadas del icónico 'ORA ORA ORA' e incluye manos intercambiables y piezas de efecto para combates dinámicos.",
@@ -676,6 +822,8 @@
     "imagenes": [
       "imagenes/jojos-medicos/Star Platinum (DIU) 1st/starplatinum(diu).jpg",
       "imagenes/jojos-medicos/Star Platinum (DIU) 1st/starplatinum(diu)2.jpg.webp",
+      "imagenes/jojos-medicos/Star Platinum (DIU) 1st/starplatinum(diu)4.jpg.webp",
+      "imagenes/jojos-medicos/Star Platinum (DIU) 1st/starplatinum(diu)5.jpg.webp",
       "imagenes/jojos-medicos/Star Platinum (DIU) 1st/starplatinum(diu)3.jpg.webp"
     ],
     "descripcion": "La reedición oficial de Star Platinum en su versión de Diamond Is Unbreakable, ahora con mayor disponibilidad para los coleccionistas. Esta Super Action Statue de 16 cm conserva todos los detalles del diseño del Stand de Jotaro Kujo en la Parte 4, con sus característicos tonos morados profundos y las marcas doradas que lo distinguen. Incluye el mismo set de accesorios de la primera edición: manos intercambiables y partes de efecto para las icónicas escenas de combate junto a su usuario.",
@@ -748,6 +896,10 @@
       "imagenes/jojos-medicos/Wekapipo/wekapipo.jpg",
       "imagenes/jojos-medicos/Wekapipo/wekapipo2.jpg.webp",
       "imagenes/jojos-medicos/Wekapipo/wekapipo3.jpg",
+      "imagenes/jojos-medicos/Wekapipo/wekapipo5.jpg",
+      "imagenes/jojos-medicos/Wekapipo/wekapipo6.jpeg",
+      "imagenes/jojos-medicos/Wekapipo/wekapipo7.jpeg",
+      "imagenes/jojos-medicos/Wekapipo/wekapipo8.jpeg",
       "imagenes/jojos-medicos/Wekapipo/wekapipo4.jpg"
     ],
     "descripcion": "El formidable y leal soldado napolitano Wekapipo hace su debut en la Super Action Statue desde la Parte 7: Steel Ball Run. Experto en la técnica del Spin y usuario del Stand 'Wrecking Ball', esta exclusiva figura de 16 cm recrea fielmente su característico abrigo militar gris acero con detalles metálicos y su distinguido bigote. El set incluye sus dos demoledoras bolas de acero en su funda, partes de cabeza intercambiables (incluyendo una versión joven sin bigote), múltiples manos, un revólver y piezas de efecto de bala para recrear las escenas más intensas de la carrera.",
@@ -819,6 +971,8 @@
     "imagenes": [
       "imagenes/jojos-medicos/The World/the world.jpg",
       "imagenes/jojos-medicos/The World/the world2.jpg.webp",
+      "imagenes/jojos-medicos/The World/the world4.jpg.webp",
+      "imagenes/jojos-medicos/The World/the world5.jpg.webp",
       "imagenes/jojos-medicos/The World/the world3.jpg.webp"
     ],
     "descripcion": "El Stand supremo de DIO, The World, hace su magnífica entrada a la Super Action Statue de la Parte 3: Stardust Crusaders. Esta imponente figura de 16.5 cm recrea fielmente su musculosa y dorada silueta adornada con el corazón ornamental y los característicos cilindros en sus articulaciones. Famoso por la habilidad de detener el tiempo con el legendario '¡ZA WARUDO!', la figura cuenta con excelente articulación para recrear sus devastadoras poses de combate e incluye manos intercambiables y una placa de efectos sonoros para el icónico 'Muda Muda Muda'.",
@@ -855,7 +1009,9 @@
       "imagenes/jojos-medicos/Dio Brando/dio brando.webp",
       "imagenes/jojos-medicos/Dio Brando/dio brando2.webp",
       "imagenes/jojos-medicos/Dio Brando/dio brando3.webp",
-      "imagenes/jojos-medicos/Dio Brando/dio brando4.webp"
+      "imagenes/jojos-medicos/Dio Brando/dio brando4.jpg.webp",
+      "imagenes/jojos-medicos/Dio Brando/dio brando5.jpg.webp",
+      "imagenes/jojos-medicos/Dio Brando/dio brando6.webp"
     ],
     "descripcion": "El origen de todo el mal, Dio Brando en su forma humana de la Parte 1: Phantom Blood, hace su debut en la Super Action Statue. Esta figura de 17 cm retrata al joven y ambicioso Dio con su inconfundible capa verde oscura y elegante atuendo victoriano previo a convertirse en vampiro. Con su característica expresión de desprecio y arrogancia, el set incluye múltiples rostros intercambiables, la cabeza cercenada con cuello intercambiable, manos alternativas y la icónica rosa como accesorio inseparable del despiadado rival de Jonathan Joestar.",
     "descripcionCorta": "Figura articulada 17cm (Phantom Blood) — Medicos Entertainment",
@@ -890,7 +1046,9 @@
     "imagenes": [
       "imagenes/jojos-medicos/Soft & Wet/softwet.jpg",
       "imagenes/jojos-medicos/Soft & Wet/softwet2.webp",
-      "imagenes/jojos-medicos/Soft & Wet/softwet3.webp"
+      "imagenes/jojos-medicos/Soft & Wet/softwet3.jpg.webp",
+      "imagenes/jojos-medicos/Soft & Wet/softwet4.jpg.webp",
+      "imagenes/jojos-medicos/Soft & Wet/softwet5.webp"
     ],
     "descripcion": "El fascinante y misterioso Stand del Josuke Higashikata de JoJolion (Parte 8), Soft & Wet, desembarca en la Super Action Statue. Esta deslumbrante figura de 15.5 cm recrea su elegante forma humanoide con un audaz patrón de puntos de colores y un diseño que evoca el agua y las burbujas. Con la habilidad única de robar propiedades de objetos y personas a través de sus burbujas explosivas, el set incluye múltiples manos intercambiables, piezas de efecto de burbuja para recrear sus habilidades y distintos rostros con expresiones intimidantes.",
     "descripcionCorta": "Figura articulada 15.5cm — Medicos Entertainment",
@@ -921,10 +1079,11 @@
     "badgeTipo": "info",
     "gradiente": "linear-gradient(135deg, #256bb8 0%, #d854a2 100%)",
     "placeholder": "KING\nCRIMSON",
-    "imagen": "imagenes/king_crimson_blue.jpeg",
+    "imagen": "imagenes/jojos-medicos/King Crimson (ver. Blue)/king_crimson_blue.jpeg",
     "imagenes": [
-      "imagenes/king_crimson_blue.jpeg",
+      "imagenes/jojos-medicos/King Crimson (ver. Blue)/king_crimson_blue.jpeg",
       "imagenes/jojos-medicos/King Crimson (ver. Blue)/kingcrimson_blue2.jpg",
+      "imagenes/jojos-medicos/King Crimson (ver. Blue)/kingcrimson_blue4.jpg",
       "imagenes/jojos-medicos/King Crimson (ver. Blue)/kingcrimson_blue3.jpg"
     ],
     "descripcion": "La segunda edición de King Crimson en su impactante variante azul regresa desde la Parte 5: Golden Wind con articulación aún más refinada. Esta Super Action Statue de 16 cm recrea con exquisito detalle el intrincado patrón de red en vibrantes tonos celeste y rosa del Stand del Diablo. La reedición permite una gama de movimiento más expresiva para recrear sus aterradoras habilidades de 'borrar el tiempo'. Incluye manos intercambiables, el rostro alternativo con el pequeño Epitaph en su frente y distintas expresiones del Stand.",

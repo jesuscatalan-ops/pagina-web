@@ -235,7 +235,14 @@ async function init() {
         todosLosProductos = await respuesta.json();
 
         conectarFiltros();
-        renderGrid(todosLosProductos);
+
+        // Soporte deep-link desde Quiénes Somos: catalogo.html?parte=Golden%20Wind
+        const parteURL = new URLSearchParams(window.location.search).get('parte');
+        if (parteURL && parteURL !== 'Todos') {
+            aplicarFiltro(parteURL);
+        } else {
+            renderGrid(todosLosProductos);
+        }
 
     } catch (error) {
         console.error('Error cargando el catálogo:', error);

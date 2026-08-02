@@ -12,6 +12,7 @@
     --gray: #6b6b6b;
     --light-gray: #e8e8e8;
     --success: #00d9a3;
+    --error: #c0392b;
     --card-bg: #ffffff;
     --gradient: linear-gradient(135deg, #ff6b35 0%, #ff8c42 50%, #ffa45c 100%);
     --gradient-subtle: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(255, 140, 66, 0.05) 100%);
