@@ -7,11 +7,15 @@
     <meta name="theme-color" content="#ffffff">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout — Anime2Chile</title>
+    <link rel="icon" href="favicon.png?v=2" type="image/png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Pathway+Extreme:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&family=Pathway+Extreme:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="carrito.css">
+    <link rel="stylesheet" href="pages.css">
+    <link rel="stylesheet" href="buscador.css">
     <style>
         /* ── Checkout page styles ── */
         .checkout-wrap {
@@ -35,7 +39,7 @@
         }
 
         .checkout-section-title {
-            font-family: 'Anton', sans-serif;
+            font-family: 'Bebas Neue', sans-serif;
             font-size: 1.3rem;
             letter-spacing: 2px;
             background: var(--gradient);
@@ -43,9 +47,6 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
         }
 
         .checkout-section-title span {
@@ -67,6 +68,7 @@
             flex-direction: column;
             gap: 0.4rem;
             margin-bottom: 1rem;
+            min-width: 0;
         }
 
         .form-group.full {
@@ -136,6 +138,7 @@
         .phone-wrap {
             display: flex;
             gap: 0;
+            min-width: 0;
         }
 
         .phone-prefix {
@@ -308,13 +311,12 @@
             width: 60px;
             height: 60px;
             border-radius: 10px;
-            background: var(--gradient-subtle);
+            background: #fff;
             overflow: hidden;
             flex-shrink: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
         }
 
         .resumen-item-img img {
@@ -322,22 +324,6 @@
             height: 100%;
             object-fit: contain;
             padding: 4px;
-        }
-
-        .resumen-item-qty-badge {
-            position: absolute;
-            top: -6px;
-            right: -6px;
-            background: var(--gradient);
-            color: #fff;
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 0.7rem;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .resumen-item-info {
@@ -409,21 +395,148 @@
             font-weight: 600;
         }
 
-        /* ── Botón confirmar ── */
+        /* ── Confirmación Mercado Pago ── */
+        .mp-confirm {
+            margin-top: 1.5rem;
+            padding-top: 1.75rem;
+            border-top: 1px solid rgba(0,0,0,0.08);
+            font-family: 'DM Sans', 'Pathway Extreme', sans-serif;
+        }
+
+        .mp-confirm-logo {
+            height: 38px;
+            width: auto;
+            max-width: 210px;
+            display: block;
+            margin: 0 auto 1.35rem;
+            object-fit: contain;
+        }
+
+        .mp-confirm-title {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            text-align: center;
+            margin: 0 0 1.35rem;
+            line-height: 1.3;
+        }
+
+        .mp-confirm-benefits {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem 1.25rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .mp-confirm-benefit {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.55rem;
+            text-align: left;
+        }
+
+        .mp-confirm-benefit svg {
+            flex-shrink: 0;
+            margin-top: 2px;
+            color: #6b6b6b;
+        }
+
+        .mp-confirm-benefit p {
+            margin: 0;
+            font-size: 0.8rem;
+            line-height: 1.45;
+            color: #8a8a8a;
+        }
+
+        .mp-confirm-benefit strong {
+            color: #4a4a4a;
+            font-weight: 600;
+        }
+
+        .mp-confirm-brands {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.45rem;
+            margin: 0.25rem 0 1.25rem;
+        }
+
+        .mp-brand {
+            width: 42px;
+            height: 28px;
+            border: 1px solid #e4e4e4;
+            border-radius: 6px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .mp-brand svg {
+            display: block;
+        }
+
+        .mp-confirm-redirect {
+            background: #f3f4f6;
+            border-radius: 10px;
+            padding: 1rem 1.1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.25rem;
+            text-align: left;
+            margin-bottom: 1.5rem;
+        }
+
+        .mp-confirm-redirect-title {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.65rem;
+            margin: 0;
+            width: 100%;
+        }
+
+        .mp-confirm-redirect img {
+            height: 24px;
+            width: 60px;
+            flex-shrink: 0;
+            object-fit: contain;
+        }
+
+        .mp-confirm-redirect-title strong {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: #5f5f5f;
+            min-width: 0;
+        }
+
+        .mp-confirm-redirect-sub {
+            display: block;
+            width: 100%;
+            font-size: 0.78rem;
+            color: #9a9a9a;
+            line-height: 1.35;
+            text-align: left;
+        }
+
         .confirmar-btn {
             width: 100%;
-            padding: 1.1rem;
+            padding: 1rem 1.1rem;
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.3rem;
-            letter-spacing: 3px;
+            font-size: 1.35rem;
+            letter-spacing: 2px;
             background: var(--gradient);
             color: #fff;
             border: none;
-            border-radius: 14px;
+            border-radius: 8px;
             cursor: pointer;
             box-shadow: 0 6px 24px rgba(255,107,53,0.4);
             transition: transform 0.2s, box-shadow 0.2s;
-            margin-top: 1.25rem;
+            margin-top: 0.85rem;
         }
 
         .confirmar-btn:hover {
@@ -435,6 +548,14 @@
             opacity: 0.6;
             cursor: not-allowed;
             transform: none;
+        }
+
+        .mp-confirm-privacy {
+            margin: 1rem 0 0;
+            font-size: 0.82rem;
+            line-height: 1.55;
+            color: #6b6b6b;
+            text-align: center;
         }
 
         .checkout-error {
@@ -449,14 +570,10 @@
             text-align: center;
         }
 
-        .checkout-nota-seguridad {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.4rem;
-            font-size: 0.75rem;
-            color: var(--gray);
-            margin-top: 0.75rem;
+        @media (max-width: 480px) {
+            .mp-confirm-benefits {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* ── Carrito vacío ── */
@@ -513,7 +630,21 @@
         @media (max-width: 860px) {
             .checkout-wrap {
                 grid-template-columns: 1fr;
-                padding: 100px 1rem 3rem;
+                padding: 96px 1.25rem 3rem;
+                gap: 1.25rem;
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+
+            .checkout-wrap > * {
+                min-width: 0;
+            }
+
+            .checkout-section {
+                padding: 1.25rem 1.1rem;
+                border-radius: 16px;
+                margin-bottom: 1.1rem;
             }
 
             .resumen-panel {
@@ -524,9 +655,59 @@
             .form-row {
                 grid-template-columns: 1fr;
             }
+
+            .form-input, .form-select, .form-textarea {
+                font-size: 16px;
+            }
+
+            .resumen-item-nombre {
+                white-space: normal;
+                overflow: visible;
+                text-overflow: unset;
+                line-height: 1.25;
+            }
+
+            .cupon-wrap {
+                flex-wrap: wrap;
+            }
+
+            .cupon-btn {
+                width: 100%;
+            }
+
+            .envio-opcion {
+                align-items: flex-start;
+                gap: 0.75rem;
+            }
+
+            .mp-confirm-benefits {
+                grid-template-columns: 1fr;
+            }
+
+            .mp-confirm-brands {
+                flex-wrap: wrap;
+            }
+
+            .resumen-linea.total span:last-child {
+                font-size: 1.45rem;
+            }
         }
-    </style>
-    <link rel="stylesheet" href="buscador.css">
+
+        @media (max-width: 480px) {
+            .checkout-wrap {
+                padding: 90px 1rem 2.5rem;
+            }
+
+            .checkout-section {
+                padding: 1.1rem 0.95rem;
+            }
+
+            .header-content {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+        </style>
 </head>
 <body>
 
@@ -568,7 +749,7 @@
 
             <!-- Datos personales -->
             <div class="checkout-section">
-                <h2 class="checkout-section-title">👤 DATOS PERSONALES</h2>
+                <h2 class="checkout-section-title">DATOS PERSONALES</h2>
                 <div class="form-row">
                     <div class="form-group">
                         <label class="form-label">Nombre <span class="required">*</span></label>
@@ -603,7 +784,7 @@
 
             <!-- Dirección de envío -->
             <div class="checkout-section">
-                <h2 class="checkout-section-title">📦 DIRECCIÓN DE ENVÍO</h2>
+                <h2 class="checkout-section-title">DIRECCIÓN DE ENVÍO</h2>
                 <div class="form-row">
                     <div class="form-group full">
                         <label class="form-label">Región <span class="required">*</span></label>
@@ -651,7 +832,7 @@
 
             <!-- Envío -->
             <div class="checkout-section">
-                <h2 class="checkout-section-title">🚚 MÉTODO DE ENVÍO</h2>
+                <h2 class="checkout-section-title">MÉTODO DE ENVÍO</h2>
                 <div class="envio-opciones" id="envio-opciones">
                     <label class="envio-opcion seleccionado" onclick="seleccionarEnvio(this, 'starken')">
                         <input type="radio" name="envio" value="starken" checked>
@@ -662,47 +843,14 @@
                                 <div class="envio-desc">3–5 días hábiles</div>
                             </div>
                         </div>
-                        <div class="envio-precio" data-precio-envio> $4.990</div>
-                    </label>
-                    <label class="envio-opcion" onclick="seleccionarEnvio(this, 'chilexpress')">
-                        <input type="radio" name="envio" value="chilexpress">
-                        <div class="envio-opcion-left">
-                            <div class="envio-radio-dot"></div>
-                            <div>
-                                <div class="envio-nombre">Chilexpress</div>
-                                <div class="envio-desc">2–4 días hábiles</div>
-                            </div>
-                        </div>
-                        <div class="envio-precio" data-precio-envio>$4.490</div>
-                    </label>
-                    <label class="envio-opcion" onclick="seleccionarEnvio(this, 'correos')">
-                        <input type="radio" name="envio" value="correos">
-                        <div class="envio-opcion-left">
-                            <div class="envio-radio-dot"></div>
-                            <div>
-                                <div class="envio-nombre">Correos de Chile</div>
-                                <div class="envio-desc">5–7 días hábiles</div>
-                            </div>
-                        </div>
-                        <div class="envio-precio" data-precio-envio>$3.990</div>
-                    </label>
-                    <label class="envio-opcion" onclick="seleccionarEnvio(this, 'retiro')">
-                        <input type="radio" name="envio" value="retiro">
-                        <div class="envio-opcion-left">
-                            <div class="envio-radio-dot"></div>
-                            <div>
-                                <div class="envio-nombre">Retiro en Santiago</div>
-                                <div class="envio-desc">Coordinar por WhatsApp</div>
-                            </div>
-                        </div>
-                        <div class="envio-precio" style="-webkit-text-fill-color:#00a87e; color:#00a87e;">GRATIS</div>
+                        <div class="envio-precio" data-precio-envio> $5.000</div>
                     </label>
                 </div>
             </div>
 
             <!-- Cupón y notas -->
             <div class="checkout-section">
-                <h2 class="checkout-section-title">🏷️ CUPÓN DE DESCUENTO</h2>
+                <h2 class="checkout-section-title">CUPÓN DE DESCUENTO</h2>
                 <div class="cupon-wrap">
                     <input type="text" class="form-input" id="campo-cupon" placeholder="INGRESA TU CÓDIGO">
                     <button class="cupon-btn" onclick="aplicarCupon()">APLICAR</button>
@@ -711,7 +859,7 @@
             </div>
 
             <div class="checkout-section">
-                <h2 class="checkout-section-title">📝 NOTAS DEL PEDIDO</h2>
+                <h2 class="checkout-section-title">NOTAS DEL PEDIDO</h2>
                 <div class="form-group" style="margin:0;">
                     <label class="form-label">Instrucciones especiales <span style="color:var(--gray); font-size:0.75rem;">(opcional)</span></label>
                     <textarea class="form-textarea" id="campo-notas" placeholder="Ej: Entregar en portería, regalo para empaquetar, etc."></textarea>
@@ -723,7 +871,7 @@
         <!-- COLUMNA DERECHA: resumen -->
         <div class="resumen-panel" id="columna-resumen">
             <div class="checkout-section">
-                <h2 class="checkout-section-title">🛒 RESUMEN DEL PEDIDO</h2>
+                <h2 class="checkout-section-title">RESUMEN DEL PEDIDO</h2>
 
                 <div class="resumen-items" id="resumen-items">
                     <!-- Se llena con JS -->
@@ -741,22 +889,78 @@
                 </div>
                 <div class="resumen-linea">
                     <span>Envío</span>
-                    <span id="resumen-envio">$4.990</span>
+                    <span id="resumen-envio">$5.000</span>
                 </div>
                 <div class="resumen-linea total">
                     <span>TOTAL</span>
                     <span id="resumen-total">—</span>
                 </div>
 
-                <button class="confirmar-btn" id="btn-confirmar" onclick="confirmarPedido(event)">
-                    PAGAR CON MERCADO PAGO
-                </button>
+                <div class="mp-confirm">
+                    <img class="mp-confirm-logo" src="imagenes/Miscelaneo/mercado_pago.svg" alt="Mercado Pago">
+                    <h3 class="mp-confirm-title">Descubre la practicidad de Mercado Pago</h3>
 
-                <p class="checkout-error" id="checkout-error" role="alert" hidden></p>
+                    <div class="mp-confirm-benefits">
+                        <div class="mp-confirm-benefit">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+                                <path d="M2 10h20"></path>
+                            </svg>
+                            <p>Paga con tus tarjetas <strong>guardadas</strong> o dinero disponible sin completar datos.</p>
+                        </div>
+                        <div class="mp-confirm-benefit">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M12 3l8 3v6c0 5-3.4 9.4-8 10.5C7.4 21.4 4 17 4 12V6l8-3z"></path>
+                                <path d="M9 12l2 2 4-4"></path>
+                            </svg>
+                            <p>Compra de forma <strong>segura</strong> con el medio de pago que prefieras.</p>
+                        </div>
+                    </div>
 
-                <p class="checkout-nota-seguridad">
-                    🔒 Pago seguro con Mercado Pago · Precios validados en el servidor
-                </p>
+                    <div class="mp-confirm-brands" aria-label="Medios de pago">
+                        <span class="mp-brand" title="Visa">
+                            <svg width="32" height="12" viewBox="0 0 32 12" aria-hidden="true">
+                                <text x="0" y="11" font-family="Arial, sans-serif" font-size="11" font-weight="800" font-style="italic" fill="#1A1F71">VISA</text>
+                            </svg>
+                        </span>
+                        <span class="mp-brand" title="Mastercard">
+                            <svg width="28" height="18" viewBox="0 0 28 18" aria-hidden="true">
+                                <circle cx="11" cy="9" r="7" fill="#EB001B"/>
+                                <circle cx="17" cy="9" r="7" fill="#F79E1B"/>
+                            </svg>
+                        </span>
+                        <span class="mp-brand" title="American Express">
+                            <svg width="34" height="12" viewBox="0 0 34 12" aria-hidden="true">
+                                <rect x="0.5" y="0.5" width="33" height="11" rx="1.5" fill="#2E77BC"/>
+                                <text x="17" y="9" text-anchor="middle" font-family="Arial, sans-serif" font-size="6.5" font-weight="800" fill="#fff">AMEX</text>
+                            </svg>
+                        </span>
+                        <span class="mp-brand" title="Mercado Pago">
+                            <svg width="18" height="16" viewBox="0 0 24 22" aria-hidden="true">
+                                <rect x="2" y="6" width="20" height="14" rx="2" fill="#FFE600"/>
+                                <path d="M7 6V5a5 5 0 0 1 10 0v1" fill="none" stroke="#1a1a1a" stroke-width="1.6"/>
+                            </svg>
+                        </span>
+                    </div>
+
+                    <div class="mp-confirm-redirect">
+                        <p class="mp-confirm-redirect-title">
+                            <img src="imagenes/Miscelaneo/mercado_pago.svg" alt="Mercado Pago">
+                            <strong>Te llevaremos a Mercado Pago</strong>
+                        </p>
+                        <span class="mp-confirm-redirect-sub">Si no tienes una cuenta, puedes usar tu e-mail.</span>
+                    </div>
+
+                    <button class="confirmar-btn" id="btn-confirmar" onclick="confirmarPedido(event)">
+                        REALIZAR EL PEDIDO
+                    </button>
+
+                    <p class="checkout-error" id="checkout-error" role="alert" hidden></p>
+
+                    <p class="mp-confirm-privacy">
+                        Tus datos personales sólo se utilizarán para procesar tu pedido. No almacenamos datos de ningún tipo.
+                    </p>
+                </div>
             </div>
         </div>
 
@@ -772,26 +976,38 @@
                         <span class="brand-anime">ANIME</span><span class="brand-two">2</span><span class="brand-anime">CHILE</span>
                     </div>
                 </div>
-                <p class="footer-tagline">El catálogo más amplio de coleccionables anime en Chile.</p>
+                <p class="footer-tagline">El catálogo más amplio y exclusivo de Jojo's Bizarre Adventure en Chile. Figuras originales directo desde Japón, preventas exclusivas y envíos a todo el país.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-btn" aria-label="Instagram">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </a>
+                </div>
             </div>
             <div class="footer-links-group">
-                <h4 class="footer-heading">Catálogo</h4>
+                <h4 class="footer-heading">Nosotros</h4>
                 <ul class="footer-links">
-                    <li><a href="catalogo.html">Figuras de Acción</a></li>
-                    <li><a href="reservas.html">Pre-Ventas</a></li>
+                    <li><a href="terminos.html">Términos y Condiciones</a></li>
+                    <li><a href="privacidad.html">Política de Privacidad</a></li>
+                    <li><a href="privacidad.html#cookies">Cookies</a></li>
                 </ul>
             </div>
             <div class="footer-links-group">
                 <h4 class="footer-heading">Ayuda</h4>
                 <ul class="footer-links">
-                    <li><a href="#">¿Cómo comprar?</a></li>
-                    <li><a href="#">Envíos y tiempos</a></li>
+                    <li><a href="quienes-somos.html#faq-autenticidad">Garantía de autenticidad</a></li>
+                    <li><a href="quienes-somos.html#faq-envios">Envíos y tiempos</a></li>
+                    <li><a href="quienes-somos.html#faq-reservas">Reservas y preventas</a></li>
                     <li><a href="quienes-somos.html#contacto">Contacto</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p class="footer-copy">© 2025 Anime2Chile. Todos los derechos reservados.</p>
+            <p class="footer-copy">© 2026 Anime2Chile. Todos los derechos reservados.</p>
+            <div class="footer-bottom-links">
+                <a href="terminos.html">Términos y Condiciones</a><span>·</span>
+                <a href="privacidad.html">Política de Privacidad</a><span>·</span>
+                <a href="privacidad.html#cookies">Cookies</a>
+            </div>
         </div>
     </footer>
 
@@ -799,18 +1015,10 @@
 <script>
 // ── Estado (el total real lo decide el servidor al pagar) ──
 // Reglas espejo solo para preview en UI; deben coincidir con server.js
-const ENVIO_GRATIS_DESDE = 80000;
 const METODOS_ENVIO = {
-    starken:     { id: 'starken',     nombre: 'Starken',            costoBase: 4990 },
-    chilexpress: { id: 'chilexpress', nombre: 'Chilexpress',        costoBase: 4490 },
-    correos:     { id: 'correos',     nombre: 'Correos de Chile',   costoBase: 3990 },
-    retiro:      { id: 'retiro',      nombre: 'Retiro en Santiago', costoBase: 0, esRetiro: true },
+    starken: { id: 'starken', nombre: 'Starken', costoBase: 5000 },
 };
-const CUPONES = {
-    JOJO10:     { tipo: 'porcentaje', valor: 0.10 },
-    ANIME15:    { tipo: 'porcentaje', valor: 0.15 },
-    BIENVENIDO: { tipo: 'porcentaje', valor: 0.05 },
-};
+const CUPONES = {};
 
 let tipoEnvio = 'starken';
 let descuentoPct = 0;
@@ -827,18 +1035,17 @@ function formatPrecio(n) {
     return '$' + Number(n).toLocaleString('es-CL');
 }
 
-function costoEnvioActual(subtotal) {
+function costoEnvioActual() {
     const metodo = METODOS_ENVIO[tipoEnvio];
     if (!metodo) return 0;
     if (metodo.esRetiro) return 0;
-    if (subtotal >= ENVIO_GRATIS_DESDE) return 0;
     return metodo.costoBase;
 }
 
 function calcularTotales() {
     const carrito = obtenerCarrito();
     const subtotal = carrito.reduce((s, i) => s + i.precio * i.cantidad, 0);
-    const envioFinal = costoEnvioActual(subtotal);
+    const envioFinal = costoEnvioActual();
     const descuentoMonto = Math.round(subtotal * descuentoPct);
     const total = subtotal - descuentoMonto + envioFinal;
     return { subtotal, envioFinal, descuentoMonto, total };
@@ -874,8 +1081,7 @@ function renderResumen() {
     itemsEl.innerHTML = carrito.map(item => `
         <div class="resumen-item">
             <div class="resumen-item-img">
-                ${item.imagen ? `<img src="${item.imagen}" alt="${item.nombre}" onerror="this.style.display='none'">` : ''}
-                <span class="resumen-item-qty-badge">${item.cantidad}</span>
+                ${item.imagen ? `<img src="${encodeURI(item.imagen)}" alt="${item.nombre}" onerror="this.style.display='none'">` : ''}
             </div>
             <div class="resumen-item-info">
                 <div class="resumen-item-nombre">${item.nombre}</div>
@@ -903,13 +1109,12 @@ function actualizarTotales() {
 
     document.getElementById('resumen-total').textContent = formatPrecio(total);
 
-    // Actualizar etiquetas de precio de envío (gratis si aplica)
     document.querySelectorAll('#envio-opciones .envio-opcion').forEach(op => {
         const id = op.querySelector('input')?.value;
         const metodo = METODOS_ENVIO[id];
         const precioEl = op.querySelector('[data-precio-envio]');
         if (!metodo || !precioEl) return;
-        const costo = (!metodo.esRetiro && subtotal >= ENVIO_GRATIS_DESDE) ? 0 : metodo.costoBase;
+        const costo = metodo.costoBase;
         if (costo === 0) {
             precioEl.textContent = 'GRATIS';
             precioEl.style.color = '#00a87e';
@@ -956,7 +1161,6 @@ document.getElementById('campo-cupon').addEventListener('keydown', e => {
 
 function validar() {
     let valido = true;
-    const esRetiro = tipoEnvio === 'retiro';
 
     const campos = [
         { id: 'campo-nombre',    err: 'err-nombre',    check: v => v.length >= 2 },
@@ -970,7 +1174,6 @@ function validar() {
     ];
 
     campos.forEach(c => {
-        if (esRetiro && ['campo-region','campo-ciudad','campo-direccion'].includes(c.id)) return;
         const input = document.getElementById(c.id);
         const errEl = document.getElementById(c.err);
         const ok = c.check(input.value.trim());
@@ -1073,7 +1276,7 @@ window.confirmarPedido = async function(e) {
     } catch (error) {
         console.error('Error al crear preferencia:', error);
         btn.disabled = false;
-        btn.textContent = 'PAGAR CON MERCADO PAGO';
+        btn.textContent = 'REALIZAR EL PEDIDO';
         mostrarErrorCheckout(
             error.message || 'Hubo un error al conectar con Mercado Pago. Intenta nuevamente.'
         );

@@ -52,7 +52,19 @@ function mostrarContenido() {
 
 // ── Render principal ─────────────────────────────────────────
 
-function renderProducto(producto, todosLosProductos, esPokemon = false) {
+function partesLlegada(str) {
+    const raw = String(str || 'Por confirmar').trim();
+    const match = raw.match(/^([A-Za-záéíóúñÁÉÍÓÚÑ.]+)\s+(\d{4})$/);
+    if (match) {
+        return {
+            mes: match[1].replace('.', '').toUpperCase(),
+            anio: match[2]
+        };
+    }
+    return { mes: raw.toUpperCase(), anio: '' };
+}
+
+function renderProducto(producto, todosLosProductos, esPokemon = false, esReserva = false, idsReserva, llegadaEstimada) {
 
     /* ---------- <title> ---------- */
     document.title = producto.nombre + ' — Anime2Chile';
@@ -66,7 +78,7 @@ function renderProducto(producto, todosLosProductos, esPokemon = false) {
         imgEl.style.cssText = '';
         imgEl.innerHTML = `<img
             class="product-img-real"
-            src="${producto.imagen}"
+            src="${encodeURI(producto.imagen)}"
             alt="${producto.nombre}"
             loading="lazy">`;
     } else {
@@ -94,7 +106,7 @@ function renderProducto(producto, todosLosProductos, esPokemon = false) {
         thumbsEl.classList.add('carousel-thumbs');
         thumbsEl.innerHTML = listaImagenes.map((src, i) => `
             <div class="product-thumb ${i === 0 ? 'active' : ''}" data-idx="${i}">
-                <img src="${src}" alt="${producto.nombre} — foto ${i + 1}" loading="lazy">
+                <img src="${encodeURI(src)}" alt="${producto.nombre} — foto ${i + 1}" loading="lazy">
             </div>`).join('');
 
         // Envolvemos la imagen principal para anclar las flechas
@@ -214,14 +226,48 @@ function renderProducto(producto, todosLosProductos, esPokemon = false) {
         : (producto.parte || '');
     document.getElementById('producto-precio').textContent = formatearPrecio(producto.precio);
 
-    const precioNota = document.getElementById('producto-precio-nota');
-    precioNota.textContent = producto.precio >= 80000
-        ? '✓ Envío gratis sobre $80.000'
-        : 'Envío calculado en el checkout';
+    const fechaReservaEl = document.getElementById('producto-reserva-fecha');
+    if (fechaReservaEl) {
+        if (esReserva) {
+            const p = partesLlegada(llegadaEstimada);
+            const anio = p.anio ? `<span class="reservas-fecha-anio">${p.anio}</span>` : '';
+            fechaReservaEl.hidden = false;
+            fechaReservaEl.innerHTML = `
+                <span class="reservas-fecha-label">Llegada estimada</span>
+                <span class="reservas-fecha-valor">
+                    <em>${p.mes}</em>
+                    ${anio}
+                </span>`;
+        } else {
+            fechaReservaEl.hidden = true;
+            fechaReservaEl.innerHTML = '';
+        }
+    }
 
-    /* ---------- Botón carrito ---------- */
+    const precioNota = document.getElementById('producto-precio-nota');
+    precioNota.textContent = 'Envío calculado en el checkout';
+
+    /* ---------- Botón carrito / reserva ---------- */
     const btnCarrito = document.getElementById('btn-carrito');
-    if (producto.stock === 'out-stock') {
+    if (esReserva) {
+        btnCarrito.textContent = 'HACER UNA RESERVA';
+        btnCarrito.removeAttribute('data-carrito-id');
+        btnCarrito.disabled = false;
+        btnCarrito.addEventListener('click', function (e) {
+            e.preventDefault();
+            if (typeof iniciarCheckoutConProducto === 'function') {
+                iniciarCheckoutConProducto(
+                    producto.id,
+                    producto.nombre,
+                    producto.precio,
+                    producto.imagen || '',
+                    { maxCantidad: producto.maxCantidad }
+                );
+            } else {
+                window.location.href = 'checkout.html';
+            }
+        });
+    } else if (producto.stock === 'out-stock') {
         btnCarrito.textContent = 'AGOTADO';
         btnCarrito.disabled    = true;
         btnCarrito.style.opacity = '0.5';
@@ -229,8 +275,20 @@ function renderProducto(producto, todosLosProductos, esPokemon = false) {
     } else {
         btnCarrito.setAttribute('data-carrito-id', producto.id);
         btnCarrito.addEventListener('click', () => {
-            agregarAlCarrito(producto.id, producto.nombre, producto.precio, producto.imagen || '');
+            agregarAlCarrito(producto.id, producto.nombre, producto.precio, producto.imagen || '', producto.maxCantidad);
         });
+    }
+
+    /* ---------- Bonus Wonder Festival (solo artículos WF) ---------- */
+    const wfBonusEl = document.getElementById('producto-wf-bonus');
+    const esWF = /WF\s*(?:20\d{2}|Exclusive)/i.test(producto.nombre || '');
+    if (esWF) {
+        wfBonusEl.hidden = false;
+        document.getElementById('producto-wf-bonus-texto').textContent =
+            (producto.bonus && String(producto.bonus).trim()) || '';
+    } else {
+        wfBonusEl.hidden = true;
+        document.getElementById('producto-wf-bonus-texto').textContent = '';
     }
 
     /* ---------- Tabla de especificaciones ---------- */
@@ -245,19 +303,27 @@ function renderProducto(producto, todosLosProductos, esPokemon = false) {
             value: producto.condicionCarta || 'Por confirmar',
         });
     }
+    const tipoNorm = String(producto.tipo || '').toLowerCase();
+    const esMangaOLibro = tipoNorm === 'manga' || tipoNorm.includes('libro');
+    const specsJojo = [
+        { label: 'SERIE',              value: producto.serie },
+        { label: 'PARTE',              value: producto.parte },
+        { label: 'TIPO',               value: producto.tipo },
+        { label: 'FABRICANTE',         value: producto.fabricante },
+        { label: 'ALTURA',             value: producto.altura },
+        { label: 'MATERIAL',           value: producto.material },
+        { label: 'ORIGEN',             value: producto.origen },
+        { label: 'BASE DE EXHIBICIÓN', value: producto.baseExhibicion },
+        { label: 'ARTICULACIONES',     value: producto.articulaciones },
+        { label: 'PÁGINAS',            value: producto.paginas },
+    ];
+    const ocultarEnMangaOLibro = ['ALTURA', 'MATERIAL', 'ORIGEN', 'BASE DE EXHIBICIÓN', 'ARTICULACIONES'];
+    const ocultarEnFigura = ['PÁGINAS'];
     const specs = esProd
         ? specsPokemon
-        : [
-            { label: 'SERIE',              value: producto.serie },
-            { label: 'PARTE',              value: producto.parte },
-            { label: 'TIPO',               value: producto.tipo },
-            { label: 'FABRICANTE',         value: producto.fabricante },
-            { label: 'ALTURA',             value: producto.altura },
-            { label: 'MATERIAL',           value: producto.material },
-            { label: 'ORIGEN',             value: producto.origen },
-            { label: 'BASE DE EXHIBICIÓN', value: producto.baseExhibicion },
-            { label: 'ARTICULACIONES',     value: producto.articulaciones },
-          ];
+        : specsJojo.filter(s => esMangaOLibro
+            ? !ocultarEnMangaOLibro.includes(s.label)
+            : !ocultarEnFigura.includes(s.label));
     document.getElementById('producto-specs').innerHTML = specs
         .map(s => `
             <div class="product-spec-row">
@@ -275,54 +341,44 @@ function renderProducto(producto, todosLosProductos, esPokemon = false) {
         .join('');
 
     /* ---------- Productos relacionados ---------- */
-    const relGrid = document.getElementById('productos-relacionados');
+    const relWrap = document.getElementById('relacionados-wrap');
+    const relTrack = document.getElementById('carousel-relacionados-track');
+    const relTitle = document.querySelector('#relacionados-wrap .related-section-title');
+
+    function ocultarRelacionados() {
+        if (relWrap) relWrap.hidden = true;
+        if (relTrack) relTrack.innerHTML = '';
+    }
+
+    if (esReserva) {
+        ocultarRelacionados();
+        return;
+    }
+
+    const idsSoloReserva = idsReserva instanceof Set ? idsReserva : new Set();
     const relacionados = (producto.relacionados || [])
         .map(rid => todosLosProductos.find(p => p.id === rid))
-        .filter(Boolean)
-        .slice(0, 4);
+        .filter(p => p && !idsSoloReserva.has(p.id));
 
-    if (relacionados.length > 0) {
-        relGrid.innerHTML = relacionados.map(p => {
-            const lineas = (p.placeholder || p.nombre || '').split('\n');
-            const etiquetaSerie = esPokemon
-                ? ''
-                : `<span class="catalog-series">${p.parte}</span>`;
-            const stockRelacionado = p.categoria === 'Singles'
-                ? ''
-                : `<span class="catalog-stock ${p.stock === 'in-stock' ? 'in-stock' : 'low-stock'}">
-                            ${p.stockLabel}
-                        </span>`;
-            const metaInner = `${etiquetaSerie}${stockRelacionado}`;
-            const metaHTML = metaInner.trim()
-                ? `<div class="catalog-meta">${metaInner}</div>`
-                : '';
-            const imagenHTML = p.imagen
-                ? `<img class="catalog-img-real" src="${p.imagen}" alt="${p.nombre}" loading="lazy">`
-                : `<div class="catalog-img-placeholder"
-                             style="background:${p.gradiente}; width:100%; height:100%;
-                                    display:flex; align-items:center; justify-content:center;">
-                            <span class="placeholder-text">${lineas.join('<br>')}</span>
-                        </div>`;
-            return `
-            <a href="producto.html?id=${p.id}" style="text-decoration:none; color:inherit; display:block;">
-                <article class="catalog-card">
-                    <div class="catalog-image">
-                        ${imagenHTML}
-                    </div>
-                    <div class="catalog-info">
-                        ${metaHTML}
-                        <h3 class="catalog-name">${p.nombre}</h3>
-                        <p class="catalog-detail">${p.descripcionCorta}</p>
-                        <div class="catalog-bottom">
-                            <div class="catalog-price">${formatearPrecio(p.precio)}</div>
-                        </div>
-                    </div>
-                </article>
-            </a>`;
-        }).join('');
-    } else {
-        document.querySelector('.related-section-title').style.display = 'none';
-        relGrid.style.display = 'none';
+    if (!relWrap || !relTrack || relacionados.length === 0 || typeof crearTarjetaSerie !== 'function') {
+        ocultarRelacionados();
+        return;
+    }
+
+    const productosById = {};
+    relacionados.forEach(function (p) {
+        productosById[p.id] = p;
+    });
+
+    relWrap.hidden = false;
+    if (relTitle) relTitle.style.display = '';
+    relTrack.innerHTML = relacionados.map(function (p) {
+        return crearTarjetaSerie(p, idsSoloReserva);
+    }).join('');
+
+    const carouselRoot = relWrap.querySelector('.series-carousel');
+    if (carouselRoot && typeof initSeriesCarousel === 'function') {
+        initSeriesCarousel(carouselRoot, productosById);
     }
 }
 
@@ -346,10 +402,23 @@ async function init() {
         let productos = [];
         let esPokemon = false;
 
-        const [respJojo, respPoke] = await Promise.all([
+        const [respJojo, respPoke, respReservas] = await Promise.all([
             fetch('productos.json').catch(() => null),
-            fetch('productos-pokemon.json').catch(() => null)
+            fetch('productos-pokemon.json').catch(() => null),
+            fetch('reservas.json').catch(() => null)
         ]);
+
+        const idsReserva = new Set();
+        const llegadasReserva = {};
+        if (respReservas && respReservas.ok) {
+            const listaReserva = await respReservas.json();
+            listaReserva.forEach(function (e) {
+                if (e && e.id) {
+                    idsReserva.add(e.id);
+                    llegadasReserva[e.id] = e.llegadaEstimada || '';
+                }
+            });
+        }
 
         if (respJojo && respJojo.ok) {
             const lista = await respJojo.json();
@@ -366,7 +435,14 @@ async function init() {
         if (!producto) { mostrarError(); return; }
 
         // 4. Renderizar
-        renderProducto(producto, productos, esPokemon);
+        renderProducto(
+            producto,
+            productos,
+            esPokemon,
+            idsReserva.has(producto.id),
+            idsReserva,
+            llegadasReserva[producto.id] || ''
+        );
         mostrarContenido();
 
     } catch (error) {

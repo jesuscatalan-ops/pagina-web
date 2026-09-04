@@ -44,7 +44,7 @@ window.aplicarOrden = function(cat, orden, el) {
     btn.classList.remove('abierto');
     const filtrados = filtroActivo === 'Todos'
         ? todosLosProductos
-        : todosLosProductos.filter(p => p.parte === filtroActivo);
+        : todosLosProductos.filter(p => partesDe(p).includes(filtroActivo));
     renderGrid(ordenar(filtrados, orden));
 };
 
@@ -72,82 +72,95 @@ function escapeHtml(text) {
         .replace(/"/g, '&quot;');
 }
 
+function srcImagen(path) {
+    if (!path) return '';
+    return escapeHtml(encodeURI(String(path)));
+}
+
+/** Partes en las que aparece un producto al filtrar. Usa `partes` si existe; si no, `parte`. */
+function partesDe(producto) {
+    if (Array.isArray(producto.partes) && producto.partes.length) return producto.partes;
+    return producto.parte ? [producto.parte] : [];
+}
+
 // ── Render de una tarjeta individual ────────────────────────
 
-const IDS_25TH = new Set(['sticky-fingers-25th', 'caesar-zeppeli-25th', 'joseph-joestar-25th']);
+const IDS_25TH = new Set(['joseph-joestar-25th']);
+const RE_WF = /WF\s*(?:20\d{2}|Exclusive)/i;
 
 function crearTarjeta(producto) {
-    const lineas = producto.placeholder.split('\n');
+    const agotado = producto.stock === 'out-stock';
+    const nombre = producto.nombre || '';
+    const extraTitulo = (producto.continuacionTitulo && String(producto.continuacionTitulo).trim())
+        ? ` ${String(producto.continuacionTitulo).trim()}`
+        : '';
 
-    // Logo 25th Anniversary (esquina superior izquierda)
     const logo25thHTML = IDS_25TH.has(producto.id)
         ? `<img class="catalog-25th-logo"
-                src="imagenes/Emblemas/logos especiales/25th Anniversary (2012) - Logo.png"
+                src="${srcImagen('imagenes/Emblemas/logos especiales/25th Anniversary (2012) - Logo.png')}"
                 alt="25th Anniversary 2012">`
         : '';
 
-    // Badge especial (BESTSELLER / VILLANO / NUEVO)
-    let badgeHTML = '';
-    if (producto.badge) {
-        const clases = {
-            'VILLANO':   'catalog-badge villain',
-            'NUEVO':     'catalog-badge new',
-            'NUEVO SET': 'catalog-badge new',
-        };
-        const clase = clases[producto.badge] || 'catalog-badge';
-        badgeHTML = `<div class="${clase}">${producto.badge}</div>`;
-    }
-
-    // Botón carrito
-    const btnDisabled  = producto.stock === 'out-stock';
-    const btnTexto     = btnDisabled ? 'AGOTADO' : '+ CARRITO';
-    const btnAtributos = btnDisabled
-        ? 'disabled style="opacity:0.5; cursor:not-allowed;"'
-        : `data-carrito-id="${producto.id}"
-           onclick="event.preventDefault(); agregarAlCarrito('${producto.id}', '${producto.nombre.replace(/'/g, "\'")}', ${producto.precio}, '${producto.imagen || ''}')"`;
-
-    const extraTitulo = (producto.continuacionTitulo && String(producto.continuacionTitulo).trim())
-        ? `<span class="catalog-name-suffix"> ${escapeHtml(String(producto.continuacionTitulo).trim())}</span>`
+    const logoWfHTML = RE_WF.test(producto.nombre || '')
+        ? `<img class="catalog-wf-logo"
+                src="${srcImagen('imagenes/Emblemas/logos especiales/wonder festival logo.png')}"
+                alt="Wonder Festival">`
         : '';
 
-    // Imagen: real o placeholder
+    let badgeHTML = '';
+    if (producto.badge) {
+        badgeHTML = `<span class="series-card-badge">${escapeHtml(producto.badge)}</span>`;
+    }
+
     const imagenHTML = producto.imagen
-        ? `<img
-               class="catalog-img-real"
-               src="${producto.imagen}"
-               alt="${producto.nombre}"
-               loading="lazy">`
-        : `<div class="catalog-img-placeholder"
-                style="background:${producto.gradiente}; width:100%; height:100%;
-                       display:flex; align-items:center; justify-content:center;">
-               <span class="placeholder-text">${lineas.join('<br>')}</span>
+        ? `<img src="${srcImagen(producto.imagen)}" alt="${escapeHtml(nombre)}" loading="lazy">`
+        : `<div class="series-card-placeholder" style="background:${escapeHtml(producto.gradiente || 'linear-gradient(135deg,#333,#111)')}">
+               <span>${escapeHtml((producto.placeholder || nombre).replace(/\n/g, ' '))}</span>
            </div>`;
 
-    return `
-    <a href="producto.html?id=${producto.id}"
-       style="text-decoration:none; color:inherit; display:block;">
-        <article class="catalog-card">
-            ${logo25thHTML}
-            ${badgeHTML}
-            <div class="catalog-image">
-                ${imagenHTML}
-            </div>
-            <div class="catalog-info">
-                <div class="catalog-meta">
-                    <span class="catalog-series">${producto.parte}</span>
-                </div>
-                <h3 class="catalog-name">${producto.nombre}${extraTitulo}</h3>
+    const btnDisabled = agotado ? 'disabled' : '';
+    const btnTexto = agotado ? 'AGOTADO' : '+ COMPRAR';
+    const fabricante = producto.fabricante || 'Medicos Entertainment';
 
-                <div class="catalog-bottom">
-                    <div class="catalog-price">${formatearPrecio(producto.precio)}</div>
-                    <button class="add-to-cart-btn catalog-cart-btn"
-                            ${btnAtributos}>
-                        ${btnTexto}
-                    </button>
+    return `
+        <article class="series-card series-card--catalog">
+            <div class="series-card-body">
+                <a class="series-card-top" href="producto.html?id=${encodeURIComponent(producto.id)}">
+                    <div class="series-card-image">
+                        ${logo25thHTML}
+                        ${logoWfHTML}
+                        ${badgeHTML}
+                        ${imagenHTML}
+                    </div>
+                    <h3 class="series-card-name">${escapeHtml(nombre + extraTitulo)}</h3>
+                </a>
+                <div class="series-card-actions">
+                    <span class="series-card-price">${formatearPrecio(producto.precio)}</span>
+                </div>
+                <div class="series-card-footer">
+                    <div class="series-card-official">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.6"/>
+                            <path d="M8 12.5l2.4 2.4L16.5 9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <div>
+                            <span>Productos oficiales de Japón</span>
+                            <span>Mercancía licenciada</span>
+                        </div>
+                    </div>
+                    <div class="series-card-maker">
+                        <span class="series-card-maker-name">${escapeHtml(fabricante)}</span>
+                        <span class="series-card-maker-label">Fabricante</span>
+                    </div>
                 </div>
             </div>
-        </article>
-    </a>`;
+            <button type="button"
+                    class="series-card-buy-btn"
+                    data-id="${escapeHtml(producto.id)}"
+                    ${btnDisabled}>
+                ${btnTexto}
+            </button>
+        </article>`;
 }
 
 // ── Render del grid completo ─────────────────────────────────
@@ -193,7 +206,7 @@ function aplicarFiltro(parte) {
     // Filtrar y renderizar respetando el orden activo
     const filtrados = parte === 'Todos'
         ? todosLosProductos
-        : todosLosProductos.filter(p => p.parte === parte);
+        : todosLosProductos.filter(p => partesDe(p).includes(parte));
 
     renderGrid(ordenar(filtrados, ordenActivo));
 }
@@ -208,6 +221,21 @@ function conectarFiltros() {
 
     document.querySelectorAll('.parte-emblem-btn').forEach(btn => {
         btn.addEventListener('click', () => aplicarFiltro(btn.dataset.parte));
+    });
+}
+
+function conectarCarritoCatalogo() {
+    const grid = document.getElementById('catalogo-grid');
+    if (!grid || grid.dataset.carritoBound === '1') return;
+    grid.dataset.carritoBound = '1';
+    grid.addEventListener('click', function (e) {
+        const btn = e.target.closest('.series-card-buy-btn');
+        if (!btn || btn.disabled) return;
+        e.preventDefault();
+        const id = btn.getAttribute('data-id');
+        const p = todosLosProductos.find(function (x) { return x.id === id; });
+        if (!p || typeof agregarAlCarrito !== 'function') return;
+        agregarAlCarrito(p.id, p.nombre, p.precio, p.imagen || '', p.maxCantidad);
     });
 }
 
@@ -229,12 +257,24 @@ async function init() {
         </div>`;
 
     try {
-        const respuesta = await fetch('productos.json');
+        const [respuesta, resReservas] = await Promise.all([
+            fetch('productos.json'),
+            fetch('reservas.json').catch(function () { return null; })
+        ]);
         if (!respuesta.ok) throw new Error('No se pudo cargar productos.json');
 
-        todosLosProductos = await respuesta.json();
+        const idsReserva = new Set();
+        if (resReservas && resReservas.ok) {
+            const listaReserva = await resReservas.json();
+            listaReserva.forEach(function (e) { if (e && e.id) idsReserva.add(e.id); });
+        }
+
+        todosLosProductos = (await respuesta.json()).filter(function (p) {
+            return !idsReserva.has(p.id);
+        });
 
         conectarFiltros();
+        conectarCarritoCatalogo();
 
         // Soporte deep-link desde Quiénes Somos: catalogo.html?parte=Golden%20Wind
         const parteURL = new URLSearchParams(window.location.search).get('parte');

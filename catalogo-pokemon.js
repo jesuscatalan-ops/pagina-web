@@ -91,7 +91,7 @@ function crearTarjeta(producto) {
     const btnAtributos = btnDisabled ? 'disabled style="opacity:0.5; cursor:not-allowed;"' : '';
 
     const imagenHTML = producto.imagen
-        ? `<img class="catalog-img-real" src="${producto.imagen}" alt="${producto.nombre}" loading="lazy">`
+        ? `<img class="catalog-img-real" src="${encodeURI(producto.imagen)}" alt="${producto.nombre}" loading="lazy">`
         : `<div class="catalog-img-placeholder"
                 style="background:${producto.gradiente}; width:100%; height:100%;
                        display:flex; align-items:center; justify-content:center;">
@@ -117,7 +117,7 @@ function crearTarjeta(producto) {
                     <button class="add-to-cart-btn catalog-cart-btn"
                             data-carrito-id="${producto.id}"
                             ${btnAtributos}
-                            onclick="event.preventDefault(); if(!this.disabled) agregarAlCarritoConFeedback('${producto.id}','${producto.nombre.replace(/'/g,"\\'")}',${producto.precio},'${producto.imagen || ''}', this)">
+                            onclick="event.preventDefault(); if(!this.disabled) agregarAlCarritoConFeedback('${producto.id}','${producto.nombre.replace(/'/g,"\\'")}',${producto.precio},'${producto.imagen || ''}', this, ${Number(producto.maxCantidad) > 0 ? Number(producto.maxCantidad) : 1})">
                         ${btnTexto}
                     </button>
                 </div>
@@ -126,15 +126,8 @@ function crearTarjeta(producto) {
     </a>`;
 }
 
-function agregarAlCarritoConFeedback(id, nombre, precio, imagen, btn) {
-    agregarAlCarrito(id, nombre, precio, imagen);
-    const textoOriginal = btn.textContent;
-    btn.textContent = '✓ AGREGADO';
-    btn.style.background = 'linear-gradient(135deg,#00b894,#00d9a3)';
-    setTimeout(() => {
-        btn.textContent = textoOriginal;
-        btn.style.background = '';
-    }, 1500);
+function agregarAlCarritoConFeedback(id, nombre, precio, imagen, btn, maxCantidad) {
+    agregarAlCarrito(id, nombre, precio, imagen, maxCantidad);
 }
 
 // ── Render del grid ──────────────────────────────────────────

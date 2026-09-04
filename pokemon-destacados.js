@@ -52,7 +52,7 @@ function crearTarjetaDestacada(producto) {
 
     // Imagen real o placeholder con gradiente
     const imagenHTML = producto.imagen
-        ? `<img src="${producto.imagen}" alt="${producto.nombre}"
+        ? `<img src="${encodeURI(producto.imagen)}" alt="${producto.nombre}"
                style="width:100%; height:100%; object-fit:contain; padding:0.5rem; display:block;"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
            <span style="display:none; align-items:center; justify-content:center;
@@ -72,7 +72,7 @@ function crearTarjetaDestacada(producto) {
     const btnAttr  = agotado ? 'disabled style="opacity:0.5;cursor:not-allowed;"' : '';
     const nombreEsc = producto.nombre.replace(/'/g, "\\'");
     const btnOnclick = agotado ? '' :
-        `onclick="event.stopPropagation(); agregarAlCarrito('${producto.id}','${nombreEsc}',${producto.precio},'${producto.imagen || ''}')"`;
+        `onclick="event.stopPropagation(); agregarAlCarrito('${producto.id}','${nombreEsc}',${producto.precio},'${producto.imagen || ''}',${Number(producto.maxCantidad) > 0 ? Number(producto.maxCantidad) : 1})"`;
 
     return `
     <a href="producto.html?id=${producto.id}" style="text-decoration:none; color:inherit;">
@@ -86,7 +86,7 @@ function crearTarjetaDestacada(producto) {
                 
                 <div class="poke-prod-bottom">
                     <span class="poke-prod-price">${formatearPrecio(producto.precio)}</span>
-                    <button class="poke-prod-btn" ${btnAttr} ${btnOnclick}>
+                    <button class="poke-prod-btn" data-carrito-id="${producto.id}" ${btnAttr} ${btnOnclick}>
                         ${btnTexto}
                     </button>
                 </div>

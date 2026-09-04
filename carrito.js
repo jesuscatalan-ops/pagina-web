@@ -5,38 +5,126 @@
 // ============================================================
 
 const CARRITO_KEY = 'anime2chile_carrito';
+const PREFIJO_RESERVA = '(RESERVA) ';
+
+function nombreConReserva(nombre) {
+    const n = String(nombre || '').trim();
+    if (!n) return PREFIJO_RESERVA.trim();
+    if (/^\(RESERVA\)\s*/i.test(n)) {
+        return PREFIJO_RESERVA + n.replace(/^\(RESERVA\)\s*/i, '');
+    }
+    return PREFIJO_RESERVA + n;
+}
 
 // ── Persistencia ─────────────────────────────────────────────
 
 function obtenerCarrito() {
     try {
-        return JSON.parse(localStorage.getItem(CARRITO_KEY)) || [];
+        return normalizarCarrito(JSON.parse(localStorage.getItem(CARRITO_KEY)) || []);
     } catch {
         return [];
     }
+}
+
+function maxCantidadDe(valor) {
+    const n = Number.parseInt(valor, 10);
+    if (!Number.isFinite(n) || n < 1) return 1;
+    return Math.min(n, 99);
 }
 
 function guardarCarrito(carrito) {
     localStorage.setItem(CARRITO_KEY, JSON.stringify(carrito));
 }
 
+function normalizarCarrito(carrito) {
+    let changed = false;
+    for (const item of carrito) {
+        const max = maxCantidadDe(item.maxCantidad);
+        if (item.maxCantidad !== max) {
+            item.maxCantidad = max;
+            changed = true;
+        }
+        if (item.cantidad > max) {
+            item.cantidad = max;
+            changed = true;
+        }
+        if (item.cantidad < 1) {
+            item.cantidad = 1;
+            changed = true;
+        }
+    }
+    if (changed) guardarCarrito(carrito);
+    return carrito;
+}
+
 // ── Operaciones del carrito ──────────────────────────────────
 
-function agregarAlCarrito(id, nombre, precio, imagen) {
+function agregarAlCarrito(id, nombre, precio, imagen, maxCantidad) {
+    const limite = maxCantidadDe(maxCantidad);
     const carrito = obtenerCarrito();
     const existente = carrito.find(item => item.id === id);
 
     if (existente) {
+        const max = maxCantidadDe(existente.maxCantidad || limite);
+        existente.maxCantidad = max;
+        if (existente.cantidad >= max) {
+            guardarCarrito(carrito);
+            actualizarContador();
+            renderSidebar();
+            abrirSidebar();
+            mostrarFeedback(id, 'limite');
+            return { ok: false, enLimite: true };
+        }
         existente.cantidad += 1;
     } else {
-        carrito.push({ id, nombre, precio, imagen, cantidad: 1 });
+        carrito.push({ id, nombre, precio, imagen, cantidad: 1, maxCantidad: limite });
     }
 
     guardarCarrito(carrito);
     actualizarContador();
     renderSidebar();
     abrirSidebar();
-    mostrarFeedback(id);
+    mostrarFeedback(id, 'ok');
+    return { ok: true, enLimite: false };
+}
+
+function asegurarEnCarrito(id, nombre, precio, imagen, opts) {
+    const esReserva = !!(opts && opts.reserva);
+    const limite = maxCantidadDe(opts && opts.maxCantidad);
+    const nombreFinal = esReserva ? nombreConReserva(nombre) : nombre;
+    const carrito = obtenerCarrito();
+    const existente = carrito.find(item => item.id === id);
+    if (!existente) {
+        carrito.push({
+            id,
+            nombre: nombreFinal,
+            precio,
+            imagen,
+            cantidad: 1,
+            maxCantidad: limite,
+            reserva: esReserva
+        });
+    } else {
+        existente.maxCantidad = maxCantidadDe(existente.maxCantidad || limite);
+        if (existente.cantidad > existente.maxCantidad) {
+            existente.cantidad = existente.maxCantidad;
+        }
+        if (esReserva) {
+            existente.nombre = nombreConReserva(nombre);
+            existente.reserva = true;
+        }
+    }
+    guardarCarrito(carrito);
+    actualizarContador();
+    renderSidebar();
+}
+
+function iniciarCheckoutConProducto(id, nombre, precio, imagen, opts) {
+    asegurarEnCarrito(id, nombre, precio, imagen, {
+        reserva: true,
+        maxCantidad: opts && opts.maxCantidad
+    });
+    window.location.href = 'checkout.html';
 }
 
 function cambiarCantidadCarrito(id, delta) {
@@ -44,7 +132,9 @@ function cambiarCantidadCarrito(id, delta) {
     const item = carrito.find(i => i.id === id);
     if (!item) return;
 
-    item.cantidad = Math.max(1, item.cantidad + delta);
+    const max = maxCantidadDe(item.maxCantidad);
+    item.maxCantidad = max;
+    item.cantidad = Math.max(1, Math.min(max, item.cantidad + delta));
     guardarCarrito(carrito);
     actualizarContador();
     renderSidebar();
@@ -53,12 +143,6 @@ function cambiarCantidadCarrito(id, delta) {
 function eliminarDelCarrito(id) {
     const carrito = obtenerCarrito().filter(i => i.id !== id);
     guardarCarrito(carrito);
-    actualizarContador();
-    renderSidebar();
-}
-
-function vaciarCarrito() {
-    guardarCarrito([]);
     actualizarContador();
     renderSidebar();
 }
@@ -77,12 +161,20 @@ function actualizarContador() {
 
 // ── Feedback visual en el botón ──────────────────────────────
 
-function mostrarFeedback(id) {
-    const btn = document.querySelector(`[data-carrito-id="${id}"]`);
+function mostrarFeedback(id, tipo) {
+    const btn = document.querySelector(`[data-carrito-id="${id}"]`)
+        || document.querySelector(`.series-card-buy-btn[data-id="${id}"]`)
+        || document.querySelector(`.poke-prod-btn[onclick*="${id}"]`);
     if (!btn) return;
-    const textoOriginal = btn.textContent;
-    btn.textContent = '✓ AGREGADO';
-    btn.style.background = 'linear-gradient(135deg, #00d9a3, #00b087)';
+    const textoOriginal = btn.dataset.textoOriginal || btn.textContent;
+    btn.dataset.textoOriginal = textoOriginal;
+    if (tipo === 'limite') {
+        btn.textContent = 'YA EN EL CARRITO';
+        btn.style.background = 'linear-gradient(135deg, #6b6b6b, #4a4a4a)';
+    } else {
+        btn.textContent = '✓ AGREGADO';
+        btn.style.background = 'linear-gradient(135deg, #00d9a3, #00b087)';
+    }
     setTimeout(() => {
         btn.textContent = textoOriginal;
         btn.style.background = '';
@@ -126,29 +218,33 @@ function renderSidebar() {
 
     const total = carrito.reduce((sum, i) => sum + i.precio * i.cantidad, 0);
 
-    contenido.innerHTML = carrito.map(item => `
+    contenido.innerHTML = carrito.map(item => {
+        const max = maxCantidadDe(item.maxCantidad);
+        const plusDisabled = item.cantidad >= max ? 'disabled' : '';
+        const plusTitle = item.cantidad >= max ? `Máximo ${max} por pedido` : 'Aumentar cantidad';
+        return `
         <div class="carrito-item" data-id="${item.id}">
             <div class="carrito-item-img">
                 ${item.imagen
-                    ? `<img src="${item.imagen}" alt="${item.nombre}" onerror="this.style.display='none'">`
-                    : `<div class="carrito-item-placeholder">🎌</div>`
+                    ? `<img src="${encodeURI(item.imagen)}" alt="${item.nombre}" onerror="this.style.display='none'">`
+                    : ''
                 }
             </div>
             <div class="carrito-item-info">
                 <p class="carrito-item-nombre">${item.nombre}</p>
                 <p class="carrito-item-precio">${formatearPrecioCarrito(item.precio)}</p>
                 <div class="carrito-item-qty">
-                    <button class="carrito-qty-btn" onclick="cambiarCantidadCarrito('${item.id}', -1)">−</button>
+                    <button class="carrito-qty-btn" onclick="cambiarCantidadCarrito('${item.id}', -1)" ${item.cantidad <= 1 ? 'disabled' : ''} title="Disminuir cantidad">−</button>
                     <span>${item.cantidad}</span>
-                    <button class="carrito-qty-btn" onclick="cambiarCantidadCarrito('${item.id}', 1)">+</button>
+                    <button class="carrito-qty-btn" onclick="cambiarCantidadCarrito('${item.id}', 1)" ${plusDisabled} title="${plusTitle}">+</button>
                 </div>
             </div>
             <div class="carrito-item-subtotal">
                 <p>${formatearPrecioCarrito(item.precio * item.cantidad)}</p>
                 <button class="carrito-eliminar" onclick="eliminarDelCarrito('${item.id}')" title="Eliminar">✕</button>
             </div>
-        </div>
-    `).join('');
+        </div>`;
+    }).join('');
 
     footer.style.display = 'block';
     document.getElementById('carrito-total-valor').textContent = formatearPrecioCarrito(total);
@@ -177,9 +273,6 @@ function inyectarSidebar() {
                 </div>
                 <button class="carrito-checkout-btn" onclick="window.location='checkout.html'">
                     FINALIZAR COMPRA
-                </button>
-                <button class="carrito-vaciar-btn" onclick="vaciarCarrito()">
-                    Vaciar carrito
                 </button>
             </div>
         </aside>
