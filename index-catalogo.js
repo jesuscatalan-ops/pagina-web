@@ -21,8 +21,15 @@ function srcImagen(path) {
     return escapeHtml(encodeURI(String(path)));
 }
 
+function isMobileLayout() {
+    return window.matchMedia('(max-width: 768px), (max-width: 1200px) and (orientation: portrait)').matches;
+}
+
 function visibleCount() {
-    return window.innerWidth <= 768 ? 2 : 4;
+    if (window.matchMedia('(min-width: 600px) and (max-width: 1200px) and (orientation: portrait)').matches) {
+        return 3;
+    }
+    return isMobileLayout() ? 2 : 4;
 }
 
 function crearTarjetaSerie(producto, idsReserva) {

@@ -1,0 +1,10 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // El sitio usa Firebase Admin SDK en el servidor.
+    // Nadie debe leer ni escribir pedidos desde el navegador.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

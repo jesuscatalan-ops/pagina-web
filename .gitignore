@@ -14,6 +14,8 @@ firebase-service-account.json
 .vscode/
 .idea/
 
-# Temporales
+# Temporales y empaquetados (no desplegar ni subir)
 tmp/
 temp/
+*.zip
+Anime2Chile.zip

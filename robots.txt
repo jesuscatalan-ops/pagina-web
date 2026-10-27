@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /admin
+Disallow: /api/
+Disallow: /proximamente.html
+Disallow: /checkout.html
+Disallow: /compra-exitosa.html
+Disallow: /compra-fallida.html
+Disallow: /compra-pendiente.html
+Disallow: /gracias.html
+Disallow: /pokemon.html
+Disallow: /catalogo-pokemon.html
+Disallow: /pokemon-tcg.html
+
+Sitemap: https://anime2chile.cl/sitemap.xml

@@ -4,11 +4,26 @@
 //  y renderiza la página de producto dinámica.
 // ============================================================
 
+/** false = la pestaña DESCRIPCIÓN no se muestra. Pon true para volver a activarla en todos los productos. */
+const MOSTRAR_DESCRIPCION = false;
+
+/** false = los productos Pokémon no se muestran (la ficha responde "no encontrado"). Debe coincidir con POKEMON_HABILITADO del servidor. */
+const POKEMON_HABILITADO = false;
+
 // ── Utilidades ──────────────────────────────────────────────
 
 /** Formatea un número como precio chileno: 89990 → "$89.990" */
 function formatearPrecio(numero) {
     return '$' + numero.toLocaleString('es-CL');
+}
+
+function escapeHtml(text) {
+    if (text == null || text === '') return '';
+    return String(text)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
 }
 
 /** Devuelve la clase CSS correcta para el badge de stock */
@@ -42,6 +57,9 @@ function mostrarError() {
     document.getElementById('estado-cargando').style.display  = 'none';
     document.getElementById('estado-error').style.display     = 'flex';
     document.getElementById('producto-contenido').style.display = 'none';
+    document.title = 'Producto no encontrado — Anime2Chile';
+    setMetaSeo('name', 'robots', 'noindex, follow');
+    setCanonicalSeo(SEO_ORIGIN + '/catalogo.html');
 }
 
 function mostrarContenido() {
@@ -64,10 +82,124 @@ function partesLlegada(str) {
     return { mes: raw.toUpperCase(), anio: '' };
 }
 
-function renderProducto(producto, todosLosProductos, esPokemon = false, esReserva = false, idsReserva, llegadaEstimada) {
+function adelantoPctDe(valor) {
+    const n = Number(valor);
+    if (!Number.isFinite(n) || n <= 0 || n > 100) return 50;
+    return n;
+}
 
-    /* ---------- <title> ---------- */
-    document.title = producto.nombre + ' — Anime2Chile';
+const SEO_ORIGIN = 'https://anime2chile.cl';
+
+function absUrlSeo(path) {
+    if (!path) return SEO_ORIGIN + '/anime2chile_logo.png';
+    const s = String(path);
+    if (/^https?:\/\//i.test(s)) return s;
+    return SEO_ORIGIN + '/' + s.replace(/^\//, '');
+}
+
+function setMetaSeo(attr, key, content) {
+    if (!content) return;
+    let el = document.querySelector('meta[' + attr + '="' + key + '"]');
+    if (!el) {
+        el = document.createElement('meta');
+        el.setAttribute(attr, key);
+        document.head.appendChild(el);
+    }
+    el.setAttribute('content', content);
+}
+
+function setCanonicalSeo(href) {
+    let el = document.querySelector('link[rel="canonical"]');
+    if (!el) {
+        el = document.createElement('link');
+        el.rel = 'canonical';
+        document.head.appendChild(el);
+    }
+    el.href = href;
+}
+
+function setJsonLdSeo(id, data) {
+    let el = document.getElementById(id);
+    if (!el) {
+        el = document.createElement('script');
+        el.type = 'application/ld+json';
+        el.id = id;
+        document.head.appendChild(el);
+    }
+    el.textContent = JSON.stringify(data);
+}
+
+function disponibilidadSeo(stock) {
+    if (stock === 'out-stock') return 'https://schema.org/OutOfStock';
+    if (stock === 'low-stock') return 'https://schema.org/LimitedAvailability';
+    return 'https://schema.org/InStock';
+}
+
+function aplicarSeoProducto(producto, esPokemon, esReserva, adelantoPct) {
+    const titulo = producto.nombre + ' — Anime2Chile';
+    const descFuente = producto.descripcionCorta || producto.descripcion || producto.nombre;
+    const desc = String(descFuente).replace(/\s+/g, ' ').trim().slice(0, 160);
+    const canonical = SEO_ORIGIN + '/producto.html?id=' + encodeURIComponent(producto.id);
+    const imagen = absUrlSeo(producto.imagen);
+    const precio = esReserva
+        ? precioAbono(producto.precio, adelantoPct)
+        : Number(producto.precio) || 0;
+
+    document.title = titulo;
+    setCanonicalSeo(canonical);
+    setMetaSeo('name', 'description', desc);
+    setMetaSeo('name', 'robots', 'index, follow');
+    setMetaSeo('property', 'og:type', 'product');
+    setMetaSeo('property', 'og:title', titulo);
+    setMetaSeo('property', 'og:description', desc);
+    setMetaSeo('property', 'og:url', canonical);
+    setMetaSeo('property', 'og:image', imagen);
+    setMetaSeo('name', 'twitter:card', 'summary_large_image');
+    setMetaSeo('name', 'twitter:title', titulo);
+    setMetaSeo('name', 'twitter:description', desc);
+    setMetaSeo('name', 'twitter:image', imagen);
+
+    const seccion = esPokemon ? 'Pokémon TCG' : (esReserva ? 'Reservas' : 'Catálogo');
+    const seccionUrl = esPokemon
+        ? SEO_ORIGIN + '/'
+        : (esReserva ? SEO_ORIGIN + '/reservas.html' : SEO_ORIGIN + '/catalogo.html');
+
+    setJsonLdSeo('jsonld-product', {
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name: producto.nombre,
+        sku: String(producto.id),
+        image: imagen,
+        description: desc,
+        brand: { '@type': 'Brand', name: producto.fabricante || 'Anime2Chile' },
+        offers: {
+            '@type': 'Offer',
+            url: canonical,
+            priceCurrency: 'CLP',
+            price: String(precio),
+            availability: disponibilidadSeo(producto.stock),
+            itemCondition: 'https://schema.org/NewCondition',
+            seller: { '@type': 'Organization', name: 'Anime2Chile' }
+        }
+    });
+    setJsonLdSeo('jsonld-breadcrumb', {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Inicio', item: SEO_ORIGIN + '/' },
+            { '@type': 'ListItem', position: 2, name: seccion, item: seccionUrl },
+            { '@type': 'ListItem', position: 3, name: producto.nombre, item: canonical }
+        ]
+    });
+}
+
+function precioAbono(precioTotal, adelantoPct) {
+    return Math.round(Number(precioTotal || 0) * adelantoPctDe(adelantoPct) / 100);
+}
+
+function renderProducto(producto, todosLosProductos, esPokemon = false, esReserva = false, idsReserva, llegadaEstimada, adelantoPct) {
+
+    aplicarSeoProducto(producto, esPokemon, esReserva, adelantoPct);
 
     /* ---------- Imagen principal ---------- */
     const imgEl = document.getElementById('producto-imagen-principal');
@@ -78,14 +210,14 @@ function renderProducto(producto, todosLosProductos, esPokemon = false, esReserv
         imgEl.style.cssText = '';
         imgEl.innerHTML = `<img
             class="product-img-real"
-            src="${encodeURI(producto.imagen)}"
-            alt="${producto.nombre}"
+            src="${escapeHtml(encodeURI(producto.imagen))}"
+            alt="${escapeHtml(producto.nombre)}"
             loading="lazy">`;
     } else {
         // Placeholder con gradiente
         imgEl.className = 'product-main-img tiene-placeholder';
-        imgEl.style.cssText = `background:${producto.gradiente};`;
-        const lineas = producto.placeholder.split('\n');
+        imgEl.style.cssText = `background:${escapeHtml(producto.gradiente || '')}`;
+        const lineas = String(producto.placeholder || '').split('\n').map(escapeHtml);
         imgEl.innerHTML = lineas.join('<br>');
     }
 
@@ -106,7 +238,7 @@ function renderProducto(producto, todosLosProductos, esPokemon = false, esReserv
         thumbsEl.classList.add('carousel-thumbs');
         thumbsEl.innerHTML = listaImagenes.map((src, i) => `
             <div class="product-thumb ${i === 0 ? 'active' : ''}" data-idx="${i}">
-                <img src="${encodeURI(src)}" alt="${producto.nombre} — foto ${i + 1}" loading="lazy">
+                <img src="${escapeHtml(encodeURI(src))}" alt="${escapeHtml(producto.nombre)} — foto ${i + 1}" loading="lazy">
             </div>`).join('');
 
         // Envolvemos la imagen principal para anclar las flechas
@@ -167,10 +299,10 @@ function renderProducto(producto, todosLosProductos, esPokemon = false, esReserv
 
     } else {
         // Sin imagen: thumb del placeholder + slots vacíos
-        const lineas = producto.placeholder.split('\n');
+        const lineas = String(producto.placeholder || '').split('\n').map(escapeHtml);
         thumbsEl.innerHTML = `
             <div class="product-thumb active"
-                 style="background:${producto.gradiente}; opacity:0.85;
+                 style="background:${escapeHtml(producto.gradiente || '')}; opacity:0.85;
                         font-family:'Anton',sans-serif; font-size:0.6rem;
                         color:rgba(255,255,255,0.4); letter-spacing:2px;
                         text-align:center; line-height:1.2; cursor:default;">
@@ -213,7 +345,7 @@ function renderProducto(producto, todosLosProductos, esPokemon = false, esReserv
         const clase = clases[producto.badge] || 'catalog-badge';
         badgeEl.innerHTML = `<div class="${clase}"
             style="position:static; display:inline-block; margin-bottom:0.5rem;">
-            ${producto.badge}
+            ${escapeHtml(producto.badge)}
         </div>`;
     } else {
         badgeEl.innerHTML = '';
@@ -230,12 +362,12 @@ function renderProducto(producto, todosLosProductos, esPokemon = false, esReserv
     if (fechaReservaEl) {
         if (esReserva) {
             const p = partesLlegada(llegadaEstimada);
-            const anio = p.anio ? `<span class="reservas-fecha-anio">${p.anio}</span>` : '';
+            const anio = p.anio ? `<span class="reservas-fecha-anio">${escapeHtml(p.anio)}</span>` : '';
             fechaReservaEl.hidden = false;
             fechaReservaEl.innerHTML = `
                 <span class="reservas-fecha-label">Llegada estimada</span>
                 <span class="reservas-fecha-valor">
-                    <em>${p.mes}</em>
+                    <em>${escapeHtml(p.mes)}</em>
                     ${anio}
                 </span>`;
         } else {
@@ -244,8 +376,25 @@ function renderProducto(producto, todosLosProductos, esPokemon = false, esReserv
         }
     }
 
+    const pctReserva = adelantoPctDe(adelantoPct);
+    const abonoReserva = precioAbono(producto.precio, pctReserva);
+    const precioLabel = document.getElementById('producto-precio-label');
+    const abonoBlock = document.getElementById('producto-abono-block');
+    const abonoValor = document.getElementById('producto-abono');
+    if (precioLabel) precioLabel.hidden = !esReserva;
+    if (abonoBlock) {
+        abonoBlock.hidden = !esReserva;
+        const labelAbono = abonoBlock.querySelector('.product-page-price-label');
+        if (labelAbono) labelAbono.textContent = 'Abono para reservar (' + pctReserva + '%)';
+    }
+    if (abonoValor) {
+        abonoValor.textContent = esReserva ? formatearPrecio(abonoReserva) : '';
+    }
+
     const precioNota = document.getElementById('producto-precio-nota');
-    precioNota.textContent = 'Envío calculado en el checkout';
+    precioNota.textContent = esReserva
+        ? 'Hoy pagas solo el abono para asegurar tu reserva. El saldo restante se cobra cuando el pedido esté listo para despacho.'
+        : 'Envío calculado en el checkout';
 
     /* ---------- Botón carrito / reserva ---------- */
     const btnCarrito = document.getElementById('btn-carrito');
@@ -261,7 +410,7 @@ function renderProducto(producto, todosLosProductos, esPokemon = false, esReserv
                     producto.nombre,
                     producto.precio,
                     producto.imagen || '',
-                    { maxCantidad: producto.maxCantidad }
+                    { maxCantidad: producto.maxCantidad, adelantoPct: pctReserva }
                 );
             } else {
                 window.location.href = 'checkout.html';
@@ -318,7 +467,7 @@ function renderProducto(producto, todosLosProductos, esPokemon = false, esReserv
         { label: 'PÁGINAS',            value: producto.paginas },
     ];
     const ocultarEnMangaOLibro = ['ALTURA', 'MATERIAL', 'ORIGEN', 'BASE DE EXHIBICIÓN', 'ARTICULACIONES'];
-    const ocultarEnFigura = ['PÁGINAS'];
+    const ocultarEnFigura = ['PÁGINAS', 'ALTURA'];
     const specs = esProd
         ? specsPokemon
         : specsJojo.filter(s => esMangaOLibro
@@ -327,17 +476,31 @@ function renderProducto(producto, todosLosProductos, esPokemon = false, esReserv
     document.getElementById('producto-specs').innerHTML = specs
         .map(s => `
             <div class="product-spec-row">
-                <span class="spec-label">${s.label}</span>
-                <span class="spec-value">${s.value || 'Por confirmar'}</span>
+                <span class="spec-label">${escapeHtml(s.label)}</span>
+                <span class="spec-value">${escapeHtml(s.value || 'Por confirmar')}</span>
             </div>
         `).join('');
 
     /* ---------- Tab Descripción ---------- */
     document.getElementById('tab-desc-texto').textContent = producto.descripcion;
+    const mostrarDescripcion = MOSTRAR_DESCRIPCION || producto.id === 'soft-wet';
+    if (!mostrarDescripcion) {
+        const btnDesc = document.querySelector('.product-tabs-nav .tab-btn');
+        const panelDesc = document.getElementById('tab-desc');
+        const btnSpecs = document.querySelector('.product-tabs-nav .tab-btn:nth-child(2)');
+        const panelSpecs = document.getElementById('tab-specs');
+        if (btnDesc) btnDesc.hidden = true;
+        if (panelDesc) {
+            panelDesc.hidden = true;
+            panelDesc.classList.remove('active');
+        }
+        if (btnSpecs) btnSpecs.classList.add('active');
+        if (panelSpecs) panelSpecs.classList.add('active');
+    }
 
     /* ---------- Tab Especificaciones (lista) ---------- */
     document.getElementById('tab-specs-lista').innerHTML = specs
-        .map(s => `<li>${s.label.charAt(0) + s.label.slice(1).toLowerCase()}: ${s.value || 'Por confirmar'}</li>`)
+        .map(s => `<li>${escapeHtml(s.label.charAt(0) + s.label.slice(1).toLowerCase())}: ${escapeHtml(s.value || 'Por confirmar')}</li>`)
         .join('');
 
     /* ---------- Productos relacionados ---------- */
@@ -404,18 +567,20 @@ async function init() {
 
         const [respJojo, respPoke, respReservas] = await Promise.all([
             fetch('productos.json').catch(() => null),
-            fetch('productos-pokemon.json').catch(() => null),
+            POKEMON_HABILITADO ? fetch('productos-pokemon.json').catch(() => null) : null,
             fetch('reservas.json').catch(() => null)
         ]);
 
         const idsReserva = new Set();
         const llegadasReserva = {};
+        const adelantosReserva = {};
         if (respReservas && respReservas.ok) {
             const listaReserva = await respReservas.json();
             listaReserva.forEach(function (e) {
                 if (e && e.id) {
                     idsReserva.add(e.id);
                     llegadasReserva[e.id] = e.llegadaEstimada || '';
+                    adelantosReserva[e.id] = e.adelantoPct;
                 }
             });
         }
@@ -441,7 +606,8 @@ async function init() {
             esPokemon,
             idsReserva.has(producto.id),
             idsReserva,
-            llegadasReserva[producto.id] || ''
+            llegadasReserva[producto.id] || '',
+            adelantosReserva[producto.id]
         );
         mostrarContenido();
 

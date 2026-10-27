@@ -5,6 +5,9 @@
     <meta name="color-scheme" content="light only">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel Admin — Anime2Chile</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" href="favicon.png?v=2" type="image/png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Pathway+Extreme:wght@400;600&display=swap" rel="stylesheet">
@@ -23,7 +26,7 @@
             --yellow-bg: #fef3c7;
             --red-bg: #fee2e2;
         }
-tiqueta
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
@@ -168,6 +171,7 @@ tiqueta
         .filtro-btn.f-pendiente.activo { border-color: var(--red);    color: var(--red);    background: var(--red-bg); }
         .filtro-btn.f-enviado.activo   { border-color: var(--yellow);  color: #92400e;       background: var(--yellow-bg); }
         .filtro-btn.f-entregado.activo { border-color: var(--green);   color: var(--green);  background: var(--green-bg); }
+        .filtro-btn.f-sin-pagar.activo { border-color: var(--gray);    color: var(--gray);   background: var(--light); }
 
         .btn-refresh {
             padding: 0.5rem 1.1rem;
@@ -232,6 +236,14 @@ tiqueta
             font-size: 0.88rem;
             color: var(--dark);
             vertical-align: top;
+        }
+
+        .td-numero {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.15rem;
+            letter-spacing: 1px;
+            white-space: nowrap;
+            color: var(--dark);
         }
 
         .td-fecha {
@@ -348,6 +360,142 @@ tiqueta
             background-color: var(--green-bg);
         }
 
+        .estado-badge {
+            display: inline-block;
+            padding: 0.45rem 0.85rem;
+            border-radius: 20px;
+            border: 2px dashed var(--gray);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.82rem;
+            letter-spacing: 1px;
+            color: var(--gray);
+            background: var(--light);
+            white-space: nowrap;
+        }
+
+        .alerta-pago {
+            display: block;
+            margin-top: 0.4rem;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: #92400e;
+        }
+
+        tr.fila-sin-pagar td { opacity: 0.6; }
+
+        .tipo-destino-badge {
+            display: block;
+            width: fit-content;
+            margin-bottom: 0.35rem;
+            padding: 0.15rem 0.55rem;
+            border-radius: 6px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        .tipo-destino-badge.domicilio {
+            color: #1e40af;
+            background: #dbeafe;
+        }
+
+        .tipo-destino-badge.sucursal {
+            color: #92400e;
+            background: #fef3c7;
+        }
+
+        .tracking-info {
+            display: block;
+            margin-top: 0.4rem;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--gray);
+            white-space: nowrap;
+        }
+
+        /* ── Modal tracking ── */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(26, 26, 46, 0.55);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        .modal-overlay.visible { display: flex; }
+        .modal-card {
+            width: 100%;
+            max-width: 440px;
+            background: #fff;
+            border-radius: 20px;
+            padding: 1.75rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        .modal-card h3 {
+            font-family: 'Anton', sans-serif;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.4rem;
+        }
+        .modal-card p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1.1rem;
+        }
+        .modal-card label {
+            display: block;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+        }
+        .modal-card input {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-size: 16px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 0.9rem;
+        }
+        .modal-card input:focus { outline: none; border-color: var(--primary); }
+        .modal-error {
+            min-height: 1.2rem;
+            color: var(--red);
+            font-size: 0.85rem;
+            margin-bottom: 0.75rem;
+        }
+        .modal-acciones {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: flex-end;
+        }
+        .modal-acciones button {
+            padding: 0.65rem 1.2rem;
+            border-radius: 12px;
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 1.5px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        .modal-btn-cancelar {
+            background: #fff;
+            border: 1.5px solid var(--border);
+            color: var(--gray);
+        }
+        .modal-btn-confirmar {
+            border: none;
+            background: var(--gradient);
+            color: #fff;
+        }
+        .modal-btn-confirmar:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+        }
+
         /* ── Botón etiqueta ── */
         .btn-etiqueta {
             display: block;
@@ -403,15 +551,269 @@ tiqueta
 
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* ── Responsive ── */
+        .admin-login {
+            display: none;
+            max-width: 420px;
+            margin: 4rem auto;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+        }
+        .admin-login.visible { display: block; }
+        .admin-login h2 {
+            font-family: 'Anton', sans-serif;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+        .admin-login p {
+            color: var(--gray);
+            margin-bottom: 1.25rem;
+            font-size: 0.95rem;
+        }
+        .admin-login label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+        }
+        .admin-login input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-size: 16px;
+            margin-bottom: 1rem;
+        }
+        .admin-login button {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: none;
+            border-radius: 12px;
+            background: var(--gradient);
+            color: #fff;
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 2px;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+        .admin-login-error {
+            display: none;
+            color: var(--red);
+            font-size: 0.9rem;
+            margin-bottom: 0.75rem;
+        }
+        .admin-login-error.visible { display: block; }
+        .topbar-logout {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.25);
+            color: rgba(255,255,255,0.8);
+            border-radius: 20px;
+            padding: 0.35rem 0.9rem;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+        .topbar-logout:hover { color: #fff; border-color: #fff; }
+        #admin-app { display: none; }
+        #admin-app.visible { display: block; }
+
+        /* ── Responsive (móvil; escritorio queda igual) ── */
         @media (max-width: 900px) {
             .stats-row { grid-template-columns: repeat(2, 1fr); }
             .admin-wrap { padding: 1rem; }
         }
 
+        @media (max-width: 768px) {
+            .topbar {
+                padding: 0.75rem 1rem;
+                padding-left: max(1rem, env(safe-area-inset-left));
+                padding-right: max(1rem, env(safe-area-inset-right));
+                gap: 0.65rem;
+                flex-wrap: wrap;
+            }
+
+            .topbar-logo { width: 32px; height: 32px; }
+
+            .topbar-title {
+                font-size: 0.95rem;
+                letter-spacing: 1px;
+            }
+
+            .topbar-right {
+                margin-left: auto;
+                width: auto;
+                justify-content: flex-end;
+                gap: 0.5rem;
+                flex-wrap: wrap;
+            }
+
+            .topbar-right:has(.topbar-logout:not([hidden])) {
+                width: 100%;
+                margin-left: 0;
+                justify-content: space-between;
+            }
+
+            .topbar-link,
+            .topbar-logout {
+                font-size: 0.8rem;
+                min-height: 40px;
+                display: inline-flex;
+                align-items: center;
+            }
+
+            .topbar-logout[hidden] { display: none; }
+
+            .admin-login {
+                margin: 1.25rem 1rem;
+                padding: 1.35rem 1.15rem;
+                max-width: none;
+            }
+
+            .admin-wrap {
+                padding: 1rem max(1rem, env(safe-area-inset-right)) 1.5rem max(1rem, env(safe-area-inset-left));
+            }
+
+            .stats-row {
+                gap: 0.75rem;
+                margin-bottom: 1.25rem;
+            }
+
+            .stat-card { padding: 0.9rem 1rem; }
+
+            .stat-value { font-size: 1.55rem; }
+
+            .filtros-row {
+                gap: 0.5rem;
+                margin-bottom: 1rem;
+                position: sticky;
+                top: 56px;
+                z-index: 90;
+                background: #fff;
+                padding: 0.55rem 0 0.7rem;
+            }
+
+            .filtros-row h2 {
+                flex: 1 0 100%;
+                font-size: 1.2rem;
+                margin-bottom: 0.15rem;
+            }
+
+            .filtro-btn,
+            .btn-refresh {
+                flex: 1 1 calc(50% - 0.5rem);
+                text-align: center;
+                min-height: 42px;
+                padding: 0.55rem 0.7rem;
+            }
+
+            .tabla-wrap {
+                border-radius: 16px;
+                background: transparent;
+                border: none;
+                box-shadow: none;
+            }
+
+            .tabla-scroll { overflow: visible; }
+
+            table {
+                min-width: 0;
+                display: block;
+            }
+
+            thead { display: none; }
+
+            tbody { display: flex; flex-direction: column; gap: 0.85rem; }
+
+            tbody tr {
+                display: block;
+                background: #fff;
+                border: 1px solid var(--border);
+                border-radius: 16px;
+                box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+                padding: 0.35rem 0;
+                overflow: hidden;
+            }
+
+            tbody tr:hover { background: #fff; }
+
+            td {
+                display: grid;
+                grid-template-columns: 7.2rem 1fr;
+                gap: 0.55rem;
+                align-items: start;
+                padding: 0.55rem 1rem;
+                font-size: 0.86rem;
+                border-bottom: 1px solid #f3f4f6;
+            }
+
+            td:last-child { border-bottom: none; }
+
+            td::before {
+                content: attr(data-label);
+                font-family: 'Bebas Neue', sans-serif;
+                font-size: 0.78rem;
+                letter-spacing: 1.2px;
+                color: var(--gray);
+                padding-top: 0.15rem;
+            }
+
+            td[colspan] {
+                display: block;
+                padding: 0;
+            }
+
+            td[colspan]::before { display: none; }
+
+            .tabla-estado { padding: 2.5rem 1.25rem; }
+
+            .td-numero { font-size: 1.25rem; }
+
+            .td-direccion { max-width: none; }
+
+            .productos-lista { align-items: flex-start; }
+
+            .producto-pill {
+                white-space: normal;
+                max-width: 100%;
+            }
+
+            .td-contacto a { overflow-wrap: anywhere; }
+
+            .estado-select {
+                width: 100%;
+                max-width: 100%;
+                min-height: 42px;
+            }
+
+            .td-total {
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.45rem;
+            }
+
+            .td-total::before { padding-top: 0.35rem; }
+
+            .btn-etiqueta {
+                width: 100%;
+                margin-top: 0;
+                min-height: 42px;
+            }
+        }
+
         @media (max-width: 480px) {
             .stats-row { grid-template-columns: 1fr 1fr; }
             .topbar { padding: 0.75rem 1rem; }
+
+            td {
+                grid-template-columns: 1fr;
+                gap: 0.2rem;
+            }
+
+            .td-total { display: flex; }
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -425,11 +827,23 @@ tiqueta
             <div class="topbar-title">ANIME2CHILE &nbsp;·&nbsp; <span>ADMIN</span></div>
         </div>
         <div class="topbar-right">
+            <button type="button" class="topbar-logout" id="btn-logout" hidden>Cerrar sesión</button>
             <a href="index.html" class="topbar-link">← Volver al sitio</a>
         </div>
     </div>
 
-    <div class="admin-wrap">
+    <div class="admin-login" id="admin-login">
+        <h2>ACCESO ADMIN</h2>
+        <p>Ingresa la contraseña del panel para ver los pedidos.</p>
+        <div class="admin-login-error" id="admin-login-error"></div>
+        <form id="admin-login-form">
+            <label for="admin-password">Contraseña</label>
+            <input id="admin-password" name="password" type="password" autocomplete="current-password" required>
+            <button type="submit">ENTRAR</button>
+        </form>
+    </div>
+
+    <div class="admin-wrap" id="admin-app">
 
         <!-- Stats -->
         <div class="stats-row">
@@ -458,6 +872,7 @@ tiqueta
             <button class="filtro-btn f-pendiente" data-filtro="pendiente" onclick="setFiltro('pendiente', this)">Pendientes</button>
             <button class="filtro-btn f-enviado" data-filtro="enviado" onclick="setFiltro('enviado', this)">Enviados</button>
             <button class="filtro-btn f-entregado" data-filtro="entregado" onclick="setFiltro('entregado', this)">Entregados</button>
+            <button class="filtro-btn f-sin-pagar" data-filtro="sin_pagar" onclick="setFiltro('sin_pagar', this)">Sin pagar</button>
             <button class="btn-refresh" onclick="cargarPedidos()">↻ Actualizar</button>
         </div>
 
@@ -467,6 +882,7 @@ tiqueta
                 <table id="tabla-pedidos">
                     <thead>
                         <tr>
+                            <th>N°</th>
                             <th>Estado</th>
                             <th>Fecha</th>
                             <th>Cliente</th>
@@ -479,7 +895,7 @@ tiqueta
                     </thead>
                     <tbody id="tabla-body">
                         <tr>
-                            <td colspan="8">
+                            <td colspan="9">
                                 <div class="tabla-estado">
                                     <div class="spinner"></div>
                                     <p>CARGANDO PEDIDOS...</p>
@@ -493,26 +909,37 @@ tiqueta
 
     </div>
 
-<script type="module">
-import { initializeApp }          from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
-import { getFirestore, collection, getDocs, doc, updateDoc, orderBy, query }
-    from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
+    <div class="modal-overlay" id="modal-tracking" role="dialog" aria-modal="true" aria-labelledby="modal-tracking-titulo">
+        <div class="modal-card">
+            <h3 id="modal-tracking-titulo">MARCAR COMO ENVIADO <span id="tracking-pedido"></span></h3>
+            <p>Ingresa el número de seguimiento de Starken dos veces. Al confirmar se enviará un correo al comprador con el tracking.</p>
+            <form id="tracking-form" autocomplete="off">
+                <label for="tracking-1">Número de seguimiento</label>
+                <input id="tracking-1" type="text" inputmode="text" spellcheck="false" required>
+                <label for="tracking-2">Repite el número de seguimiento</label>
+                <input id="tracking-2" type="text" inputmode="text" spellcheck="false" required>
+                <div class="modal-error" id="tracking-error"></div>
+                <div class="modal-acciones">
+                    <button type="button" class="modal-btn-cancelar" id="tracking-cancelar">CANCELAR</button>
+                    <button type="submit" class="modal-btn-confirmar" id="tracking-confirmar" disabled>CONFIRMAR ENVÍO</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
-// ── Firebase ──
-const firebaseConfig = {
-    apiKey: "AIzaSyCdNnfceBGx-YQKZKE29Jcjl95II76gmKs",
-    authDomain: "anime2chile-655d5.firebaseapp.com",
-    projectId: "anime2chile-655d5",
-    storageBucket: "anime2chile-655d5.firebasestorage.app",
-    messagingSenderId: "70712282117",
-    appId: "1:70712282117:web:fe1dbc7558f8fb4d19206c"
-};
-const app = initializeApp(firebaseConfig);
-const db  = getFirestore(app);
-
-// ── Estado ──
+<script>
 let todosPedidos = [];
 let filtroActivo = 'todos';
+let remitente = { nombre: '', rut: '', telefono: '', email: '' };
+
+function escapeHtml(valor) {
+    return String(valor ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
 
 function formatPrecio(n) {
     return '$' + Number(n).toLocaleString('es-CL');
@@ -520,41 +947,74 @@ function formatPrecio(n) {
 
 function formatFecha(ts) {
     if (!ts) return '—';
-    const d = ts.toDate ? ts.toDate() : new Date(ts);
+    const d = new Date(ts);
+    if (Number.isNaN(d.getTime())) return '—';
     return d.toLocaleDateString('es-CL', { day:'2-digit', month:'2-digit', year:'numeric' })
         + '<br><span style="font-size:0.75rem;color:var(--gray)">'
         + d.toLocaleTimeString('es-CL', { hour:'2-digit', minute:'2-digit' })
         + '</span>';
 }
 
-// ── Cargar pedidos ──
+function mostrarLogin() {
+    document.getElementById('admin-login').classList.add('visible');
+    document.getElementById('admin-app').classList.remove('visible');
+    document.getElementById('btn-logout').hidden = true;
+}
+
+function mostrarApp() {
+    document.getElementById('admin-login').classList.remove('visible');
+    document.getElementById('admin-app').classList.add('visible');
+    document.getElementById('btn-logout').hidden = false;
+}
+
+async function api(path, options) {
+    const res = await fetch(path, {
+        credentials: 'same-origin',
+        headers: { 'Accept': 'application/json', ...(options && options.headers) },
+        ...options,
+    });
+    const data = await res.json().catch(() => ({}));
+    if (res.status === 401) {
+        const err = new Error(data.message || 'No autorizado');
+        err.code = 401;
+        throw err;
+    }
+    if (!res.ok) {
+        throw new Error(data.message || data.error || 'Error de red');
+    }
+    return data;
+}
+
 window.cargarPedidos = async function() {
     const tbody = document.getElementById('tabla-body');
-    tbody.innerHTML = `<tr><td colspan="8"><div class="tabla-estado"><div class="spinner"></div><p>CARGANDO PEDIDOS...</p></div></td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="9"><div class="tabla-estado"><div class="spinner"></div><p>CARGANDO PEDIDOS...</p></div></td></tr>`;
 
     try {
-        const q = query(collection(db, 'pedidos'), orderBy('fecha', 'desc'));
-        const snap = await getDocs(q);
-
-        todosPedidos = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        const data = await api('/api/admin/pedidos');
+        todosPedidos = data.pedidos || [];
         actualizarStats();
         renderTabla();
-
     } catch (err) {
         console.error(err);
-        tbody.innerHTML = `<tr><td colspan="8"><div class="tabla-estado"><div class="icono">⚠️</div><p>ERROR AL CARGAR PEDIDOS</p></div></td></tr>`;
+        if (err.code === 401) {
+            mostrarLogin();
+            return;
+        }
+        tbody.innerHTML = `<tr><td colspan="9"><div class="tabla-estado"><div class="icono">⚠️</div><p>ERROR AL CARGAR PEDIDOS</p></div></td></tr>`;
     }
 };
 
-// ── Stats ──
+function pedidosPagados() {
+    return todosPedidos.filter(p => p.estado !== 'sin_pagar');
+}
+
 function actualizarStats() {
-    document.getElementById('stat-total').textContent      = todosPedidos.length;
+    document.getElementById('stat-total').textContent      = pedidosPagados().length;
     document.getElementById('stat-pendientes').textContent = todosPedidos.filter(p => (p.estado || 'pendiente') === 'pendiente').length;
     document.getElementById('stat-enviados').textContent   = todosPedidos.filter(p => p.estado === 'enviado').length;
     document.getElementById('stat-entregados').textContent = todosPedidos.filter(p => p.estado === 'entregado').length;
 }
 
-// ── Filtro ──
 window.setFiltro = function(filtro, btn) {
     filtroActivo = filtro;
     document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('activo'));
@@ -562,15 +1022,14 @@ window.setFiltro = function(filtro, btn) {
     renderTabla();
 };
 
-// ── Render tabla ──
 function renderTabla() {
     const tbody = document.getElementById('tabla-body');
     const pedidos = filtroActivo === 'todos'
-        ? todosPedidos
+        ? pedidosPagados()
         : todosPedidos.filter(p => (p.estado || 'pendiente') === filtroActivo);
 
     if (pedidos.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="8"><div class="tabla-estado"><div class="icono">📭</div><p>NO HAY PEDIDOS</p></div></td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="9"><div class="tabla-estado"><div class="icono">📭</div><p>NO HAY PEDIDOS</p></div></td></tr>`;
         return;
     }
 
@@ -579,72 +1038,181 @@ function renderTabla() {
         const d = pedido.direccion || {};
         const t = pedido.totales || {};
         const estado = pedido.estado || 'pendiente';
+        const idAttr = escapeHtml(pedido.id);
 
-        // Productos
         const productos = (pedido.productos || []).map(p =>
-            `<a href="producto.html?id=${p.id}" target="_blank" style="text-decoration:none; color:inherit;"><div class="producto-pill" style="cursor:pointer;"><span class="qty">${p.cantidad}x</span>${p.nombre}</div></a>`
+            `<a href="producto.html?id=${encodeURIComponent(p.id || '')}" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;"><div class="producto-pill" style="cursor:pointer;"><span class="qty">${escapeHtml(p.cantidad)}x</span>${escapeHtml(p.nombre)}</div></a>`
         ).join('');
 
-        // Dirección
-        const dir = [d.calle, d.depto, d.ciudad, d.region].filter(Boolean).join(', ');
+        const dir = [d.calle, d.depto, d.comuna, d.ciudad, d.region].filter(Boolean).join(', ');
+        const tipoDestinoHtml = d.tipo === 'sucursal'
+            ? '<span class="tipo-destino-badge sucursal">SUCURSAL STARKEN</span>'
+            : d.tipo === 'domicilio'
+                ? '<span class="tipo-destino-badge domicilio">DOMICILIO</span>'
+                : '';
 
-        // Envío
-        const envioInfo = pedido.envio ? `<br><span style="font-size:0.75rem;color:var(--gray);">${pedido.envio.metodo}</span>` : '';
-
-        return `
-        <tr>
-            <td>
-                <select class="estado-select ${estado}"
-                        onchange="cambiarEstado('${pedido.id}', this)">
+        const envio = pedido.envio || {};
+        let envioTxt = envio.metodo || '';
+        if (envio.porPagar) {
+            const est = envio.estimado != null ? envio.estimado : envio.costo;
+            envioTxt += ` · Por pagar${est ? ' (est. ' + formatPrecio(est) + ')' : ''}`;
+        }
+        const envioInfo = envioTxt ? `<br><span style="font-size:0.75rem;color:var(--gray);">${escapeHtml(envioTxt)}</span>` : '';
+        const n = Number(pedido.numero);
+        const numeroTxt = Number.isInteger(n) && n > 0 ? '#' + n : '—';
+        const tel = c.telefono || '';
+        const email = c.email || '';
+        const sinPagar = estado === 'sin_pagar';
+        const alertaHtml = pedido.alertaPago === 'monto_no_coincide'
+            ? '<span class="alerta-pago">⚠ Revisar monto en Mercado Pago</span>'
+            : '';
+        const estadoHtml = sinPagar
+            ? '<span class="estado-badge" title="El cliente no completó el pago">○ SIN PAGAR</span>'
+            : `<select class="estado-select ${escapeHtml(estado)}" data-id="${idAttr}">
                     <option value="pendiente" ${estado === 'pendiente' ? 'selected' : ''}>● PENDIENTE</option>
                     <option value="enviado"   ${estado === 'enviado'   ? 'selected' : ''}>● ENVIADO</option>
                     <option value="entregado" ${estado === 'entregado' ? 'selected' : ''}>● ENTREGADO</option>
-                </select>
+                </select>`;
+        const tracking = pedido.despacho && pedido.despacho.tracking;
+        const trackingHtml = tracking
+            ? `<span class="tracking-info" title="Tracking Starken">📦 ${escapeHtml(tracking)}</span>`
+            : '';
+
+        return `
+        <tr${sinPagar ? ' class="fila-sin-pagar"' : ''}>
+            <td class="td-numero" data-label="N°">${escapeHtml(numeroTxt)}</td>
+            <td data-label="Estado">${estadoHtml}${trackingHtml}${alertaHtml}</td>
+            <td class="td-fecha" data-label="Fecha">${formatFecha(pedido.fecha)}</td>
+            <td class="td-cliente" data-label="Cliente">
+                <strong>${escapeHtml(c.nombre || '')} ${escapeHtml(c.apellido || '')}</strong>
             </td>
-            <td class="td-fecha">${formatFecha(pedido.fecha)}</td>
-            <td class="td-cliente">
-                <strong>${c.nombre || ''} ${c.apellido || ''}</strong>
+            <td class="td-rut" data-label="RUT">${escapeHtml(c.rut || '—')}</td>
+            <td class="td-contacto" data-label="Contacto">
+                <a href="tel:${escapeHtml(tel)}">${escapeHtml(tel || '—')}</a>
+                <a href="mailto:${escapeHtml(email)}">${escapeHtml(email || '—')}</a>
             </td>
-            <td class="td-rut">${c.rut || '—'}</td>
-            <td class="td-contacto">
-                <a href="tel:${c.telefono || ''}">${c.telefono || '—'}</a>
-                <a href="mailto:${c.email || ''}">${c.email || '—'}</a>
-            </td>
-            <td class="td-direccion">${dir || '—'}${envioInfo}</td>
-            <td><div class="productos-lista">${productos || '—'}</div></td>
-            <td class="td-total" style="-webkit-text-fill-color:unset; background:none;">
-                <span style="font-family:'Bebas Neue',sans-serif; font-size:1.2rem; background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">${formatPrecio(t.total || 0)}</span>
-                <button class="btn-etiqueta" onclick="generarEtiqueta('${pedido.id}')">Generar Etiqueta</button>
+            <td class="td-direccion" data-label="Dirección">${tipoDestinoHtml}${escapeHtml(dir || '—')}${envioInfo}</td>
+            <td data-label="Productos"><div class="productos-lista">${productos || '—'}</div></td>
+            <td class="td-total" data-label="Total" style="-webkit-text-fill-color:unset; background:none;">
+                <span style="font-family:'Bebas Neue',sans-serif; font-size:1.2rem; background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">${escapeHtml(formatPrecio(t.total || 0))}</span>
+                ${sinPagar ? '' : `<button class="btn-etiqueta" type="button" data-id="${idAttr}">Generar Etiqueta</button>`}
             </td>
         </tr>`;
     }).join('');
 }
 
-// ── Cambiar estado en Firestore ──
-window.cambiarEstado = async function(pedidoId, selectEl) {
+function normalizarTracking(valor) {
+    return String(valor || '').replace(/\s+/g, '').toUpperCase();
+}
+
+function pedirTracking(pedido) {
+    return new Promise((resolve) => {
+        const modal = document.getElementById('modal-tracking');
+        const form = document.getElementById('tracking-form');
+        const in1 = document.getElementById('tracking-1');
+        const in2 = document.getElementById('tracking-2');
+        const btnOk = document.getElementById('tracking-confirmar');
+        const btnCancel = document.getElementById('tracking-cancelar');
+        const errorEl = document.getElementById('tracking-error');
+
+        const n = Number(pedido && pedido.numero);
+        document.getElementById('tracking-pedido').textContent = Number.isInteger(n) && n > 0 ? '#' + n : '';
+        in1.value = '';
+        in2.value = '';
+        errorEl.textContent = '';
+        btnOk.disabled = true;
+        modal.classList.add('visible');
+        in1.focus();
+
+        const validar = () => {
+            const a = normalizarTracking(in1.value);
+            const b = normalizarTracking(in2.value);
+            const formatoOk = /^[A-Z0-9-]{6,40}$/.test(a);
+            btnOk.disabled = !(formatoOk && a === b);
+            if (a && !formatoOk) errorEl.textContent = 'Usa entre 6 y 40 letras, números o guiones.';
+            else if (b && a !== b) errorEl.textContent = 'Los números no coinciden.';
+            else errorEl.textContent = '';
+        };
+        const bloquearPegado = (e) => {
+            e.preventDefault();
+            errorEl.textContent = 'Escribe el número a mano para confirmarlo.';
+        };
+        const onSubmit = (e) => {
+            e.preventDefault();
+            if (btnOk.disabled) return;
+            cerrar({ tracking: normalizarTracking(in1.value), trackingConfirmacion: normalizarTracking(in2.value) });
+        };
+        const onCancel = () => cerrar(null);
+        const onKey = (e) => { if (e.key === 'Escape') cerrar(null); };
+        const onOverlay = (e) => { if (e.target === modal) cerrar(null); };
+
+        function cerrar(valor) {
+            modal.classList.remove('visible');
+            in1.removeEventListener('input', validar);
+            in2.removeEventListener('input', validar);
+            in2.removeEventListener('paste', bloquearPegado);
+            in2.removeEventListener('drop', bloquearPegado);
+            form.removeEventListener('submit', onSubmit);
+            btnCancel.removeEventListener('click', onCancel);
+            document.removeEventListener('keydown', onKey);
+            modal.removeEventListener('click', onOverlay);
+            resolve(valor);
+        }
+
+        in1.addEventListener('input', validar);
+        in2.addEventListener('input', validar);
+        in2.addEventListener('paste', bloquearPegado);
+        in2.addEventListener('drop', bloquearPegado);
+        form.addEventListener('submit', onSubmit);
+        btnCancel.addEventListener('click', onCancel);
+        document.addEventListener('keydown', onKey);
+        modal.addEventListener('click', onOverlay);
+    });
+}
+
+window.cambiarEstado = async function(pedidoId, selectEl, extra) {
     const nuevoEstado = selectEl.value;
+    const pedido = todosPedidos.find(p => p.id === pedidoId);
+    const estadoAnterior = (pedido && pedido.estado) || 'pendiente';
     selectEl.disabled = true;
 
     try {
-        await updateDoc(doc(db, 'pedidos', pedidoId), { estado: nuevoEstado });
+        const r = await api('/api/admin/pedidos/' + encodeURIComponent(pedidoId), {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ estado: nuevoEstado, ...(extra || {}) }),
+        });
 
-        // Actualizar en memoria
-        const pedido = todosPedidos.find(p => p.id === pedidoId);
-        if (pedido) pedido.estado = nuevoEstado;
-
-        // Actualizar clase del select
+        if (pedido) {
+            pedido.estado = nuevoEstado;
+            if (r.tracking) {
+                pedido.despacho = { tracking: r.tracking, correoCliente: r.correoCliente === true || r.correoCliente === 'ya_enviado' };
+            }
+        }
         selectEl.className = `estado-select ${nuevoEstado}`;
         actualizarStats();
 
+        if (nuevoEstado === 'enviado') {
+            renderTabla();
+            const destino = r.emailCliente || 'el comprador';
+            if (r.correoCliente === true) {
+                alert(`✅ Correo de despacho enviado a ${destino}.\nTracking: ${r.tracking}` +
+                    (r.correoAdmin ? '\n\nTambién te llegó la confirmación a tu correo.' : '\n\n(No se pudo enviar la confirmación a tu correo, pero el cliente sí fue notificado.)'));
+            } else if (r.correoCliente === 'ya_enviado') {
+                alert(`El comprador ya había sido notificado con el tracking ${r.tracking}. No se reenvió el correo.`);
+            } else {
+                alert(`⚠️ El pedido quedó como ENVIADO con tracking ${r.tracking}, pero el correo a ${destino} NO se pudo enviar.\n\nPara reintentar, cámbialo a PENDIENTE y vuelve a marcarlo como ENVIADO con el mismo tracking, o contacta al cliente manualmente.`);
+            }
+        }
     } catch (err) {
         console.error('Error actualizando estado:', err);
-        alert('Error al actualizar el estado. Intenta de nuevo.');
+        selectEl.value = estadoAnterior;
+        alert(err.message || 'Error al actualizar el estado. Intenta de nuevo.');
     } finally {
         selectEl.disabled = false;
     }
 };
 
-// ── Generar etiqueta PDF ──
 window.generarEtiqueta = function(pedidoId) {
     const pedido = todosPedidos.find(p => p.id === pedidoId);
     if (!pedido) return;
@@ -656,53 +1224,123 @@ window.generarEtiqueta = function(pedidoId) {
     const rut      = c.rut      || '—';
     const email    = c.email    || '—';
     const telefono = c.telefono || '—';
-    const direccion = [d.calle, d.depto, d.ciudad, d.region, d.postal ? `CP: ${d.postal}` : null]
-        .filter(Boolean).join(', ');
+    const direccion = [
+        d.tipo === 'sucursal' ? 'SUCURSAL STARKEN' : null,
+        d.calle, d.depto, d.comuna, d.ciudad, d.region, d.postal ? `CP: ${d.postal}` : null,
+    ].filter(Boolean).join(', ');
+
+    const n = Number(pedido.numero);
+    const numeroTxt = Number.isInteger(n) && n > 0 ? String(n) : null;
 
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF({ unit: 'mm', format: 'a6' });
     const W = doc.internal.pageSize.getWidth();
 
-    // Todo en fuente pequeña, sin negrita, espaciado mínimo
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(6.5);
-    const lh = 3.5; // line height en mm
+    const lh = 3.5;
     let y = 10;
 
-    // Destinatario
+    if (numeroTxt) {
+        doc.setFont('helvetica', 'bold');
+        doc.text('Pedido #' + numeroTxt, 10, y);
+        doc.setFont('helvetica', 'normal');
+        y += lh + 1;
+    }
+
     [nombre, rut, email, telefono].forEach(txt => {
-        const wrapped = doc.splitTextToSize(txt, W - 20);
+        const wrapped = doc.splitTextToSize(String(txt), W - 20);
         doc.text(wrapped, 10, y);
         y += wrapped.length * lh;
     });
-    // Dirección puede ser larga
     const dirWrapped = doc.splitTextToSize(direccion, W - 20);
     doc.text(dirWrapped, 10, y);
     y += dirWrapped.length * lh + 2;
 
-    // Separador
     doc.setDrawColor(150);
     doc.setLineWidth(0.3);
     doc.line(10, y, W - 10, y);
     y += 4;
 
-    // "Remitente:" en negrita
     doc.setFont('helvetica', 'bold');
     doc.text('Remitente:', 10, y);
     y += lh;
 
-    // Datos remitente sin negrita
     doc.setFont('helvetica', 'normal');
-    ['Cesar Catalan Acevedo', '12.809.361-3', '+56 9 77521700', 'multishoes@gmail.com'].forEach(txt => {
-        doc.text(txt, 10, y);
-        y += lh;
-    });
+    [remitente.nombre, remitente.rut, remitente.telefono, remitente.email]
+        .filter(Boolean)
+        .forEach(txt => {
+            doc.text(String(txt), 10, y);
+            y += lh;
+        });
 
-    doc.save(`etiqueta_${nombre.replace(/\s+/g, '_')}.pdf`);
+    const archivo = numeroTxt
+        ? `etiqueta_${numeroTxt}_${nombre.replace(/\s+/g, '_')}.pdf`
+        : `etiqueta_${nombre.replace(/\s+/g, '_')}.pdf`;
+    doc.save(archivo);
 };
 
-// ── Arranque ──
-cargarPedidos();
+document.getElementById('tabla-body').addEventListener('change', async (e) => {
+    const sel = e.target.closest('select.estado-select');
+    if (!sel || !sel.dataset.id) return;
+    if (sel.value !== 'enviado') {
+        window.cambiarEstado(sel.dataset.id, sel);
+        return;
+    }
+    const pedido = todosPedidos.find(p => p.id === sel.dataset.id);
+    const datos = await pedirTracking(pedido);
+    if (!datos) {
+        sel.value = (pedido && pedido.estado) || 'pendiente';
+        return;
+    }
+    window.cambiarEstado(sel.dataset.id, sel, datos);
+});
+document.getElementById('tabla-body').addEventListener('click', (e) => {
+    const btn = e.target.closest('.btn-etiqueta');
+    if (btn && btn.dataset.id) window.generarEtiqueta(btn.dataset.id);
+});
+
+document.getElementById('admin-login-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const errorEl = document.getElementById('admin-login-error');
+    errorEl.classList.remove('visible');
+    try {
+        await api('/api/admin/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ password: document.getElementById('admin-password').value }),
+        });
+        document.getElementById('admin-password').value = '';
+        await iniciarPanel();
+    } catch (err) {
+        errorEl.textContent = err.message || 'Contraseña incorrecta.';
+        errorEl.classList.add('visible');
+    }
+});
+
+document.getElementById('btn-logout').addEventListener('click', async () => {
+    try { await api('/api/admin/logout', { method: 'POST' }); } catch (e) {}
+    todosPedidos = [];
+    mostrarLogin();
+});
+
+async function iniciarPanel() {
+    mostrarApp();
+    try {
+        const cfg = await api('/api/admin/config');
+        remitente = (cfg && cfg.remitente) || remitente;
+    } catch (e) {}
+    await window.cargarPedidos();
+}
+
+(async function arranque() {
+    try {
+        await api('/api/admin/sesion');
+        await iniciarPanel();
+    } catch (err) {
+        mostrarLogin();
+    }
+})();
 </script>
 
 </body>

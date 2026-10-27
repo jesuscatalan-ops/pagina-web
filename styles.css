@@ -32,6 +32,18 @@
     -webkit-tap-highlight-color: transparent;
 }
 
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 html {
     background: #ffffff !important;
     color: #2a2a2a !important;
@@ -72,12 +84,23 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: nowrap;
 }
 
 .logo-container {
     display: flex;
     align-items: center;
     gap: 1rem;
+    flex-shrink: 0;
+}
+
+.logo-container a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    white-space: nowrap;
+    min-width: max-content;
 }
 
 /* Logo imagen en header */
@@ -122,10 +145,16 @@ body {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 1.5rem;
     letter-spacing: 2px;
+    white-space: nowrap;
 }
 
 .brand-anime, .brand-chile {
     color: var(--dark);
+}
+
+.footer .brand-anime,
+.footer .brand-chile {
+    color: #ffffff;
 }
 
 .brand-two {
@@ -217,23 +246,40 @@ body {
     grid-column: 1 / -1;
     width: 100%;
     border-radius: 0;
-    height: 443px;
-    min-height: 443px;
+    height: auto;
+    min-height: 0;
     background: #ffffff;
     border: none;
     box-shadow: none;
-    overflow: hidden;
+    overflow: visible;
     text-decoration: none;
     display: block;
 }
 
 .hero-banner-block img {
     width: 100%;
-    height: 100%;
-    min-height: 443px;
-    object-fit: cover;
-    object-position: center top;
+    height: auto;
+    min-height: 0;
+    object-fit: unset;
+    object-position: unset;
     display: block;
+}
+
+/* Escritorio: mismo ancho y márgenes que la fila de categorías. */
+@media (min-width: 769px) and (orientation: landscape), (min-width: 1201px) {
+    .hero-banner-block {
+        max-width: 1300px;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0 1.55rem;
+        box-sizing: border-box;
+    }
+
+    .hero-banner-block picture {
+        display: block;
+        width: 100%;
+    }
 }
 
 .hero-main-card {
@@ -335,7 +381,7 @@ body {
 
 .home-category-card {
     text-decoration: none;
-    border-radius: 18px;
+    border-radius: 0;
     padding: 0.9rem;
     aspect-ratio: 1 / 1;
     display: flex;
@@ -343,9 +389,10 @@ body {
     justify-content: flex-end;
     color: #ffffff;
     box-shadow: none;
-    transition: transform 0.25s ease;
     position: relative;
     overflow: hidden;
+    cursor: default;
+    pointer-events: none;
 }
 
 .home-category-card::after {
@@ -371,14 +418,11 @@ body {
     z-index: 1;
 }
 
-.home-category-card:hover {
-    transform: translateY(-4px);
-    box-shadow: none;
-}
-
 .home-category-card h3 {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 1.6rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 400;
+    letter-spacing: 1px;
+    font-size: 1.85rem;
     line-height: 1.04;
 }
 
@@ -415,7 +459,7 @@ body {
     background: #ffffff;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px), (max-width: 1200px) and (orientation: portrait) {
     .products-section {
         padding: 2rem 0.5rem 0.75rem;
     }
@@ -427,7 +471,7 @@ body {
     gap: 1.25rem;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 768px) and (orientation: landscape), (min-width: 1201px) {
     .products-grid {
         grid-template-columns: repeat(3, minmax(0, 360px)); /* desktop: 3 columnas centradas */
         gap: 2rem;
@@ -759,7 +803,7 @@ body {
     box-shadow: 0 10px 28px rgba(98, 40, 215, 0.35);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px), (max-width: 1200px) and (orientation: portrait) {
     .instagram-card {
         flex-direction: column;
         padding: 2rem 1.5rem;
@@ -990,8 +1034,20 @@ body {
     top: 14px;
     left: 14px;
     z-index: 5;
-    width: 92px;
-    height: 92px;
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    pointer-events: none;
+}
+
+/* Logo Wonder Festival en tarjeta de catálogo (PNG suelto, igual que 25th) */
+.catalog-wf-logo {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 5;
+    width: 54px;
+    height: auto;
     object-fit: contain;
     pointer-events: none;
 }
@@ -1335,7 +1391,7 @@ body {
 .pokemon-visual.poke-stack--active .poke-card-2 { transform: rotate(0deg) translateX(10px) translateY(-15px); }
 .pokemon-visual.poke-stack--active .poke-card-3 { transform: rotate(8deg) translateX(35px) translateY(-25px); }
 
-@media (max-width: 900px) {
+@media (max-width: 900px), (max-width: 1200px) and (orientation: portrait) {
     .pokemon-inner {
         flex-direction: column;
         text-align: center;
@@ -1432,7 +1488,7 @@ body {
     margin: 0 auto;
     padding: 4rem 2rem 3rem;
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 2fr;
+    grid-template-columns: 2fr 1fr 1fr;
     gap: 3rem;
     align-items: start;
 }
@@ -1507,6 +1563,12 @@ body {
 
 .footer-links a:hover {
     color: var(--primary);
+}
+
+.footer-links .footer-link-disabled {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.88rem;
+    cursor: default;
 }
 
 .footer-newsletter-desc {
@@ -1595,9 +1657,11 @@ body {
 
 /* ========================
    RESPONSIVE
+   Móvil y tablet vertical: max-width 768px, o portrait hasta 1200px.
+   Escritorio y tablet horizontal: landscape, o más de 1200px.
 ======================== */
-@media (max-width: 1200px) {
-    /* En tablets las 3 tarjetas siguen en fila */
+@media (max-width: 1200px) and (orientation: landscape) {
+    /* En tablets horizontales las 3 tarjetas siguen en fila */
     .products-grid {
         grid-template-columns: repeat(3, 1fr);
         gap: 1.25rem;
@@ -1612,7 +1676,7 @@ body {
     }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 900px), (max-width: 1200px) and (orientation: portrait) {
     .products-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -1630,9 +1694,18 @@ body {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px), (max-width: 1200px) and (orientation: portrait) {
     .nav { display: none; }
     .mobile-menu-btn { display: block; }
+
+    .header-content {
+        justify-content: flex-end;
+        gap: 0.15rem;
+    }
+
+    .logo-container {
+        margin-right: auto;
+    }
 
     .slider {
         margin-top: 104px;
@@ -1647,16 +1720,25 @@ body {
         padding-right: 0;
     }
 
-    .hero-banner-block,
-    .hero-banner-block img {
-        height: 195px;
-        min-height: 195px;
+    .hero-banner-block {
+        aspect-ratio: auto;
+        height: auto;
+        overflow: visible;
+    }
+
+    .hero-banner-block picture {
+        display: block;
+        width: 100%;
+        height: auto;
     }
 
     .hero-banner-block img {
-        object-position: 35% top;
-        transform: scale(1.0);
-        transform-origin: center top;
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        object-fit: contain;
+        object-position: center;
+        transform: none;
     }
 
     .home-categories-grid {
@@ -1701,7 +1783,7 @@ body {
         width: calc((100vw - 5.32rem) / 2 * 1.15);
         max-width: none;
         scroll-snap-align: start;
-        border-radius: 14px;
+        border-radius: 0;
         padding: 0.8rem;
     }
 
@@ -1831,8 +1913,17 @@ body {
     .catalog-page-grid .catalog-25th-logo {
         top: 10px;
         left: 10px;
-        width: 76px;
-        height: 76px;
+        width: 45px;
+        height: 45px;
+    }
+
+    .catalog-page-grid .catalog-wf-logo,
+    .series-card-image .catalog-wf-logo {
+        top: 8px;
+        left: 8px;
+        width: 35px;
+        max-width: 35px;
+        height: auto;
     }
 
     .catalog-page-grid .catalog-bottom {
@@ -1886,7 +1977,7 @@ body {
     font-size: 1rem;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px), (max-width: 1200px) and (orientation: portrait) {
     .lanzamientos-header {
         flex-direction: column;
         align-items: flex-start;
@@ -1912,7 +2003,7 @@ body {
     display: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px), (max-width: 1200px) and (orientation: portrait) {
     .lanzamientos-ver-todo-mobile {
         display: flex;
         justify-content: center;
@@ -1930,14 +2021,14 @@ body {
 }
 
 /* En desktop el wrapper no interfiere con el grid */
-@media (min-width: 768px) {
+@media (min-width: 768px) and (orientation: landscape), (min-width: 1201px) {
     .destacados-carrusel-wrap   { display: contents; }
     .destacados-arrow           { display: none !important; }
     .destacados-arrows-row      { display: none !important; }
     .destacados-carrusel-outer  { overflow: visible !important; width: 100% !important; }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 767px), (max-width: 1200px) and (orientation: portrait) {
     .destacados-carrusel-outer {
         overflow-x: scroll;
         scroll-snap-type: x mandatory;
@@ -1989,7 +2080,7 @@ body {
     padding: 0 1rem;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 767px), (max-width: 1200px) and (orientation: portrait) {
     .destacados-arrows-row { display: none; }
 }
 
@@ -2017,7 +2108,7 @@ body {
 .destacados-arrow:active { transform: scale(0.92); }
 
 /* ── Menú móvil desplegable ── */
-@media (max-width: 768px) {
+@media (max-width: 768px), (max-width: 1200px) and (orientation: portrait) {
     .nav {
         display: none;
         position: absolute;
@@ -2124,14 +2215,15 @@ body {
 }
 
 .redes-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
+    display: flex;
+    justify-content: center;
 }
 
 /* ── Tarjeta Instagram (sin stats) ── */
 .instagram-card {
     position: relative;
+    width: 100%;
+    max-width: 860px;
     background: #ffffff;
     border-radius: 24px;
     padding: 2rem 2.25rem;
@@ -2229,245 +2321,647 @@ body {
     box-shadow: 0 10px 28px rgba(98, 40, 215, 0.35);
 }
 
-/* ── Tarjeta TikTok ── */
-.tiktok-card {
-    position: relative;
-    background: #ffffff;
-    border-radius: 24px;
-    padding: 2rem 2.25rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-    border: 1px solid rgba(0,0,0,0.06);
-    box-shadow: var(--shadow-md);
-    overflow: hidden;
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
-}
-
-.tiktok-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 16px 48px rgba(0,0,0,0.12);
-}
-
-.tiktok-glow {
-    position: absolute;
-    top: -60px; right: -60px;
-    width: 240px; height: 240px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,0,0,0.04) 0%, transparent 70%);
-    pointer-events: none;
-}
-
-.tiktok-left {
-    display: flex;
-    align-items: center;
-    gap: 1.75rem;
-    flex: 1;
-}
-
-.tiktok-icon-wrap {
-    flex-shrink: 0;
-    width: 70px; height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f5f5f5;
-    border-radius: 18px;
-    border: 1px solid rgba(0,0,0,0.08);
-}
-
-.tiktok-handle {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.85rem;
-    letter-spacing: 2px;
-    color: var(--primary);
-    margin-bottom: 0.3rem;
-}
-
-.tiktok-title {
-    font-family: 'Anton', sans-serif;
-    font-size: 1.4rem;
-    letter-spacing: 1px;
-    color: var(--dark);
-    margin-bottom: 0.4rem;
-    line-height: 1;
-}
-
-.tiktok-desc {
-    font-size: 0.88rem;
-    color: var(--gray);
-    line-height: 1.6;
-}
-
-.tiktok-right { flex-shrink: 0; }
-
-.tiktok-btn {
-    display: inline-block;
-    padding: 0.85rem 2rem;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.1rem;
-    letter-spacing: 2px;
-    background: #111;
-    border: none;
-    border-radius: 12px;
-    color: #ffffff;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-    white-space: nowrap;
-}
-
-.tiktok-btn:hover {
-    background: #333;
-    transform: translateY(-2px);
-    box-shadow: 0 10px 28px rgba(0,0,0,0.25);
-}
-
 /* ── Responsive redes ── */
-@media (max-width: 768px) {
-    .redes-grid { grid-template-columns: 1fr; }
-
-    .instagram-card,
-    .tiktok-card {
+@media (max-width: 768px), (max-width: 1200px) and (orientation: portrait) {
+    .instagram-card {
         flex-direction: column;
         padding: 1.75rem 1.5rem;
         text-align: center;
     }
 
-    .instagram-left,
-    .tiktok-left {
+    .instagram-left {
         flex-direction: column;
         align-items: center;
     }
 
-    .instagram-right,
-    .tiktok-right { width: 100%; }
+    .instagram-right { width: 100%; }
 
-    .instagram-btn,
-    .tiktok-btn { width: 100%; text-align: center; display: block; }
+    .instagram-btn { width: 100%; text-align: center; display: block; }
 }
 
 /* ============================================================
-   SECCIÓN POPULARES
+   TIRAS DE MINIATURAS (scroll-linked)
    ============================================================ */
 
 .populares-section {
-    padding: 1.5rem 2rem 0;
-    max-width: 1400px;
-    margin: 0 auto;
+    --pop-visible: 7;
+    --pop-gap: 0.75rem;
+    --pop-row-gap: 0.55rem;
+    --pop-item: calc((100vw - (var(--pop-visible) - 1) * var(--pop-gap)) / var(--pop-visible));
+    padding: 2.35rem 0 2.6rem;
+    overflow: hidden;
 }
 
 .populares-header {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    margin-bottom: 1.5rem;
-}
-
-.populares-label {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.8rem;
-    letter-spacing: 3px;
-    color: var(--primary);
-    margin-bottom: 0.2rem;
+    text-align: left;
+    margin: 0 auto 1.15rem;
+    padding: 0 2rem;
+    max-width: 1400px;
 }
 
 .populares-titulo {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 2rem;
+    font-size: 2.15rem;
     letter-spacing: 2px;
     color: var(--dark);
     font-weight: 400;
     margin: 0;
 }
 
-/* Contenedor con scroll horizontal */
-.populares-carrusel-outer {
-    overflow-x: auto;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x mandatory;
-    padding-bottom: 0.5rem;
-}
-
-.populares-carrusel-outer::-webkit-scrollbar {
-    display: none;
-}
-
-/* Track — fila de ítems */
-.populares-track {
-    display: flex;
-    gap: 1rem;
-    /* Desktop: 6 ítems visibles. Cada ítem = (100% - 5 gaps) / 6 */
-    width: max-content;
-}
-
-/* Ítem individual */
-.populares-item {
-    font-family: var(--font-card-body);
-    flex: 0 0 calc((100vw - 4rem - 5 * 1rem) / 6);
-    max-width: 180px;
-    min-width: 120px;
-    text-decoration: none;
-    color: inherit;
+.populares-strips {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 0.6rem;
-    scroll-snap-align: start;
-    transition: transform 0.25s ease;
+    gap: var(--pop-row-gap);
 }
 
-.populares-item:hover {
-    transform: translateY(-4px);
+.populares-strip {
+    position: relative;
+    overflow: hidden;
+    height: calc(var(--pop-item) * 0.88);
 }
 
-/* Imagen cuadrada 1:1 */
-.populares-img-wrap {
-    width: 100%;
-    aspect-ratio: 1 / 1;
+.populares-strip::before,
+.populares-strip::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 3.75rem;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.populares-strip::before {
+    left: 0;
+    background: linear-gradient(to right, #ffffff 0%, rgba(255,255,255,0.7) 42%, rgba(255,255,255,0) 100%);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    -webkit-mask-image: linear-gradient(to right, #000 0%, #000 38%, transparent 100%);
+    mask-image: linear-gradient(to right, #000 0%, #000 38%, transparent 100%);
+}
+
+.populares-strip::after {
+    right: 0;
+    background: linear-gradient(to left, #ffffff 0%, rgba(255,255,255,0.7) 42%, rgba(255,255,255,0) 100%);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    -webkit-mask-image: linear-gradient(to left, #000 0%, #000 38%, transparent 100%);
+    mask-image: linear-gradient(to left, #000 0%, #000 38%, transparent 100%);
+}
+
+.populares-strip-track {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: var(--pop-gap);
+    width: max-content;
+    height: 100%;
+    will-change: transform;
+}
+
+.populares-strip-item {
+    flex: 0 0 var(--pop-item);
+    width: var(--pop-item);
+    min-width: var(--pop-item);
+    height: 100%;
     border-radius: 14px;
     overflow: hidden;
     background: var(--gradient-subtle);
     border: 1px solid rgba(0,0,0,0.07);
     box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    text-decoration: none;
+    display: block;
+    cursor: default;
     transition: box-shadow 0.25s ease;
 }
 
-.populares-item:hover .populares-img-wrap {
-    box-shadow: 0 8px 24px rgba(0,0,0,0.14);
-}
-
-.populares-img-wrap img {
+.populares-strip-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
+    pointer-events: none;
 }
 
-/* Nombre debajo */
-.populares-nombre {
-    font-family: var(--font-card-title);
-    font-size: 0.88rem;
-    letter-spacing: 0.5px;
-    color: var(--dark);
-    text-align: center;
-    line-height: 1.2;
-    margin: 0;
+.populares-strip-item:hover {
+    box-shadow: 0 8px 22px rgba(0,0,0,0.14);
 }
 
-/* ── Responsive ── */
-@media (max-width: 768px) {
+@media (max-width: 768px), (max-width: 1200px) and (orientation: portrait) {
     .populares-section {
-        padding: 0.75rem 1rem 0;
+        --pop-visible: 5;
+        --pop-gap: 0.3rem;
+        --pop-row-gap: 0.35rem;
+        padding: 2.15rem 0 2.6rem;
     }
 
-    /* Móvil: 3 ítems visibles */
-    .populares-item {
-        flex: 0 0 calc((100vw - 2rem - 2 * 1rem) / 3);
-        max-width: none;
-        min-width: 0;
+    .populares-header {
+        margin-bottom: 1.1rem;
+        padding: 0 0.5rem;
+    }
+
+    .populares-titulo {
+        font-size: 1.55rem;
+        letter-spacing: 1.5px;
+    }
+
+    .populares-strip {
+        height: var(--pop-item);
+    }
+
+    .populares-strip::before,
+    .populares-strip::after {
+        width: 2.15rem;
+    }
+
+    .populares-strip-item {
+        border-radius: 10px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .populares-strip-track {
+        transform: none !important;
+        will-change: auto;
+    }
+}
+
+/* ============================================================
+   CARRUSELES DE SERIE (home) — estilo Jump-Ichiban
+   ============================================================ */
+
+.series-carousels-wrap {
+    --series-bg: var(--primary);
+    --series-cols: 4;
+    --series-gap: 1rem;
+    --series-peek: 2.75rem;
+    --series-pad-left: max(2rem, calc((100vw - 1400px) / 2 + 2rem));
+    --series-card-w: calc((100vw - var(--series-pad-left) - var(--series-peek) - (var(--series-cols) - 1) * var(--series-gap)) / var(--series-cols));
+    background: linear-gradient(165deg, #e85a28 0%, var(--primary) 52%, #ff8c42 100%);
+    margin-top: 1.75rem;
+    padding: 2.25rem 0 2.75rem;
+    overflow: hidden;
+}
+
+.series-carousel + .series-carousel {
+    margin-top: 2.35rem;
+}
+
+.series-carousel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0 var(--series-peek) 1.1rem var(--series-pad-left);
+}
+
+.series-carousel-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 400;
+    font-size: clamp(1.7rem, 3.4vw, 2.85rem);
+    color: #111;
+    letter-spacing: 2px;
+    line-height: 1.05;
+    margin: 0;
+    text-wrap: balance;
+}
+
+.series-carousel-arrows {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.series-carousel-all {
+    margin-right: 0.45rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.75rem;
+    letter-spacing: 1.5px;
+    line-height: 1;
+    color: #111;
+    text-decoration: underline;
+    text-underline-offset: 0.16em;
+    text-decoration-thickness: 2px;
+    white-space: nowrap;
+}
+
+.series-carousel-all:hover {
+    color: #fff;
+}
+
+.series-arrow {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.55);
+    background: transparent;
+    color: #1a1a1a;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: background 0.2s ease, opacity 0.2s ease, transform 0.15s ease;
+}
+
+.series-arrow svg {
+    width: 22px;
+    height: 22px;
+}
+
+.series-arrow:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.16);
+}
+
+.series-arrow:active:not(:disabled) {
+    transform: scale(0.94);
+}
+
+.series-arrow:disabled {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.series-carousel-viewport {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: var(--series-pad-left);
+    touch-action: pan-x;
+    overscroll-behavior-x: contain;
+}
+
+.series-carousel-viewport::-webkit-scrollbar {
+    display: none;
+}
+
+.series-carousel-track {
+    display: flex;
+    gap: var(--series-gap);
+    width: max-content;
+    padding-left: var(--series-pad-left);
+    padding-right: var(--series-pad-left);
+}
+
+.series-card {
+    flex: 0 0 var(--series-card-w);
+    width: var(--series-card-w);
+    max-width: var(--series-card-w);
+    background: transparent;
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.series-card-body {
+    background: #fff;
+    border-radius: 16px 16px 0 0;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+}
+
+.series-card-top {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    flex: 1;
+}
+
+.series-card-image {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    margin: 10px 10px 0;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.series-card-image > img:not(.catalog-wf-logo):not(.catalog-25th-logo) {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.series-card-image .catalog-wf-logo {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 6;
+    width: 54px;
+    max-width: 54px;
+    height: auto;
+    object-fit: contain;
+    pointer-events: none;
+}
+
+.series-card-image .catalog-25th-logo {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 6;
+    width: 64px;
+    max-width: 64px;
+    height: 64px;
+    object-fit: contain;
+    pointer-events: none;
+}
+
+.series-card-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.4);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    text-align: center;
+    padding: 1rem;
+}
+
+.series-card-badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    z-index: 2;
+    background: #fff;
+    color: #2563eb;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    padding: 0.22rem 0.5rem;
+    border-radius: 4px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+}
+
+.series-card-badge--preventa {
+    color: #2563eb;
+}
+
+.series-card-badge--agotado {
+    color: #b91c1c;
+}
+
+.series-card-name {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #111;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    text-align: center;
+    margin: 0.7rem 0.9rem 0.55rem;
+    min-height: calc(2 * 1.3em);
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+.series-card-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0.9rem 0.85rem;
+}
+
+.series-card-price {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.34rem;
+    font-weight: 700;
+    color: var(--primary);
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+}
+
+.series-card-buy-btn {
+    width: 100%;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    background: rgba(0, 0, 0, 0.16);
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    padding: 0.78rem 0.9rem;
+    cursor: pointer;
+    white-space: nowrap;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    transition: background 0.15s ease;
+}
+
+.series-card-buy-btn:hover:not(:disabled) {
+    background: rgba(0, 0, 0, 0.24);
+}
+
+.series-card-buy-btn:active:not(:disabled) {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.series-card-buy-btn:disabled {
+    background: rgba(0, 0, 0, 0.28);
+    color: rgba(255, 255, 255, 0.7);
+    cursor: not-allowed;
+}
+
+.series-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-top: auto;
+    padding: 0.55rem 0.85rem 0.7rem;
+    border-top: 1px solid #eee;
+}
+
+.series-card-official {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    min-width: 0;
+    color: #6b6b6b;
+}
+
+.series-card-official svg {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+}
+
+.series-card-official div {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.series-card-official span {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.58rem;
+    line-height: 1.25;
+    color: #6b6b6b;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.series-card-maker {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    min-width: 0;
+    max-width: 42%;
+}
+
+.series-card-maker-name {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 700;
+    color: #333;
+    line-height: 1.2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+.series-card-maker-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.55rem;
+    color: #8a8a8a;
+}
+
+@media (max-width: 768px), (max-width: 1200px) and (orientation: portrait) {
+    .series-carousels-wrap {
+        --series-cols: 2;
+        --series-gap: 0.7rem;
+        --series-peek: 1.65rem;
+        --series-pad-left: 1rem;
+        padding: 1.5rem 0 2rem;
+    }
+
+    .series-carousel + .series-carousel {
+        margin-top: 1.75rem;
+    }
+
+    .series-carousel-header {
+        padding-bottom: 0.85rem;
+    }
+
+    .series-carousel-title {
+        font-size: 1.45rem;
+    }
+
+    .series-carousel-all {
+        font-size: 1.4rem;
+        margin-right: 0.3rem;
+    }
+
+    .series-arrow {
+        width: 40px;
+        height: 40px;
+    }
+
+    .series-arrow svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .series-card-image .catalog-wf-logo {
+        top: 8px;
+        left: 8px;
+        width: 35px;
+        max-width: 35px;
+        height: auto;
+    }
+
+    .series-card-image .catalog-25th-logo {
+        top: 8px;
+        left: 8px;
+        width: 45px;
+        max-width: 45px;
+        height: 45px;
+    }
+
+    .series-card-name {
+        font-size: 0.8rem;
+        margin: 0.55rem 0.7rem 0.45rem;
+    }
+
+    .series-card-actions {
+        padding: 0 0.7rem 0.7rem;
+    }
+
+    .series-card-price {
+        font-size: 1.14rem;
+    }
+
+    .series-card-buy-btn {
+        font-size: 0.72rem;
+        padding: 0.68rem 0.7rem;
+        letter-spacing: 0.1em;
+    }
+
+    .series-card-footer {
+        padding: 0.4rem 0.6rem 0.5rem;
+    }
+
+    .series-card-official div {
+        display: none;
+    }
+
+    .series-card-maker {
+        max-width: 70%;
+        align-items: flex-end;
+    }
+
+    .series-card-maker-name {
+        -webkit-line-clamp: 1;
+        font-size: 0.55rem;
+    }
+}
+
+/* Tablet vertical: misma estructura móvil, tarjetas más chicas (no aplica en horizontal) */
+@media (min-width: 600px) and (max-width: 1200px) and (orientation: portrait) {
+    .home-category-card {
+        flex: 0 0 calc((100vw - 5.32rem) / 3.3);
+        width: calc((100vw - 5.32rem) / 3.3);
+    }
+
+    .home-category-card h3 {
+        font-size: 1.25rem;
+    }
+
+    .destacados-carrusel-wrap .products-grid > a,
+    .destacados-carrusel-wrap .products-grid > article {
+        width: min(17.5rem, calc((100vw - 2.75rem) / 2.45));
+    }
+
+    .series-carousels-wrap {
+        --series-cols: 3;
+        --series-gap: 0.75rem;
+        --series-peek: 2.1rem;
+        --series-pad-left: 1.15rem;
+    }
+
+    .populares-section {
+        --pop-visible: 8;
+        --pop-gap: 0.45rem;
     }
 }

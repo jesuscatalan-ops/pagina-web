@@ -9,9 +9,18 @@
 //  del catálogo principal y aparece aquí.
 // ============================================================
 
-const ADELANTO_DEFAULT = 50;
 const IDS_25TH = new Set(['joseph-joestar-25th']);
 const RE_WF = /WF\s*(?:20\d{2}|Exclusive)/i;
+
+function adelantoPctDe(valor) {
+    const n = Number(valor);
+    if (!Number.isFinite(n) || n <= 0 || n > 100) return 50;
+    return n;
+}
+
+function precioAbono(precioTotal, adelantoPct) {
+    return Math.round(Number(precioTotal || 0) * adelantoPctDe(adelantoPct) / 100);
+}
 
 function formatearPrecio(numero) {
     return '$' + Number(numero || 0).toLocaleString('es-CL');
@@ -71,6 +80,12 @@ function htmlFechaCard(str) {
 function setContador(n) {
     const el = document.getElementById('reservas-contador');
     if (!el) return;
+    if (!n) {
+        el.hidden = true;
+        el.textContent = '';
+        return;
+    }
+    el.hidden = false;
     el.textContent = n === 1 ? '1 FIGURA' : n + ' FIGURAS';
 }
 
@@ -102,6 +117,9 @@ function crearCard(item) {
         ? item.llegadaEstimada
         : 'Por confirmar';
 
+    const adelantoPct = adelantoPctDe(item.adelantoPct);
+    const abono = precioAbono(item.precio, adelantoPct);
+
     return `
         <article class="series-card series-card--catalog series-card--reserva">
             <div class="series-card-body">
@@ -113,8 +131,17 @@ function crearCard(item) {
                     </div>
                     <h3 class="series-card-name">${escapeHtml(nombre + extraTitulo)}</h3>
                 </a>
-                <div class="series-card-actions">
-                    <span class="series-card-price">${formatearPrecio(item.precio)}</span>
+                <div class="series-card-actions series-card-actions--reserva">
+                    <div class="series-card-reserva-precios">
+                        <div class="series-card-reserva-precio">
+                            <span class="series-card-reserva-precio-label">Precio total</span>
+                            <span class="series-card-price series-card-price--total">${formatearPrecio(item.precio)}</span>
+                        </div>
+                        <div class="series-card-reserva-precio series-card-reserva-precio--abono">
+                            <span class="series-card-reserva-precio-label">Abono ${adelantoPct}%</span>
+                            <span class="series-card-price">${formatearPrecio(abono)}</span>
+                        </div>
+                    </div>
                 </div>
                 ${htmlFechaCard(llegada)}
             </div>
@@ -133,8 +160,7 @@ function renderVitrina(items) {
     if (!items.length) {
         grid.innerHTML = `
             <div class="reservas-empty">
-                <p class="reservas-empty-title">NO HAY PREVENTAS ABIERTAS</p>
-                <p class="reservas-empty-text">Vuelve pronto o escríbenos si buscas una figura específica.</p>
+                <p class="reservas-empty-title">PRÓXIMAMENTE</p>
             </div>`;
         return;
     }
@@ -182,7 +208,7 @@ async function initReservas() {
             if (!base) return null;
             return Object.assign({}, base, {
                 llegadaEstimada: entry.llegadaEstimada || '',
-                adelantoPct: entry.adelantoPct || ADELANTO_DEFAULT
+                adelantoPct: adelantoPctDe(entry.adelantoPct)
             });
         }).filter(Boolean);
 

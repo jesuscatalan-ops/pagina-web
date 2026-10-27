@@ -6,6 +6,17 @@
 
 const CARRITO_KEY = 'anime2chile_carrito';
 const PREFIJO_RESERVA = '(RESERVA) ';
+const ADELANTO_DEFAULT = 50;
+
+function adelantoPctDe(valor) {
+    const n = Number(valor);
+    if (!Number.isFinite(n) || n <= 0 || n > 100) return ADELANTO_DEFAULT;
+    return n;
+}
+
+function precioAbono(precioTotal, adelantoPct) {
+    return Math.round(Number(precioTotal || 0) * adelantoPctDe(adelantoPct) / 100);
+}
 
 function nombreConReserva(nombre) {
     const n = String(nombre || '').trim();
@@ -91,6 +102,9 @@ function agregarAlCarrito(id, nombre, precio, imagen, maxCantidad) {
 function asegurarEnCarrito(id, nombre, precio, imagen, opts) {
     const esReserva = !!(opts && opts.reserva);
     const limite = maxCantidadDe(opts && opts.maxCantidad);
+    const adelantoPct = esReserva ? adelantoPctDe(opts && opts.adelantoPct) : null;
+    const precioTotal = Number(precio) || 0;
+    const precioCobrado = esReserva ? precioAbono(precioTotal, adelantoPct) : precioTotal;
     const nombreFinal = esReserva ? nombreConReserva(nombre) : nombre;
     const carrito = obtenerCarrito();
     const existente = carrito.find(item => item.id === id);
@@ -98,7 +112,9 @@ function asegurarEnCarrito(id, nombre, precio, imagen, opts) {
         carrito.push({
             id,
             nombre: nombreFinal,
-            precio,
+            precio: precioCobrado,
+            precioTotal: esReserva ? precioTotal : undefined,
+            adelantoPct,
             imagen,
             cantidad: 1,
             maxCantidad: limite,
@@ -112,6 +128,9 @@ function asegurarEnCarrito(id, nombre, precio, imagen, opts) {
         if (esReserva) {
             existente.nombre = nombreConReserva(nombre);
             existente.reserva = true;
+            existente.precio = precioCobrado;
+            existente.precioTotal = precioTotal;
+            existente.adelantoPct = adelantoPct;
         }
     }
     guardarCarrito(carrito);
@@ -122,7 +141,8 @@ function asegurarEnCarrito(id, nombre, precio, imagen, opts) {
 function iniciarCheckoutConProducto(id, nombre, precio, imagen, opts) {
     asegurarEnCarrito(id, nombre, precio, imagen, {
         reserva: true,
-        maxCantidad: opts && opts.maxCantidad
+        maxCantidad: opts && opts.maxCantidad,
+        adelantoPct: opts && opts.adelantoPct
     });
     window.location.href = 'checkout.html';
 }
@@ -199,6 +219,15 @@ function formatearPrecioCarrito(numero) {
     return '$' + numero.toLocaleString('es-CL');
 }
 
+function escapeHtmlCarrito(text) {
+    return String(text ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
 function renderSidebar() {
     const carrito = obtenerCarrito();
     const contenido = document.getElementById('carrito-contenido');
@@ -222,26 +251,31 @@ function renderSidebar() {
         const max = maxCantidadDe(item.maxCantidad);
         const plusDisabled = item.cantidad >= max ? 'disabled' : '';
         const plusTitle = item.cantidad >= max ? `Máximo ${max} por pedido` : 'Aumentar cantidad';
+        const idAttr = escapeHtmlCarrito(item.id);
+        const idJs = String(item.id ?? '').replace(/\\/g, '\\\\').replace(/'/g, "\\'");
         return `
-        <div class="carrito-item" data-id="${item.id}">
+        <div class="carrito-item" data-id="${idAttr}">
             <div class="carrito-item-img">
                 ${item.imagen
-                    ? `<img src="${encodeURI(item.imagen)}" alt="${item.nombre}" onerror="this.style.display='none'">`
+                    ? `<img src="${escapeHtmlCarrito(encodeURI(item.imagen))}" alt="${escapeHtmlCarrito(item.nombre)}" onerror="this.style.display='none'">`
                     : ''
                 }
             </div>
             <div class="carrito-item-info">
-                <p class="carrito-item-nombre">${item.nombre}</p>
-                <p class="carrito-item-precio">${formatearPrecioCarrito(item.precio)}</p>
+                <p class="carrito-item-nombre">${escapeHtmlCarrito(item.nombre)}</p>
+                <p class="carrito-item-precio">${formatearPrecioCarrito(item.precio)}${item.reserva ? ` <span class="carrito-item-abono">Abono ${adelantoPctDe(item.adelantoPct)}%</span>` : ''}</p>
+                ${item.reserva && item.precioTotal
+                    ? `<p class="carrito-item-precio-total">Precio total ${formatearPrecioCarrito(item.precioTotal)}</p>`
+                    : ''}
                 <div class="carrito-item-qty">
-                    <button class="carrito-qty-btn" onclick="cambiarCantidadCarrito('${item.id}', -1)" ${item.cantidad <= 1 ? 'disabled' : ''} title="Disminuir cantidad">−</button>
+                    <button class="carrito-qty-btn" onclick="cambiarCantidadCarrito('${idJs}', -1)" ${item.cantidad <= 1 ? 'disabled' : ''} title="Disminuir cantidad">−</button>
                     <span>${item.cantidad}</span>
-                    <button class="carrito-qty-btn" onclick="cambiarCantidadCarrito('${item.id}', 1)" ${plusDisabled} title="${plusTitle}">+</button>
+                    <button class="carrito-qty-btn" onclick="cambiarCantidadCarrito('${idJs}', 1)" ${plusDisabled} title="${plusTitle}">+</button>
                 </div>
             </div>
             <div class="carrito-item-subtotal">
                 <p>${formatearPrecioCarrito(item.precio * item.cantidad)}</p>
-                <button class="carrito-eliminar" onclick="eliminarDelCarrito('${item.id}')" title="Eliminar">✕</button>
+                <button class="carrito-eliminar" onclick="eliminarDelCarrito('${idJs}')" title="Eliminar">✕</button>
             </div>
         </div>`;
     }).join('');

@@ -8,31 +8,17 @@
     'use strict';
 
     // ── Constantes editables ──────────────────────────────────
-    // REEMPLAZAR: número real (solo dígitos, con código país, sin +)
-    var WHATSAPP_NUMBER = '56912345678';
     // REEMPLAZAR: correo real (partes separadas anti-scraping)
-    var CONTACT_EMAIL_USER = 'hola';
+    var CONTACT_EMAIL_USER = 'contacto';
     var CONTACT_EMAIL_DOMAIN = 'anime2chile.cl';
 
     function prefersReducedMotion() {
         return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     }
 
-    // ── WhatsApp + correo ofuscado ────────────────────────────
+    // ── Correo ofuscado ────────────────────────────────────────
 
     function initContactChannels() {
-        var waLink = document.getElementById('qs-whatsapp-link');
-        var waDisplay = document.getElementById('qs-whatsapp-display');
-        if (waLink) {
-            waLink.href = 'https://wa.me/' + WHATSAPP_NUMBER;
-        }
-        if (waDisplay) {
-            var digits = WHATSAPP_NUMBER.replace(/\D/g, '');
-            var local = digits.slice(-8);
-            var formatted = '+56 9 ' + local.slice(0, 4) + ' ' + local.slice(4);
-            waDisplay.textContent = formatted;
-        }
-
         var email = CONTACT_EMAIL_USER + '@' + CONTACT_EMAIL_DOMAIN;
         var emailLink = document.getElementById('qs-email-link');
         if (emailLink) {
@@ -93,6 +79,33 @@
             }
         }
 
+        function openFromHash() {
+            var hash = (window.location.hash || '').replace('#', '');
+            if (!hash) return;
+
+            var target = document.getElementById(hash);
+            if (!target) return;
+
+            var item = target.classList.contains('qs-faq-item')
+                ? target
+                : target.closest('.qs-faq-item');
+            if (!item || !list.contains(item)) return;
+
+            var section = document.getElementById('preguntas-frecuentes');
+            if (section) section.classList.add('qs-reveal--visible');
+
+            items.forEach(function (other) {
+                setOpen(other, other === item);
+            });
+
+            window.requestAnimationFrame(function () {
+                item.scrollIntoView({
+                    behavior: prefersReducedMotion() ? 'auto' : 'smooth',
+                    block: 'start'
+                });
+            });
+        }
+
         items.forEach(function (item) {
             var btn = item.querySelector('.qs-faq-trigger');
             if (!btn) return;
@@ -105,6 +118,9 @@
                 });
             });
         });
+
+        openFromHash();
+        window.addEventListener('hashchange', openFromHash);
     }
 
     // ── Contadores animados ───────────────────────────────────
@@ -151,27 +167,40 @@
     // ── Formulario ────────────────────────────────────────────
 
     /**
-     * Punto de envío aislado.
-     * TODO: conectar backend (Formspree / Vercel Function / Resend).
-     * Por ahora simula el envío con un timeout. No inventes endpoints.
+     * Envía el formulario a POST /api/contacto.
+     * El honeypot (website) se resuelve en el cliente para no molestar al servidor.
      * @param {Object} payload
      * @returns {Promise<{ok: boolean, message?: string}>}
      */
     function submitContactForm(payload) {
-        return new Promise(function (resolve) {
-            // Honeypot: si viene lleno, fingimos éxito sin enviar
-            if (payload.website) {
-                setTimeout(function () {
-                    resolve({ ok: true, message: '¡Mensaje enviado! Te responderemos pronto.' });
-                }, 600);
-                return;
-            }
+        if (payload.website) {
+            return Promise.resolve({ ok: true, message: '¡Mensaje enviado! Te responderemos pronto.' });
+        }
 
-            // Simulación — reemplazar por fetch real cuando haya backend
-            setTimeout(function () {
-                console.info('[contacto] payload listo para backend:', payload);
-                resolve({ ok: true, message: '¡Mensaje enviado! Te responderemos pronto.' });
-            }, 900);
+        return fetch('/api/contacto', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                nombre: payload.nombre,
+                email: payload.email,
+                asunto: payload.asunto,
+                mensaje: payload.mensaje
+            })
+        }).then(function (res) {
+            return res.json().catch(function () {
+                return {};
+            }).then(function (data) {
+                if (!res.ok || !data.ok) {
+                    return {
+                        ok: false,
+                        message: data.message || 'No pudimos enviar el mensaje. Intenta de nuevo.'
+                    };
+                }
+                return {
+                    ok: true,
+                    message: data.message || '¡Mensaje enviado! Te responderemos pronto.'
+                };
+            });
         });
     }
 
@@ -268,7 +297,7 @@
             }).catch(function () {
                 if (status) {
                     status.hidden = false;
-                    status.textContent = 'No pudimos enviar el mensaje. Intenta de nuevo o escríbenos por WhatsApp.';
+                    status.textContent = 'No pudimos enviar el mensaje. Intenta de nuevo o escríbenos por Instagram.';
                     status.className = 'qs-form-status qs-form-status--err';
                 }
             }).finally(function () {
@@ -282,11 +311,21 @@
         });
     }
 
+    function revealHashTarget() {
+        var hash = (window.location.hash || '').replace('#', '');
+        if (!hash) return;
+        var el = document.getElementById(hash);
+        if (el && el.classList.contains('qs-reveal')) {
+            el.classList.add('qs-reveal--visible');
+        }
+    }
+
     document.addEventListener('DOMContentLoaded', function () {
         initContactChannels();
         initReveal();
         initStats();
         initFaq();
         initForm();
+        revealHashTarget();
     });
 })();

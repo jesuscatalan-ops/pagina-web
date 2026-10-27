@@ -4,9 +4,13 @@
 //  catálogo Pokémon TCG. Filtra por "categoria".
 // ============================================================
 
+const PRODUCTOS_POR_PAGINA = 16;
+
 let todosLosProductos = [];
+let productosVisibles = [];
 let filtroActivo = 'Todos';
 let ordenActivo  = 'default';
+let paginaActual = 1;
 
 // ── Ordenamiento ─────────────────────────────────────────────
 
@@ -51,6 +55,7 @@ window.aplicarOrden = function(cat, orden, el) {
     const filtrados = filtroActivo === 'Todos'
         ? todosLosProductos
         : todosLosProductos.filter(p => p.categoria === filtroActivo);
+    paginaActual = 1;
     sincronizarGridLayoutSingles();
     renderGrid(ordenar(filtrados, orden));
 };
@@ -68,10 +73,22 @@ function formatearPrecio(numero) {
     return '$' + numero.toLocaleString('es-CL');
 }
 
-// ── Render de una tarjeta ────────────────────────────────────
+function escapeHtml(text) {
+    if (text == null || text === '') return '';
+    return String(text)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+}
+
+function srcImagen(path) {
+    if (!path) return '';
+    return escapeHtml(encodeURI(String(path)));
+}
 
 function crearTarjeta(producto) {
-    const lineas = (producto.placeholder || producto.nombre).split('\n');
+    const lineas = (producto.placeholder || producto.nombre).split('\n').map(escapeHtml);
 
     let badgeHTML = '';
     if (producto.badge) {
@@ -83,7 +100,7 @@ function crearTarjeta(producto) {
             'STOCK BAJO': 'catalog-badge villain',
         };
         const clase = clases[producto.badge] || 'catalog-badge';
-        badgeHTML = `<div class="${clase}">${producto.badge}</div>`;
+        badgeHTML = `<div class="${clase}">${escapeHtml(producto.badge)}</div>`;
     }
 
     const btnDisabled  = producto.stock === 'out-stock';
@@ -91,9 +108,9 @@ function crearTarjeta(producto) {
     const btnAtributos = btnDisabled ? 'disabled style="opacity:0.5; cursor:not-allowed;"' : '';
 
     const imagenHTML = producto.imagen
-        ? `<img class="catalog-img-real" src="${encodeURI(producto.imagen)}" alt="${producto.nombre}" loading="lazy">`
+        ? `<img class="catalog-img-real" src="${srcImagen(producto.imagen)}" alt="${escapeHtml(producto.nombre)}" loading="lazy">`
         : `<div class="catalog-img-placeholder"
-                style="background:${producto.gradiente}; width:100%; height:100%;
+                style="background:${escapeHtml(producto.gradiente || '')}; width:100%; height:100%;
                        display:flex; align-items:center; justify-content:center;">
                <span class="placeholder-text">${lineas.join('<br>')}</span>
            </div>`;
@@ -102,7 +119,7 @@ function crearTarjeta(producto) {
         producto.categoria === 'Singles' ? ' catalog-card--singles' : '';
 
     return `
-    <a href="producto.html?id=${producto.id}"
+    <a href="producto.html?id=${encodeURIComponent(producto.id)}"
        style="text-decoration:none; color:inherit; display:block;">
         <article class="catalog-card${cardMod}">
             ${badgeHTML}
@@ -110,14 +127,18 @@ function crearTarjeta(producto) {
                 ${imagenHTML}
             </div>
             <div class="catalog-info">
-                <h3 class="catalog-name">${producto.nombre}</h3>
+                <h3 class="catalog-name">${escapeHtml(producto.nombre)}</h3>
                 
                 <div class="catalog-bottom">
                     <div class="catalog-price">${formatearPrecio(producto.precio)}</div>
                     <button class="add-to-cart-btn catalog-cart-btn"
-                            data-carrito-id="${producto.id}"
+                            data-carrito-id="${escapeHtml(producto.id)}"
+                            data-nombre="${escapeHtml(producto.nombre)}"
+                            data-precio="${Number(producto.precio) || 0}"
+                            data-imagen="${escapeHtml(producto.imagen || '')}"
+                            data-max="${Number(producto.maxCantidad) > 0 ? Number(producto.maxCantidad) : 1}"
                             ${btnAtributos}
-                            onclick="event.preventDefault(); if(!this.disabled) agregarAlCarritoConFeedback('${producto.id}','${producto.nombre.replace(/'/g,"\\'")}',${producto.precio},'${producto.imagen || ''}', this, ${Number(producto.maxCantidad) > 0 ? Number(producto.maxCantidad) : 1})">
+                            onclick="event.preventDefault(); if(!this.disabled) agregarAlCarritoConFeedback(this.dataset.carritoId, this.dataset.nombre, Number(this.dataset.precio), this.dataset.imagen || '', this, Number(this.dataset.max) || 1)">
                         ${btnTexto}
                     </button>
                 </div>
@@ -130,14 +151,118 @@ function agregarAlCarritoConFeedback(id, nombre, precio, imagen, btn, maxCantida
     agregarAlCarrito(id, nombre, precio, imagen, maxCantidad);
 }
 
+// ── Paginación ───────────────────────────────────────────────
+
+function paginaDesdeURL() {
+    const n = parseInt(new URLSearchParams(window.location.search).get('pagina'), 10);
+    return Number.isInteger(n) && n > 0 ? n : 1;
+}
+
+function actualizarURL() {
+    const params = new URLSearchParams(window.location.search);
+    if (filtroActivo && filtroActivo !== 'Todos') {
+        params.set('categoria', filtroActivo);
+    } else {
+        params.delete('categoria');
+    }
+    if (paginaActual > 1) {
+        params.set('pagina', String(paginaActual));
+    } else {
+        params.delete('pagina');
+    }
+    const qs = params.toString();
+    const next = qs ? `${location.pathname}?${qs}` : location.pathname;
+    if (`${location.pathname}${location.search}` !== next) {
+        history.replaceState(null, '', next);
+    }
+}
+
+function numerosDePagina(pagina, total) {
+    if (total <= 7) {
+        return Array.from({ length: total }, (_, i) => i + 1);
+    }
+    const set = new Set([1, total, pagina - 1, pagina, pagina + 1]);
+    if (pagina <= 3) {
+        set.add(2);
+        set.add(3);
+        set.add(4);
+    }
+    if (pagina >= total - 2) {
+        set.add(total - 3);
+        set.add(total - 2);
+        set.add(total - 1);
+    }
+    return [...set].filter(n => n >= 1 && n <= total).sort((a, b) => a - b);
+}
+
+function renderPaginacion(totalItems) {
+    const nav = document.getElementById('catalogo-paginacion');
+    if (!nav) return;
+
+    const total = Math.ceil(totalItems / PRODUCTOS_POR_PAGINA);
+    if (totalItems === 0 || total <= 1) {
+        nav.hidden = true;
+        nav.innerHTML = '';
+        return;
+    }
+
+    nav.hidden = false;
+    const nums = numerosDePagina(paginaActual, total);
+    let html = `<button type="button" class="catalog-pagination-btn catalog-pagination-btn--nav" data-pagina="${paginaActual - 1}" ${paginaActual <= 1 ? 'disabled' : ''} aria-label="Página anterior">Anterior</button>`;
+    let prev = 0;
+    nums.forEach(n => {
+        if (prev && n - prev > 1) {
+            html += '<span class="catalog-pagination-ellipsis" aria-hidden="true">…</span>';
+        }
+        const activa = n === paginaActual;
+        html += `<button type="button" class="catalog-pagination-btn${activa ? ' active' : ''}" data-pagina="${n}" ${activa ? 'aria-current="page"' : ''} aria-label="Página ${n}">${n}</button>`;
+        prev = n;
+    });
+    html += `<button type="button" class="catalog-pagination-btn catalog-pagination-btn--nav" data-pagina="${paginaActual + 1}" ${paginaActual >= total ? 'disabled' : ''} aria-label="Página siguiente">Siguiente</button>`;
+    nav.innerHTML = html;
+}
+
+function irAPagina(n) {
+    const total = Math.max(1, Math.ceil(productosVisibles.length / PRODUCTOS_POR_PAGINA));
+    paginaActual = Math.min(Math.max(1, n), total);
+    renderGrid(productosVisibles, { scroll: true });
+}
+
+function conectarPaginacion() {
+    const nav = document.getElementById('catalogo-paginacion');
+    if (!nav || nav.dataset.bound === '1') return;
+    nav.dataset.bound = '1';
+    nav.addEventListener('click', function (e) {
+        const btn = e.target.closest('[data-pagina]');
+        if (!btn || btn.disabled) return;
+        const n = parseInt(btn.getAttribute('data-pagina'), 10);
+        if (!Number.isInteger(n)) return;
+        irAPagina(n);
+    });
+}
+
+function scrollAlCatalogo() {
+    const destino = document.querySelector('.catalog-page-filters') || document.getElementById('catalogo-grid');
+    if (destino) destino.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
 // ── Render del grid ──────────────────────────────────────────
 
-function renderGrid(productos) {
+function renderGrid(productos, opciones) {
+    productosVisibles = productos;
     const grid     = document.getElementById('catalogo-grid');
     const contador = document.getElementById('catalogo-contador');
     if (!grid) return;
 
-    if (productos.length === 0) {
+    const total = productos.length;
+    const totalPaginas = Math.max(1, Math.ceil(total / PRODUCTOS_POR_PAGINA));
+    if (paginaActual > totalPaginas) paginaActual = totalPaginas;
+    if (paginaActual < 1) paginaActual = 1;
+
+    const inicio = (paginaActual - 1) * PRODUCTOS_POR_PAGINA;
+    const pagina = productos.slice(inicio, inicio + PRODUCTOS_POR_PAGINA);
+
+    if (total === 0) {
         grid.innerHTML = `
             <div style="grid-column:1/-1; text-align:center; padding:4rem 2rem;">
                 <div style="font-size:3rem; margin-bottom:1rem;">🔍</div>
@@ -147,22 +272,37 @@ function renderGrid(productos) {
                 </p>
             </div>`;
     } else {
-        grid.innerHTML = productos.map(crearTarjeta).join('');
+        grid.innerHTML = pagina.map(crearTarjeta).join('');
     }
 
     if (contador) {
-        contador.textContent = `${productos.length} producto${productos.length !== 1 ? 's' : ''}`;
+        if (total === 0) {
+            contador.textContent = '0 productos';
+        } else if (total <= PRODUCTOS_POR_PAGINA) {
+            contador.textContent = `${total} producto${total !== 1 ? 's' : ''}`;
+        } else {
+            contador.textContent = `${inicio + 1}–${inicio + pagina.length} de ${total} productos`;
+        }
+    }
+
+    renderPaginacion(total);
+    actualizarURL();
+
+    if (opciones && opciones.scroll) {
+        scrollAlCatalogo();
     }
 }
 
 // ── Filtrado ─────────────────────────────────────────────────
 
-function aplicarFiltro(categoria) {
+function aplicarFiltro(categoria, opciones) {
     filtroActivo = categoria;
 
     document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.filtro === categoria);
     });
+
+    if (!opciones || !opciones.conservarPagina) paginaActual = 1;
 
     sincronizarGridLayoutSingles();
 
@@ -211,10 +351,13 @@ async function init() {
 
         todosLosProductos = await respuesta.json();
         conectarFiltros();
+        conectarPaginacion();
+
+        paginaActual = paginaDesdeURL();
 
         // Aplicar filtro de URL si existe
         const catURL = categoriaDesdeURL();
-        aplicarFiltro(catURL);
+        aplicarFiltro(catURL, { conservarPagina: true });
 
         // Marcar botón activo correspondiente
         document.querySelectorAll('.filter-btn').forEach(btn => {

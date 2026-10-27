@@ -3,17 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anime2Chile - Landing Page</title>
-    
+    <meta name="color-scheme" content="light only">
+    <meta name="theme-color" content="#ffffff">
+    <title>Anime2Chile — Figuras originales de JoJo's en Chile</title>
+    <meta name="description" content="Tienda chilena de figuras originales Medicos Entertainment (SAS). JoJo's Bizarre Adventure, envíos a todo Chile y reservas con abono.">
+    <link rel="canonical" href="https://anime2chile.cl/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_CL">
+    <meta property="og:site_name" content="Anime2Chile">
+    <meta property="og:title" content="Anime2Chile — Figuras originales de JoJo's en Chile">
+    <meta property="og:description" content="Figuras originales Super Action Statue. Stock en Chile, envíos a todo el país y preventas con abono.">
+    <meta property="og:url" content="https://anime2chile.cl/">
+    <meta property="og:image" content="https://anime2chile.cl/imagenes/Inicio/banner_anime2chile_final.jpg">
+    <meta property="og:image:alt" content="Anime2Chile — figuras JoJo's Bizarre Adventure">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Anime2Chile — Figuras originales de JoJo's en Chile">
+    <meta name="twitter:description" content="Figuras originales Super Action Statue. Stock en Chile y envíos a todo el país.">
+    <meta name="twitter:image" content="https://anime2chile.cl/imagenes/Inicio/banner_anime2chile_final.jpg">
+    <link rel="icon" href="favicon.png?v=2" type="image/png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Organization",
+                "@id": "https://anime2chile.cl/#organization",
+                "name": "Anime2Chile",
+                "url": "https://anime2chile.cl/",
+                "logo": "https://anime2chile.cl/anime2chile_logo.png",
+                "email": "contacto@anime2chile.cl",
+                "sameAs": ["https://www.instagram.com/anime2chile"],
+                "areaServed": { "@type": "Country", "name": "Chile" }
+            },
+            {
+                "@type": "WebSite",
+                "@id": "https://anime2chile.cl/#website",
+                "url": "https://anime2chile.cl/",
+                "name": "Anime2Chile",
+                "inLanguage": "es-CL",
+                "publisher": { "@id": "https://anime2chile.cl/#organization" },
+                "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": {
+                        "@type": "EntryPoint",
+                        "urlTemplate": "https://anime2chile.cl/busqueda.html?q={search_term_string}"
+                    },
+                    "query-input": "required name=search_term_string"
+                }
+            },
+            {
+                "@type": "Store",
+                "@id": "https://anime2chile.cl/#store",
+                "name": "Anime2Chile",
+                "url": "https://anime2chile.cl/",
+                "image": "https://anime2chile.cl/imagenes/Inicio/banner_anime2chile_final.jpg",
+                "parentOrganization": { "@id": "https://anime2chile.cl/#organization" },
+                "currenciesAccepted": "CLP",
+                "paymentAccepted": "Mercado Pago",
+                "priceRange": "$$",
+                "areaServed": "CL"
+            }
+        ]
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&family=Pathway+Extreme:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&family=Oswald:ital,wght@1,500;1,600;1,700&family=Pathway+Extreme:wght@400;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="carrito.css">
     <link rel="stylesheet" href="buscador.css">
 </head>
 <body>
+    <h1 class="visually-hidden">Anime2Chile — Figuras originales de JoJo's Bizarre Adventure en Chile</h1>
 
     <header class="header">
         <div class="header-content">
@@ -31,8 +95,9 @@
             <nav class="nav">
                 <a href="index.html" class="nav-link active">Inicio</a>
                 <a href="catalogo.html" class="nav-link">Catalogo</a>
-                <a href="quienes-somos.html" class="nav-link">Quiénes Somos</a>
+                <a href="quienes-somos.html" class="nav-link">Nosotros</a>
                 <a href="reservas.html" class="nav-link">Reservas</a>
+                <!-- Pokémon oculto: quita este comentario para mostrarlo en el menú --><!-- <a href="pokemon-tcg.html" class="nav-link">Pokémon</a> -->
             </nav>
 
             <button class="mobile-menu-btn">☰</button>
@@ -41,43 +106,45 @@
 
     <section class="slider home-hero-layout">
         <a href="catalogo.html" class="hero-banner-block" aria-label="Banner principal Steel Ball Run">
-            <img src="imagenes/Inicio/Banner Inicio SBR (Definitivo - BLUR 4).png" alt="Steel Ball Run — figuras destacadas">
+            <picture>
+                <img src="imagenes/Inicio/banner%20ig.JPG" srcset="imagenes/Inicio/banner-ig-mobile.jpg 1920w, imagenes/Inicio/banner%20ig.JPG 3240w" sizes="100vw" alt="Steel Ball Run — figuras destacadas" width="3240" height="1351">
+            </picture>
         </a>
 
         <div class="home-categories-grid">
-            <a href="catalogo.html" class="home-category-card home-category-figuras">
+            <div class="home-category-card home-category-figuras">
                 <img class="home-category-image" src="imagenes/Inicio/dio (inicio).jpeg" alt="Figuras">
                 <div class="home-category-content">
                     <h3>Figuras</h3>
-                    <p>120+ productos</p>
+                    <p>50+ productos</p>
                 </div>
-            </a>
-            <a href="catalogo.html" class="home-category-card home-category-coleccionables">
+            </div>
+            <div class="home-category-card home-category-coleccionables">
                 <img class="home-category-image" src="imagenes/Inicio/coleccion(inicio).jpeg" alt="Coleccionables">
                 <div class="home-category-content">
                     <h3>Accesorios</h3>
                     <p>Merchandising Oficial</p>
                 </div>
-            </a>
-            <a href="catalogo.html" class="home-category-card home-category-libros">
+            </div>
+            <div class="home-category-card home-category-libros">
                 <img class="home-category-image" src="imagenes/Inicio/libros(inicio).jpeg" alt="Libros">
                 <div class="home-category-content">
                     <h3>Libros</h3>
                     <p>Manga y artbooks</p>
                 </div>
-            </a>
-            <a href="reservas.html" class="home-category-card home-category-reservas">
+            </div>
+            <div class="home-category-card home-category-reservas">
                 <img class="home-category-image" src="imagenes/Inicio/josuke (reservas).jpeg" alt="Reservas">
                 <div class="home-category-content">
                     <h3>Reservas</h3>
                     <p>Pre-orders abiertos</p>
                 </div>
-            </a>
+            </div>
         </div>
     </section>
 
     <!-- NUEVOS LANZAMIENTOS -->
-    <section class="products-section" style="padding-top: 2rem;">
+    <section class="products-section" style="display:none;" hidden aria-hidden="true">
         <div class="lanzamientos-inner">
         <div class="lanzamientos-header">
             <h2 class="lanzamientos-titulo">ARTICULOS DESTACADOS</h2>
@@ -87,29 +154,29 @@
         <div class="destacados-carrusel-wrap">
             <div class="destacados-carrusel-outer" id="dest-outer">
         <div class="products-grid" id="dest-grid">
-             <!-- TARJETA 1: reemplaza el src y el href cuando tengas el producto -->
-            <a href="producto.html?id=jodio-joestar" style="text-decoration:none; display:block;">
+             <!-- TARJETA 1: Soft & Wet Second -->
+            <a href="producto.html?id=soft-wet-second" style="text-decoration:none; display:block;">
             <article class="product-card">
                 <div class="product-image">
-                    <img src="imagenes/softwet_ad.jpg" alt="Jodio Joestar"
+                    <img src="imagenes/softwet_ad.jpg" alt="Soft &amp; Wet Second"
                          onerror="this.style.display='none'; this.parentElement.style.background='var(--gradient-subtle)'">
                 </div>
             </article>
             </a>
-             <!-- TARJETA 2: reemplaza el src y el href cuando tengas el producto -->
-            <a href="producto.html?id=jotaro-kujo" style="text-decoration:none; display:block;">
+             <!-- TARJETA 2: Josuke Higashikata Second (JoJolion) -->
+            <a href="producto.html?id=josuke-higashikata-jojolion-second" style="text-decoration:none; display:block;">
             <article class="product-card">
                 <div class="product-image">
-                    <img src="imagenes/josuke8_ad.jpg" alt="Jotaro Kujo"
+                    <img src="imagenes/josuke8_ad.jpg" alt="Josuke Higashikata Second (JoJolion)"
                          onerror="this.style.display='none'; this.parentElement.style.background='var(--gradient-subtle)'">
                 </div>
             </article>
             </a>
-             <!-- TARJETA 3: reemplaza el src y el href cuando tengas el producto -->
-            <a href="producto.html?id=funny-valentine" style="text-decoration:none; display:block;">
-            <article class="product-card">
+             <!-- TARJETA 3: producto aún no publicado -->
+            <a style="text-decoration:none; display:block; cursor:default;" aria-disabled="true" tabindex="-1">
+            <article class="product-card" style="cursor:default;">
                 <div class="product-image">
-                    <img src="imagenes/starplatinum_ad.jpg" alt="Funny Valentine"
+                    <img src="imagenes/starplatinum_ad.jpg" alt="Próximamente"
                          onerror="this.style.display='none'; this.parentElement.style.background='var(--gradient-subtle)'">
                 </div>
             </article>
@@ -131,107 +198,90 @@
     </section>
 
 
-    <!-- ===== POPULARES ===== -->
-    <section class="populares-section">
-        <div class="populares-header">
-            <div>
-                <p class="populares-label">LO MÁS BUSCADO</p>
-                <h2 class="populares-titulo">POPULARES</h2>
+    <!-- ===== CARRUSELES DE SERIE ===== -->
+    <section class="series-carousels-wrap" id="catalogo">
+        <div class="series-carousel" data-carousel="figuras" data-tipos="Figura articulada">
+            <div class="series-carousel-header">
+                <h2 class="series-carousel-title">SUPER ACTION STATUES</h2>
+                <div class="series-carousel-arrows">
+                    <button type="button" class="series-arrow series-arrow-prev" aria-label="Anterior" disabled>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 6 9 12 15 18"></polyline></svg>
+                    </button>
+                    <a href="catalogo.html" class="series-carousel-all">VER TODO</a>
+                    <button type="button" class="series-arrow series-arrow-next" aria-label="Siguiente">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"></polyline></svg>
+                    </button>
+                </div>
+            </div>
+            <div class="series-carousel-viewport">
+                <div class="series-carousel-track" id="carousel-figuras-track"></div>
             </div>
         </div>
-        <div class="populares-carrusel-outer">
-            <div class="populares-track" id="populares-track">
 
-                <!-- Ítem 1 — reemplaza href con el id del producto, img src con tu imagen -->
-                <a href="producto.html?id=star-platinum" class="populares-item">
-                    <div class="populares-img-wrap">
-                        <img src="imagenes/Fotos mini 1 a 1/yoshikage_kira_mini.png" alt="Yoshikage Kira" onerror="this.parentElement.style.background='var(--gradient-subtle)'">
-                    </div>
-                    <p class="populares-nombre">Yoshikage Kira</p>
-                </a>
-
-                <!-- Ítem 2 -->
-                <a href="producto.html?id=funny-valentine-second" class="populares-item">
-                    <div class="populares-img-wrap">
-                        <img src="imagenes/Fotos mini 1 a 1/valentinesecond_mini.jpg" alt="Funny Valentine (Second)" onerror="this.parentElement.style.background='var(--gradient-subtle)'">
-                    </div>
-                    <p class="populares-nombre">Funny Valentine</p>
-                </a>
-
-                <!-- Ítem 3 -->
-                <a href="producto.html?id=king-crimson-blue" class="populares-item">
-                    <div class="populares-img-wrap">
-                        <img src="imagenes/Fotos mini 1 a 1/dio_mini.jpg" alt="DIO" onerror="this.parentElement.style.background='var(--gradient-subtle)'">
-                    </div>
-                    <p class="populares-nombre">DIO</p>
-                </a>
-
-                <!-- Ítem 4 -->
-                <a href="producto.html?id=guido-mista" class="populares-item">
-                    <div class="populares-img-wrap">
-                        <img src="imagenes/Fotos mini 1 a 1/giornowhite_mini.jpg" alt="Giorno Giovanna WF 2013" onerror="this.parentElement.style.background='var(--gradient-subtle)'">
-                    </div>
-                    <p class="populares-nombre">Giorno Giovanna</p>
-                </a>
-
-                <!-- Ítem 5 -->
-                <a href="producto.html?id=bruno-bucciarati" class="populares-item">
-                    <div class="populares-img-wrap">
-                        <img src="imagenes/Fotos mini 1 a 1/jolyne_mini.png" alt="Jolyne Cujoh" onerror="this.parentElement.style.background='var(--gradient-subtle)'">
-                    </div>
-                    <p class="populares-nombre">Jolyne Cujoh</p>
-                </a>
-
-                <!-- Ítem 6 -->
-                <a href="producto.html?id=gold-experience" class="populares-item">
-                    <div class="populares-img-wrap">
-                        <img src="imagenes/Fotos mini 1 a 1/weather_mini.jpg" alt="Weather Report" onerror="this.parentElement.style.background='var(--gradient-subtle)'">
-                    </div>
-                    <p class="populares-nombre">Weather Report</p>
-                </a>
-
-                <!-- Ítem 7 — adicional para que el carrusel tenga sentido -->
-                <a href="producto.html?id=whitesnake" class="populares-item">
-                    <div class="populares-img-wrap">
-                        <img src="imagenes/Fotos mini 1 a 1/softwet_mini.jpg" alt="Soft & Wet" onerror="this.parentElement.style.background='var(--gradient-subtle)'">
-                    </div>
-                    <p class="populares-nombre">Soft & Wet</p>
-                </a>
-
-                <!-- Ítem 8 -->
-                <a href="producto.html?id=enrico-pucci" class="populares-item">
-                    <div class="populares-img-wrap">
-                        <img src="imagenes/Fotos mini 1 a 1/josuke8mini.jpg" alt="Josuke 8 Higashikata" onerror="this.parentElement.style.background='var(--gradient-subtle)'">
-                    </div>
-                    <p class="populares-nombre">Josuke Higashikata</p>
-                </a>
-
-                <!-- Ítem 9 -->
-                <a href="producto.html?id=johnny-joestar-second" class="populares-item">
-                    <div class="populares-img-wrap">
-                        <img src="imagenes/Fotos mini 1 a 1/starplatinum_mini.jpg" alt="Star Platinum" onerror="this.parentElement.style.background='var(--gradient-subtle)'">
-                    </div>
-                    <p class="populares-nombre">Star Platinum</p>
-                </a>
-
+        <div class="series-carousel" data-carousel="libros" data-tipos="Libro de arte|Manga">
+            <div class="series-carousel-header">
+                <h2 class="series-carousel-title">LIBROS DE ARTE y MANGAS</h2>
+                <div class="series-carousel-arrows">
+                    <button type="button" class="series-arrow series-arrow-prev" aria-label="Anterior" disabled>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 6 9 12 15 18"></polyline></svg>
+                    </button>
+                    <a href="catalogo.html" class="series-carousel-all">VER TODO</a>
+                    <button type="button" class="series-arrow series-arrow-next" aria-label="Siguiente">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"></polyline></svg>
+                    </button>
+                </div>
+            </div>
+            <div class="series-carousel-viewport">
+                <div class="series-carousel-track" id="carousel-libros-track"></div>
             </div>
         </div>
     </section>
 
-    <!-- ===== CATÁLOGO PRINCIPAL ===== -->
-    <section class="catalog-section" id="catalogo">
-        <div class="catalog-header">
-            <div class="catalog-header-left">
-                <span class="catalog-label">SUPER ACTION STATUE</span>
-                <h2 class="catalog-title">Medicos JoJo's<br><span>Bizarre Adventure</span></h2>
-            </div>
-            <div class="catalog-header-right" style="align-self: flex-end;">
-                <p class="catalog-desc">Las figuras de acción más detalladas y fieles al manga directamente en Chile. Cada pieza es una obra de arte.</p>
-            </div>
+    <!-- ===== TIRAS DE MINIATURAS (scroll-linked) ===== -->
+    <section class="populares-section" id="populares-section" aria-label="Si existe, lo tenemos">
+        <div class="populares-header">
+            <h2 class="populares-titulo">Consigue a tu favorito</h2>
         </div>
-
-        <div class="catalog-grid" id="index-catalog-grid">
-            <!-- Los 8 productos fijos se renderizan desde index-catalogo.js -->
+        <div class="populares-strips" id="populares-strips">
+            <div class="populares-strip" data-dir="left" data-speed="1">
+                <div class="populares-strip-track">
+                    <span class="populares-strip-item"><img src="imagenes/Fotos mini 1 a 1/jotaro_mini.png" alt="Jotaro Kujo" loading="lazy" draggable="false"></span>
+                    <span class="populares-strip-item"><img src="imagenes/Fotos mini 1 a 1/dio_mini.jpg" alt="DIO" loading="lazy" draggable="false"></span>
+                    <span class="populares-strip-item"><img src="imagenes/Fotos mini 1 a 1/jolyne_mini.png" alt="Jolyne Cujoh" loading="lazy" draggable="false"></span>
+                    <span class="populares-strip-item"><img src="imagenes/Fotos mini 1 a 1/giornowhite_mini.jpg" alt="Giorno Giovanna" loading="lazy" draggable="false"></span>
+                    <span class="populares-strip-item"><img src="imagenes/Fotos mini 1 a 1/johnny_mini.jpg" alt="Johnny Joestar" loading="lazy" draggable="false"></span>
+                    <span class="populares-strip-item"><img src="imagenes/Fotos mini 1 a 1/yoshikage_kira_mini.png" alt="Yoshikage Kira" loading="lazy" draggable="false"></span>
+                    <span class="populares-strip-item"><img src="imagenes/Fotos mini 1 a 1/gyro_mini.jpg" alt="Gyro Zeppeli" loading="lazy" draggable="false"></span>
+                    <span class="populares-strip-item"><img src="imagenes/Fotos mini 1 a 1/jodio_mini.jpeg" alt="Jodio Joestar" loading="lazy" draggable="false"></span>
+                    <span class="populares-strip-item"><img src="imagenes/Fotos mini 1 a 1/jonathan_mini.jpg" alt="Jonathan Joestar" loading="lazy" draggable="false"></span>
+                </div>
+            </div>
+            <div class="populares-strip" data-dir="right" data-speed="0.58">
+                <div class="populares-strip-track">
+                    <span class="populares-strip-item"><img src="imagenes/Fotos mini 1 a 1/starplatinum_mini.jpg" alt="Star Platinum" loading="lazy" draggable="false"></span>
+                    <span class="populares-strip-item"><img src="imagenes/Fotos mini 1 a 1/valentinesecond_mini.jpg" alt="Funny Valentine" loading="lazy" draggable="false"></span>
+                    <span class="populares-strip-item"><img src="imagenes/Fotos mini 1 a 1/josuke8mini.jpg" alt="Josuke Higashikata" loading="lazy" draggable="false"></span>
+                    <span class="populares-strip-item"><img src="imagenes/Fotos mini 1 a 1/goldexperience_mini.jpeg" alt="Gold Experience" loading="lazy" draggable="false"></span>
+                    <span class="populares-strip-item"><img src="imagenes/Fotos mini 1 a 1/pucci_mini.jpg" alt="Enrico Pucci" loading="lazy" draggable="false"></span>
+                    <span class="populares-strip-item"><img src="imagenes/Fotos mini 1 a 1/weather_mini.jpg" alt="Weather Report" loading="lazy" draggable="false"></span>
+                    <span class="populares-strip-item"><img src="imagenes/Fotos mini 1 a 1/diegobrando_mini.jpg" alt="Diego Brando" loading="lazy" draggable="false"></span>
+                    <span class="populares-strip-item"><img src="imagenes/Fotos mini 1 a 1/lisalisa_mini.jpg" alt="Lisa Lisa" loading="lazy" draggable="false"></span>
+                    <span class="populares-strip-item"><img src="imagenes/Fotos mini 1 a 1/rohan_mini.jpeg" alt="Rohan Kishibe" loading="lazy" draggable="false"></span>
+                </div>
+            </div>
+            <div class="populares-strip" data-dir="left" data-speed="1.22">
+                <div class="populares-strip-track">
+                    <span class="populares-strip-item"><img src="imagenes/Fotos mini 1 a 1/softwet_mini.jpg" alt="Soft &amp; Wet" loading="lazy" draggable="false"></span>
+                    <span class="populares-strip-item"><img src="imagenes/Fotos mini 1 a 1/tooru_mini.jpeg" alt="Tooru" loading="lazy" draggable="false"></span>
+                    <span class="populares-strip-item"><img src="imagenes/Fotos mini 1 a 1/josuke4_mini.jpeg" alt="Josuke Higashikata" loading="lazy" draggable="false"></span>
+                    <span class="populares-strip-item"><img src="imagenes/Fotos mini 1 a 1/starplatinumbig_mini.jpg" alt="Star Platinum BIG" loading="lazy" draggable="false"></span>
+                    <span class="populares-strip-item"><img src="imagenes/Fotos mini 1 a 1/speedwagon_mini.jpg" alt="Speedwagon" loading="lazy" draggable="false"></span>
+                    <span class="populares-strip-item"><img src="imagenes/Fotos mini 1 a 1/vonstroheim_mini.jpg" alt="Von Stroheim" loading="lazy" draggable="false"></span>
+                    <span class="populares-strip-item"><img src="imagenes/Fotos mini 1 a 1/wou_mini.jpeg" alt="Wonder of U" loading="lazy" draggable="false"></span>
+                    <span class="populares-strip-item"><img src="imagenes/Fotos mini 1 a 1/kosaku_kira_mini.jpg" alt="Kosaku Kawajiri" loading="lazy" draggable="false"></span>
+                    <span class="populares-strip-item"><img src="imagenes/Fotos mini 1 a 1/dioblack_mini.jpg" alt="Giorno Giovanna ver.Black" loading="lazy" draggable="false"></span>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -295,31 +345,11 @@
                 </div>
             </div>
 
-            <!-- TikTok -->
-            <div class="tiktok-card">
-                <div class="tiktok-glow"></div>
-                <div class="tiktok-left">
-                    <div class="tiktok-icon-wrap">
-                        <svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
-                        </svg>
-                    </div>
-                    <div>
-                        <p class="tiktok-handle">@anime2chile</p>
-                        <h3 class="tiktok-title">TIKTOK</h3>
-                        <p class="tiktok-desc">Videos, unboxings y contenido exclusivo del mundo anime y Pokémon TCG.</p>
-                    </div>
-                </div>
-                <div class="tiktok-right">
-                    <a href="https://tiktok.com/@anime2chile" target="_blank" class="tiktok-btn">SEGUIR AHORA</a>
-                </div>
-            </div>
-
         </div>
     </section>
 
     <!-- ===== FOOTER ===== -->
-    <footer class="footer" id="contacto">
+    <footer class="footer">
         <div class="footer-top">
             <div class="footer-brand">
                 <div class="footer-logo-wrap">
@@ -328,63 +358,42 @@
                         <span class="brand-anime">ANIME</span><span class="brand-two">2</span><span class="brand-anime">CHILE</span>
                     </div>
                 </div>
-                <p class="footer-tagline">El catálogo más amplio de coleccionables anime en Chile. Figuras originales, preventas exclusivas y envíos a todo el país.</p>
+                <p class="footer-tagline">El catálogo más amplio y exclusivo de Jojo's Bizarre Adventure en Chile. Figuras originales directo desde Japón, preventas exclusivas y envíos a todo el país.</p>
                 <div class="footer-social">
-                    <a href="#" class="social-btn" aria-label="Instagram">
+                    <a href="https://instagram.com/anime2chile" class="social-btn" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                    </a>
-                    <a href="#" class="social-btn" aria-label="TikTok">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
-                    </a>
-                    <a href="#" class="social-btn" aria-label="Facebook">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                    </a>
-                    <a href="#" class="social-btn" aria-label="YouTube">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
                     </a>
                 </div>
             </div>
 
             <div class="footer-links-group">
-                <h4 class="footer-heading">Catálogo</h4>
+                <h4 class="footer-heading">Nosotros</h4>
                 <ul class="footer-links">
-                    <li><a href="#">Figuras de Acción</a></li>
-                    <li><a href="#">Estatuas Premium</a></li>
-                    <li><a href="#">Artículos Exclusivos</a></li>
-                    <li><a href="#">Pre-Ventas</a></li>
+                    <li><a href="terminos.html">Términos y Condiciones</a></li>
+                    <li><a href="privacidad.html">Política de Privacidad</a></li>
+                    <li><a href="privacidad.html#cookies">Cookies</a></li>
                 </ul>
             </div>
 
             <div class="footer-links-group">
                 <h4 class="footer-heading">Ayuda</h4>
                 <ul class="footer-links">
-                    <li><a href="#">¿Cómo comprar?</a></li>
-                    <li><a href="#">Envíos y tiempos</a></li>
-                    <li><a href="#">Cambios y devoluciones</a></li>
-                    <li><a href="#">Garantía de autenticidad</a></li>
+                    <li><a href="quienes-somos.html#faq-autenticidad">Garantía de autenticidad</a></li>
+                    <li><a href="quienes-somos.html#faq-envios">Envíos y tiempos</a></li>
+                    <li><a href="quienes-somos.html#faq-reservas">Reservas y preventas</a></li>
                     <li><a href="quienes-somos.html#contacto">Contacto</a></li>
                 </ul>
-            </div>
-
-            <div class="footer-newsletter">
-                <h4 class="footer-heading">Newsletter</h4>
-                <p class="footer-newsletter-desc">Recibe primero las alertas de stock, preventas y descuentos exclusivos.</p>
-                <div class="newsletter-form">
-                    <input type="email" class="newsletter-input" placeholder="tu@correo.com">
-                    <button class="newsletter-btn">SUSCRIBIR</button>
-                </div>
-                <p class="newsletter-disclaimer">Sin spam. Puedes darte de baja cuando quieras.</p>
             </div>
         </div>
 
         <div class="footer-bottom">
-            <p class="footer-copy">© 2025 Anime2Chile. Todos los derechos reservados.</p>
+            <p class="footer-copy">© 2026 Anime2Chile. Todos los derechos reservados.</p>
             <div class="footer-bottom-links">
-                <a href="#">Términos y Condiciones</a>
+                <a href="terminos.html">Términos y Condiciones</a>
                 <span>·</span>
-                <a href="#">Política de Privacidad</a>
+                <a href="privacidad.html">Política de Privacidad</a>
                 <span>·</span>
-                <a href="#">Cookies</a>
+                <a href="privacidad.html#cookies">Cookies</a>
             </div>
         </div>
     </footer>
@@ -446,7 +455,9 @@
         var total = cards.length;
         var idx   = 0;
 
-        function isMobile() { return window.innerWidth < 768; }
+        function isMobile() {
+            return window.matchMedia('(max-width: 768px), (max-width: 1200px) and (orientation: portrait)').matches;
+        }
 
         function updateArrows() {
             if (btnP) btnP.style.opacity = idx === 0 ? '0.35' : '1';
@@ -493,6 +504,95 @@
         document.addEventListener('DOMContentLoaded', initDestacadosCarrusel);
     } else {
         initDestacadosCarrusel();
+    }
+})();
+</script>
+
+<script>
+(function() {
+    function initPopularesStrips() {
+        var section = document.getElementById('populares-section');
+        if (!section) return;
+
+        var strips = section.querySelectorAll('.populares-strip');
+        strips.forEach(function(strip) {
+            var track = strip.querySelector('.populares-strip-track');
+            if (!track || track.getAttribute('data-cloned') === '1') return;
+            var items = Array.prototype.slice.call(track.children);
+            items.forEach(function(item) {
+                var clone = item.cloneNode(true);
+                clone.setAttribute('tabindex', '-1');
+                clone.setAttribute('aria-hidden', 'true');
+                track.appendChild(clone);
+            });
+            track.setAttribute('data-cloned', '1');
+        });
+
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+        var ticking = false;
+
+        function progress() {
+            var rect = section.getBoundingClientRect();
+            var vh = window.innerHeight || document.documentElement.clientHeight;
+            var start = vh * 1.12;
+            var end = -rect.height - vh * 0.5;
+            var travel = start - end;
+            if (travel <= 0) return 0;
+            var p = (start - rect.top) / travel;
+            if (p < 0) return 0;
+            if (p > 1) return 1;
+            return p;
+        }
+
+        function update() {
+            ticking = false;
+            if (reduce.matches) {
+                strips.forEach(function(strip) {
+                    var track = strip.querySelector('.populares-strip-track');
+                    if (track) track.style.transform = 'translate3d(0,0,0)';
+                });
+                return;
+            }
+            var p = progress();
+            strips.forEach(function(strip) {
+                var track = strip.querySelector('.populares-strip-track');
+                if (!track) return;
+                var speed = parseFloat(strip.getAttribute('data-speed'));
+                if (!isFinite(speed) || speed <= 0) speed = 1;
+                var sp = p * speed;
+                if (sp > 1) sp = 1;
+                var maxX = Math.max(0, track.scrollWidth - strip.clientWidth);
+                var dir = strip.getAttribute('data-dir');
+                var x = dir === 'right' ? -(1 - sp) * maxX : -sp * maxX;
+                track.style.transform = 'translate3d(' + x + 'px,0,0)';
+            });
+        }
+
+        function onScroll() {
+            if (!ticking) {
+                ticking = true;
+                requestAnimationFrame(update);
+            }
+        }
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll, { passive: true });
+        window.addEventListener('load', update);
+        if (typeof ResizeObserver === 'function') {
+            new ResizeObserver(update).observe(section);
+        }
+        if (typeof reduce.addEventListener === 'function') {
+            reduce.addEventListener('change', update);
+        }
+        requestAnimationFrame(function() {
+            requestAnimationFrame(update);
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initPopularesStrips);
+    } else {
+        initPopularesStrips();
     }
 })();
 </script>

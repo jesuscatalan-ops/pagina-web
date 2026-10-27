@@ -175,7 +175,7 @@
     height: 72px;
     border-radius: 8px;
     overflow: hidden;
-    background: var(--gradient-subtle);
+    background: #fff;
     flex-shrink: 0;
     display: flex;
     align-items: center;
@@ -185,12 +185,8 @@
 .carrito-item-img img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-}
-
-.carrito-item-placeholder {
-    font-size: 2rem;
-    opacity: 0.5;
+    object-fit: contain;
+    display: block;
 }
 
 .carrito-item-info {
@@ -217,6 +213,17 @@
     font-size: 0.82rem;
     color: var(--gray);
     margin: 0;
+}
+
+.carrito-item-abono {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.carrito-item-precio-total {
+    margin: 0;
+    font-size: 0.74rem;
+    color: #8a8a8a;
 }
 
 .carrito-item-qty {
@@ -250,10 +257,15 @@
     line-height: 1;
 }
 
-.carrito-qty-btn:hover {
+.carrito-qty-btn:hover:not(:disabled) {
     border-color: var(--primary);
     background: var(--gradient-subtle);
     color: var(--primary);
+}
+
+.carrito-qty-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
 }
 
 .carrito-item-subtotal {
@@ -341,24 +353,6 @@
 .carrito-checkout-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 28px rgba(255, 107, 53, 0.5);
-}
-
-.carrito-vaciar-btn {
-    width: 100%;
-    padding: 0.6rem;
-    font-family: 'Pathway Extreme', sans-serif;
-    font-size: 0.82rem;
-    background: none;
-    border: 1px solid var(--light-gray);
-    border-radius: 8px;
-    color: var(--gray);
-    cursor: pointer;
-    transition: border-color 0.2s, color 0.2s;
-}
-
-.carrito-vaciar-btn:hover {
-    border-color: #e53e3e;
-    color: #e53e3e;
 }
 
 /* ── Responsive móvil ── */

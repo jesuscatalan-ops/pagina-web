@@ -4,9 +4,13 @@
 //  del catálogo. También maneja el filtrado por parte.
 // ============================================================
 
+const PRODUCTOS_POR_PAGINA = 16;
+
 let todosLosProductos = [];
+let productosVisibles = [];
 let filtroActivo = 'Todos';
 let ordenActivo   = 'default';
+let paginaActual = 1;
 
 // ── Ordenamiento ─────────────────────────────────────────────
 
@@ -42,6 +46,7 @@ window.aplicarOrden = function(cat, orden, el) {
     btn.childNodes[0].textContent = labels[orden] || 'ORDENAR';
     document.getElementById(`sort-dropdown-${cat}`).classList.remove('visible');
     btn.classList.remove('abierto');
+    paginaActual = 1;
     const filtrados = filtroActivo === 'Todos'
         ? todosLosProductos
         : todosLosProductos.filter(p => partesDe(p).includes(filtroActivo));
@@ -163,15 +168,119 @@ function crearTarjeta(producto) {
         </article>`;
 }
 
+// ── Paginación ───────────────────────────────────────────────
+
+function paginaDesdeURL() {
+    const n = parseInt(new URLSearchParams(window.location.search).get('pagina'), 10);
+    return Number.isInteger(n) && n > 0 ? n : 1;
+}
+
+function actualizarURL() {
+    const params = new URLSearchParams(window.location.search);
+    if (filtroActivo && filtroActivo !== 'Todos') {
+        params.set('parte', filtroActivo);
+    } else {
+        params.delete('parte');
+    }
+    if (paginaActual > 1) {
+        params.set('pagina', String(paginaActual));
+    } else {
+        params.delete('pagina');
+    }
+    const qs = params.toString();
+    const next = qs ? `${location.pathname}?${qs}` : location.pathname;
+    if (`${location.pathname}${location.search}` !== next) {
+        history.replaceState(null, '', next);
+    }
+}
+
+function numerosDePagina(pagina, total) {
+    if (total <= 7) {
+        return Array.from({ length: total }, (_, i) => i + 1);
+    }
+    const set = new Set([1, total, pagina - 1, pagina, pagina + 1]);
+    if (pagina <= 3) {
+        set.add(2);
+        set.add(3);
+        set.add(4);
+    }
+    if (pagina >= total - 2) {
+        set.add(total - 3);
+        set.add(total - 2);
+        set.add(total - 1);
+    }
+    return [...set].filter(n => n >= 1 && n <= total).sort((a, b) => a - b);
+}
+
+function renderPaginacion(totalItems) {
+    const nav = document.getElementById('catalogo-paginacion');
+    if (!nav) return;
+
+    const total = Math.ceil(totalItems / PRODUCTOS_POR_PAGINA);
+    if (totalItems === 0 || total <= 1) {
+        nav.hidden = true;
+        nav.innerHTML = '';
+        return;
+    }
+
+    nav.hidden = false;
+    const nums = numerosDePagina(paginaActual, total);
+    let html = `<button type="button" class="catalog-pagination-btn catalog-pagination-btn--nav" data-pagina="${paginaActual - 1}" ${paginaActual <= 1 ? 'disabled' : ''} aria-label="Página anterior">Anterior</button>`;
+    let prev = 0;
+    nums.forEach(n => {
+        if (prev && n - prev > 1) {
+            html += '<span class="catalog-pagination-ellipsis" aria-hidden="true">…</span>';
+        }
+        const activa = n === paginaActual;
+        html += `<button type="button" class="catalog-pagination-btn${activa ? ' active' : ''}" data-pagina="${n}" ${activa ? 'aria-current="page"' : ''} aria-label="Página ${n}">${n}</button>`;
+        prev = n;
+    });
+    html += `<button type="button" class="catalog-pagination-btn catalog-pagination-btn--nav" data-pagina="${paginaActual + 1}" ${paginaActual >= total ? 'disabled' : ''} aria-label="Página siguiente">Siguiente</button>`;
+    nav.innerHTML = html;
+}
+
+function irAPagina(n) {
+    const total = Math.max(1, Math.ceil(productosVisibles.length / PRODUCTOS_POR_PAGINA));
+    paginaActual = Math.min(Math.max(1, n), total);
+    renderGrid(productosVisibles, { scroll: true });
+}
+
+function conectarPaginacion() {
+    const nav = document.getElementById('catalogo-paginacion');
+    if (!nav || nav.dataset.bound === '1') return;
+    nav.dataset.bound = '1';
+    nav.addEventListener('click', function (e) {
+        const btn = e.target.closest('[data-pagina]');
+        if (!btn || btn.disabled) return;
+        const n = parseInt(btn.getAttribute('data-pagina'), 10);
+        if (!Number.isInteger(n)) return;
+        irAPagina(n);
+    });
+}
+
+function scrollAlCatalogo() {
+    const destino = document.querySelector('.catalog-page-filters') || document.getElementById('catalogo-grid');
+    if (destino) destino.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
 // ── Render del grid completo ─────────────────────────────────
 
-function renderGrid(productos) {
+function renderGrid(productos, opciones) {
+    productosVisibles = productos;
     const grid = document.getElementById('catalogo-grid');
     const contador = document.getElementById('catalogo-contador');
 
     if (!grid) return;
 
-    if (productos.length === 0) {
+    const total = productos.length;
+    const totalPaginas = Math.max(1, Math.ceil(total / PRODUCTOS_POR_PAGINA));
+    if (paginaActual > totalPaginas) paginaActual = totalPaginas;
+    if (paginaActual < 1) paginaActual = 1;
+
+    const inicio = (paginaActual - 1) * PRODUCTOS_POR_PAGINA;
+    const pagina = productos.slice(inicio, inicio + PRODUCTOS_POR_PAGINA);
+
+    if (total === 0) {
         grid.innerHTML = `
             <div style="grid-column:1/-1; text-align:center; padding:4rem 2rem;">
                 <div style="font-size:3rem; margin-bottom:1rem;">🔍</div>
@@ -181,17 +290,30 @@ function renderGrid(productos) {
                 </p>
             </div>`;
     } else {
-        grid.innerHTML = productos.map(crearTarjeta).join('');
+        grid.innerHTML = pagina.map(crearTarjeta).join('');
     }
 
     if (contador) {
-        contador.textContent = `${productos.length} producto${productos.length !== 1 ? 's' : ''}`;
+        if (total === 0) {
+            contador.textContent = '0 productos';
+        } else if (total <= PRODUCTOS_POR_PAGINA) {
+            contador.textContent = `${total} producto${total !== 1 ? 's' : ''}`;
+        } else {
+            contador.textContent = `${inicio + 1}–${inicio + pagina.length} de ${total} productos`;
+        }
+    }
+
+    renderPaginacion(total);
+    actualizarURL();
+
+    if (opciones && opciones.scroll) {
+        scrollAlCatalogo();
     }
 }
 
 // ── Filtrado ─────────────────────────────────────────────────
 
-function aplicarFiltro(parte) {
+function aplicarFiltro(parte, opciones) {
     filtroActivo = parte;
 
     // Actualizar botón "Todos"
@@ -202,6 +324,8 @@ function aplicarFiltro(parte) {
     document.querySelectorAll('.parte-emblem-btn').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.parte === parte);
     });
+
+    if (!opciones || !opciones.conservarPagina) paginaActual = 1;
 
     // Filtrar y renderizar respetando el orden activo
     const filtrados = parte === 'Todos'
@@ -275,11 +399,14 @@ async function init() {
 
         conectarFiltros();
         conectarCarritoCatalogo();
+        conectarPaginacion();
 
-        // Soporte deep-link desde Quiénes Somos: catalogo.html?parte=Golden%20Wind
+        paginaActual = paginaDesdeURL();
+
+        // Soporte deep-link desde Nosotros: catalogo.html?parte=Golden%20Wind
         const parteURL = new URLSearchParams(window.location.search).get('parte');
         if (parteURL && parteURL !== 'Todos') {
-            aplicarFiltro(parteURL);
+            aplicarFiltro(parteURL, { conservarPagina: true });
         } else {
             renderGrid(todosLosProductos);
         }

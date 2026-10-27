@@ -7,6 +7,8 @@
     <meta name="theme-color" content="#ffffff">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout — Anime2Chile</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="canonical" href="https://anime2chile.cl/checkout.html">
     <link rel="icon" href="favicon.png?v=2" type="image/png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -119,6 +121,61 @@
 
         .form-error-msg.visible {
             display: block;
+        }
+
+        .tipo-destino-opciones {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+
+        .tipo-destino-opcion {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 0.6rem;
+            padding: 0.75rem 1rem;
+            border: 1.5px solid var(--light-gray);
+            border-radius: 10px;
+            background: #fafafa;
+            font-family: 'Pathway Extreme', sans-serif;
+            font-size: 0.95rem;
+            color: var(--dark);
+            cursor: pointer;
+            transition: border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .tipo-destino-opcion input {
+            accent-color: var(--primary);
+            margin: 0;
+            width: auto;
+            flex: none;
+        }
+
+        .tipo-destino-opcion span {
+            flex: 1;
+            text-align: left;
+        }
+
+        .tipo-destino-opcion:has(input:checked) {
+            border-color: var(--primary);
+            background: #fff5f0;
+        }
+
+        .tipo-destino-opciones.error .tipo-destino-opcion {
+            border-color: #e53e3e;
+        }
+
+        .form-hint-sucursal {
+            font-size: 0.82rem;
+            color: #92400e;
+            background: #fef3c7;
+            border-radius: 8px;
+            padding: 0.5rem 0.75rem;
+        }
+
+        .form-hint-sucursal[hidden] {
+            display: none;
         }
 
         .form-select {
@@ -249,6 +306,24 @@
             color: var(--primary);
             letter-spacing: 1px;
             white-space: nowrap;
+            text-align: right;
+        }
+
+        .envio-precio-sub {
+            display: block;
+            margin-top: 0.15rem;
+            font-family: 'Pathway Extreme', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 0;
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        .envio-por-pagar-aviso {
+            margin: 0.85rem 0 0;
+            font-size: 0.82rem;
+            line-height: 1.45;
+            color: var(--gray);
         }
 
         /* ── Cupón ── */
@@ -346,11 +421,41 @@
             color: var(--gray);
         }
 
+        .resumen-item-abono {
+            display: block;
+            margin-top: 0.15rem;
+            font-size: 0.72rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
         .resumen-item-precio {
             font-family: 'Bebas Neue', sans-serif;
             font-size: 1rem;
             color: var(--primary);
             white-space: nowrap;
+            text-align: right;
+        }
+
+        .resumen-item-precio-total {
+            display: block;
+            margin-top: 0.15rem;
+            font-family: 'Questrial', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 400;
+            color: var(--gray);
+            letter-spacing: 0;
+        }
+
+        .resumen-reserva-nota {
+            margin: 0.85rem 0 0;
+            padding: 0.7rem 0.85rem;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #fff4ea 0%, #ffe4d2 100%);
+            border: 1px solid rgba(255, 107, 53, 0.22);
+            font-size: 0.78rem;
+            line-height: 1.45;
+            color: #7a3d16;
         }
 
         .resumen-divider {
@@ -627,7 +732,7 @@
         }
 
         /* ── Responsive ── */
-        @media (max-width: 860px) {
+        @media (max-width: 860px), (max-width: 1200px) and (orientation: portrait) {
             .checkout-wrap {
                 grid-template-columns: 1fr;
                 padding: 96px 1.25rem 3rem;
@@ -727,8 +832,9 @@
             <nav class="nav">
                 <a href="index.html" class="nav-link">Inicio</a>
                 <a href="catalogo.html" class="nav-link">Catalogo</a>
-                <a href="quienes-somos.html" class="nav-link">Quiénes Somos</a>
+                <a href="quienes-somos.html" class="nav-link">Nosotros</a>
                 <a href="reservas.html" class="nav-link">Reservas</a>
+                <!-- Pokémon oculto: quita este comentario para mostrarlo en el menú --><!-- <a href="pokemon-tcg.html" class="nav-link">Pokémon</a> -->
             </nav>
             <button class="mobile-menu-btn">☰</button>
         </div>
@@ -810,18 +916,38 @@
                         <span class="form-error-msg" id="err-region">Selecciona tu región</span>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Ciudad / Comuna <span class="required">*</span></label>
+                        <label class="form-label">Ciudad <span class="required">*</span></label>
                         <input type="text" class="form-input" id="campo-ciudad" placeholder="Ej: Santiago">
-                        <span class="form-error-msg" id="err-ciudad">Ingresa tu ciudad o comuna</span>
+                        <span class="form-error-msg" id="err-ciudad">Ingresa tu ciudad</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Comuna <span class="required">*</span></label>
+                        <input type="text" class="form-input" id="campo-comuna" placeholder="Ej: Providencia">
+                        <span class="form-error-msg" id="err-comuna">Ingresa tu comuna</span>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Código Postal</label>
                         <input type="text" class="form-input" id="campo-postal" placeholder="Ej: 8320000" maxlength="7">
                     </div>
                     <div class="form-group full">
+                        <span class="form-label" id="label-tipo-destino">¿Envías a un domicilio o sucursal Starken? <span class="required">*</span></span>
+                        <div class="tipo-destino-opciones" id="campo-tipo-destino" role="radiogroup" aria-labelledby="label-tipo-destino">
+                            <label class="tipo-destino-opcion">
+                                <input type="radio" name="tipo-destino" value="domicilio">
+                                <span>Domicilio</span>
+                            </label>
+                            <label class="tipo-destino-opcion">
+                                <input type="radio" name="tipo-destino" value="sucursal">
+                                <span>Sucursal</span>
+                            </label>
+                        </div>
+                        <span class="form-error-msg" id="err-tipo-destino">Selecciona si envías a un domicilio o a una sucursal Starken</span>
+                    </div>
+                    <div class="form-group full">
                         <label class="form-label">Dirección <span class="required">*</span></label>
                         <input type="text" class="form-input" id="campo-direccion" placeholder="Calle, número">
                         <span class="form-error-msg" id="err-direccion">Ingresa tu dirección</span>
+                        <p class="form-hint-sucursal" id="aviso-sucursal" hidden>Recuerda colocar la dirección de la sucursal Starken a la cual será enviado el pedido</p>
                     </div>
                     <div class="form-group full">
                         <label class="form-label">Depto / Casa / Referencia</label>
@@ -843,9 +969,12 @@
                                 <div class="envio-desc">3–5 días hábiles</div>
                             </div>
                         </div>
-                        <div class="envio-precio" data-precio-envio> $5.000</div>
+                        <div class="envio-precio" data-precio-envio>Según región</div>
                     </label>
                 </div>
+                <p class="envio-por-pagar-aviso" id="envio-por-pagar-aviso" hidden>
+                    En Aysén y Magallanes el flete Starken es <strong>por pagar</strong>: se muestra el valor estimado y se cobra al recibir el pedido. No se incluye en el total de Mercado Pago.
+                </p>
             </div>
 
             <!-- Cupón y notas -->
@@ -889,12 +1018,15 @@
                 </div>
                 <div class="resumen-linea">
                     <span>Envío</span>
-                    <span id="resumen-envio">$5.000</span>
+                    <span id="resumen-envio">Según región</span>
                 </div>
                 <div class="resumen-linea total">
                     <span>TOTAL</span>
                     <span id="resumen-total">—</span>
                 </div>
+                <p class="resumen-reserva-nota" id="resumen-reserva-nota" hidden>
+                    Este pago corresponde al abono de reserva. El saldo restante se cobra cuando el pedido esté listo para despacho.
+                </p>
 
                 <div class="mp-confirm">
                     <img class="mp-confirm-logo" src="imagenes/Miscelaneo/mercado_pago.svg" alt="Mercado Pago">
@@ -1018,10 +1150,40 @@
 const METODOS_ENVIO = {
     starken: { id: 'starken', nombre: 'Starken', costoBase: 5000 },
 };
-const CUPONES = {};
+const CUPONES = {
+    ANIME2CHILE: { tipo: 'porcentaje', valor: 10 },
+};
+const TARIFAS_ENVIO_REGION = [
+    { nombre: 'Arica y Parinacota', zona: 'Extremo Norte', costo: 10000, porPagar: false },
+    { nombre: 'Tarapacá', zona: 'Extremo Norte', costo: 10000, porPagar: false },
+    { nombre: 'Antofagasta', zona: 'Extremo Norte', costo: 10000, porPagar: false },
+    { nombre: 'Atacama', zona: 'Centro/Sur', costo: 8000, porPagar: false },
+    { nombre: 'Coquimbo', zona: 'Centro/Sur', costo: 8000, porPagar: false },
+    { nombre: 'Valparaíso', zona: 'Centro/Sur', costo: 7000, porPagar: false },
+    { nombre: 'Metropolitana de Santiago', zona: 'Misma ciudad', costo: 6000, porPagar: false },
+    { nombre: "O'Higgins", zona: 'Centro/Sur', costo: 7000, porPagar: false },
+    { nombre: 'Maule', zona: 'Centro/Sur', costo: 8000, porPagar: false },
+    { nombre: 'Ñuble', zona: 'Centro/Sur', costo: 8000, porPagar: false },
+    { nombre: 'Biobío', zona: 'Centro/Sur', costo: 8000, porPagar: false },
+    { nombre: 'La Araucanía', zona: 'Centro/Sur', costo: 8000, porPagar: false },
+    { nombre: 'Los Ríos', zona: 'Centro/Sur', costo: 8000, porPagar: false },
+    { nombre: 'Los Lagos', zona: 'Centro/Sur', costo: 8000, porPagar: false },
+    { nombre: 'Aysén', zona: 'Extremo Austral', costo: 13000, porPagar: true },
+    { nombre: 'Magallanes', zona: 'Extremo Austral', costo: 13000, porPagar: true },
+];
+const ALIAS_REGION_ENVIO = {
+    metropolitana: 'metropolitana de santiago',
+    'rm metropolitana': 'metropolitana de santiago',
+    'region metropolitana': 'metropolitana de santiago',
+    santiago: 'metropolitana de santiago',
+    'o higgins': 'ohiggins',
+    araucania: 'la araucania',
+};
 
 let tipoEnvio = 'starken';
 let descuentoPct = 0;
+let descuentoFijo = 0;
+let cuponEnvioGratis = false;
 let cuponCodigo = null;
 let mpPublicKey = '';
 let mpInstance = null;
@@ -1035,18 +1197,68 @@ function formatPrecio(n) {
     return '$' + Number(n).toLocaleString('es-CL');
 }
 
-function costoEnvioActual() {
+function escapeHtmlCheckout(text) {
+    return String(text ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+}
+
+function normalizarRegion(valor) {
+    return String(valor || '')
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[''`´]/g, '')
+        .replace(/[^a-z0-9]+/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+}
+
+function tarifaEnvioPorRegion(regionRaw) {
+    const normalizada = normalizarRegion(regionRaw);
+    if (!normalizada) return null;
+    const clave = ALIAS_REGION_ENVIO[normalizada] || normalizada;
+    return TARIFAS_ENVIO_REGION.find((t) => {
+        const nombreNorm = normalizarRegion(t.nombre);
+        return nombreNorm === clave || nombreNorm === normalizada;
+    }) || null;
+}
+
+function adelantoPctDe(valor) {
+    const n = Number(valor);
+    if (!Number.isFinite(n) || n <= 0 || n > 100) return 50;
+    return n;
+}
+
+function detalleEnvioActual() {
     const metodo = METODOS_ENVIO[tipoEnvio];
-    if (!metodo) return 0;
-    if (metodo.esRetiro) return 0;
-    return metodo.costoBase;
+    if (!metodo) return { costo: 0, estimado: 0, porPagar: false, tarifa: null };
+    if (metodo.esRetiro) return { costo: 0, estimado: 0, porPagar: false, tarifa: null };
+
+    const region = document.getElementById('campo-region')?.value || '';
+    const tarifa = tarifaEnvioPorRegion(region);
+    if (!tarifa) return { costo: 0, estimado: 0, porPagar: false, tarifa: null, sinRegion: true };
+
+    if (tarifa.porPagar) {
+        return { costo: 0, estimado: tarifa.costo, porPagar: true, tarifa };
+    }
+    if (cuponEnvioGratis) {
+        return { costo: 0, estimado: tarifa.costo, porPagar: false, tarifa, gratis: true };
+    }
+    return { costo: tarifa.costo, estimado: tarifa.costo, porPagar: false, tarifa };
+}
+
+function costoEnvioActual() {
+    return detalleEnvioActual().costo;
 }
 
 function calcularTotales() {
     const carrito = obtenerCarrito();
     const subtotal = carrito.reduce((s, i) => s + i.precio * i.cantidad, 0);
     const envioFinal = costoEnvioActual();
-    const descuentoMonto = Math.round(subtotal * descuentoPct);
+    const descuentoMonto = Math.max(0, Math.min(subtotal, Math.round(subtotal * descuentoPct) + descuentoFijo));
     const total = subtotal - descuentoMonto + envioFinal;
     return { subtotal, envioFinal, descuentoMonto, total };
 }
@@ -1078,27 +1290,47 @@ function renderResumen() {
         return;
     }
 
-    itemsEl.innerHTML = carrito.map(item => `
+    const tieneReserva = carrito.some(item => item.reserva);
+    itemsEl.innerHTML = carrito.map(item => {
+        const detalleAbono = item.reserva
+            ? `<span class="resumen-item-abono">Abono ${adelantoPctDe(item.adelantoPct)}%${item.precioTotal ? ' · Precio total ' + formatPrecio(item.precioTotal) : ''}</span>`
+            : '';
+        return `
         <div class="resumen-item">
             <div class="resumen-item-img">
-                ${item.imagen ? `<img src="${encodeURI(item.imagen)}" alt="${item.nombre}" onerror="this.style.display='none'">` : ''}
+                ${item.imagen ? `<img src="${escapeHtmlCheckout(encodeURI(item.imagen))}" alt="${escapeHtmlCheckout(item.nombre)}" onerror="this.style.display='none'">` : ''}
             </div>
             <div class="resumen-item-info">
-                <div class="resumen-item-nombre">${item.nombre}</div>
+                <div class="resumen-item-nombre">${escapeHtmlCheckout(item.nombre)}</div>
                 <div class="resumen-item-detalle">Cantidad: ${item.cantidad}</div>
+                ${detalleAbono}
             </div>
             <div class="resumen-item-precio">${formatPrecio(item.precio * item.cantidad)}</div>
-        </div>`
-    ).join('');
+        </div>`;
+    }).join('');
+
+    const notaReserva = document.getElementById('resumen-reserva-nota');
+    if (notaReserva) notaReserva.hidden = !tieneReserva;
 
     actualizarTotales();
 }
 
 function actualizarTotales() {
     const { subtotal, envioFinal, descuentoMonto, total } = calcularTotales();
+    const detalle = detalleEnvioActual();
 
     document.getElementById('resumen-subtotal').textContent = formatPrecio(subtotal);
-    document.getElementById('resumen-envio').textContent = envioFinal === 0 ? '✓ Gratis' : formatPrecio(envioFinal);
+
+    const resumenEnvio = document.getElementById('resumen-envio');
+    if (detalle.sinRegion) {
+        resumenEnvio.textContent = 'Según región';
+    } else if (detalle.porPagar) {
+        resumenEnvio.textContent = 'Por pagar · ' + formatPrecio(detalle.estimado);
+    } else if (envioFinal === 0) {
+        resumenEnvio.textContent = '✓ Gratis';
+    } else {
+        resumenEnvio.textContent = formatPrecio(envioFinal);
+    }
 
     if (descuentoMonto > 0) {
         document.getElementById('linea-descuento').style.display = 'flex';
@@ -1109,21 +1341,39 @@ function actualizarTotales() {
 
     document.getElementById('resumen-total').textContent = formatPrecio(total);
 
+    const aviso = document.getElementById('envio-por-pagar-aviso');
+    if (aviso) aviso.hidden = !detalle.porPagar;
+
     document.querySelectorAll('#envio-opciones .envio-opcion').forEach(op => {
         const id = op.querySelector('input')?.value;
         const metodo = METODOS_ENVIO[id];
         const precioEl = op.querySelector('[data-precio-envio]');
         if (!metodo || !precioEl) return;
-        const costo = metodo.costoBase;
-        if (costo === 0) {
+
+        precioEl.style.color = '';
+        precioEl.style.webkitTextFillColor = '';
+
+        if (metodo.esRetiro) {
             precioEl.textContent = 'GRATIS';
             precioEl.style.color = '#00a87e';
             precioEl.style.webkitTextFillColor = '#00a87e';
-        } else {
-            precioEl.textContent = formatPrecio(costo);
-            precioEl.style.color = '';
-            precioEl.style.webkitTextFillColor = '';
+            return;
         }
+        if (detalle.sinRegion) {
+            precioEl.textContent = 'Según región';
+            return;
+        }
+        if (detalle.porPagar) {
+            precioEl.innerHTML = 'POR PAGAR<span class="envio-precio-sub">est. ' + formatPrecio(detalle.estimado) + '</span>';
+            return;
+        }
+        if (cuponEnvioGratis) {
+            precioEl.textContent = 'GRATIS';
+            precioEl.style.color = '#00a87e';
+            precioEl.style.webkitTextFillColor = '#00a87e';
+            return;
+        }
+        precioEl.textContent = formatPrecio(detalle.estimado);
     });
 }
 
@@ -1140,15 +1390,29 @@ window.aplicarCupon = function() {
     const msg = document.getElementById('cupon-msg');
     const cupon = CUPONES[codigo];
 
+    descuentoPct = 0;
+    descuentoFijo = 0;
+    cuponEnvioGratis = false;
+    cuponCodigo = null;
+
     if (cupon) {
-        descuentoPct = cupon.valor;
         cuponCodigo = codigo;
-        msg.className = 'cupon-msg ok';
-        msg.textContent = '✓ Cupón aplicado: ' + (descuentoPct * 100) + '% de descuento (sujeto a validación al pagar)';
+        if (cupon.tipo === 'envio_gratis') {
+            cuponEnvioGratis = true;
+            msg.className = 'cupon-msg ok';
+            msg.textContent = '✓ Cupón aplicado: envío gratis (sujeto a validación al pagar)';
+        } else if (cupon.tipo === 'fijo') {
+            descuentoFijo = Number(cupon.valor) || 0;
+            msg.className = 'cupon-msg ok';
+            msg.textContent = '✓ Cupón aplicado: ' + formatPrecio(descuentoFijo) + ' de descuento (sujeto a validación al pagar)';
+        } else {
+            const raw = Number(cupon.valor) || 0;
+            descuentoPct = raw > 1 ? raw / 100 : raw;
+            msg.className = 'cupon-msg ok';
+            msg.textContent = '✓ Cupón aplicado: ' + (descuentoPct * 100) + '% de descuento (sujeto a validación al pagar)';
+        }
         actualizarTotales();
     } else {
-        descuentoPct = 0;
-        cuponCodigo = null;
         msg.className = 'cupon-msg error';
         msg.textContent = '✕ Código inválido';
         actualizarTotales();
@@ -1170,6 +1434,7 @@ function validar() {
         { id: 'campo-rut',      err: 'err-rut',      check: v => /^[0-9]{1,2}\.[0-9]{3}\.[0-9]{3}-[0-9kK]$/.test(v) },
         { id: 'campo-region',    err: 'err-region',    check: v => v !== '' },
         { id: 'campo-ciudad',    err: 'err-ciudad',    check: v => v.length >= 2 },
+        { id: 'campo-comuna',    err: 'err-comuna',    check: v => v.length >= 2 },
         { id: 'campo-direccion', err: 'err-direccion', check: v => v.length >= 5 },
     ];
 
@@ -1182,8 +1447,28 @@ function validar() {
         if (!ok) valido = false;
     });
 
+    const tipoOk = !!tipoDestinoSeleccionado();
+    document.getElementById('campo-tipo-destino').classList.toggle('error', !tipoOk);
+    document.getElementById('err-tipo-destino').classList.toggle('visible', !tipoOk);
+    if (!tipoOk) valido = false;
+
     return valido;
 }
+
+function tipoDestinoSeleccionado() {
+    const marcado = document.querySelector('input[name="tipo-destino"]:checked');
+    return marcado ? marcado.value : '';
+}
+
+document.getElementById('campo-tipo-destino').addEventListener('change', () => {
+    const tipo = tipoDestinoSeleccionado();
+    document.getElementById('aviso-sucursal').hidden = tipo !== 'sucursal';
+    document.getElementById('campo-direccion').placeholder = tipo === 'sucursal'
+        ? 'Dirección de la sucursal Starken'
+        : 'Calle, número';
+    document.getElementById('campo-tipo-destino').classList.remove('error');
+    document.getElementById('err-tipo-destino').classList.remove('visible');
+});
 
 async function cargarConfigMp() {
     try {
@@ -1193,6 +1478,15 @@ async function cargarConfigMp() {
         mpPublicKey = data.publicKey || '';
         if (mpPublicKey && window.MercadoPago) {
             mpInstance = new MercadoPago(mpPublicKey, { locale: 'es-CL' });
+        }
+        if (data.metodosEnvio && Array.isArray(data.metodosEnvio)) {
+            data.metodosEnvio.forEach((m) => {
+                if (m && m.id) METODOS_ENVIO[m.id] = m;
+            });
+        }
+        if (Array.isArray(data.tarifasEnvioRegion) && data.tarifasEnvioRegion.length) {
+            TARIFAS_ENVIO_REGION.splice(0, TARIFAS_ENVIO_REGION.length, ...data.tarifasEnvioRegion);
+            actualizarTotales();
         }
     } catch (err) {
         console.warn('No se pudo cargar /api/config. ¿Está corriendo el servidor Express?', err);
@@ -1236,9 +1530,11 @@ window.confirmarPedido = async function(e) {
         direccion: {
             region: document.getElementById('campo-region').value,
             ciudad: document.getElementById('campo-ciudad').value.trim(),
+            comuna: document.getElementById('campo-comuna').value.trim(),
             postal: document.getElementById('campo-postal').value.trim(),
             calle:  document.getElementById('campo-direccion').value.trim(),
             depto:  document.getElementById('campo-depto').value.trim(),
+            tipo:   tipoDestinoSeleccionado(),
         },
         notas: document.getElementById('campo-notas').value.trim() || null,
     };
@@ -1272,6 +1568,11 @@ window.confirmarPedido = async function(e) {
         }
 
         btn.textContent = 'REDIRIGIENDO A MERCADO PAGO...';
+        try {
+            if (data.numero) {
+                sessionStorage.setItem('a2c_ultimo_pedido_numero', String(data.numero));
+            }
+        } catch (e) {}
         window.location.href = data.init_point;
     } catch (error) {
         console.error('Error al crear preferencia:', error);
@@ -1286,6 +1587,8 @@ window.confirmarPedido = async function(e) {
 document.addEventListener('DOMContentLoaded', () => {
     renderResumen();
     cargarConfigMp();
+
+    document.getElementById('campo-region')?.addEventListener('change', actualizarTotales);
 
     const rutInput = document.getElementById('campo-rut');
     if (rutInput) {
